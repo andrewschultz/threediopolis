@@ -272,6 +272,7 @@ after reading a command:
 				carry out the newseensing activity;
 				if number of characters in your-tally >= 1:
 					say "[italic type][bracket]NOTE: I kicked you back to the start[if number of visible quasi-entries > 0] and also removed the place you could've entered. They're all gone now[end if].[close bracket][roman type][line break]";
+				now my-table is table of scenery;
 				now list-in-status is false;
 				reset-game;
 				the rule succeeds;
@@ -344,6 +345,7 @@ begin-rows is a number that varies. end-rows is a number that varies.
 salty is a truth state that varies.
 
 when play begins (this is the let's get it started rule):
+	now my-table is table of findies;
 	now maximum score is number of rows in table of findies;
 	now right hand status line is "[score]/[maximum score] task[if score is not 1]s[end if] done";
 	now tt is table of findies;
@@ -1132,12 +1134,12 @@ thisheaderbreak is a number that varies. thisheaderbreak is 0.
 
 rule for constructing the status line when list-in-status is true:
 	now in-header is true;
-	if task-list is super-alpha:
+	if task-list is super-alpha or player has book of top secret things:
 		deepen the status line to maxalphrows rows;
 	else:
 		deepen the status line to maxrrows rows;
-	center "ED DUNN'S NEEDS [bracket][scoreboard][close bracket]" at row 1;
-	if task-list is super-alpha:
+	center "[if player has book of top]SEENS SEEN/UNSEEN[else]ED DUNN'S NEEDS[end if] [bracket][scoreboard][close bracket]" at row 1;
+	if task-list is super-alpha or player has book of top secret things:
 		now hpos is 0;
 		super-alpha-it;
 		now in-header is false;
@@ -1150,7 +1152,7 @@ rule for constructing the status line when list-in-status is true:
 
 to say scoreboard:
 	if player has book of top secret things:
-		say "[if eggsfound is secs]You found all the secrets![else][eggsfound]/[secs] secrets found[end if]";
+		say "[if eggsfound is secs]You found all the secrets![run paragraph on][else][eggsfound]/[secs] secrets found[end if]";
 	else:
 		say "[pals]/[maxpals] pals found, [edtasks]/[maxedtasks] tasks done";
 
@@ -1352,7 +1354,7 @@ check pushing the button:
 			else:
 				say "OK.";
 				the rule succeeds;
-	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2140. [i]YOU[r] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
+	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2140. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
 	reset-game instead;
 
 instead of switching on teleporter device:
@@ -1501,7 +1503,7 @@ losties-count is a number that varies.
 
 table of observies
 blurb
-"You reflect on studies showing how much of your life advertising eats, and you wonder if that accounts for people complaining about or repeating advertising, too."
+"You reflect on studies showing how much of your life advertising eats, and you wonder if that accounts for people complaining about or repeating particularly memorable ads, too."
 "Two little smart-alecks wonder if grandparents whined nostalgically so much back in the good old days."
 "Two particularly annoying foodies berate, equally, an Escherville style restaurant in Threediopolis and a Threediopolis style restaurant in Escherville."
 "A normal-IQ person is given a police warning for wearing a Harvard t-shirt without proper disclaimers."
@@ -1520,7 +1522,7 @@ blurb
 "'Dad, was Grampa more annoying than you when he said you kids don't know how easy you have it?'"
 "'Grampa, when you were a kid, did your grandparents moan more or less about when they were kids?'"
 "You walk by opposing heated demonstrations of corporate versus charity shills, then of two antiviolence factions."
-"You almost bump into someone reading [italic type]Moron Shaming and Logically Valid Namecalling for Fun and Profit[roman type]. He gets some practice in. On the second bit."
+"You almost bump into someone reading [italic type]Moron Shaming and Logically Valid Namecalling for Fun and Profit[roman type]. They try to practice on you but fail."
 "Two smart kids wonder why ANYONE would root for a sports team not owned by sabermetrically-inclined techsters."
 "An argument between freelance grammar and pronunciation police includes constant interruptions."
 "An ad hoc politician discusses the proposed 'stupid tax,' and if it should apply to people who don't use their smarts for social good like clever conversations, too."
@@ -2698,7 +2700,7 @@ to super-alpha-it:
 	now hpos is 0;
 	now a is "a";
 	let localrow be 0;
-	repeat through table of findies:
+	repeat through my-table:
 [		if in-header is true:
 			now thestring is "[thestring] before = [tally entry] [hpos]";]
 		let b be character number 1 in "[tally entry]" in lower case;
@@ -2719,30 +2721,31 @@ to super-alpha-it:
 			if in-header is true or localrow is inline:
 				say ", ";
 			now hpos is hpos + 2;
-		if found entry is 1 and unlist entry is false:
-			now hpos is hpos + number of characters in tally entry;
-			if hpos >= listwidth:
-				if in-header is true:
-					increment curlines;
-					if curlines is maxhrows - 1:
-						say "[lb]  ([later].)";
-						the rule succeeds;
-					say "[lb]  ";
-				now hpos is 2 + number of characters in tally entry;
-			if in-header is true or localrow is inline:
-				say "[italic type][tally entry][noital]";
-		else if unlist entry is false:
-			now hpos is hpos + number of characters in descrip entry + 7 + number of characters in "[nearness of tally entry]";
-			if hpos >= listwidth:
-				if in-header is true:
-					increment curlines;
-					if curlines is 17:
-						say "[lb]  ([later].)";
-						the rule succeeds;
-					say "[lb]  ";
-				now hpos is number of characters in descrip entry + 9 + number of characters in "[nearness of tally entry]";
-			if in-header is true or localrow is inline:
-				say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][if in-header is false and task-list is twisty][twistrate of twistiness entry][end if])";
+		if there is no unlist entry or unlist entry is false:
+			if found entry is 1:
+				now hpos is hpos + number of characters in tally entry;
+				if hpos >= listwidth:
+					if in-header is true:
+						increment curlines;
+						if curlines is maxhrows - 1:
+							say "[lb]  ([later].)";
+							the rule succeeds;
+						say "[lb]  ";
+					now hpos is 2 + number of characters in tally entry;
+				if in-header is true or localrow is inline:
+					say "[italic type][tally entry][noital]";
+			else:
+				now hpos is hpos + number of characters in descrip entry + 7 + number of characters in "[nearness of tally entry]";
+				if hpos >= listwidth:
+					if in-header is true:
+						increment curlines;
+						if curlines is 17:
+							say "[lb]  ([later].)";
+							the rule succeeds;
+						say "[lb]  ";
+					now hpos is number of characters in descrip entry + 9 + number of characters in "[nearness of tally entry]";
+				if in-header is true or localrow is inline:
+					say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][if in-header is false and task-list is twisty][twistrate of twistiness entry][end if])";
 	if in-header is true:
 		if thisheaderbreak + 1 < maxalphrows:
 			now maxalphrows is thisheaderbreak + 1;
@@ -2787,10 +2790,9 @@ understand "t" as ting.
 To decide what number is screenh:
 	(- VM_ScreenHeight() -);
 
-
 carry out ting:
-	if player has book of top secret things:
-		say "R is the command to use here, now you have the book. T would be ideal, but it was too tricky to implement in this release. Sorry. Maybe release 4." instead;
+[	if player has book of top secret things:
+		say "R is the command to use here, now you have the book. T would be ideal, but it was too tricky to implement in this release. Sorry. Maybe release 4." instead;]
 	if list-in-status is false:
 		say "[italic type][bracket]NOTE: there is currently a slowdown problem with web-based interpreters.[close bracket][roman type][line break]";
 		if screenh < 20:
@@ -3165,6 +3167,17 @@ posschars is a number that varies.
 
 ignore-remaining-dirs is a truth state that varies.
 
+looks-by is a number that varies.
+
+table of lookbys
+looky
+"You plan ahead, yet don't plan at all at the same time, as you zigzag through Threediopolis"
+"You put your head down and power-walk, only looking up for 3-d traffic lights"
+"You walk by several identical twenty-story buildings owned by Tiny-Rise Condos"
+"You find a cool shortcut with moving walkways that you soon forget"
+"It's a quick journey. The lines for the vertical transport tubes are short, so no people-phalanxes block the sidewalks"
+"You careen past police robots gaffling a fellow walker for aggravated wrong-way walking. Hey, the algorithms are proven to be fair"
+
 to dirparse (dirlump - indexed text):
 	if number of characters in dirlump > 2 and number of characters in your-tally > 0:
 		say "You aren't starting from the center. Do you still wish to turbo ahead?";
@@ -3183,7 +3196,11 @@ to dirparse (dirlump - indexed text):
 		now ever-fast is true;
 	else:
 		unless set to abbreviated room descriptions:
-			say "[one of]You plan ahead, yet don't plan at all at the same time, as you zigzag through Threediopolis[or]You put your head down and power-walk, only looking up for 3-d traffic lights[or]You walk by several identical twenty-story buildings owned by Tiny-Rise Condos[or]You find a cool shortcut with moving walkways that you soon forget[or]It's a quick journey. The lines for the vertical transport tubes are short, so no people-phalanxes block the sidewalks[or]You careen past police robots gaffling a fellow walker for aggravated wrong-way walking. Hey, the algorithms are proven to be fair[in random order].";
+			increment looks-by;
+			if looks-by > number of rows in table of lookbys:
+				now looks-by is 1;
+			choose row looks-by in table of lookbys;
+			say "[looky entry].";
 	now dirparsing is true;
 	now posschars is number of characters in your-tally + allchar;
 	repeat with charnum running from 1 to allchar:
@@ -3780,8 +3797,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "dunse"	"speling leson, dum dum"	"You listen to some loud idiot who can't pronounce or spell anything for a bit."	0	5	misp
 "duses"	"dyse n kards"	"All sorts of street gambling occurs here. Casinos are required to have odds warnings labeled prominently on all machines, which hasn't hurt business, but it's more fun and lively out here."	0	4	misp
 "eden"	"before history"	"You think back to how humanity started, for some reason. This place was probably innocent, long ago."	0	3	alfhint
-"eee"	"a small scream"	"You hear a piercing scream! Well, it's not the first you've heard. In city life, you learn to deal."	0	1	alfhint
-"eeeee"	"a big scream"	"You hear an even more piercing scream than the one you heard a bit ago! Well, you didn't hear any other yelling, so it can't be that bad."	0	1	alfhint
+"eeee"	"a scream"	"You hear a piercing scream! Well, it's not the first you've heard. And you didn't, like, hear any violence either. In city life, you learn to deal."	0	1	alfhint
 "endeed"	"genrul enkurijment/agremeent"	"You're waylaid by happy-idiotic conversation from various street preachers. At first, you listen to be polite, but you get sucked in, and you find yourself hearing, and saying, 'Indeed! Indeed!' You're not sure why that helped you feel more confident, but you remember studies proving this sort of thing works at a molecular level--provided the person doesn't expect it to. So you probably can't come back for seconds."	0	3	alfhint
 "ennuee"	"fake ty-urd fillosoferz"	"A bunch of poseurs in berets discuss the most exciting reason to feel bored. They ask you for one, and when you mumble, they ditch you as uninteresting."	0	3	alfhint
 "ensue"	"let stuff happen here"	"Time seems to pass and things seem to cause each other to happen here."	0	4	tough
@@ -3822,7 +3838,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "swedes"	"little Scandinavia"	"You're in an ethnic residential district. [biz-dist]."	0	4	tough
 "sweenee"	"where the hot dog hut was"	"A big sign says Sweenee Weenee's has moved[swee-try]."	0	4	tough
 "swune"	"c sumwun handsum n faymus"	"Oh my god--it's--it's--EEEEE! Suddenly, you care little for spelling or logic or anything. You just saw...[paragraph break]...and you realize you'll only see someone THAT famous up-close WUNSE."	0	5	misp
-"unded"	"hontid howse: zombees, gools"	"You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults coaching kids to be pseudo-cute and overdo the youthfully earnest bit. It's down to a science these days, the buttons you can push. You move on and decide not to get fleeced."	0	4	misp
+"unded"	"hontid howse: zombees, gools"	"You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults coaching kids to be pseudo-cute and overdo the youthfully earnest bit. It's down to a science these days, the buttons you can push. You move on and decide not to get fleeced. Wee [']uns!"	0	4	misp
 "undees"	"boxee breefs"	"You didn't want to admit you needed a few new pairs, but you did. You go in for a nice geometric pattern. From your own pocket, of course. Not Ed Dunn's."	0	5	misp
 "undue"	"criticism to ignore"	"Someone walks by and gives you an insult you didn't deserve. It has a bit of truth, but that was probably by accident."	0	4	tough
 "unneeded"	"to feel emo"	"You suddenly feel as if nobody, not even Ed Dunn, cares about you."	0	4	alfhint
@@ -3836,6 +3852,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "weewee"	"public nuisance"	"You just stepped in a puddle, though it hasn't rained much lately. Whoever, uh, made that puddle is really juvenile."	0	2	tough
 "wend"	"contorted traveling"	"Your most recent turning and twisting around seems like it should've led somewhere. But it did not. Yet."	0	4	alfhint
 "wenewenew"	"symmet. statue 2 insite, lurning, NOWLEDGE"	"You pass by a large statue that reminds you of times the penny--well, it's the dime these days, the penny being devalued--dropped. It felt good then and feels good now."	0	3	alfhint
+"wenus"	"LOVVELY plannetorryum"	"The knowledge and ideas passed along here is very colloquial but nonetheless useful. Some cranks are disappointed nobody's really started on space travel, and despite their political views, you leave thinking, if only you'd been taught this way in school, instead of all that memorization!"	0	5	misp
 "wewun"	"histery/viktery monyumint"	"You pass by a large monument commemorating some war or other that may not have ended as successfully as the government says it did. A victory over eggheadedness, grammar policing, general old-school stuffiness, and so forth. It's guarded by video cameras, and you hope they didn't catch you frowning as you walked past."	0	4	misp
 "wudden"	"hand karved krafts"	"Everything's overpriced in an outdoor market here, since cutting down trees is regulated now--but it needs to be. Still, you love browsing and seeing the texture metal and synthetics can't provide."	0	5	misp
 "wuwu"	"peppy radio station"	"Yes--it is--offices for a radio station, with all the old gear and stuff, before podcasts. How quaint!"	0	2	alfhint
@@ -3862,6 +3879,7 @@ tally (text)	just-miss (text)	found-yet	descrip (text)	rule-to-reveal
 "suuue"	--	false	"[sooee]" 	soee rule
 "suue"	--	false	"[sooee]" 	soee rule
 "suee"	--	false	"[sooee]" 	soee rule
+"weeuns"	--	false	"Man! Kids running around everywhere here."
 "unsewed"	"unsewn"	false	"You hear whispers of a nudist colony nearby, but not quite here."
 "eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
 
@@ -4120,6 +4138,7 @@ seeing unseen is an activity.
 rule for seeing unseen:
 	if player has book:
 		say "You already have. You can UNDO, if you want[if eggsfound is secs], though you have found everything[end if].";
+	now my-table is table of scenery;
 	fully resume the story;
 	say "Maybe wandering around looking for noncritical stuff will make Threediopolis feel un-new.[paragraph break]Note 1: if you lose this save file, you can activate the scenery-hunt mode with SEE NEW SEENS if you restart the game.[paragraph break]Note 2: the scenery is significantly more difficult to find than Ed's tasks. This is intentional, as are the clues that look weird.";
 	carry out the newseensing activity;

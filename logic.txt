@@ -645,7 +645,7 @@ The e's are easier than the d's.
 
 The area at 443 is a logical gimme, since it starts with E. EWW.
 
-So are the screams. EEE and EEEEE.
+So is the scream. EEEE.
 
 Squiggly area 416 also works out. E (ESSS) leaves only one word: ESSES.
 
@@ -653,19 +653,19 @@ The chess park has an E and a U, but it can't have N and S (too twisty) and EUDU
 
 Since 356 starts with E but is before EE, it's ED and EN remains. EDEN.
 
-E: EDEN, EEE, EEEEE, 257, 567, 546, 436, ESSES, EUWE, EWW
+E: EDEN, EEEE, 257, 567, 546, 436, ESSES, EUWE, EWW
 
 567 must have EEENNU. EE* doesn't lead to anything, and EU is un-alphabetical. EN (EEUN) is left. What is boredom? Ennui. Ennuee is the answer. This is a good wedge, or it would be even better with more E clues.
 
 546 must have EEU + 2 new letters, or NS. Now to keep things alphabetical the U and S can't be in the 2nd slot. EN (EUS) is ENSUE.
 
-E: EDEN, EEE, EEEEE, 257, ENNUEE, ENSUE, 436, ESSES, EUWE, EWW
+E: EDEN, EEEE, 257, ENNUEE, ENSUE, 436, ESSES, EUWE, EWW
 
 436 has ESE necessarily and only one more direction, so UD is out. ESEEW or ESEWE don't work, so EENSS is left. But ENS(S/E) is before ENSUE, so ES (ENS) leads to ESSEN.
 
 That leaves 257, which must have E (DDEEN). ED is out, and EEE clogs, and EEN (DDE) gives nothing. So EN (DDEE) has six possibilities, which leaves ENDEED = Indeed.
 
-E: EDEN, EEE, EEEEE, ENDEED, ENNUEE, ENSUE, ESSEN, ESSES, EUWE, EWW
+E: EDEN, EEEE, ENDEED, ENNUEE, ENSUE, ESSEN, ESSES, EUWE, EWW
 
 N: 257, 346, 466, 435, NEW, 355, 444, 546
 
@@ -771,7 +771,7 @@ You sort of saw the word for 347, and it's similar to 367. Very similar. It's al
 
 U: UNDED, UNDEES, UNDUE, UNNEEDED, UNSEEDED, UNSEWN, UNSUNNED, USED
 
-W: 245, WEED, 449, 446, WEND, 465, 553, 354, 642, 441
+W: 245, WEED, 449, 446, WEND, 465, 544, 553, 354, 642, 441
 
 441 is kind of trivial. 3 moves, one direction. WWW.
 
@@ -783,7 +783,7 @@ W: 245, WEED, 449, 446, WEND, 465, 553, 354, 642, 441
 
 And, 245 is more of a riddle than anything. 18 2/3 hours is almost a day. How much of a day is in? Seven ninths! While you can just brute-force each day of the week and get WEDNESD, you can also note it has to start WED (WEED* would be after weed) with ED and two more letters of NS EW or UD remaining--and only NS gives a twistiness of 5. WED (DENS) -> WEDNESD
 
-W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, 465, 553, 354, WUWU, WWW
+W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, 465, 544, 553, 354, WUWU, WWW
 
 354 is an odd one. Twistiness of 5 indicates you must have DWENSN or DWENUD. The first clogs too much, so WE(DDNU) must be WEN(DDU) or WEU(DDN) and the second clogs and the first does nothing. So, WU (NEDD) and here it may be a bit tricky to pronounce out WUDDEN but the clues indicating wood may tip you off.
 
@@ -801,7 +801,9 @@ WEND < W(EEEENNWW) < WEWUN, so WEN (EENWW) is left.
 
 WEN-W-NEW needs 2 E's, or WEN-EWE-NEW, when you knew.
 
-W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, WENEWENEW, WEWUN, WUDDEN, WUWU, WWW
+544 can be picked off by twistiness. It has no D. But it must also go WE to be alphabetic. In this case, the VV is a clue to W<->V as well as a planet: Venus. This is a case where you can't fullly nail things down, but there are only a few possibilities left. Plus I thought the double-v clue was cute and hope you do too.
+
+W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, WENEWENEW, WENUS, WEWUN, WUDDEN, WUWU, WWW
 
 
 
@@ -879,10 +881,11 @@ SWUNE = swoon
 UNDED=undead
 UNDEES=undies
 
+WENUS = Venus
 WUDDEN=wooden
 WUWU=woowoo
 
 Rejected include:
 
-ENDE (Michael, neverending story)
+ENDE (Michael, neverending story, too similar to END)
 EESUS (pronunciation of Jesus)
