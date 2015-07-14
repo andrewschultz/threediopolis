@@ -337,8 +337,6 @@ maxpals is a number that varies. maxpals is 0.
 
 secs is a number that varies.
 
-hint-on-reset is a truth state that varies.
-
 quality is a kind of value. the qualities are chums, biz, party, relax, stuffly, or youish.
 
 begin-rows is a number that varies. end-rows is a number that varies.
@@ -614,12 +612,15 @@ this is the try-a-hint rule:
 
 sneed-count is a number that varies.
 
+cheat-ticker is a truth state that varies.
+
 this is the try-scen-hint rule:
-	if plus-ticker >= 15:
-		now plus-ticker is 0;
-		now base-hint-count is 0;
-	else:
-		the rule fails;
+	unless cheat-ticker is true:
+		if plus-ticker >= 15:
+			now plus-ticker is 0;
+			now base-hint-count is 0;
+		else:
+			the rule fails;
 	let temp be 0;
 	increment sneed-count;
 	if sneed-count is 4:
@@ -701,18 +702,19 @@ hint-long is a number that varies.
 this is the try-ed-hint rule:
 	let bool be false;
 	let found-this-time be 0;
-	if pals + edtasks < 3:
-		increment zero-ticker;
-		if zero-ticker is 3:
-			say "[one of]You flash back to Ed Dunn's voice booming through your head: 'It's not just where you go but how you get there!' Maybe you can try hitting some of the nearer locations until something turns up[or]You remember nightmares, from when you were a kid, of going one way then back to somewhere totally different[cycling].";
-			now zero-ticker is 0;
-			the rule succeeds;
-		the rule fails;
-	if plus-ticker >= 15:
-		now plus-ticker is 0;
-		now base-hint-count is 0;
-	else:
-		the rule fails;
+	unless cheat-ticker is true:
+		if pals + edtasks < 3:
+			increment zero-ticker;
+			if zero-ticker is 3:
+				say "[one of]You flash back to Ed Dunn's voice booming through your head: 'It's not just where you go but how you get there!' Maybe you can try hitting some of the nearer locations until something turns up[or]You remember nightmares, from when you were a kid, of going one way then back to somewhere totally different[cycling].";
+				now zero-ticker is 0;
+				the rule succeeds;
+			the rule fails;
+		if plus-ticker >= 15:
+			now plus-ticker is 0;
+			now base-hint-count is 0;
+		else:
+			the rule fails;
 	if pals + edtasks < 7:
 		say "Frustrating. Maybe if you can pick off some of the nearer tasks in the same location, others will open up[one of][or]. Come to thik of it, you COULD brute force it. But that'd be a lot of walking[stopping].";
 		the rule succeeds;
@@ -960,7 +962,7 @@ Rule for printing a parser error when the latest parser error is the didn't unde
 		-- E. B. White, Stuart Little";
 
 to say reject:
-	say "Being a messenger, you don't have much more to do than go in the six basic directions (transport tubes make going up and down easy.) Or enter places. Maybe knock. Nothing fancy. Type C to see everything."
+	say "Being a messenger, you don't have much more to do than go in the six basic directions (transport tubes make going up and down easy.) Or enter places. Maybe knock. Nothing fancy. Type C to see everything you can do."
 
 chapter cing
 
@@ -1350,7 +1352,7 @@ check pushing the button:
 			else:
 				say "OK.";
 				the rule succeeds;
-	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the center of the city[one of]. Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
+	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2140. [i]YOU[r] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
 	reset-game instead;
 
 instead of switching on teleporter device:
@@ -2081,7 +2083,7 @@ after looking (this is the place ed's tasks rule) :
 						say "[line break][italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
 						now center-warn is true;
 					else if found entry is not 2: [stay around the sneeds']
-						say "[line break]You zap back to the center[if posschars > number of characters in your-tally], cancelling the rest of your plans[end if].";
+						say "[line break]You zap back to the almost-center[if posschars > number of characters in your-tally], cancelling the rest of your plans[end if].";
 						now ignore-remaining-dirs is true;
 						reset-game;
 				continue the action;
@@ -2918,9 +2920,9 @@ carry out blackmarketing:
 
 the book of top secret things is a thing. description is "[bug]".
 
-the WWED bracelet is a thing. description is "'What would Ed Dunn do?' Ed passed them out at the party. He talked about not being limited by stuffy proper spelling and that sort of thing when thinking big."
+the WWEDD bracelet is a thing. description is "'What would Ed Dunn do?' Ed passed them out at the party. He talked about not being limited by stuffy proper spelling and that sort of thing when thinking big."
 
-check taking off WWED bracelet:
+check taking off WWEDD bracelet:
 	say "Certainly not. It's a gift from Ed. Plus it might have a tracking device." instead;
 
 to say bug:
@@ -3105,7 +3107,7 @@ rule for newseensing:
 	blank out the whole row;
 	now player has the invitation;
 	now task-list is off-stage;
-	now player wears the WWED bracelet;
+	now player wears the WWEDD bracelet;
 	repeat through table of stumblies:
 		if still-there of tally entry:
 			now any-scen-left is true;
@@ -3860,6 +3862,7 @@ tally (text)	just-miss (text)	found-yet	descrip (text)	rule-to-reveal
 "suuue"	--	false	"[sooee]" 	soee rule
 "suue"	--	false	"[sooee]" 	soee rule
 "suee"	--	false	"[sooee]" 	soee rule
+"unsewed"	"unsewn"	false	"You hear whispers of a nudist colony nearby, but not quite here."
 "eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
 
 this is the has-book rule:
@@ -4233,19 +4236,17 @@ carry out hmeing:
 	consider the try-a-hint rule instead;
 	the rule succeeds;
 
-chapter hmeing
+chapter cting
 
-hmting is an action out of world.
+cting is an action out of world.
 
-understand the command "hmt" as something new.
+understand the command "ct" as something new.
 
-understand "hmt" as hmting.
+understand "ct" as cting.
 
-carry out hmting:
-	if hint-on-reset is true:
-		now hint-on-reset is false;
-	else:
-		now hint-on-reset is true;
+carry out cting:
+	now cheat-ticker is whether or not cheat-ticker is true;
+	say "Now cheat on return is [cheat-ticker].";
 	the rule succeeds;
 
 book tests
