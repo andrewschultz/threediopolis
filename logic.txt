@@ -1,0 +1,888 @@
+Hint/logic sheet for Threediopolis, by Andrew Schultz
+
+Knowing how the game works is part of the puzzle to start. The game tells you that you are in 444, where some things should be, and yet, nothing shows til you walk around.
+
+Using the hint from Ed's paper, perhaps the easiest way to reason things is to notice three locations nearby at 355. Going there directly thus has a 1/2 chance of showing anything. If you go there all six ways, you can get an idea if what us going on.
+
+The first thing you can figure out is how addresses work. Going east adds 1, and going west subtracts 1. Similarly, north means +10 and south means -10. Up means +100 and down means -100.
+
+The first walkthrough below is for the alphabetized version of Ed's notes. The game's much harder if it's not. The game is easier if you visit his office for a bit of extra help, because you get an upgraded list. For that one, you can search for semi-easy in this file and scroll down.
+
+Ubjrire, gur xrl gb gur tnzr vf abgvat guvf. Gur qrfpevcgvba bs rnpu cynpr gb ivfvg pyhrf n jbeq znqr hc bs bayl gur fvk qverpgvbany yrggref, qrafhj, gung lbh arrq gb gnxr va beqre gb trg gb fbzrbar'f ubhfr. Ohg gurer ner rnfgre rttf, gbb. Lbh znl hapbire n fpernz, 3 r'f, ng 474. Gurer ner rnfgre rttf yvxr guvf nobhg gur tnzr gung znl uryc, gbb. Va gur pnfr bs 355, gung tvirf qra, raq naq Arq.
+
+(Use rot13.com to translate, or scroll down.)
+
+Also, you have four sort-of-free hints from early on which can be used to crack puzzles that may be unfair. I hope they are helpful. I advise you to wait til later to use them. I also did not account for the release-2 help items from the one fellow. Either should be moderately helpful. I'm not sure which is better.
+
+However, if you just want to see the answers, you can search for SPOILERS.
+
+Also, you can see the walkthrough for scenery as well, and in fact you can skip there by typing something you'll find at the end of each Ed-task walkthrough.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The description of each place to visit clues a word made up of only the six directional letters, densuw, that you need to take in order to get to someone's house. But there are easter eggs, too. You may uncover a scream, 3 e's, at 474. There are easter eggs like this about the game that may help, too. In the case of 355, that gives den, end and Ned. So you have a 1/2 chance of finding something if you go to location 355.
+
+====TERMINOLOGY====
+
+We say a word clogs if it has too many consonants. We say it slurs with too many vowels. We say it is unalphabetical or out of order if it won't fit the order of the hint sheet.
+
+???? or, say, ?XX? shows what letters we know or still need. AB (CDEF) shows that we know we have AB and can get to CDEF.
+
+====STRATEGIES====
+
+It's worthwhile to try to solve things out of order if one task looks easy. Because the lists are arranged semi-alphabetically, trying to get the first one and then motor on may leave you stuck. Since you can also visit Ed Dunn to make the list fully alphabetical--as opposed to just by distance and then alphabetical--this allows you to attack the near tasks to narrow down what the far ones must be. This is particularly useful for the seven-letter affairs, though you can also figure two of the 7+ distance tasks another way.
+
+There's no one strategy for getting the puzzles best. I hope the combination of intuition and calculation appeals to you whether you looked it up or got it on your own. For instance, you may determine the directions to go from how far away a task is and its address. You may notice that one task is alphabetically between two others, and that may help you determine all the directions to go in. Or you may even be able to combine words.
+
+Ed Dunn's hints in the game should also hint you as to what to try, but this document will try to disregard them.
+
+You can probably figure out what the extra e's in some clues are for once you visit your friends who have e's in THEIR names.
+
+Also, the distances work as follows:
+
+extra near = 3
+near = 4
+kinda near = 5
+kinda far = 6
+far = 7
+extra far = 8
+======difficult mode only
+extra extra far = 9
+farthest = 10
+
+====REGULAR MODE WALKTHROUGH====
+
+====SUPER NEAR====
+
+355, 344, 344, 445, 355, 445, 436, 434, 544
+
+I mentioned looking at 355 above, so here is what turns up. There are six possibilities. The second, alphabetically, gives you a chance to die if you enter instead of knocking. A third way through is a friend. Note: DNE, EDN and NDE are nonsense.
+
+DEN, 344, 344, 445, END, 445, 436, 434, 544
+
+The 436 then has to be EES, which can only be SEE. Even if you don't use the cheat there, you know that it's there, and that's a help.
+
+DEN, 344, 344, 445, END, 445, SEE, 434, 544
+
+Now the words past SEE need to start with an S or W. The 434 in fact can only be SDU/SNS/SWE -- which give 15 possibilities to check. SEW seems to make the most sense.
+
+DEN, 344, 344, 445, END, 445, SEE, SEW, 544
+
+That leaves 544, which must have a U in it, but UDU doesn't make anything, and WEU/WUE don't either. (Yes, there's one more possibility for this group of three letters. See below.) USN, however, gives SUN.
+
+DEN, 344, 344, 445, END, 445, SEE, SEW, SUN
+
+The remaining words must start with D or E. However, some aren't fully words. You'll notice some are abbreviations, which suggest truncated words or maybe even acronyms, and Ed's babble is a hint that way, too.
+
+EDU is a bit tricky since DUE is a word, but hopefully people know the online abbreviation...DUE also gives a hint. The possibilities otherwise for 445 are EEW, ENS (doesn't fit) or, more plausibly, EUD, but none work.
+
+344 then must have a D and UD/EW/NS. EDW or anything after that is out, so D** is left. DEW should be pretty clear. DNS is the other one, which is a relatively common acronym, hopefully.
+
+DEN, DEW, DNS, EDU, END, 445, SEE, SEW, SUN
+
+Now to 445. It's another abbreviation. EWE doesn't get anything, but it's a word. And a hint for later. EUD is already out, and so the destination must start with N. That leaves N(ES/SE) = NES.
+
+DEN, DEW, DNS, EDU, END, NES, SEE, SEW, SUN
+
+====FRIENDS LIST====
+
+346, (kinda far) 248, 335, (near) 455, 355, 535, (near) 444, pal (German) 544, far pal 356, pal 434
+
+Dee is pretty clear as she must have those letters. It is a matter of picking off the orders. Similarly for Des, with the English name clue. Ned coincides with a den and the end, so if you don't find him, you'll find something else. He's also forced/reduced to a few choices. Sue similarly has a fixed string for her coordinates.
+
+DEE, 248, DES, ???? 455, NED, SUE, 444, ??? 544, 356, ??? 434
+
+248 has two D's and two E's. Now DDE and DED are impossible, as is E*, due to the alphabetical order of the list, so DEE (EED) and DEEDEE jumps out.
+
+The fourth must have an E and N. N is unlikely for a first letter. D means DUEN and there are words but no name. E (NNS) doesn't work. E (NUD) doesn't quite. E (NEW) gives Ewen.
+
+The end guy is a bit trickier. He must be SNS, SUD, or SWE. He also must be further in the alphabet than Sue.
+
+That leaves SWE or UDS/USD or WSE/WES.
+
+DEE, DEEDEE, DES, EWEN, NED, SUE, 444, ??? 544, 356, WES
+
+Your pal at 544 now can be logicked out. If the name starts with W, WEU/WUE is past Wes. But if it starts with S, SW? can't get to 544. So, U(UD|NS|EW) and UWE is a German name.
+
+Your friend at the origin is a bit trickier still. He is a sector further away two of (UD)(NS)(EW). While Dudu is a possibility (Dudu Awat was Israel's national soccer/football team's goalie,) I hope the name I have is less obscure. Plus he is in the wrong place in the alphabet. If you want, you can also eliminate UDNS and UDEW pretty quickly, and also WEWE or NSNS go nowhere. That leaves NSEW. He must start with S or W, so that cuts things down a bit, and if he starts with S, it must go W next. Swen.
+
+The final one is tricky without Uwe, but with him, it's not too bad because you can see that you must have UW* or WE*.
+
+UW then has 4 turns to go from 543 to 356. So we must have WE. But that leaves EEDN forced, and you can see below.
+
+The long way (without Uwe) works as follows: there are two E's and two (UD)(NS)(EW). They must start with a S or W. If they start with S, then they need a W to be in back of Swen, and that means another E. They also need an S. So
+
+SWEEEN and while Swenee is a possible last name, it doesn't work. Try a W to start and then an E needs to be next (WD won't work) and that leaves a forced EEND. Some fiddling (to cut down, you can guess no 3 E'd in a row--so brute forcing means eight choices) gives Wendee.
+
+** DEE, DEEDEE, DES, EWEN, NED, SUE, SWEN, UWE, WENDEE, WES.
+
+====NEAR====
+
+433, 334, 435, 444, 554, 345, 444, 534, 424, 525, 514
+
+SUSS seems to be the easiest since the letters are fixed. It doesn't tell us a lot, but it does tell us there are no starting W's. You may also be able to guess about a starting letter based on a place's position. The root beer and/or cream soda requires two S's at least and a NS (no consonants) or EW (SEWS/etc.) or UD. Those carbonated drinks both have SUDS. This puts Linux in a spot between SUDS and SUSS, but it can be figured--it must have SU** and has EUSS, making it SUSE.
+
+433, 334, 435, 444, 554, 345, 444, 534, SUDS, SUSE, SUSS
+
+A 554 address is next. It has a U and N. Again, you have three possible combinations: UD, EW and NS. UD means it starts with D or N, which runs combinations out quickly. EW leaves E(NWU) or N(EWU) which is not much, and thus NS leaves NUNS. This allows you to figure out a bit more. NUS* leaves nothing as does NW**, so the other things start with S.
+
+433, 334, 435, 444, NUNS, 345, 444, 534, SUDS, SUSE, SUSS
+
+Let's look at the first term. If it has an N, it must be NSSD. That doesn't work. If it has E-W, it is DEWD, promising but no dice. It can't start with E (consonant clog) or W, and D-W/D-D is clog again.
+
+So, USDD but it starts with D. D(S/D) clogs, so DUSD/DUDS. Duds.
+
+433, DUDS, 435, 444, NUNS, 345, 444, 534, SUDS, SUSE, SUSS
+
+I think you should be able to guess the information, which is at the center. It must start with E or N, and E(WSN) clogs and E(WUD) leads nowhere as does EEWW. NSNS can't work so N(SUD)/NSEW are left, and it's NEWS.
+
+The 433 at the start must start with D. D (ESU) and the Latin mass cues DEUS.
+
+DEUS, DUDS, 435, NEWS, NUNS, 345, 444, 534, SUDS, SUSE, SUSS
+
+If the final word at the beginning begins with N, it must be NESS. But there is not. So it begins with E. It also ends in S. Along with E/W N/S U/D. You can probably find a farm animal with one of these and since plurality is clued, E--S = E (NS/EW/UD) leaves few possibilities. EWES.
+
+DEUS, DUDS, EWES, NEWS, NUNS, 345, 444, 534, SUDS, SUSE, SUSS
+
+This pretty much makes everything else start with S. The first item then has DNE in some order. SEND.
+
+The smokeless tobacco is an odd one but must be S(U??) and again UD dies on inspection as does WE since we'd need SE to start. That leaves SUNS, which has already sort of been done, and SNUS. I wasn't sure about putting this one in, but I like Bogus Social Commentary.
+
+DEUS, DUDS, EWES, NEWS, NUNS, SEND, 444, SNUS, SUDS, SUSE, SUSS
+
+Hmm. The last one--well, SE or SN, clearly. SE leaves necessary NW, while SN leaves UD--won't work--or EW--and while Snew could be a word, it isn't. SEWN is the word. Though you may also find it later.
+
+** DEUS, DUDS, EWES, NEWS, NUNS, SEND, SEWN, SNUS, SUDS, SUSE, SUSS
+
+====KINDA FAR====
+
+236, 335, 445, 445, 326, 335, 436, 454, 335
+
+236 is DDEES by force. It's probably too early to start with S, and you can also rule out EE***, ES*, and ED (EDS) quickly. That leaves D, E, and the only word is DEEDS.
+
+326 is similar. DEESS. It's plural, so ****S. Again, you can be aggressive getting rid of vowels, and also noticing D***S leads to nothing. E***S doesn't go anywhere, either, so S---S becomes SEEDS.
+
+DEEDS, 335, 445, 445, SEEDS, 335, 436, 454, 335
+
+You may notice that there are 2 incidences of handmade clothes--and you may figure where the other one is from the first word. SEWED is it, and so...
+
+DEEDS, 335, 445, 445, SEEDS, SEWED, 436, 454, 335
+
+436 is a good one--if it starts with U, DSEE is remaining and that runs out of gas. If it starts with W, EENS is remaining and has no possibilities. So, S---- (2 e's and E/W or N/S or U/D) -- the 2 e's can go, and SENSE is a word but not tangible. So,
+
+SEEDU and if you go through everything, SD can't work, SE has nothing, and SUEDE does.
+
+DEEDS, 335, 445, 445, SEEDS, SEWED, SUEDE, 454, 335
+
+335-last must have D S E. If it has U to start, UDDES makes nothing. If it has W to start, WDSEE is possible. With S to start, it needs a U or W--SW forces SWEDE, which is a word, but we'll get that later. SUDDE gives nothing.
+
+So WDSEE but it's also plural--W(DEE)S is weeds.
+
+This helps us a lot with 454. It's between SUEDE and WEEDS. But if it is SU then it has NND--garbage. WE would have to have N and (NS) clogs, (UD) and (WE) just don't give anything. Still, this is a difficult one. U (DN) (NS) clogs. U (DN) (UD) can't start with U, UN-DUD maybe should be a word but isn't, and thus U (DN) (EW) is left. I hope at this point the clue tips off what it should be, but placing the E is also possible: UE--- and U---E clog, and U-E-- can be shown to fail. U--E- has six possibilities left. This is an example where hopefully the clue can help you avoid brute force. Also, you may gain a clue from an establishment a block farther away.
+
+The answer is UNWED. So we have
+
+DEEDS, 335, 445, 445, SEEDS, SEWED, SUEDE, UNWED, WEEDS
+
+The middle is tricky. Perhaps process of elimination works. What if we start with N? Then (ES+DU/NS/EW) but we need a vowel, so NESSN/NESEW/NESUD can all be rejected. That leaves NU + (SED ) = NUDES.
+
+I will bail here and say that most people can figure the first 445 on seeing NUDES--it is close enough, as DUNES. It's a bit tricky if you start with E as the first letter due to the two possible pairs, but with D, you need a U and an E and (NS|UD|EW). DUUDE slurs, and DUEEW also slurs. DUENS can, however become DUNES.
+
+Now let's go to the 335.
+
+SED (UD) (NW) (DS) must start with D, so
+
+D (ES) (UD) (NS) (EW) -- but we have a plural!
+
+D (E, UD/NS/EW) S
+
+The NS clogs, and (EEW) is nothing, su D (EDU) S = Dudes.
+
+** DEEDS, DUDES, DUNES, NUDES, SEEDS, SEWED, SUEDE, UNWED, WEEDS
+
+====FAR====
+
+The first of these should not be a puzzle. That means nothing starts with D. However, the rest is potentially tricky. Again, I'll say I bet you can guess the second, too, since they're just a list of things you can lump together.
+
+ED DUNN, SENSES, 345, 556, 545, 145, 514
+
+The scandinavian vacation--well, it starts with S, and what is a scandinavian country? I think this is guessable.
+
+ED DUNN, SENSES, SWEDEN, 556, 545, 145, 514
+
+The new bride and groom stuff is a good place to look next, because if you go up, you need to go down. Thus the word is UDDDED or some equally improbable combination thereof. But the W gives a clue as well! It must be WDDDEE. You can't lump too many consonants together, so WE and then not WEEDDD but WED -- 3 choices. WEDDED.
+
+ED DUNN, SENSES, SWEDEN, 556, 545, WEDDED, 514
+
+The administrators of the anti-athletic club must have 3 S's and a U at least. The W forces an E.
+
+W (ESSSU) becomes WUSSES.
+
+ED DUNN, SENSES, SWEDEN, 556, 545, WEDDED, WUSSES
+
+The last two are tricky. Invisible may provide a hint to the prefix, or it may not. If you managed to stumble across the Visible Institute, you will know what to do here. However, it's pretty clear each name starts with U.
+
+U (EENNS/EENEW/EENUD) -- the too-many-e's can be disposed of first. You can also see that UE is a bad way to start--UNUDEE or UDENUE and such lead nowhere. This is a bit of hand-waving, but while Undue gets close, there are clues directing the player to
+
+UEENNS...and the UE start is goofy, and US (EENN) gives nothing, too. That means UN is left. Nice prefix to EENS or SEEN.
+
+ED DUNN, SENSES, SWEDEN, UNSEEN, 545, WEDDED, WUSSES
+
+UE are the only two allowable characters in the last bit. But U (NSW) is how the last word starts, and UW is not a good way to start a word. That leaves US + NE + (UD or NS or EW). Searching through those jumbles is a mess, and the NOT may be a clue anyway. ??
+
+UN---- (SE + NS/UD/EW) SENS is a mess, SEEW is too watery, but UNUSED--there we go.
+
+** ED DUNN, SENSES, SWEDEN, UNSEEN, UNUSED, WEDDED, WUSSES
+
+====REAL FAR====
+
+This is a good place to use the scope. It also requires a shift from the purely logical reasoning.
+
+You've seen clothes before--DUDS--and so you may be able to guess that NEW DUDS is all that is left.
+
+The first 7-letter restaurant is a clue. It has a lot of paired E's, so those probably show up somewhere. In addition, Ed Dunn's clue says it may combine two other clues, or expand on something you know. Now you can get another clue, where you learn it's DeWeese who is the proprietor of the restaurant, which is a big hint, or you can poke around.
+
+UDDEEES is not easily eraseable, but US -> USE (DEDE) which is nowhere, or UD -> UDE (DEES) which again isn't much.
+
+If you figure there must be EE's, then, you may find *EE*EE*, which leaves DSW, but D is too soom, WEEDEES and WEESEED aren't quite sensible, so SEEDEEW or...SEEWEED.
+
+That leaves some clues for the hot dog hut. It must be pretty far along in the alphabet. You may guess it has the same structure as SEEWEED, in which case
+
+*EE*EE* needs W plus U/D, E/W or N/S. WEEEEEE is sort of a clue but not really. UEE(WEED/DEEW) slurs, and thus since SEEWEEN doesn't work, WEE*EE* leaves only six possibilities, WEENEES.
+
+More prosaically, the EE's from Wendee and Deedee may leave clues that mean an EE or two is necessary.
+
+UD? and EEE + E/W slurs as does EEE + U/D. UDEEENS is kind of tricky to discard--but the thing is that we can guess there needs to be an S or D or N at the end due to the apostrophe.
+
+UD(EEEN)S can thus be sort of spot-checked along with the six other combinations. Nothing works. It's a bit brute force but the Deedee clue may open other things up in other ways than strict logic..
+
+S(EEEN, W/E, U/D, N/S) seems possible and this is trickier to refute. The 'S is a bit of a clue, which, if it's at the end, makes S(EEENN)S and if you shuffle the N's through, nothing turns up.
+
+W(NEEEE)S leaves only five possibilities, or WEENEES.
+
+** NEWDUDS, SEEWEED, WEENEES
+
+====EXTRA FAR====
+
+Grinding logic again may be painful.
+
+The final clothes shop also accepts DUDS. But you've seen the adjective before--USED. So, USED DUDS.
+
+USEDDUDS
+
+Now you've got all these, you can SEE NEW SEENS to get to the scenery.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====SEMI-EASY MODE WALKTHROUGH====
+
+I originally called it 'easy,' but obviously there's a lot to navigate, still. And you still need to figure the first clue. But if you figure END, DEN and NED, you can go back to EDDUNN and get hints. I'm going to assume you will discover at some point the words are in alphabetical order -and- that they are divided in lines by letter. If not, I think it is a reasonable guess. So that leaves the following set of clues:
+
+D?? 346, D???? 236, DEN 355, D?? 335, D??? 435, D?? 344, D?? 344, D???? 335, D??? 334, D???? 445
+EDDUNN 365, E?? 445, END, E??? 455, E??? 435
+NED 355, N?????? 344, N??? 444, N???? 445, N??? 554
+S?? 436, S???? 326, S??? 345, S????? 426, S?? 434, S???? 335, S??? 444, S??? 534, S??? 424, S?? 535, S???? 436, S?? 544, S??? 525, S??? 514, S????? 345, S??? 444
+U????? 556, U????? 545, U???? 454, U??????? 325, U?? 544
+W????? 145, W???? 335, W?????? 437, W????? 356, W?? 434, W????? 514
+
+
+========D========
+
+
+D?? 346, D???? 236, DEN 355, D?? 335, D??? 435, D?? 344, D??? 345, D?? 344, D???? 335, D??? 334, D???? 445
+
+This arrangement allows you to gun down a few shorter paths. D??-346 must have EE. Then DE??? must also have DES remaining, which makes DEEDS.
+
+D??-335 must be DES/DSE or DES. D???-455 must have (USE) but then D??-344 and DEW is a word. That means D???-455 is DE??, or DEUS. The DNS acronym may be a bit annoying, but there are not many left. It also cuts off part of the alphabet and leaves
+
+D???? 335, D??? 334, D???? 445. The second letter must be N, S or U. Without taking a guess at the words, the 334 is the easiest to work on here. DS(UD) is not a word so DU(SD) is left. DUDS. Now D???? 445 must be after that, or DU(E)(EW/NS/DU). You can probably pick out the synonym, but if not, you should be able to eliminate things to get DUNES. The final one is a bit trickier though you can assume you will start with a vowel. DU(DSE) and DUDES is the only one that works.
+
+** DEE, DEEDS, DEN, DES, DEUS, DEW, DENS, DNS, DUDES, DUDS, DUNES
+
+
+========E========
+
+
+EDDUNN 365, E?? 445, END, E??? 455, E??? 435
+
+E(NS|EW|UD) is next but the alphabetical order of things leaves only EEW or EDU. E??? 455 and ???? 435 are remaining. E(N+NS/EW/UD) is the name and EE/ED isn't alphabetical. ESNN is nonsense and EU(DN/ND) is too. EN(**) has nothing, but if you try EWEN, it works. Now E??? 435 must be EW?? 435. That leaves SE to go. Or, rather, EWES.
+
+** EDDUNN, EDU, END, EWEN, EWES
+
+
+========N========
+
+
+N?? 355, N?? 445, N?????? 344, N??? 444, N???? 445, N??? 554
+
+Next are the N's. Let's tackle N??? since we know we need a S. N (SEW, SSN, UDS) and the middle is clogged and the last leads to nothing. NEWS.
+
+NED 355, N?? 445, NE????? 344, NEWS 444, N???? 445, N??? 554
+
+Ooh! 445 is not bad if you note retro stuff. NES.
+
+NED 355, NES 445, NE????? 344, NEWS 444, N???? 445, N??? 554
+
+N???? has a SE and (UD|NS|EW) where NEW(U or W) is nonsense, NN/NS/NW clog, and NU gives NU (SDE). NUDES. For the final we must have NU (UD|NS|EW). NUNS.
+
+So that 7-letter one looks like a bear. But wait! 344 is clothes, previously referred to as Duds--if we check it out, we get NEWDUDS which fits. We could also note that NEU gets us nowhere. (WDDS clogs.) NES (WDUD/WDEW) is messy, too.
+
+** NED, NES, NEWDUDS, NEWS, NUDES, NUNS
+
+
+========S========
+
+
+Next are the S's. SUE and SUN can be determined from their addresses--one of two choices--and so can SEE. SEW can be brute-forced, but you will probably get the clue. That leaves SE???? for three of the locations. SE?? is 345. That means a D-N is left, or SEND. This makes SE??? be SEE?? since you can't have SEN?? before SEND. So, SEEDS. SE???? is left. N, S and U are possible. SEU leaves DES which gives nothing. SES has E(UD|NS|EW) and you can pick that off too. If you tried SEN, you'd notice ESS was left. SENSES.
+
+SUSS can also be picked off, which leaves us with
+
+SEE 436, SEEDS 326, S?????? 337, SEND 345, SENSES 426, SEW 434, S???? 335, S??? 444, S??? 534, S??? 424, SUE 535, S???? 436, SUN 544, S??? 525, SUSS 514, S????? 345, S??? 444
+
+S??? 525 is SU?? with ES remaining, or SUSE. If S?????? 345 is SU????, that leaves SU(DD)(NE). SUDDEN is a possibility but doesn't match with the clue. Nothing else really works. So SW(DEEN) becomes SWEDEN. That leaves your friend SW??, or SWEN. SU??? 436 is next, requiring DEE, or SUEDE. The middle bits are thornier. Let's cut down what's remaining.
+
+SEW 434, S???? 335, S??? 444, S??? 534, S??? 424, SUE 535
+
+S??? 444 is key. SS means SSNN. SU is SUDN, SD and SW are unalphabetical, SN(EW|UD) leaves nothing, so SE is the only option. WN is left. SEWN.
+
+SEW 434, S???? 335, SEWN 444, S??? 534, S??? 424, SUE 535
+
+This makes S???? 335 rather easy. SEW?? (DE/ED) is SEWED. Note that it's impossible for SEW* to be 534, so we are left with S(NSU) for it and the next.
+
+SN?? 424 is SNSS. SS?? 424 is nothing. SU(SD|DS) is SUDS. Now SUD? can't be 534, and SS** is still too clogged, so...
+
+SN?? 534 must be SNSU or SNUS. While Snus isn't that widely known, it does exist, and hopefully SUNS clued you that you were close.
+
+S?????? must go SEE (????) but this is tricky--though it can't start with D, DEEW, DENS and DEDU are possibilities. The clue "un, no, that's not it at all" suggests UN is completely not in the mix, so SEE (DEEW) is it, but SEEE slurs. SEEW??? becomes the (misspelling clue) SEEWEED.
+
+** SEE, SEEDS, SEEWEED, SEND, SENSES, SEW, SEWED, SEWN, SNUS, SUDS, SUE, SUEDE, SUN, SUSE, SUSS, SWEDEN, SWEN
+
+
+========U========
+
+
+U????? 556, U????? 545, U???? 454, U??????? 325, U?? 544
+
+The U's are rather tricky. Hard logic alone may take a while. Even the three-letter one is tricky for what it is, since it leaves six choices: U(EW|NS|UD) and the only german name is UWE.
+
+If you note a word for clothes, the last one is not bad. But this is where you may want to make use of the UN- prefix to determine a word. If you think of antonyms for invisible, SEEN is one and UNSEEN fits the bill. Similarly for guessing at UN??? 545. If it's there, it needs to be UNSNN (oops) or UNW??, UNWED.
+
+UNSEEN, U????? 545, UNWED, U?????? 325, UWE
+
+UN???? 545 is then UN (SE+UD|NS|EW) -- UNS (due, ens, eew) don't turn up anything, so UNU (DES) is left. UNUSED.
+
+UNW????? 325 is not possible. So you need a different letter, UW?????? is UW (DDEESS) which is clogged. So US?????? is a bit tricky--but clothes. We've seen that with DUDS. So, USEDDUDS.
+
+Finally the W's. The first two are rather fixed.
+
+UNSEEN, UNUSED, UNWED, USEDDUDS, UWE
+
+
+========W========
+
+
+W????? 145, W???? 335, W?????? 447, W????? 356, W?? 434, W????? 514
+
+WDDDEE = WEDDED, then WDEES = WEEDS (WS is nowhere, WD is out of order.) Also note W?? 434 has to be Wes, which is a huge break. W????? 514 is also forced. WESSSU but WE doesn't allow much and WS is clogged. So, WUSSES.
+
+WEDDED, WEEDS, W?????? 447, W????? 356, WES, WUSSES
+
+W????? (356) = WDEEEN and that must be WEE(NED/DEN) which doesn't quite work or WEN***, or WENDEE. The "wend" clue may help here, too.
+
+WEDDED, WEEDS, W?????? 447, WENDEE 356, WES, WUSSES
+
+Since WEN needs EEES, you must have WEE (EE + NS/UD/EW) -- all w/e is kind of crazy and WEED forces a U and WEEU slurs, so WEE (NSEE) and WEENEES, the misspelled hot dog hut, should follow.
+
+** WEDDED, WEEDS, WEENEES, WENDEE, WES, WES, WUSSES
+
+Now you've got all these, you can SEE NEW SEENS to get to the scenery.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====SPOILERS====
+
+Friends: Dee, Deedee, Des, Ewen, Ned, Sue, Swen, Uwe, Wendee, Wes (10)
+Three: Den, Dew, DNS, EDU, End, NES, See, Sew, Sun (9/19)
+Four: Deus, Duds, Ewes, News, Nuns, Send, Sewn, Snus, Suds, Suse, Suss (11/30)
+Five: Deeds, Dudes, Dunes, Nudes, Seeds, Sewed, Suede, Unwed, Weeds (9/39)
+Six: EdDunn, Senses, Sweden, Unseen, Unused, Wedded, Wusses (7/46)
+Seven: NewDuds, Seeweed, Weenees (3/49)
+Eight: UsedDuds (1/50)
+
+SEE NEW SEENS skips to scenery mode.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====SCENERY====
+
+For the scenery (SEE NEW SEENS,) you may start with DUDE, NEW, SEND, SUED, USED, WEED and WEND, which you would've found in the process of getting all of the original game's points. But you have a lot to look up. You can probably guess the lists are alphabetical.
+
+The first and main new thing to understand is twistedness. You can probably determine this from what you've solved.
+
+If you understand how twistiness works, basically, --- = 1 letter. -- = 2 letters. And so forth up to +++ meaning six letters. The clues you already have are arranged by first letter. Twistiness can help a lot with these puzzles, and many are phonetically misspelled.
+
+The big logical leap to make with twistiness is that it can determine not only how many letters there have to be, but what letters they are. For instance, 147+ has four letters. It must have D and E. It could have DEUW all the way, or it could have DENS. Similarly if a location has a 4 in it but also has ++, then it must have one of each of the letter with a 4. For instance, if it were 4xx, it would need both an U or D--otherwise twistiness would be no greater than 4. Similarly for x4x and N/S and xx4 and E/W.
+
+In some cases, locations can also give the letters by process of elimination. 445++, seen below, has five letters.
+
+Note that this isn't the only way to work through Threediopolis's scenery. It's probably not the most optimal. But I think it covers a lot of the strategy you'll need to use to get through without guesswork. The concepts are basically the same. As in the original game, start with the stuff you know and then branch out once things are alphabetized. Typing R 9 helps a lot with this. You can see the closest remaining sights. In this respect, it's a lot like a crossword, but a different type.
+
+There is a list of all the misspelled words at the end.
+
+D: 234, 156, 346, 345, 336, 339, 497, 346, 356, 248, 228, 147, 337, 254, DUDE, 435, 356, 445, 425
+
+234 is 3 moves and DDS is the acronym. Well, it could be DSD, but 1) trial and error and 2) that'd be a lot of words to fit in between DSD and DUDE.
+
+254 is 3 moves with a D, D and N. DDN is out of alphabetical order, so, DND is it. It's short for Dungeons and Dragons.
+
+435 starts with D, so it has a U, too. But it also needs an E and S. The second letter must be U to be alphabetical. DUSE is not a word, but DUES is.
+
+Now what of 445? It's ++, for twistiness of 5, so all letters in the path are unique, you are not using one letter. Since you wind up one east of where you started, the missing letter must be W. The clue is spelled badly, and we have D???? after DUES, meaning DU???. DUENS is not alphabetical, and DUESN doesn't work. That leaves DUNES, DUNSE, DUSEN or DUSNE. DUNSE = dunce, so you have that.
+
+The second 346 gives us some useful info. It has a D and 2 E's and the + means the remaining two letters are new, or N/S. Since DN/DS clogs, we get DE (ENS). You can plow through the six possibilities, but 'lots of people' should be enough of a clue for DENSE. This provides an alphabetical wedge.
+
+It turns out that 425's letters are fixed since we know the first letter. You have 2 S's and an E, but you need a U to cancel out the D. It's badly spelled, and it refers to cards and dice. That leaves three possibilities. DUSSE , DUESS and DUSES don't quite seem to be words, but sound them out. DUSES could sound like DEUCES.
+
+D: DDS, 156, 346, 345, 336, 339, 497, DENSE, 356, 248, 228, 147, 337, DND, DUDE, DUES, 356, DUNSE, DUSES
+
+356 is now in a bit of a box, so let's tackle itt. It must have a DU, then a D somewhere, with EEN. Any DUE(DEN) combination, though, is before dues. So DUN (EED) leaves DUNDEE.
+
+345 is kind of odd, as it's 3 letters for 8 ways to go. D and E must be there. The other letter must be W or U--if it were N or S, the tens digit would not be 4. DEEWEWEW or something (DEW* is not alphabetical) is possible, but there is clogging ahead. DEDDDUUU is left, starting DED and the zigzag clue suggests DEDUDUDU. This is one of those potentially unfair ones if you don't know the Police song, but I hope the logic and clue about the zigzag work.
+
+497 is there if you remember it. 3 E and 5 N and now two more letters, or U and D. Uwe gives information that this is DENEEN NUNN. You may also get a clue from visiting "unended" or "denuded" on the map. It tells you her first or last name, and the other one's letters can be derived.
+
+156 is a misspelling, but you can deduce the letters logically. It is DE and has an N, and its twistiness is 3. But it must start DED to be alphabetical, which leaves DED (DNE) ... it's mispelled, so DEDEND. Dead end.
+
+D: DDS, DEDEND, 346, DEDUDUDU, 336, 339, DENEENNUNN, DENSE, 356, 248, 228, 147, 337, DND, DUDE, DUES, DUNDEE, DUNSE, DUSES
+
+If you remember the response to 337 from the original puzzle, it is SEEWEED, and the proprietor's name was an anagram. DEE* is not alphabetical, DES(EEEW) is nothing and of the remaining ones, DeWeese is what works.
+
+The misspelling at 336 is potentially tricky, but you can cut it down a bit now. DEN would mean E S S is left, which put it after Deneen. So DED needs EUS. So you have six possibilities left to brute force. Or you can note, what's a synonym for figuring stuff out? Deduce, or DEDUSE.
+
+For 356, DEEN are necessary, but what is the 4th direction that you need to go? S, W or U? S means we have DNEE with SN. But this is bad since DN/DS can't start a word and DES(ENN) leaves nothing. W means DNEE(EW) and again DN is bad and DENWEN/DEW(EEN) doesn't work. So let's try DNEE(DU). DUD isn't alphabetical, so DENU is left. DENUDE.
+
+Now you have a misspelled word at 346. The missing letter has to be W. Why? Because the first three directions are DED and it goes to 346. That leaves four letters to get U/E. Only N/S of opposing letters gets you to 5 twistiness.
+
+DED(UE)(UD) would mean no NS, so DED (UE)(NS). DEDU doesn't work (we must be before dedududu) so that leaves words like DEDEUNS--and you may have to poke around here, but if dead is mispelled dead, you may find SUNE is "soon." Thus, DEDSUNE.
+
+That leaves 228. It only has three directions, which are obvious. Death and sickness persist.
+
+DE (DEEESS) and here you may need to recognize synonyms of "diseased" or "deceased" which becomes DESEESED.
+
+But even better, if you notice the palindrome clue, too, you will see DE****ED, which has only two possibilities. DEESSEED might be a name for a gardening store, but it isn't.
+
+Now what is between DENUDE and DESEESED at 248?
+
+The word must have 2 D's, 4 E's and two opposing directions. Those must be S and N. E/W and U/D would leave twistiness at 3. So our word must begin DES--DEN* would put us at before DENS*, which is not alphabetical. So then it is DES (DEENN) and DESEE(DNN) clogs while DESED(ENN) goes nowhere. DESD leaves four possibilities--DESDENEE, or destiny.
+
+What is between DESEESED and DND? Well, the twistiness is 4, and with an address of 147, that means we have D, E and N/S. That eases things considerably. If we assume that this isn't an eight-letter acronym, then, we start with DES (DDEEN). DESN (DDEE) -> DESNE (DDE) which doesn't lead to anything. DESD is not alphabetical. DESE and now DESEE (NDD) clogs so DESEN (EDD) is the only alphabetical one. DESENDED.
+
+The final one, between DEDUSE and DENEENNUNN, is tricky indeed. Its twistiness of 4 means you have an extra D/U, S/N or E/W. It can't start DEDW since that's an extra D and W. DEU would mean DEU (DEEEE) leaving nothing. DEN would mean DEN (EEEESS) and nothing comes from these possibilities. So DEE it iss, then. This is where you may need to guess at synonyms to morality that start with the "dee" sound. Decency is one that turns up, which suggests DEES(EEENS) or DEESENSEE.
+
+D: DDS, DEDEND, DEDSUNE, DEDUDUDU, DEDUSE, DEESENSEE, DENEENNUNN, DENSE, DENUDE, DESDENEE, DESEESED, DESENDED, DEWEESE, DND, DUDE, DUES, DUNDEE, DUNSE, DUSES
+
+E: 356, 447, 449, 257, 567, 546, 436, 416, 545, 443
+
+The e's are easier than the d's.
+
+The area at 443 is a logical gimme, since it starts with E. EWW.
+
+So are the screams. EEE and EEEEE.
+
+Squiggly area 416 also works out. E (ESSS) leaves only one word: ESSES.
+
+The chess park has an E and a U, but it can't have N and S (too twisty) and EUDU/EUUD don't lead anywhere. This is a bit of trial and error if you don't know your Chess world champions, but E(WEU) can soon give EUWE. The clue from Uwe is also potentially helpful.
+
+Since 356 starts with E but is before EE, it's ED and EN remains. EDEN.
+
+E: EDEN, EEE, EEEEE, 257, 567, 546, 436, ESSES, EUWE, EWW
+
+567 must have EEENNU. EE* doesn't lead to anything, and EU is un-alphabetical. EN (EEUN) is left. What is boredom? Ennui. Ennuee is the answer. This is a good wedge, or it would be even better with more E clues.
+
+546 must have EEU + 2 new letters, or NS. Now to keep things alphabetical the U and S can't be in the 2nd slot. EN (EUS) is ENSUE.
+
+E: EDEN, EEE, EEEEE, 257, ENNUEE, ENSUE, 436, ESSES, EUWE, EWW
+
+436 has ESE necessarily and only one more direction, so UD is out. ESEEW or ESEWE don't work, so EENSS is left. But ENS(S/E) is before ENSUE, so ES (ENS) leads to ESSEN.
+
+That leaves 257, which must have E (DDEEN). ED is out, and EEE clogs, and EEN (DDE) gives nothing. So EN (DDEE) has six possibilities, which leaves ENDEED = Indeed.
+
+E: EDEN, EEE, EEEEE, ENDEED, ENNUEE, ENSUE, ESSEN, ESSES, EUWE, EWW
+
+N: 257, 346, 466, 435, NEW, 355, 444, 546
+
+The good emotion at 257 is locked in to NDDEEE, which is NEEDED if you rearrange. You have some help here since before NEW is NE*.
+
+The next-final one is a bit tricky as you need to either remember it or work out a lot or revisit the background clues. It is visited elsewhere and is referred to as NEW WESSEWN. You can also stop by Deedee's to see.
+
+Now at 355, NEW**** has been cut down. It has a D and E and two opposite directions. NEW (DENS) or NEW (DDEU) are the possibilities since (DEWE) isn't twisty enough, but it indicates someone--and you've seen this word before. DUDE. NEWDUDE. You could technically start this one by notinh that NS or NN would clump, so you need NE*, then NEW*.
+
+546 is an odd one as it is N (vowel) (5 letters.) Clearly you have a U and 2 E's and an S. That accounts for the twistiness. There must be two pairs of N and S to balance out the characters, and since we need NU (vowel,)
+
+NU (EENSS) ... now you may notice a word in the clue--there are actually two. This is tricky, but NUSENSE=nuisance *and* (phonetically) new sense.
+
+N: NEEDED, NEEDS, NENE, NESS, NEW, NEWDUDE, NEWWESSEWN, NUSENSE
+
+S: 335, 426, 338, 446, 526, 526, SEN, 428, 446, 525, 327, 515, 434, 336, 437, 435, 345, SUED, 444, 534, 754, 514, 325, 447, 544
+
+335 is forced into SDE or SED. SED is an app on Unix to replace strings. (You may also stumble on this searching for Sed Sneed. Sed is short for Sedrick, incidentally, but I thought it was a bit obscure.)
+
+Similarly, 446 is a quickie. It has an S and must go 2E, so there is NEE, making SEEN.
+
+338 is a misspelling, but the letters are pretty fixed. S (DEEEE) which becomes SEEDEE.
+
+Knowing 338 makes the 426 misspelling easier. It has SSEE and two more opposing letters to make a twistiness of 4. N/S and E/W would only get twistiness to 3. So it is U/D. We'll assume SD clogs, making SE(DESU). SEE (DUS) would not be alphabetical, so SED (ESU) is left. SEDUSE is the word--seduce.
+
+The attention hogs at 526 could use attention now. They are past SEEN and before SEN. SEE (SU) is SEE US.
+
+Now everything after the SUED, which you have, is SW or SU.
+
+534 could have SW(EU/UE) but those aren't words. SU(NS/DU) leaves SUNS. That narrows what 444 can be. It already needs one of each letter, so
+
+SUED < SU(EWDN) < SUNS. If it is SUE, then the last clogs. SUN (EWD) = SUNDEW. You may be able to piece this together from seeing the separate word clues.
+
+514 is another cultural reference we can use logic on. SSSU is part of it, and having EW would mean too much twistiness. NS would leave it too garbled since you'd need SU(NSSS) to be alphabetical. UD is left, and SUDSSS is not possible...leaving SUS(DSU). The cut off letters suggest Phil Collins. His song is cut off, too. SUSSUD (Sussudio) 
+
+This cuts down 754 a bit, too. It is SU(NNUU)--well, SUN(NUU) to be alphabetical--and SUNUNU is the least horrid of the three remaining words. This is an actual politician. John Sununu was George H. Bush's chief of staff, and his son was a Senator for New Hampshire. Hence the fake-political note.
+
+515 is between SEN and SUED, but it must have SESSU. SS is congested, so SE (SSU) = SEUSS.
+
+Now 327 needs to be SE (EEDS) and between SENSEN and SEUSS. That forces an S, then there are three possibilities left. The clue's spelled badly, and so is SESEDE.
+
+S: SED, SEDUSE, SEEDEE, SEEN, 526, SEEUS, SEN, 428, 446, 525, SESEDE, SEUSS, 434, 336, 437, 435, 345, SUED, SUNDEW, SUNS, SUNUNU, SUSSUD, 325, 447, 544
+
+525 before SESEDE can be logicked. It has twistiness f 4. If it starts SES, then, SESE leads to WU, so it's past SESEDE, but SESDUU isn't a work, and it's 5 twistiness, too. So, SEN(SSU) is SENSUS. Or a census.
+
+336 may or may not be a gimme. Sed and Denese have a last name. Since there are two of them, that makes SNEEDS. Without knowing their name, this is a tricky one, but with it, SNEEDS is a decent wedge early onn.
+
+So, hm, next. The misspelling at 526's 4th direction isn't immediately obvious. It It must start SEE with four more letters. Two are U and S. So let's look at the fourth direction. SEEN leaves SUS which doesn't leave anything new. SEEU leaves S and either NS (clogs) or UD or EW which turn up nothing. So SEES has a U and other things. You can probably guess by the month that seasons may be it, and yes, it is SEESUNS.
+
+446 has three directions to go in, and those are S, E and N. It is some permutation of EE + 2 (NS). To be alphabetical, it must be SEN??? or SES (ENN). The clue may tip you off that the letters are repeating, but if not, there are only so many possibilities to brute-force. SENSEN is the name of the breath freshener.
+
+The BANG at 345 has 5 distinct letters. Which is missing, and which is doubled?
+
+It could be SE----, SU----, or SN----. If it were SE, we need a U or W to end. SEU forces SEUDDN which doesn't cut it, and SN needs an ED and EW/UD/NS. This is a bit sticky, but maybe SU* is easier to force. If it is SUE, then we have DDN which can't be alphabetical. But SUD needs a (DEN). It may require a bit of luck to stumble on SUD logically, but a clue below may also allow you to narrow things down a bit more. This is one case where word recognition may work a bit better.
+
+325 is maybe a gimme if you remember one of the things you found for Ed--and quite possibly you found this before visiting Ed--but if not, SU means you need SUDDES which is not twisty enough or far enough along in the alphabet. So SW???? leaves DEES needed, or SWEDES.
+
+447, then, is SW????? or SWEEEEN, SWEENEE. You may remember the Weenees proprietor from earlier, but if not, it falls out logically.
+
+S: SED, SEDUSE, SEEDEE, SEEN, 526, SEEUS, SEN, 428, SENSEN, SENSUS, SESEDE, SEUSS, 434, 336, 437, 435, SUDDEN, SUED, SUNDEW, SUNS, SUNUNU, SUSSUD, SWEDES, SWEENEE, 544
+
+544, then, must be SW***, and with a twistiness and path length of 5, D is the odd letter out. That leaves SW (ENU) but SWN clogs, leaving four choices. Pronounce out SWUNE, and you'll see. Swoon!
+
+But now 435 is either SE (EW) or SE (SN) or some permutation. SEEW is out since it can't fit between SEUSS and SUDDEN, but the abbreviation SNES, coupled with the NES clue you got earlier, should let you see the trick. If you see this one early, in fact, it may help with SUDDEN,
+
+This also makes the misspelling at 437 a bit easier. It only has three letters. Two are s and e since you must go SEEE to get to 437. SEEEEW can be checked off, leaving SEEENS. Since it is between SEWNSEW and SNES, that leaves SNE (EES) or SNEESE, sneeze.
+
+434 has 4 different letters in the path. The question is, are they NSEW or UDNS? UDNS results in a lot of clogging. You'd need SUDDD, or SNU (SDUN). This is acronyming beyond SNES, so SE is more of an option.
+
+SNE forces E as the next letter alphabetically, and then it is too clogged.
+
+SEW is left, then, to fit before SNE. The repetition should give a clue, and SEWNSEW is this one. The clue of needling insult may provide you with a way to get this, too. "So and so."
+
+That leaves 428. A long word for the end of a long journey. But it must have SE to start, and if it contains UD, the twistiness is too much. SEW as the three letters can be discounted as well, because there will be too many vowels: SSEEEEEEEW.
+
+Or if you've eliminated everything else,  you may notice that SEN < this word < SENSEN. Therefore, we must have SEN to start. The hint about going senile may be a clue, but it may not clinch the logic for the letters.
+
+SENSE (EESNS) doesn't quite work. But it turns out SENESSENSE does. This is probably the toughest puzzle in the game done straight up, except maybe New Wessewn. It has 1260 possibilities for 9 letters, 3150 for 10. But only 60/140 if you are able to narrow down the first three letters.
+
+S: SED, SEDUSE, SEEDEE, SEEN, SEESUNS, SEEUS, SEN, SENESSENSE, SENSEN, SENSUS, SESEDE, SEUSS, SEWNSEW, SNEEDS, SNEESE, SNES, SUDDEN, SUED, SUNDEW, SUNS, SUNUNU, SUSSUD, SWEDES, SWEENEE, SWUNE
+
+U: 355, 446, 555, 367, 347, 554, 565, USED
+
+The U's look annoying. You can probably guess the un- prefix, but it's good to have it locked in, and for that, the 335 is handy. It's only five letters. U (DDEN) leaves 12 possibilities. UE clogs at the end, and UD--E doesn't work, leaving UNDED--a misspelling of undead. It's going to be hard to have US*.
+
+446 goes down easily enough, too. Its twistiness is 5, so it must have U/D and N/S or it would be at 4 or less. U DEE NS is what is there. This is one you can probably guess from the clues. Boxers and briefs are underwear. That's the intuitive way to do it. But the logical way is okay, too. So let's look below.
+
+You could also note S is not a possibility, and the EE should probably be together, since ee- misspellings have forced a double-e in other clues. UEE clogs at the end. USD (N/EE) doesn't work, and USEE is ahead of USED. That leaves UD (EE, N, S) as a possibility, and the six probabilities aren't too bad. UN (S, EE, D) is a lot quicker. UNDEES should be pronouncable.
+
+367 is not only forced for its letter but seen elsewhere. DDEEENN.Since UN is a good choice to start, let's work from there. UN (EEENED) and in fact you've seen this before--NEEDED above. Note that UNDEE is not possible due to alphabetization, and UNDEN(EED) doesn't quite work. So you can cut down the possibilities.
+
+555 would be tricky if we had to check UE or UD (would mean UD ENU--ugly combo) but fortunately we can just try UN (US + ENN would be behind USED in the alphabet.) EWE quickly shows nothing, and NSE doesn't give anything. UNDUE works, though--you saw the word (Ed Dunn's Undue Deeds) before, too.
+
+554 (kinda far) has twistiness of 5. So either an S or D is missing, replaced by a U or N, respectively.
+
+Since our path has a U, a D present would mean we'd have UUD and NEW. UN (EUWD) would need to be after UNNEEDED. UNW (DEU) has nothing. So there is no D but there is an extra N. UNU(DEW) also doesn't work. Again, this is helped by a clue from the first bit.
+
+UNNEEDED < UN???? < USED since US(ENNW) wouldn't fit. UNNE (SW) would clog as would UNWE (SN) but UNSE (NW) is UNSEWN.
+
+U: UNDED, UNDEES, UNDUE, UNNEEDED, 347 (UN??????) , UNSEWN, 565 (UN??????) , USED
+
+You sort of saw the word for 347, and it's similar to 367. Very similar. It's also going to have DDEEES, so to fit in, it needs to be UNS (DDEEE) and thus, to avoid clogging, UNSE (DDEE) and with some shuffling you can see UNSEEDED. Now what of 565? It can't really get US but the word dark suggests SUN. So UN?????? with SUN leaves DEN remaining. UNW is thus not a possibility, leaving UNS. UNSUN, UNSUNNED.
+
+U: UNDED, UNDEES, UNDUE, UNNEEDED, UNSEEDED, UNSEWN, UNSUNNED, USED
+
+W: 245, WEED, 449, 446, WEND, 465, 553, 354, 642, 441
+
+441 is kind of trivial. 3 moves, one direction. WWW.
+
+449 is, too. W (443) + 6 moves = WEEEEEE.
+
+642 only leaves 3 possibilities. WWUU, WUWU = woowoo, pronounced.
+
+446 is not bad because there are only two letters--and they must be W, to start, and E. So W(EEEEW) = WEEWEE.
+
+And, 245 is more of a riddle than anything. 18 2/3 hours is almost a day. How much of a day is in? Seven ninths! While you can just brute-force each day of the week and get WEDNESD, you can also note it has to start WED (WEED* would be after weed) with ED and two more letters of NS EW or UD remaining--and only NS gives a twistiness of 5. WED (DENS) -> WEDNESD
+
+W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, 465, 553, 354, WUWU, WWW
+
+354 is an odd one. Twistiness of 5 indicates you must have DWENSN or DWENUD. The first clogs too much, so WE(DDNU) must be WEN(DDU) or WEU(DDN) and the second clogs and the first does nothing. So, WU (NEDD) and here it may be a bit tricky to pronounce out WUDDEN but the clues indicating wood may tip you off.
+
+The last two are phoenetically tricky, but actually, the longer has a handy clue.
+
+553 must have a W, N and U. NS as the remaining letters would clog too much. WNUUD would put it at W(U/D)* which isn't alphabetical, or WN* which would clog. So
+
+WEND < W(ENUW) < WUDDEN. WU* is not alphabetical, so WE (NUW) and WEWUN = we won!
+
+465 has only three letters in its direction, and W and E are two obvious ones. There also must be an N. Two of them. You may notice that SYMMETRIC is capitalized, which makes this easy--what if you try a palindrome? It's 9 letters long, so W or E must be in the middle, since the middle letter cannot be canceled out.
+
+But the middle letter can't be E, since we'd need WE..E..EW and then there'd need to be two Ns. That would put the tens digit at 6, but then any two of the same direction would move you away from 465.
+
+WEND < W(EEEENNWW) < WEWUN, so WEN (EENWW) is left.
+
+WEN-W-NEW needs 2 E's, or WEN-EWE-NEW, when you knew.
+
+W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, WENEWENEW, WEWUN, WUDDEN, WUWU, WWW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here is a list of all the misspellings. I hope none is too much of a stretch. In advanced mode, they make up 25 of 80 of the clues.
+
+DEDEND = dead end
+DEDSUNE = dead soon
+DEDUDUDU = de do do do
+DEDUSE = deduce
+DEESENSEE = decency
+DESDENEE = destiny
+DESEESED = deceased
+DESENDED = descended
+DUNSE = dunce
+DUSES = deuces
+
+ENNUEE = ennui
+
+NUSENSE = nuisance
+
+SEDUSE = seduce
+SEEDEE = seedy
+SEESUNS = seasons
+SENESSENSE = senescence
+SENSUS = census
+SESEDE = secede
+SEWNSEW = so and so
+SNEESE = sneeze
+SWUNE = swoon
+
+UNDED=undead
+UNDEES=undies
+
+WUDDEN=wooden
+WUWU=woowoo
+
+Rejected include:
+
+ENDE (Michael, neverending story)
+EESUS (pronunciation of Jesus)

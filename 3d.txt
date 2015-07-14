@@ -1,0 +1,122 @@
+out=threediopolis-invisiclues.htm
+!Threediopolis HTML Clues
+->c:/games/inform/threediopolis Materials/Release
+>Ed Dunn's
+?What do I do here?
+Say yes or no. You have four chances.
+He gets cross if you mess up. This was a fun bit of Inform 6 coding, and I thought it'd be fun to see, too.
+?How do I figure what to do?
+Look for places that have the same address and try to reach it.
+355 is a good one to start.
+There are six ways.
+Three of them show something.
+North-East-Down is a friend.
+East-North-Down gives something.
+Down-East-North gives something, too.
+NED, END, DEN.
+They're words.
+Words based on any combination of NSEWUD.
+?How can I see Ed Dunn again? Should I?
+Yes, and yes if you want a hint.
+Look at his name and the clue above.
+He's listed in the list.
+E.D.D.U.N.N.
+>GUI/command concerns
+?Can I speed up the commands?
+Yes.
+After 4-5 tasks, which are probably shorter, you can just go DEE, or whichever.
+You can also toggle the diagonal reject warning with J.
+?What is the best header so I don't have to read the list?
+That's subjective, though I think TT is best to show the list, provided you have screen space.
+If you get an initial winning ending, R 9 for the scenery is handy.
+>The cheat at 514
+?Which help is the best?
+Well, I think having one clue is the worst, unless you're near the end.
+The availableometer tells you how many clues are left but buzzes if none are. It does not use a charge.
+The adrift-a-tron, when switched, beeps and loses a charge when no clues are left.
+I'm not sure which is better, but my guess is the adrift-o-tron, especially after you've alphabetized the lists. In any case, the sooner you get either one after alphabetizing, the more useful they can be.
+Saving your charges til the very end may not help you track down the last long clue, but using them once you've exhausted tasks you found easy is hopefully a nice boost.
+The availableometer can be used to work backwards e.g. try a 5-letter combo, then work back to 4 and 3. It requires a bit more patience. It seems like it'd be better in the endgame.
+The adrift-o-tron can shake out some useful ways you can't go. Given that some prefixes don't make words (WW*) and alphabetically ordering the lists will give you some insight into the second letter, it can be really powerful when coupled with the alphabetical list.
+>The cheat at 436
+?What can I use it for?
+You can initially pick a task of varying length to complete, up to three times. That can be useful for longer tasks.
+But you can also go back to Ed Dunn's with a cheat.
+This cheat sorts the clues in full alphabetical order. Then you can pick a letter to start with.
+>On finishing
+?What are all the easter eggs?
+They're in the source code, if you want to search there.
+They're also in AMUSING. Well, not all of them.
+You can also UNDO and try again near the end.
+?What does SSDD mean?
+Same stuff, different day.
+That's the polite version, of course.
+Acronymfinder.com is awesome for finding that.
+>Scenery
+?What matters? What doesn't?
+You should be able to turn off random scenery with B.
+Anything else you find is a sort of clue. But don't worry about finding too much.
+Advanced mode gives you a framework to find everything. If you visit it after winning regular mode, the game remembers what you saw.
+>Help! I just want spoilers!
+>>By size and type
+?Who are your friends?
+I'll give them starting with everyone with three letters, then four, then six.
+DEE, *, DES, *, NED, SUE, *, UWE, *, WES.
+DEE, *, DES, EWEN, NED, SUE, SWEN, UWE, *, WES.
+DEE, DEEDEE, DES, EWEN, NED, SUE, SWEN, UWE, WENDEE, WES.
+?What are the extra near locations? (3 steps away)
+DEN, DEW, DNS, EDU, END, NES, SEE, SEW, SUN
+?What are the near locations? (4 steps away)
+DEUS, DUDS, EWES, NEWS, NUNS, SEND, SEWN, SNUS, SUDS, SUSE, SUSS
+?What are the kinda near locations?(5 steps away)
+DEEDS, DUDES, DUNES, NUDES, SEEDS, SEWED, SUEDE, UNWED, WEEDS
+?What are the kinda far locations? (6 steps away)
+You probably see how to get back to Ed Dunn, but the next one begins with S.
+ED DUNN, SENSES, SWEDEN, UNSEEN, UNUSED, WEDDED, WUSSES
+?What are the far locations? (7 steps away)
+The double double-e's are clues for the last two. The first combines a three- and four-letter word. The three- is an answer to a puzzle, but four is not.
+NEWDUDS, SEEWEED, WEENEES
+?What are the extra far locations? (8 steps away)
+This combines two four-letter words.
+USEDDUDS
+>>By initial direction
+?What are the spoilers for going down first?
+Except for the acronym, these go DE or DU.
+DEE, DEEDS, DEN, DES, DEUS, DEW, DENS, DNS, DUDES, DUDS, DUNES
+?What are the spoilers for going east first?
+The middle one has only two possibilities, as does the acronym. The first one--well, it's Ed Dunn. If you got your friend, the last has only two possibilities.
+EDDUNN, EDU, END, EWEN, EWES
+?What are the spoilers for going north first?
+All of these start with NE or NU, which cuts things down.  The 7-letter one combines two words.
+NED, NES, NEWDUDS, NEWS, NUDES, NUNS
+?What are the spoilers for going south first?
+One of these has SN, and there are two SW, but again knowing your friend and also the three very similar clothes clues may help compartmentalize these alphabetically, since you usually need a vowel after S.
+SEE, SEEDS, SEEWEED, SEND, SENSES, SEW, SEWED, SEWN, SNUS, SUDS, SUE, SUEDE, SUN, SUSE, SUSS, SWEDEN, SWEN
+?What are the spoilers for going up first?
+These start with UN, US and UW. The first three are UN*, and the last has U and two opposing directions.
+UNSEEN, UNUSED, UNWED, USEDDUDS, UWE
+?What are the spoilers for going west first?
+All but one begin with WE. The other is WU, and if you know that, the rest of the letters fall in.
+WEDDED, WEEDS, WEENEES, WENDEE, WES, WES, WUSSES
+>Advanced mode? What to do?
+It's a bit harder, with more obscure words. There is no winning or losing.
+You can visit your friends from the end of regular mode, the SNEEDS, whenever you're done. Whatever ending you get will be fully nonjudgemental.
+Given that there are eighty hints, I put everything here in the logic file.
+As you find more clues, some of the tougher/longer ones will get narrowed down.
+>Twistiness? What's that?
+You may be able to guess from the words you saw already.
+"dude" "new" "sen" "weed" are all -.
+"sued" "used" "wend" are all +.
+If you find a few others, you may figure what is going on. The shorter ones are the easiest.
+You may notice there are six possible values, --- to +++, which is a hint.
+DND is --, WWW is --- ... those have 2 and 1 different letters, respectively.
+The more different directions you need to go to get somewhere, the twistier it is. --- is the least, or 1. +++ is the most.
+>Meta-Questions
+?What are the sociopolitical implications? How does this game reflect the author's political and/or moral and/or game design views?
+Really, I just ran a PERL script to find the locations, then extrapolated whatever jokes I could find.
+If you're wondering, I found Death Panels so ridiculous I had to lampoon them somewhere.
+Well, I'm kind of cranky about Progress in General or Being/Seeming Advanced. And I work that angle heavily whenever I can.
+Also, there are a lot of smart people, or smart people mannerisms, I try to lampoon that. They (we) need to be cut down and laughed at.
+I hope this game doesn't try for too many sociopolitical implications (I dread Discussing Big Things in games) but generally hope that Threediopolis is a quasi-dystopia that allows you to laugh at the worst of society, Maybe it even helps you to tolerate it in real life, or to tolerate annoying stuffy pretentious people and bureaucracy like what you run across randomly in-game.
+I would also be flattered if you came back to the game a few months later, not able to remember everything, but able to find new ways to derive the solution. During programmer testing I had fun learning to reason instead of memorize, or feeling silly forgetting *that* clue I put in.
+Or, yeah, just have fun with the brain-twisters. And the smart-stupid jokes.
