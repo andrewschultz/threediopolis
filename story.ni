@@ -3224,11 +3224,6 @@ to dirparse (dirlump - indexed text):
 	now ignore-remaining-dirs is false;
 	now dirparsing is false;
 	now posschars is 0;
-	if brief-warn is false:
-		unless set to abbreviated room descriptions:
-			say "[italic type][bracket]NOTE: you may wish to disable the room descriptions, which are intended for amusement only and will get in the way of turbo-movement. Type B to get rid of them.[close bracket][roman type][line break]";
-			now brief-warn is true;
-			continue the action;
 
 brief-warn is truth state that varies;
 
@@ -3780,7 +3775,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "dds"	"toothy"	"You feel a toothache. You think[if player has book]. And just like that, someone offers to send you a free voucher for an ergonomic toothbrush. Dental replacements are cheap in 2100, but prevention is still cheaper[end if]. "	0	2	alfhint
 "dedend"	"kuldissakk"	"You can just hear the misspelling in the people saying nuthing that way dood."	0	3	alfhint
 "dedsune"	"deth neer"	"This feels like one of those seedy areas you were warned about, where a pack of bad-spelling thugs might jump out and kill you."	0	5	tough
-"dedududu"	"police zigzag here"	"A song from the 80s--no, the 1980s--echoes through your head. The chorus, anyway. A policeman stands too close to you, tracking every breath you take."	0	3	tough
+"dedududu"	"police zigzag here"	"A song from the 80s--thankfully not the too-cheesy 2080s--echoes through your head. The chorus, anyway. A policeman stands too close to you, tracking every breath you take."	0	3	tough
 "deduse"	"git cloos then figger"	"Dudes see u, essess your list, call it trivial, and move on to more properly brain-bending things. You realize you've encountered a special task force encouraged to ignore spelling so they can focus on deeper things. (Ironically, they're often great grammar cops.)"	0	4	misp
 "deesensee"	"Morrul Peepul"	"People who can't spell worth a dang weigh in on complex ethical questions with impressive oversimplification. It's good practice to refute them scientifically in your head, but bad policy to actually debate."	0	4	misp
 "deneennunn"	"author of Unended"	"A security guard backs you off. 'No fans. This is Deneen Nunn's mansion. she is a busy woman, what with the sequel to Unended she's writing.'[paragraph break]'What's it called?' 'Denuded. Don't ask what happens to Neenu Unwen.' You're whisked away, but not before you catch a glimpse of next book's title: NEW ENDS."	0	4	alfhint
@@ -3806,7 +3801,6 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "euwe"	"chess champs['] park"	"People play chess here--pfft, the simple version solved as a draw in 2037, not even the Fischer 960 version dissected twenty years later--and yell in Dutch as you walk by."	0	3	tough
 "eww"	"messy area"	"You just stepped in something disgusting. You shuffle your shoe to scrape it off and move on."	0	2	alfhint
 "needed"	"feel a good emotion"	"You feel that much surer you've been an irreplacable help to Ed Dunn, and your finding scenery is good practice while you're off the clock."	0	3	alfhint
-"needs"	"gotta have"	"You hear someone whining he has to have this and that and the other. But you tune it out."	0	4	alfhint
 "nene"	"Hawaiian geese/zoo"	"The local zoo gives priority to kids and families, but you still look in."	0	2	alfhint
 "ness"	"mystic animal, no lake"	"You suddenly worry a mythical water beast is around, though there's no lake for miles. But it's just the world's most believable dinosaur statue. Pfft. You move on."	0	3	alfhint
 "new"	"not old"	"A construction site you pass by--and promptly forget about--promises state of the art homes for sale soon."	0	3	tough
@@ -3838,7 +3832,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "swedes"	"little Scandinavia"	"You're in an ethnic residential district. [biz-dist]."	0	4	tough
 "sweenee"	"where the hot dog hut was"	"A big sign says Sweenee Weenee's has moved[swee-try]."	0	4	tough
 "swune"	"c sumwun handsum n faymus"	"Oh my god--it's--it's--EEEEE! Suddenly, you care little for spelling or logic or anything. You just saw...[paragraph break]...and you realize you'll only see someone THAT famous up-close WUNSE."	0	5	misp
-"unded"	"hontid howse: zombees, gools"	"You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults coaching kids to be pseudo-cute and overdo the youthfully earnest bit. It's down to a science these days, the buttons you can push. You move on and decide not to get fleeced. Wee [']uns!"	0	4	misp
+"unded"	"hontid howse: zombees, gools"	"You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults coaching kids to be pseudo-cute and overdo the youthfully earnest bit. It's down to a science these days, the buttons you can push. You move on and decide not to get fleeced."	0	4	misp
 "undees"	"boxee breefs"	"You didn't want to admit you needed a few new pairs, but you did. You go in for a nice geometric pattern. From your own pocket, of course. Not Ed Dunn's."	0	5	misp
 "undue"	"criticism to ignore"	"Someone walks by and gives you an insult you didn't deserve. It has a bit of truth, but that was probably by accident."	0	4	tough
 "unneeded"	"to feel emo"	"You suddenly feel as if nobody, not even Ed Dunn, cares about you."	0	4	alfhint
@@ -3849,6 +3843,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "wednesd"	"18 2/3 hours"	"You temporarily forget what day it is. Wait, it's on the tip of your tongue."	0	5	tough
 "weed"	"the good herb"	"Based on the smell, maybe there are private gardens behind some walls here, maybe not. Some people just won't pay the exorbitant taxes for growing...that."	0	3	alfhint
 "weeeeee"	"amusement park"	"You walk past a big amusement park. People are screaming. You'd probably have to give up your cool high-tech stuff if you stopped in, but you can imagine the feeling, and that's enough."	0	2	alfhint
+"weeuns"	"tinykids compound"	"You get in touch with your inner child, including the one that was kinda jealous of what other people have. All the progress in child care since when...then you're waylaid to tell a story about the old days and it's kind of fun, really. Some stuffy bureaucrat stamps your monthly Generational Relations file with a 'satisfactory.'"	0	5	tough
 "weewee"	"public nuisance"	"You just stepped in a puddle, though it hasn't rained much lately. Whoever, uh, made that puddle is really juvenile."	0	2	tough
 "wend"	"contorted traveling"	"Your most recent turning and twisting around seems like it should've led somewhere. But it did not. Yet."	0	4	alfhint
 "wenewenew"	"symmet. statue 2 insite, lurning, NOWLEDGE"	"You pass by a large statue that reminds you of times the penny--well, it's the dime these days, the penny being devalued--dropped. It felt good then and feels good now."	0	3	alfhint
@@ -3879,7 +3874,6 @@ tally (text)	just-miss (text)	found-yet	descrip (text)	rule-to-reveal
 "suuue"	--	false	"[sooee]" 	soee rule
 "suue"	--	false	"[sooee]" 	soee rule
 "suee"	--	false	"[sooee]" 	soee rule
-"weeuns"	--	false	"Man! Kids running around everywhere here."
 "unsewed"	"unsewn"	false	"You hear whispers of a nudist colony nearby, but not quite here."
 "eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
 

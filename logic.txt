@@ -639,7 +639,7 @@ The final one, between DEDUSE and DENEENNUNN, is tricky indeed. Its twistiness o
 
 D: DDS, DEDEND, DEDSUNE, DEDUDUDU, DEDUSE, DEESENSEE, DENEENNUNN, DENSE, DENUDE, DESDENEE, DESEESED, DESENDED, DEWEESE, DND, DUDE, DUES, DUNDEE, DUNSE, DUSES
 
-E: 356, 447, 449, 257, 567, 546, 436, 416, 545, 443
+E: 356, 448, 257, 567, 546, 436, 416, 545, 443
 
 The e's are easier than the d's.
 
@@ -667,9 +667,9 @@ That leaves 257, which must have E (DDEEN). ED is out, and EEE clogs, and EEN (D
 
 E: EDEN, EEEE, ENDEED, ENNUEE, ENSUE, ESSEN, ESSES, EUWE, EWW
 
-N: 257, 346, 466, 435, NEW, 355, 444, 546
+N: 257, 466, 435, NEW, 355, 444, 546
 
-The good emotion at 257 is locked in to NDDEEE, which is NEEDED if you rearrange. You have some help here since before NEW is NE*.
+The good emotion at 257 is locked in to NDDEEE, which is NEEDED if you rearrange. ND isn't really possible.
 
 The next-final one is a bit tricky as you need to either remember it or work out a lot or revisit the background clues. It is visited elsewhere and is referred to as NEW WESSEWN. You can also stop by Deedee's to see.
 
@@ -679,7 +679,7 @@ Now at 355, NEW**** has been cut down. It has a D and E and two opposite directi
 
 NU (EENSS) ... now you may notice a word in the clue--there are actually two. This is tricky, but NUSENSE=nuisance *and* (phonetically) new sense.
 
-N: NEEDED, NEEDS, NENE, NESS, NEW, NEWDUDE, NEWWESSEWN, NUSENSE
+N: NEEDED, NENE, NESS, NEW, NEWDUDE, NEWWESSEWN, NUSENSE
 
 S: 335, 426, 338, 446, 526, 526, SEN, 428, 446, 525, 327, 515, 434, 336, 437, 435, 345, SUED, 444, 534, 754, 514, 325, 447, 544
 
@@ -771,7 +771,7 @@ You sort of saw the word for 347, and it's similar to 367. Very similar. It's al
 
 U: UNDED, UNDEES, UNDUE, UNNEEDED, UNSEEDED, UNSEWN, UNSUNNED, USED
 
-W: 245, WEED, 449, 446, WEND, 465, 544, 553, 354, 642, 441
+W: 245, WEED, 449, 545, 446, WEND, 465, 544, 553, 354, 642, 441
 
 441 is kind of trivial. 3 moves, one direction. WWW.
 
@@ -783,7 +783,9 @@ W: 245, WEED, 449, 446, WEND, 465, 544, 553, 354, 642, 441
 
 And, 245 is more of a riddle than anything. 18 2/3 hours is almost a day. How much of a day is in? Seven ninths! While you can just brute-force each day of the week and get WEDNESD, you can also note it has to start WED (WEED* would be after weed) with ED and two more letters of NS EW or UD remaining--and only NS gives a twistiness of 5. WED (DENS) -> WEDNESD
 
-W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, 465, 544, 553, 354, WUWU, WWW
+W: WEDNESD, WEED, WEEEEEE, 545, WEEWEE, WEND, 465, 544, 553, 354, WUWU, WWW
+
+545 is WEE with U** and 5 twistiness, which means NS and not EW or UD. "Weesun" as reason was too much of a stretch, but the "compound" clue says WEEUNS.
 
 354 is an odd one. Twistiness of 5 indicates you must have DWENSN or DWENUD. The first clogs too much, so WE(DDNU) must be WEN(DDU) or WEU(DDN) and the second clogs and the first does nothing. So, WU (NEDD) and here it may be a bit tricky to pronounce out WUDDEN but the clues indicating wood may tip you off.
 
@@ -803,7 +805,7 @@ WEN-W-NEW needs 2 E's, or WEN-EWE-NEW, when you knew.
 
 544 can be picked off by twistiness. It has no D. But it must also go WE to be alphabetic. In this case, the VV is a clue to W<->V as well as a planet: Venus. This is a case where you can't fullly nail things down, but there are only a few possibilities left. Plus I thought the double-v clue was cute and hope you do too.
 
-W: WEDNESD, WEED, WEEEEEE, WEEWEE, WEND, WENEWENEW, WENUS, WEWUN, WUDDEN, WUWU, WWW
+W: WEDNESD, WEED, WEEEEEE, WEEUNS, WEEWEE, WEND, WENEWENEW, WENUS, WEWUN, WUDDEN, WUWU, WWW
 
 
 
@@ -888,4 +890,4 @@ WUWU=woowoo
 Rejected include:
 
 ENDE (Michael, neverending story, too similar to END)
-EESUS (pronunciation of Jesus)
+EESUS (pronunciation of Jesus, but I don't know if there are too many Lebowski references already)
