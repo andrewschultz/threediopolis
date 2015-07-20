@@ -420,6 +420,8 @@ to decide which number is letfound of (myt - text):
 
 book stubs and location globals
 
+[I would REALLY like to use ital-say here, but that causes the game to need Glulx.]
+
 your-tally is indexed text that varies.
 
 ns is a number that varies. ew is a number that varies. ud is a number that varies.
@@ -556,7 +558,8 @@ to reset-game:
 		if the rule succeeded:
 			if hint-ever-block is false:
 				now hint-ever-block is true;
-				say "[line break][italic type][bracket]NOTE: you can toggle hints like this by typing hh.[close bracket][roman type][line break]";
+				say "[line break]";
+				say "[italic type][bracket]NOTE: you can toggle hints like this by typing hh.[close bracket][roman type][line break]";
 	now just-found is false;
 	if pals + edtasks is 19 + force-ed-point:
 		if ed-happy-test is false:
@@ -1307,7 +1310,7 @@ carry out x0ing:
 				now begin-rows is b;
 				now end-rows is a;
 			else:
-				say "Okay.";
+				say "Okay. Doing nothing." instead;
 		else if a is b:
 			say "Fixing row [a] next time you examine. Note that x [a] is as effective as x [a][a] if you want to see that row once.";
 			now begin-rows is b;
@@ -1317,6 +1320,8 @@ carry out x0ing:
 			now end-rows is b;
 	if player has book:
 		try examining book;
+		if list-in-status is true:
+			now maxalphrows is 18;
 	else if player has task-list:
 		try examining task-list;
 	else:
@@ -1394,7 +1399,8 @@ when play begins (this is the employer-intro rule):
 	change the prevent undo flag to true;
 	first-status;
 	say "Threediopolis was the first city to have different sidewalk levels, one above another, back in 2050. It's pretty normal now in 2100, but they didn't plan everything right back then, so Threediopolis is still a bit quirky.[paragraph break]You still get lost some days, like today--while remembering a traumatic episode from your youth (adults yelling at you for somehow getting lost on a simple errand) you run across a building you've never seen. You enter and are whisked to a penthouse office. A fellow wearing a fractal power-tie and a white button-down shirt with elbow patches jumps up.[paragraph break]'Ah! You answered my online ad! What? No? You didn't? Even better! You're a natural! Unpoisoned by GPS! Just what I need! It's not anyone can find here. I'm Ed Dunn. You are? ...'[wfak]";
-	say "[paragraph break]Before you can answer, Ed hands you a list of tasks, an equally mysterious package you're told not to open, and a pocket teleporter device, for getting back if you get even more lost than you need to.[paragraph break]'Getting here was the hard part, kid. Some places, like here, UncountableCo doesn't track. And if you don't get everything on this list done before you get back here, that's okay.'[paragraph break]Before you can ask what list, Ed makes a hush-hush gesture. 'It's organized by travel time, kid. Or it should be, once you find how to use it. Don't worry, just--don't lose it.'[paragraph break]He explains how some things just don't need to be traced electronically, and how there's lots of weird scenery to see if you're interested in that sort of thing, and since you got here without knowing, you couldn't get anywhere on the list WITH knowing.[paragraph break]'Knowing what...?'[paragraph break]'One other thing, kid. You might want to use that teleporter pretty quickly if you don't see anything to start. Say, no further than five blocks. Til you get your bearings.'[paragraph break]Ed stares at his computer, then snaps his fingers. 'Oh, hey, I should push this button. Alphabetize this whole list, sort of. Make things easier for the rookie. What do you say?' [italic type][bracket]NOTE: if you haven't played before, I strongly recommend you take the hints by saying YES.[close bracket][roman type][line break]";
+	say "[paragraph break]Before you can answer, Ed hands you a list of tasks, an equally mysterious package you're told not to open, and a pocket teleporter device, for getting back if you get even more lost than you need to.[paragraph break]'Getting here was the hard part, kid. Some places, like here, UncountableCo doesn't track. And if you don't get everything on this list done before you get back here, that's okay.'[paragraph break]Before you can ask what list, Ed makes a hush-hush gesture. 'It's organized by travel time, kid. Or it should be, once you find how to use it. Don't worry, just--don't lose it.'[paragraph break]He explains how some things just don't need to be traced electronically, and how there's lots of weird scenery to see if you're interested in that sort of thing, and since you got here without knowing, you couldn't get anywhere on the list WITH knowing.[paragraph break]'Knowing what...?'[paragraph break]'One other thing, kid. You might want to use that teleporter pretty quickly if you don't see anything to start. Say, no further than five blocks. Til you get your bearings.'[paragraph break]Ed stares at his computer, then snaps his fingers. 'Oh, hey, I should push this button. Alphabetize this whole list, sort of. Make things easier for the rookie. What do you say?' ";
+	say "[italic type][bracket]NOTE: if you haven't played before, I strongly recommend you take the hints by saying YES.[close bracket][roman type][line break]";
 	let qq be Ed-Blab;
 	if qq is 1:
 		now task-list is alpha;
@@ -1440,7 +1446,8 @@ book outside area
 outside-area is a privately-named room. Printed name of outside-area is "Threediopolis, Sector [ud][ns][ew]"
 
 after printing the locale description of outside-area when outside-area is unvisited:
-	say "You glance quickly at Ed Dunn's list: some things are in sector 444, but you can't see anything resembling them. [italic type][bracket]NOTE: the room descriptions are random and for amusement only. Type B to get rid of them or V to have them appear again. A different note will appear once you've seen them all.[close bracket][roman type][line break]";
+	say "You glance quickly at Ed Dunn's list: some things are in sector 444, but you can't see anything resembling them. ";
+	say "[italic type][bracket]NOTE: the room descriptions are random and for amusement only. Type B to get rid of them or V to have them appear again. A different note will appear once you've seen them all.[close bracket][roman type][line break]";
 
 description of outside-area is "[if number of characters in your-tally is 0]Everything here sort of looks like everything else and doesn't at the same time. Going one direction seems as good as going any other.[otherwise][blahdeblah][run paragraph on][end if]"
 
@@ -1480,7 +1487,8 @@ to say blahdeblah:
 		increment observies-count;
 		if observies-count > number of rows in table of observies:
 			if observies-flip is false:
-				say "A jetskateboarder blasting Dude U Need by Eddee Dee pulls up. It fades out, and Sue's Dude by Sunnee and Dussdee Dessens starts. Ouch. Double Whammy. [italic type][bracket]NOTE: you've seen all the random stuff Threediopolis has to offer, so you may want to request (B)rief if you want to. I won't, like, deduct a sneaky point or anything.[close bracket][roman type]";
+				say "A jetskateboarder blasting Dude U Need by Eddee Dee pulls up. It fades out, and Sue's Dude by Sunnee and Dussdee Dessens starts. Ouch. Double Whammy. ";
+				say "[italic type][bracket]NOTE: you've seen all the random stuff Threediopolis has to offer, so you may want to request (B)rief if you want to. I won't, like, deduct a sneaky point or anything.[close bracket][roman type][line break]";
 				now observies-flip is true;
 				now observies-count is 0;
 				continue the action;
@@ -1644,18 +1652,21 @@ instead of thinking:
 
 chapter yessage
 
-check saying yes:
+instead of saying yes:
 	if word number 1 in the player's command in lower case is "yes":
-		say "Without Ed Dunn around, being a yes-man won't do much good. Especially not such a verbose one. Three whole letters! [rhet]" instead;
-	say "You nod your head, but nothing appreciably changes. [rhet]" instead;
+		say "Without Ed Dunn around, being a yes-man won't do much good. Especially not such a verbose one. Three whole letters! ";
+	else:
+		say "The y-axis is north or south. I mean, N or S. ";
+	rhet instead;
 
-to say rhet:
-	say "[italic type][bracket]NOTE: there should not be rhetorical questions in this game. Explicit yes/no questions will have a special prompt.[close bracket][roman type]";
+to rhet:
+	say "[italic type][bracket]NOTE: any rhetorical questions in this game can be ignored. Explicit yes/no questions will have a special prompt.[close bracket][roman type][line break]";
 	
 chapter noage
 
-check saying no:
-	say "You shake your head, but nothing appreciably changes. [rhet]" instead;
+instead of saying no:
+	say "You shake your head, but nothing appreciably changes. ";
+	rhet instead;
 	
 chapter going
 
@@ -1906,7 +1917,7 @@ carry out processing:
 			if found entry is not 2 and found entry is not 3:
 				if ever-fast is false and what-drops entry is not door to ed:
 					if score > 2 or number of characters in tally entry > 3:
-						say "[line break][italic type][bracket]Fourth wall note: it looks like you've roughly figured your way around. If you haven't tried yet, you don't need to type periods or enter between moves to get places, so SSSS is the same as S.S.S.S.[close bracket][roman type][line break]";
+						say "[italic type][bracket]NOTE: it looks like you've roughly figured your way around. If you haven't tried yet, you don't need to type periods or enter between moves to get places, so SSSS is the same as S.S.S.S.[close bracket][roman type][line break]";
 						now ever-fast is true;
 				give-a-point;
 				now hint-iter is 0;
@@ -1926,7 +1937,7 @@ carry out processing:
 					say "You've cleared everything in your current row![paragraph break]";
 					choose-new-row;
 			if en-notify is false:
-				say "[line break][italic type][bracket]NOTE: from now on you can type IN once you see a place to enter or, if there's a door to knock on, K. On which to knock.[close bracket][roman type][line break]";
+				say "[italic type][bracket]NOTE: from now on you can type IN once you see a place to enter or, if there's a door to knock on, K. On which to knock.[close bracket][roman type][line break]";
 				now en-notify is true;
 			if task-list is detail-header:
 				[say "[edtasks]/[maxedtasks] tasks row subtracted if Ed not seen yet? [force-ed-point] Depth = [expected-depth].";]
@@ -1942,7 +1953,7 @@ carry out processing:
 						else:
 							now task-list is reg-header;
 					if shrink-notify is false:
-						say "[line break][italic type][bracket]NOTE: you're getting close to doing everything for Ed before returning to him, so I shrank the list to [expected-depth] rows...and I'll continue to [']til you are done. You're doing great![close bracket][roman type][line break]";
+						say "[italic type][bracket]NOTE: you're getting close to doing everything for Ed before returning to him, so I shrank the list to [expected-depth] rows...and I'll continue to [']til you are done. You're doing great![close bracket][roman type][line break]";
 						now shrink-notify is true;
 			if look-mode is false and alpha-look-mode is false:
 				reset-game;
@@ -2038,6 +2049,22 @@ suspicious-seen is a truth state that varies.
 
 scenery-found-yet is a truth state that varies.
 
+to check-cur-done:
+	let cur-alf-row be 0;
+	let a be "a";
+	let b be indexed text;
+	let any-blank be false;
+	if begin-rows is 1 and end-rows is 6: [choosing all the rows, covered elsewhere]
+		continue the action;
+	repeat through my-table:
+		let b be character number 1 in tally entry;
+		if b is not a:
+			increment cur-alf-row;
+			if cur-alf-row is inline:
+				if found entry is 0:
+					continue the action; [we found a non-clue]
+	say "There are no clues left in the rows you've chosen.";
+
 after looking (this is the place ed's tasks rule) :
 	if your-tally is "suss" and player does not have book of secret and ignore-susp is false:
 		if suspicious-guy-help is false:
@@ -2082,12 +2109,13 @@ after looking (this is the place ed's tasks rule) :
 					if expected-depth > secs - eggsfound:
 						now expected-depth is secs - eggsfound;
 					if center-warn is false:
-						say "[line break][italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
+						say "[italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
 						now center-warn is true;
 					else if found entry is not 2: [stay around the sneeds']
 						say "[line break]You zap back to the almost-center[if posschars > number of characters in your-tally], cancelling the rest of your plans[end if].";
 						now ignore-remaining-dirs is true;
 						reset-game;
+					check-cur-done;
 				continue the action;
 			if found entry is -1 or found entry is 2:
 				now plus-ticker is 0;
@@ -2531,7 +2559,8 @@ instead of entering a quasi-entry:
 		if task-list is alpha:
 			say "As you approach the door, a guard asks your business. You recall Ed Dunn's offer of help. Are you looking for help?";
 			if the player consents:
-				say "You explain your situation, and the guard takes your list, fiddles with it and hands it back! It's even better organized than before! There are list items, though one of them takes up two rows. You can't wait to give things another crack, so you push the device button.[paragraph break][italic type][bracket]NOTE: you unlocked a new header/view. Type mm for a jazzy new header, or m (1-7) to see the respective row--plain m cycles through the rows.[close bracket][roman type][line break]";
+				say "You explain your situation, and the guard takes your list, fiddles with it and hands it back! It's even better organized than before! There are list items, though one of them takes up two rows. You can't wait to give things another crack, so you push the device button.[paragraph break]";
+				say "[italic type][bracket]NOTE: you unlocked a new header/view. Type mm for a jazzy new header, or m (1-7) to see the respective row--plain m cycles through the rows.[close bracket][roman type][line break]";
 				now plus-ticker is 0;
 				now task-list is super-alpha;
 				sort the table of findies in tally order;
@@ -2604,7 +2633,8 @@ carry out examining the task-list:
 		say "You figure Ed Dunn would be pretty happy with how you've done so far. But maybe you can do better.";
 		now ok-now is true;
 	if list-in-status is false and toggle-suppress is false:
-		say "[line break][italic type][bracket]You can put this in the header with t, though it is not recommended with Parchment, or you can toggle this warning with tt. You can also track just friends with f (ff puts this in the header), you can see the topmost line with o (oo puts it in the header) or push r (number) to put the first (#) clues in the header--rr or r displays just #1. X (#) or (##) shows one line or a series--you're currently seeing [begin-rows] to [end-rows].[close bracket][roman type][line break]";
+		say "[line break]";
+		say "[italic type][bracket]NOTE: You can put this in the header with t, though it is not recommended with Parchment, or you can toggle this warning with tt. You can also track just friends with f (ff puts this in the header), you can see the topmost line with o (oo puts it in the header) or push r (number) to put the first (#) clues in the header--rr or r displays just #1. X (#) or (##) shows one line or a series--you're currently seeing [begin-rows] to [end-rows].[close bracket][roman type][line break]";
 	the rule succeeds;
 
 thestring is indexed text that varies.
@@ -2691,11 +2721,19 @@ to decide whether (mynum - a number) is inline:
 	if mynum < begin-rows:
 		decide no;
 	decide yes;
+	
+to decide whether print-this-clue of (lr - a number):
+	unless lr is inline:
+		if in-header is true and player does not have top secret:
+			decide yes;
+		decide no;
+	decide yes;
 
 to super-alpha-it:
 	now thestring is "[listwidth]";
 	let curlines be 0;
 	let a be indexed text;
+	let alpha-row be 0; [1=d 2=e 3=n 4=s 5=u 6=w]
 	now thisheaderbreak is 0;
 	now hpos is 0;
 	now a is "a";
@@ -2705,47 +2743,50 @@ to super-alpha-it:
 			now thestring is "[thestring] before = [tally entry] [hpos]";]
 		let b be character number 1 in "[tally entry]" in lower case;
 		if a is not b:
-			if in-header is true:
-				increment curlines;
-				if curlines is maxhrows - 1:
-					say "[line break]  ([later].)";
-					the rule succeeds;
-				say "[lb]--";
-				now hpos is 2;
-			else:
-				increment localrow;
-				if localrow is inline or in-header is true:
-					say "[paragraph break]--";
+			increment localrow;
+			if print-this-clue of localrow:
+				if in-header is true:
+					increment curlines;
+					if curlines is maxhrows - 1:
+						say "[line break]  ([later].)";
+						the rule succeeds;
+					say "[lb]--";
+					now hpos is 2;
+				else:
+					increment localrow;
+					if localrow is inline or in-header is true:
+						say "[paragraph break]--";
 			now a is b;
 		else:
-			if in-header is true or localrow is inline:
+			if print-this-clue of localrow:
 				say ", ";
-			now hpos is hpos + 2;
-		if there is no unlist entry or unlist entry is false:
-			if found entry is 1:
-				now hpos is hpos + number of characters in tally entry;
-				if hpos >= listwidth:
-					if in-header is true:
-						increment curlines;
-						if curlines is maxhrows - 1:
-							say "[lb]  ([later].)";
-							the rule succeeds;
-						say "[lb]  ";
-					now hpos is 2 + number of characters in tally entry;
-				if in-header is true or localrow is inline:
-					say "[italic type][tally entry][noital]";
-			else:
-				now hpos is hpos + number of characters in descrip entry + 7 + number of characters in "[nearness of tally entry]";
-				if hpos >= listwidth:
-					if in-header is true:
-						increment curlines;
-						if curlines is 17:
-							say "[lb]  ([later].)";
-							the rule succeeds;
-						say "[lb]  ";
-					now hpos is number of characters in descrip entry + 9 + number of characters in "[nearness of tally entry]";
-				if in-header is true or localrow is inline:
-					say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][if in-header is false and task-list is twisty][twistrate of twistiness entry][end if])";
+				now hpos is hpos + 2;
+		if print-this-clue of localrow:
+			if there is no unlist entry or unlist entry is false:
+				if found entry is 1:
+					now hpos is hpos + number of characters in tally entry;
+					if hpos >= listwidth:
+						if in-header is true:
+							increment curlines;
+							if curlines is maxhrows - 1:
+								say "[lb]  ([later].)";
+								the rule succeeds;
+							say "[lb]  ";
+						now hpos is 2 + number of characters in tally entry;
+					if in-header is true or localrow is inline:
+						say "[italic type][tally entry][noital]";
+				else:
+					now hpos is hpos + number of characters in descrip entry + 7 + number of characters in "[nearness of tally entry]";
+					if hpos >= listwidth:
+						if in-header is true:
+							increment curlines;
+							if curlines is 17:
+								say "[lb]  ([later].)";
+								the rule succeeds;
+							say "[lb]  ";
+						now hpos is number of characters in descrip entry + 9 + number of characters in "[nearness of tally entry]";
+					if in-header is true or localrow is inline:
+						say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][if in-header is false and task-list is twisty][twistrate of twistiness entry][end if])";
 	if in-header is true:
 		if thisheaderbreak + 1 < maxalphrows:
 			now maxalphrows is thisheaderbreak + 1;
@@ -2790,23 +2831,29 @@ understand "t" as ting.
 To decide what number is screenh:
 	(- VM_ScreenHeight() -);
 
+t-warn-slow is a truth state that varies.
+
 carry out ting:
 [	if player has book of top secret things:
 		say "R is the command to use here, now you have the book. T would be ideal, but it was too tricky to implement in this release. Sorry. Maybe release 4." instead;]
 	if list-in-status is false:
-		say "[italic type][bracket]NOTE: there is currently a slowdown problem with web-based interpreters.[close bracket][roman type][line break]";
+		if t-warn-slow is false:
+			now t-warn-slow is true;
+			say "[italic type][bracket]NOTE: there is currently a slowdown problem with web-based interpreters.[close bracket][roman type][line break]";
 		if screenh < 20:
-			say "The interpreter screen height of [screenh] is too small for Ed's big list. The minimum needed is 20, and 25+ is preferred." instead;
+			say "The interpreter screen height of [screenh] is too small for Ed's big list. The minimum eeded is 20, and 25+ is preferred." instead;
 		if screen width < 85 and superuser is true:
 			say "The interpreter screen width of [screen width] is too small for Ed's big list. The minimum needed is 85, and 105+ is preferred." instead;
 		if screen width < 105 or screenh < 25:
 			say "The screen dimensions are [screen width] x [screenh]. Dimensions of at least 105x25 are recommended to be able to see all entries at once but not necessary. You can resize later. Do you still wish to toggle the list inventory to the status bar?";
 			unless the player consents:
 				say "Ok. You can change your mind later." instead;
-		say "Ok, the list is in the status bar, now[if screen width > 150], though it's trimmed to 150 wide[end if]. [italic type][bracket]NOTE: if you resize to <25 height or <105 width, it is at your own risk.[close bracket][roman type][line break]";
+		say "Ok, the list is in the status bar, now[if screen width > 150], though it's trimmed to 150 wide[end if]. ";
+		say "[italic type][bracket]NOTE: if you resize to <25 height or <105 width, it is at your own risk.[close bracket][roman type][line break]";
 		now list-in-status is true;
 		now task-x is true;
 		now task-list is reg-header;
+		rejig the status line to 18 rows;
 	else:
 		say "List toggled from status bar.";
 		now list-in-status is false;	
@@ -2845,7 +2892,8 @@ check taking inventory:
 	if number of visible quasi-entries is 1:
 		if quick-i is false:
 			now quick-i is true;
-			say "You [if front door is visible or sneeds is visible]almost [end if]take a quick step in. [italic type][bracket]Note--there's no need to take inventory when you're by something you can enter, so I'm changing 'I' to 'In.'[close bracket][roman type][line break]";	
+			say "You [if front door is visible or sneeds is visible]almost [end if]take a quick step in. ";
+			say "[italic type][bracket]NOTE: there's no need to take inventory when you're by something you can enter, so I'm changing 'I' to 'IN.'[close bracket][roman type][line break]";	
 		try entering a random visible quasi-entry instead;
 
 After printing the name of the book of top secret things while taking inventory:
@@ -2891,13 +2939,15 @@ carry out blackmarketing:
 		say "You take your leave, but not before he assures you that way you want to go is nowhere, and oh yeah, talk to him if you change your mind. But you'll probably have to leave and come back.";
 		now ignore-susp is true;
 	else if number understood is 3:
-		say "'Here's your availableometer. It'll tell you how much you can still find as you wander.' [italic type][bracket]NOTE: you can X IT right now, or X METER.[close bracket][roman type][line break]";
+		say "'Here's your availableometer. It'll tell you how much you can still find as you wander.' ";
+		say "[italic type][bracket]NOTE: you can X IT right now, or X METER.[close bracket][roman type][line break]";
 		now player has availableometer;
 		set the pronoun it to availableometer;
 		now suspicious-guy-help is true;
 		now oopsy-daisy is 4;
 	else if number understood is 2:
-		say "'Here's your adrift-a-tron. It'll tell you when you're hopelessly wandering.' [italic type][bracket]NOTE: you can X IT right now, or X TRON.[close bracket][roman type][line break]";
+		say "'Here's your adrift-a-tron. It'll tell you when you're hopelessly wandering.' ";
+		say "[italic type][bracket]NOTE: you can X IT right now, or X TRON.[close bracket][roman type][line break]";
 		now player has adrift-a-tron;
 		set the pronoun it to adrift-a-tron;
 		now suspicious-guy-help is true;
@@ -3220,7 +3270,7 @@ to dirparse (dirlump - indexed text):
 			if character number charnum in dirlump is "d":
 				try going down;
 			if character number charnum in dirlump is ".":
-				say "[italic type][bracket]NOTE: ignoring period.[close bracket][roman type]";
+				say "[italic type][bracket]NOTE: ignoring period.[close bracket][roman type][line break]";
 	now ignore-remaining-dirs is false;
 	now dirparsing is false;
 	now posschars is 0;
@@ -3363,7 +3413,7 @@ carry out ring:
 	if expected-depth > other-num:
 		now expected-depth is other-num;
 	if expected-depth < number understood:
-		say "[italic type][bracket]NOTE: cutting down to [expected-depth] rows.[close bracket][roman type]";
+		say "[italic type][bracket]NOTE: cutting down to [expected-depth] rows.[close bracket][roman type][line break]";
 	say "Header now shows first [if expected-depth > 1][expected-depth] task list elements[else]task list element[end if].";
 	now task-list is detail-header;
 	now list-in-status is false;
@@ -3412,7 +3462,8 @@ carry out friending:
 	unless task-list is friend-header:
 		if friend-warn is false:
 			now friend-warn is true;
-			say "[line break][italic type][bracket]NOTE: while friends are still left, you can focus on them in the status bar with ff.[close bracket][roman type][line break]" instead;
+			say "[line break]";
+			say "[italic type][bracket]NOTE: while friends are still left, you can focus on them in the status bar with ff.[close bracket][roman type]";
 	the rule succeeds.
 
 chapter friendtoping
@@ -3710,11 +3761,6 @@ check smelling:
 		say "Smells like someone's having a mellow time." instead;
 	say "Pollution is 96% less stinky than a hundred years ago. Which isn't all good. Now, you can't tell if it's killing you." instead;
 
-chapter yes
-
-instead of saying yes:
-	say "The y-axis is north or south. I mean, N or S. [italic type][bracket]NOTE: rhetorical questions don't need a response.[close bracket][roman type][line break]";
-
 book scoring
 
 to decide what number is county of (qua - a quality):
@@ -3801,7 +3847,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "euwe"	"chess champs['] park"	"People play chess here--pfft, the simple version solved as a draw in 2037, not even the Fischer 960 version dissected twenty years later--and yell in Dutch as you walk by."	0	3	tough
 "eww"	"messy area"	"You just stepped in something disgusting. You shuffle your shoe to scrape it off and move on."	0	2	alfhint
 "needed"	"feel a good emotion"	"You feel that much surer you've been an irreplacable help to Ed Dunn, and your finding scenery is good practice while you're off the clock."	0	3	alfhint
-"nene"	"Hawaiian geese/zoo"	"The local zoo gives priority to kids and families, but you still look in."	0	2	alfhint
+"nene"	"Hawaiian geese/zoo"	"The local zoo gives priority to kids and families, but you still look in. Hawaiian animals are special. All but Oahu went underwater after global warming, and only now is the whole archipelago making a slow comeback. "	0	2	alfhint
 "ness"	"mystic animal, no lake"	"You suddenly worry a mythical water beast is around, though there's no lake for miles. But it's just the world's most believable dinosaur statue. Pfft. You move on."	0	3	alfhint
 "new"	"not old"	"A construction site you pass by--and promptly forget about--promises state of the art homes for sale soon."	0	3	tough
 "newdude"	"help recent resident"	"Someone looks confused, and you're surprised you're able to give good directions, just by thinking logically about where things must be. or not."	0	5	tough
@@ -4196,7 +4242,7 @@ carry out suping:
 volume beta testing - not for release
 
 when play begins (this is the beta instructions rule) :
-	say "[italic type][bracket]NOTE: Beta testers who want to try Advanced Mode should type SEE NEW SEENS. Also, this line should not be in the final release.[close bracket][roman type]";
+	say "[italic type][bracket]NOTE: Beta testers who want to try Advanced Mode should type SEE NEW SEENS. Also, this line should not be in the final release.[close bracket][roman type][line break]";
 
 volume testing - not for release
 
