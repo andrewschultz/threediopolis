@@ -5,6 +5,13 @@
 to
 			VM_PrintToBuffer(printed_text, 70, str);]
 
+[Stuff to search for:
+
+(BR)major, for list manipulation and header stuff
+(BR)tof findies (regular mode)
+(BR)top scenery progress
+(BR)tos scenery
+]
 
 volume 1
 
@@ -859,6 +866,11 @@ before going (this is the don't waste my time with all those extra letters alrea
 	if the player's command matches the text "down", case insensitively:
 		dirsmack instead;
 
+chapter no noun needed
+
+Rule for printing a parser error when the latest parser error is the only understood as far as error: [I can't do better as "[word number 1]" comes up blank]
+	say "That command doesn't need more than one letter. You may wish to retry without the second word.";
+
 chapter blank parser
 
 Rule for printing a parser error when the latest parser error is the can't see any such thing error:
@@ -1135,7 +1147,7 @@ maxrrows is a number that varies. maxrrows is 18.
 
 thisheaderbreak is a number that varies. thisheaderbreak is 0.
 
-rule for constructing the status line when list-in-status is true:
+rule for constructing the status line when list-in-status is true (this is the major header wrangling rule):
 	now in-header is true;
 	if task-list is super-alpha or player has book of top secret things:
 		deepen the status line to maxalphrows rows;
@@ -1319,11 +1331,13 @@ carry out x0ing:
 			now begin-rows is a;
 			now end-rows is b;
 	if player has book:
-		try examining book;
+		if dont-examine is false:
+			try examining book;
 		if list-in-status is true:
 			now maxalphrows is 18;
 	else if player has task-list:
-		try examining task-list;
+		if dont-examine is false:
+			try examining task-list;
 	else:
 		say "BUG! You have neither book nor task list." instead;
 	if b is 0:
@@ -1514,15 +1528,16 @@ blurb
 "You reflect on studies showing how much of your life advertising eats, and you wonder if that accounts for people complaining about or repeating particularly memorable ads, too."
 "Two little smart-alecks wonder if grandparents whined nostalgically so much back in the good old days."
 "Two particularly annoying foodies berate, equally, an Escherville style restaurant in Threediopolis and a Threediopolis style restaurant in Escherville."
+"A sociological argument! Is it time to add a 'fifth world' to the existing tier of four?"
 "A normal-IQ person is given a police warning for wearing a Harvard t-shirt without proper disclaimers."
 "Someone playing a popular logic game on his NetFone whines it's just crunching numbers. Someone else playing the same game bemoans a quirky lateral-thinking solution."
 "People arguing whether partisan disconnect is at an all-time high pass by you on either side, debating which of them is really in the middle of the spectrum."
 "A musical purist argues passionately for old-school auto tuning."
 "Two hipsters who never tried the real thing (too anti-environment) argue over the best coffee substitute."
 "You quickly run past someone with a monotonous-looking 'SLEEP: THE TAX OF LIFE' pamphlet. Then someone with a new-age dream-control book."
-"Someone laughs at an idiot who doesn't understand the one-page proof of Fermat's Last Theorem they found way back in 2075."
+"Someone laughs at an idiot who doesn't understand the one-page proof of Fermat's Last Theorem that was found way back in 2075."
 "A driver shows a police officer his u-turn permit and goes on his way."
-"Police corner a suspected handicap permit fraud! He had claimed social disability, but whether or not he can answer the charges, that digs him deeper."
+"Police corner a suspected handicap permit fraud! He had claimed social phobia disability, but whether or not he can answer the charges, that will dig him deeper."
 "Dork-on-dork crime! A kid who can memorize fifteen-digit IDs is verbally abused by those who use their memory for more research-worthy things."
 "Two women discuss how the creaky old Bechdel test isn't nearly adequate enough any more for gender fairness in games, especially if the games are kind of meta."
 "Two dorks wearing Science Tech letterman jackets (math team, blitz chess team) recite the well-worn reasons smart people are still underdogs to jocks. They argue over changes to the Optimal Tax Rate Algorithm. "
@@ -1537,8 +1552,8 @@ blurb
 "Someone discusses a report proving people say 'In these troubled economic times' too much regardless of the economy."
 "Techies discuss developing GUIs that make it nearly impossible for a customer to log out—but are still legal."
 "Several assembly coders shove a script programmer into an alley and gaffle him for selling out. You...you saw NOTHIN['], man."
-"A group of short kids threatens to ruin a group of jocks['] test scores and future credit."
-"Someone yells about how he won't hang out with stupid people like religious fundamentalists."
+"A group of short kids threatens to ruin a group of jocks['] test scores and future bank credit."
+"Someone yells about how he won't ever-no-never hang out with stupid people like religious fundamentalists."
 "Two high-rolling humanist quasi-clergy discuss the next candidates for Smarthood."
 "Two know-it-alls discuss the latest artificial-artificial fat and sugar substitutes, their risks, benefits and sustainability. You resolve to drink more water."
 "You see a penny. No, it's a gag penny, since the date's after 2080."
@@ -1550,10 +1565,10 @@ blurb
 "Two music critics discuss the relative merits of songs that almost rhyme and songs that rhyme words with themselves."
 "You pass someone holding a STATE CERTIFIED NICE BEGGAR sign. But you know those are easy to forge!"
 "Two people argue over whether 2100 is the 21st or 22nd century, but they do agree they're sick of politicians and salesmen talking of the new century and beyond, already."
-"Someone bemoans how reality TV stars had class back in the golden [']30s, now it's quantity and not quality."
+"Someone bemoans how reality TV stars had class back a century ago, but now it's quantity and not quality."
 "A voice advertises match-3 game addiction treatment sponsored by a shoot-em-up company, then for fairness and balance, a shoot-em-up addiction treatment sponsored by a match-3 company. Pft. You've got much better things to do."
 "Someone heading to atheist confessional for stupid things done this week mutters 'Forgive my stupidity as I forgive others...'"
-"Some way-old-skool fool brags about a dope song that samples only one song that samples another."
+"Some way-old-skool fool brags about a dope song that samples only *one* song that samples something actually original."
 "Two people debate the science of stretching out before a long walk or lots of exercise, or the latest diet. Then they dismiss the stock market as pure luck."
 "Someone cracks a 'classic' joke about GUI that, really,...it's just overplayed."
 "People squabble over which Mark R. Smith contributed more to history."
@@ -1564,13 +1579,13 @@ blurb
 "You pass some kid being bullied for his lame 1-GB internet connection and 32-megapixel phone. Eh, not your business."
 "A recently boarded up 'adult' shop. Your naive pre-teen self actually thought people BOUGHT stuff there, despite the Internet."
 "You pass a public library with the standard door-disclaimer: requests for old-style physical books require legitimate written reasons. You walk on, forgetting where it is."
-"Someone walking the wrong way on a sidewalk is given a ticket."
+"Someone walking the wrong way on a sidewalk to no good purpose is given a ticket."
 "Some rich showoff with a jetpack flies dangerously close overhead."
 "You pass two oldsters violently arguing WHY the good old days were better."
-"A nonagenarian whines how songs pining for simpler times were...well, simpler."
+"A nonagenarian whines how songs pining for simpler, more thoughtful times were...well, simpler and more thoughtful."
 "You're stuck behind someone babbling into their NetFone for a bit--moving ahead of them, you'd hear the conversation worse."
 "Two ads in quick succession on a building videoscreen, one for a talk show and one for screen watching addiction."
-"Another announcement: 'Attention Threediopolis walkers! Would you like to afford a car to tune out announcements like these? The Department of Commerce can help...'"
+"'Attention Threediopolis walkers! Would you like to afford a car to tune out announcements like these? The Department of Commerce can help...'"
 "A sectarian atheist fight breaks out over the best reason religion is stupid and how the afterlife should be, if it existed."
 "A sappy autotuned song from a public speaker delivers a [one of]common-sense-reductionist[or]horrendously pedantic[at random] PSA."
 "Light music nobody hates enough to complain about pipes out from behind artificial plants."
@@ -2728,8 +2743,22 @@ to decide whether print-this-clue of (lr - a number):
 			decide yes;
 		decide no;
 	decide yes;
+	
+to decide what number is opsize of (x - a number):
+	if x < 7 and x > 3, decide on 7 - x;
+	if x > 0 and x < 4, decide on x;
+	decide on 0; [this should never happen]
 
-to super-alpha-it:
+to decide whether you-can-twist:
+	if player has book of top secret:
+		if twistx is false:
+			decide yes;
+	else:
+		if task-list is twisty:
+			decide yes;
+	decide no;
+
+to super-alpha-it: [major list manipulation]
 	now thestring is "[listwidth]";
 	let curlines be 0;
 	let a be indexed text;
@@ -2777,6 +2806,8 @@ to super-alpha-it:
 						say "[italic type][tally entry][noital]";
 				else:
 					now hpos is hpos + number of characters in descrip entry + 7 + number of characters in "[nearness of tally entry]";
+					if you-can-twist:
+						increase hpos by opsize of twistiness entry;
 					if hpos >= listwidth:
 						if in-header is true:
 							increment curlines;
@@ -2786,7 +2817,7 @@ to super-alpha-it:
 							say "[lb]  ";
 						now hpos is number of characters in descrip entry + 9 + number of characters in "[nearness of tally entry]";
 					if in-header is true or localrow is inline:
-						say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][if in-header is false and task-list is twisty][twistrate of twistiness entry][end if])";
+						say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][twistrate of twistiness entry])";
 	if in-header is true:
 		if thisheaderbreak + 1 < maxalphrows:
 			now maxalphrows is thisheaderbreak + 1;
@@ -2828,32 +2859,65 @@ understand the command "t" as something new.
 
 understand "t" as ting.
 
+understand "t [number]" as xpreing when scenes-in-header.
+
+to decide whether scenes-in-header:
+	if player does not have book of secret, decide no;
+	decide yes;
+
+xpreing is an action applying to one number.
+
+dont-examine is a truth state that varies;
+
+carry out xpreing:
+	follow the screen-size-check rule;
+	let q be whether or not list-in-status is true;
+	if the rule succeeded:
+		now list-in-status is true;
+		now dont-examine is true;
+		try x0ing the number understood;
+		now dont-examine is false;
+		say "[if q is false]Updated the rows to see[else][alpha-header-note][end if].";
+
 To decide what number is screenh:
 	(- VM_ScreenHeight() -);
 
 t-warn-slow is a truth state that varies.
 
-carry out ting:
-[	if player has book of top secret things:
-		say "R is the command to use here, now you have the book. T would be ideal, but it was too tricky to implement in this release. Sorry. Maybe release 4." instead;]
-	if list-in-status is false:
-		if t-warn-slow is false:
-			now t-warn-slow is true;
-			say "[italic type][bracket]NOTE: there is currently a slowdown problem with web-based interpreters.[close bracket][roman type][line break]";
-		if screenh < 20:
-			say "The interpreter screen height of [screenh] is too small for Ed's big list. The minimum eeded is 20, and 25+ is preferred." instead;
-		if screen width < 85 and superuser is true:
-			say "The interpreter screen width of [screen width] is too small for Ed's big list. The minimum needed is 85, and 105+ is preferred." instead;
-		if screen width < 105 or screenh < 25:
+screen-nag is a truth state that varies;
+
+this is the screen-size-check rule:
+	if t-warn-slow is false:
+		now t-warn-slow is true;
+		say "[italic type][bracket]NOTE: there is currently a slowdown problem with web-based interpreters.[close bracket][roman type][line break]";
+	if screenh < 20:
+		say "The interpreter screen height of [screenh] is too small for Ed's big list. The minimum needed is 20, and 25+ is preferred.";
+		the rule fails;
+	if screen width < 85 and superuser is true:
+		say "The interpreter screen width of [screen width] is too small for Ed's big list. The minimum needed is 85, and 105+ is preferred.";
+		the rule fails;
+	if screen width < 105 or screenh < 25:
+		if screen-nag is false:
 			say "The screen dimensions are [screen width] x [screenh]. Dimensions of at least 105x25 are recommended to be able to see all entries at once but not necessary. You can resize later. Do you still wish to toggle the list inventory to the status bar?";
 			unless the player consents:
-				say "Ok. You can change your mind later." instead;
-		say "Ok, the list is in the status bar, now[if screen width > 150], though it's trimmed to 150 wide[end if]. ";
+				say "Ok. You can change your mind later.";
+				the rule fails;
 		say "[italic type][bracket]NOTE: if you resize to <25 height or <105 width, it is at your own risk.[close bracket][roman type][line break]";
-		now list-in-status is true;
-		now task-x is true;
-		now task-list is reg-header;
-		rejig the status line to 18 rows;
+	the rule succeeds;
+
+to say alpha-header-note:
+	say "Ok, the list is in the status bar, now[if screen width > 150], though it's trimmed to 150 wide[end if]"
+
+carry out ting:
+	if list-in-status is false:
+		follow the screen-size-check rule;
+		if the rule succeeded:
+			now list-in-status is true;
+			now task-x is true;
+			now task-list is reg-header;
+			say "[alpha-header-note].";
+		else:
+			say "Header list failed.";
 	else:
 		say "List toggled from status bar.";
 		now list-in-status is false;	
@@ -3020,7 +3084,8 @@ to say condtwist of (nu - a number):
 		say "[twistrate of nu]";
 
 to say twistrate of (nu - a number):
-	say "[if nu < 4]-[end if][if nu < 3]-[end if][if nu < 2]-[end if][if nu > 3]+[end if][if nu > 4]+[end if][if nu > 5]+[end if]";
+	unless twistx is true:
+		say "[if nu < 4]-[end if][if nu < 3]-[end if][if nu < 2]-[end if][if nu > 3]+[end if][if nu > 4]+[end if][if nu > 5]+[end if]";
 
 the availableometer is a thing. the availableometer has a number called charges. charges of availableometer is 10. description is "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, BOY,) and indicates it has [charges of availableometer] charges left. [italic type][bracket]FOURTH WALL NOTE: the command A activates it.[close bracket][roman type]"
 
@@ -3083,12 +3148,8 @@ understand "xx" as xxing when player has book of top secret things or task-list 
 carry out xxing:
 	now ever-twisted is true;
 	if player has book of top secret things:
-		if twistx is false:
-			say "You blot out the depictions of twistiness for scenery you've found.";
-			now twistx is true;
-		else:
-			say "You recall the depictions of twistiness for scenery you've found.";
-			now twistx is false;
+		say "You [if twistx is false]blot out[else]recall[end if] the depictions of twistiness for scenery you've found.";
+		now twistx is whether or not twistx is false;
 		the rule succeeds;
 	try examining verso instead;
 
@@ -3989,7 +4050,7 @@ to say swee-try:
 	choose row with a tally of "Weenees" in table of findies;
 	say "[if found entry is 0]. Probably far away and near at the same time[else]. The new place seems nicer[end if]"
 
-table of scenery progress [tosp]
+table of scenery progress [top]
 sneed-talk	findy-talk	need-to-get	nailed-yet
 "You really couldn't find any scenery."	"You mark down your first bit of crazy Threediopolis scenery since you got your notebook. Yay!"	1	false
 "You didn't feel like seeing much scenery, but you saw enough. Maybe talking it over with the Sneeds will leave you recharged. It does. The talk about how, after all, you don't want to get burned out. You're not sure if they actually mean it, or if they're just being nice, but either way, it feels okay. At home, later, you blow through a crossword--you've never solved one this late in the week."	"You suddenly realize you know more about the REAL Threediopolis than idiots who babble about all the cool restaurants they've been to."
