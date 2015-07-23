@@ -3900,6 +3900,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "duses"	"dyse n kards"	"All sorts of street gambling occurs here. Casinos are required to have odds warnings labeled prominently on all machines, which hasn't hurt business, but it's more fun and lively out here."	0	4	misp
 "eden"	"before history"	"You think back to how humanity started, for some reason. This place was probably innocent, long ago."	0	3	alfhint
 "eeee"	"a scream"	"You hear a piercing scream! Well, it's not the first you've heard. And you didn't, like, hear any violence either. In city life, you learn to deal."	0	1	alfhint
+"eesus"	"blassfeemer"	"A man with slicked-back hair, in a purple shirt and pants, holding a purple bowling ball, cooly rails off threats of shooting you before glide-walking away. Odd. He wouldn't pass a background check for a squirt gun!"	0	3	alfhint
 "endeed"	"genrul enkurijment/agremeent"	"You're waylaid by happy-idiotic conversation from various street preachers. At first, you listen to be polite, but you get sucked in, and you find yourself hearing, and saying, 'Indeed! Indeed!' You're not sure why that helped you feel more confident, but you remember studies proving this sort of thing works at a molecular level--provided the person doesn't expect it to. So you probably can't come back for seconds."	0	3	alfhint
 "ennuee"	"fake ty-urd fillosoferz"	"A bunch of poseurs in berets discuss the most exciting reason to feel bored. They ask you for one, and when you mumble, they ditch you as uninteresting."	0	3	alfhint
 "ensue"	"let stuff happen here"	"Time seems to pass and things seem to cause each other to happen here."	0	4	tough
@@ -3907,7 +3908,6 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "esses"	"squiggly area"	"You walk by a rare curving side street. Walking down it would be too dangerous if a car came the other way."	0	2	alfhint
 "euwe"	"chess champs['] park"	"People play chess here--pfft, the simple version solved as a draw in 2037, not even the Fischer 960 version dissected twenty years later--and yell in Dutch as you walk by."	0	3	tough
 "eww"	"messy area"	"You just stepped in something disgusting. You shuffle your shoe to scrape it off and move on."	0	2	alfhint
-"needed"	"feel a good emotion"	"You feel that much surer you've been an irreplacable help to Ed Dunn, and your finding scenery is good practice while you're off the clock."	0	3	alfhint
 "nene"	"Hawaiian geese/zoo"	"The local zoo gives priority to kids and families, but you still look in. Hawaiian animals are special. All but Oahu went underwater after global warming, and only now is the whole archipelago making a slow comeback. "	0	2	alfhint
 "ness"	"mystic animal, no lake"	"You suddenly worry a mythical water beast is around, though there's no lake for miles. But it's just the world's most believable dinosaur statue. Pfft. You move on."	0	3	alfhint
 "new"	"not old"	"A construction site you pass by--and promptly forget about--promises state of the art homes for sale soon."	0	3	tough

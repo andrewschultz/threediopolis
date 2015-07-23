@@ -639,7 +639,7 @@ The final one, between DEDUSE and DENEENNUNN, is tricky indeed. Its twistiness o
 
 D: DDS, DEDEND, DEDSUNE, DEDUDUDU, DEDUSE, DEESENSEE, DENEENNUNN, DENSE, DENUDE, DESDENEE, DESEESED, DESENDED, DEWEESE, DND, DUDE, DUES, DUNDEE, DUNSE, DUSES
 
-E: 356, 448, 257, 567, 546, 436, 416, 545, 443
+E: 356, 448, 526, 257, 567, 546, 436, 416, 545, 443
 
 The e's are easier than the d's.
 
@@ -653,25 +653,25 @@ The chess park has an E and a U, but it can't have N and S (too twisty) and EUDU
 
 Since 356 starts with E but is before EE, it's ED and EN remains. EDEN.
 
-E: EDEN, EEEE, 257, 567, 546, 436, ESSES, EUWE, EWW
+E: EDEN, EEEE, 526, 257, 567, 546, 436, ESSES, EUWE, EWW
 
 567 must have EEENNU. EE* doesn't lead to anything, and EU is un-alphabetical. EN (EEUN) is left. What is boredom? Ennui. Ennuee is the answer. This is a good wedge, or it would be even better with more E clues.
 
 546 must have EEU + 2 new letters, or NS. Now to keep things alphabetical the U and S can't be in the 2nd slot. EN (EUS) is ENSUE.
 
-E: EDEN, EEEE, 257, ENNUEE, ENSUE, 436, ESSES, EUWE, EWW
+E: EDEN, EEEE, 526, 257, ENNUEE, ENSUE, 436, ESSES, EUWE, EWW
 
 436 has ESE necessarily and only one more direction, so UD is out. ESEEW or ESEWE don't work, so EENSS is left. But ENS(S/E) is before ENSUE, so ES (ENS) leads to ESSEN.
 
+Now 526 has 2 E's, 2 S's and a U. But it must start EE---, and there are only three possibilities. EESUS (hay-soos) gets the Big Lebowski reference.
+
 That leaves 257, which must have E (DDEEN). ED is out, and EEE clogs, and EEN (DDE) gives nothing. So EN (DDEE) has six possibilities, which leaves ENDEED = Indeed.
 
-E: EDEN, EEEE, ENDEED, ENNUEE, ENSUE, ESSEN, ESSES, EUWE, EWW
+E: EDEN, EEEE, EESUS, ENDEED, ENNUEE, ENSUE, ESSEN, ESSES, EUWE, EWW
 
-N: 257, 466, 435, NEW, 355, 444, 546
+N: 466, 435, NEW, 355, 444, 546
 
-The good emotion at 257 is locked in to NDDEEE, which is NEEDED if you rearrange. ND isn't really possible.
-
-The next-final one is a bit tricky as you need to either remember it or work out a lot or revisit the background clues. It is visited elsewhere and is referred to as NEW WESSEWN. You can also stop by Deedee's to see.
+The next-final one is a bit tricky as you need to either remember it or work out a lot or revisit the background clues. It is visited elsewhere and is referred to as NEW WESSEWN. You can also stop by Deedee's to see this.
 
 Now at 355, NEW**** has been cut down. It has a D and E and two opposite directions. NEW (DENS) or NEW (DDEU) are the possibilities since (DEWE) isn't twisty enough, but it indicates someone--and you've seen this word before. DUDE. NEWDUDE. You could technically start this one by notinh that NS or NN would clump, so you need NE*, then NEW*.
 
@@ -679,7 +679,7 @@ Now at 355, NEW**** has been cut down. It has a D and E and two opposite directi
 
 NU (EENSS) ... now you may notice a word in the clue--there are actually two. This is tricky, but NUSENSE=nuisance *and* (phonetically) new sense.
 
-N: NEEDED, NENE, NESS, NEW, NEWDUDE, NEWWESSEWN, NUSENSE
+N: NENE, NESS, NEW, NEWDUDE, NEWWESSEWN, NUSENSE
 
 S: 335, 426, 338, 446, 526, 526, SEN, 428, 446, 525, 327, 515, 434, 336, 437, 435, 345, SUED, 444, 534, 754, 514, 325, 447, 544
 
@@ -755,7 +755,7 @@ The U's look annoying. You can probably guess the un- prefix, but it's good to h
 
 You could also note S is not a possibility, and the EE should probably be together, since ee- misspellings have forced a double-e in other clues. UEE clogs at the end. USD (N/EE) doesn't work, and USEE is ahead of USED. That leaves UD (EE, N, S) as a possibility, and the six probabilities aren't too bad. UN (S, EE, D) is a lot quicker. UNDEES should be pronouncable.
 
-367 is not only forced for its letter but seen elsewhere. DDEEENN.Since UN is a good choice to start, let's work from there. UN (EEENED) and in fact you've seen this before--NEEDED above. Note that UNDEE is not possible due to alphabetization, and UNDEN(EED) doesn't quite work. So you can cut down the possibilities.
+367 is not only forced for its letter but seen elsewhere. DDEEENN.Since UN is a good choice to start, let's work from there. UN (EEENDD) and in fact you've seen this before--NEEDS, NEED....yup. Note that UNDEE is not possible due to alphabetization, and UNDEN(EED) doesn't quite work. So you can cut down the possibilities.
 
 555 would be tricky if we had to check UE or UD (would mean UD ENU--ugly combo) but fortunately we can just try UN (US + ENN would be behind USED in the alphabet.) EWE quickly shows nothing, and NSE doesn't give anything. UNDUE works, though--you saw the word (Ed Dunn's Undue Deeds) before, too.
 
@@ -866,6 +866,7 @@ DESENDED = descended
 DUNSE = dunce
 DUSES = deuces
 
+EESUS = Jesus (or, like the Lebowski character, Hay-soos)
 ENNUEE = ennui
 
 NUSENSE = nuisance
@@ -890,4 +891,3 @@ WUWU=woowoo
 Rejected include:
 
 ENDE (Michael, neverending story, too similar to END)
-EESUS (pronunciation of Jesus, but I don't know if there are too many Lebowski references already)
