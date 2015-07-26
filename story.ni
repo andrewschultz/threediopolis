@@ -11,6 +11,11 @@ to
 (BR)tof findies (regular mode)
 (BR)top scenery progress
 (BR)tos scenery
+(BR)too table of observies
+(BR)tsc table of score comments
+(BR)tse table of sad endings
+(BR)the table of happy endings
+(BR)tol table of lookbys
 ]
 
 volume 1
@@ -1523,10 +1528,26 @@ losties-flip is a truth state that varies.
 
 losties-count is a number that varies.
 
-table of observies
+table of observies [too]
 blurb
+"Someone mentions lots and lots of sexualities are still really repressed out there, and if you don't think so, you need to shut up."
+"Two kids agree: anyone who hasn't taken and passed the Self Referential Aptitude Test by age 12 is just not one of the cool nerds."
+"A computer executive recalls how he hazed a new worker over dire threats of Y2K1 bugs. Hilarious stuff!"
+"'I'm not a math person, but...' / 'I'm not a psychologist, but...' / 'I'm not a nice person, but you both sound pretty annoying!'"
+"Someone wonders why, with all the balding and grey hair cures, some people are still slobs enough not to bother."
+"Someone on their way to a sensory deprivation tank laughs at paper books when you can have online multimedia."
+"Someone mentions the unfairness of sneaky tax loopholes like that Ed Dunn might find.
+"A little smart-aleck discusses how to organize the ramps up to the higher levels of Threediopolis more efficiently. You hate to say it, but he sounds right."
+"Someone rants on many ways stupid people could have avoided being stupid by noticing obv--'OW! who put that bike meter there?'"
+"Someone argues in favor of redistribution of income without being quite so sharing about the metaphorical talking stick."
+"A public transport train pauses here and gives three contradictory delay apologies. Someone nearby breaks it down far too melodramatically."
+"'That book really makes you think about thought control." / 'I've seen better.' / 'WHAT? YOU OBVIOUSLY DIDN'T PAY ATTENTION!'"
 "You reflect on studies showing how much of your life advertising eats, and you wonder if that accounts for people complaining about or repeating particularly memorable ads, too."
 "Two little smart-alecks wonder if grandparents whined nostalgically so much back in the good old days."
+"Someone insults innumerate people than exaggerates what a loser the listener is--for their own good."
+"Someone is cut down for taking public transport to a farmer's market. Real purists walk!"
+"Someone rails against a puzzle in a silly logic game that can be solved by cultural knowledge or brute force. Each solution is stupid! Plus, it's also all too meta."
+"Someone annoyed with political filibusters changes the subject to keep their listeners excited, I guess."
 "Two particularly annoying foodies berate, equally, an Escherville style restaurant in Threediopolis and a Threediopolis style restaurant in Escherville."
 "A sociological argument! Is it time to add a 'fifth world' to the existing tier of four?"
 "A normal-IQ person is given a police warning for wearing a Harvard t-shirt without proper disclaimers."
@@ -1579,7 +1600,9 @@ blurb
 "You pass some kid being bullied for his lame 1-GB internet connection and 32-megapixel phone. Eh, not your business."
 "A recently boarded up 'adult' shop. Your naive pre-teen self actually thought people BOUGHT stuff there, despite the Internet."
 "You pass a public library with the standard door-disclaimer: requests for old-style physical books require legitimate written reasons. You walk on, forgetting where it is."
+"Two equally annoying people describe how you gotta hate BOTH political parties in charge here."
 "Someone walking the wrong way on a sidewalk to no good purpose is given a ticket."
+"You pass by an annoyingly detailed conversation about long-term and short-term weather, smack into a clueless one."
 "Some rich showoff with a jetpack flies dangerously close overhead."
 "You pass two oldsters violently arguing WHY the good old days were better."
 "A nonagenarian whines how songs pining for simpler, more thoughtful times were...well, simpler and more thoughtful."
@@ -1597,7 +1620,7 @@ blurb
 "It seems like you've both been here too often before and yet have never seen this area."
 "Someone blasting electronic music with a proper permit is left alone, though a whistler is arrested for busking. Best not to loiter, or you might be next."
 "Homosexual teens insult a peer for not being flamboyant enough (Don't worry, heterosexuals still pick on other heterosexuals over stereotypes, too. Yay, equality!)"
-"You run away from a stupid conversation but straight into a pretentious one."
+"You run away from an annoying unfair conversation about why smart people suck--straight into one about how dumb people suck."
 "A rant you overhear about Big Pharma, while correct, leaves you craving something more than just plain aspirin."
 "A dork is beaten up for insisting on 2050[']s spelling and pronunciation and grammar. He protests at least he's not 20th century, but it does no good."
 
@@ -1984,7 +2007,7 @@ to check-for-blather:
 		if pals + edtasks is sco entry:
 			say "[comm entry][line break]";
 
-table of score-comments
+table of score-comments [tsc]
 sco	comm
 4	"You think back to the times Internet route planners gave you wrong or slow directions and feel slightly superior."
 6	"You hear Ed Dunn discussed in hushed tones--that he is not that smart but hires people much smarter to work for him. A smart voice and dumb voice agree there's a racket--but they'd work for him, all the same."
@@ -2012,7 +2035,7 @@ sco	comm
 
 section score-ranks
 
-table of sad endings
+table of sad endings [tse]
 stuff-i-did	eval
 1	"'Not up to it, eh? Geez, you found me, but some of these others woulda been easier to find. Well, I'll find else who else'll turn up.'"
 5	"'Bare minimum, eh? Well, here's a bare-minimum payment. Actually, pennies are kind of valuable, since we haven't made any new ones for a while.'"
@@ -2021,7 +2044,7 @@ stuff-i-did	eval
 20	"He hands you an envelope. 'Pretty good, kid. I have made it worth your time. If you know anyone even more efficient than you, let me know, and I'll give you a referral fee.' When you get outside, you realize he is right. There is about a year's worth of pay at your regular job here."
 25	"'Almost good enough for a full-time job, kid! tell you what, I'll recommend you to someone almost as important as me for these sorts of tasks. Maybe you'll make it back some day.' He hands you a wad of bills you're instructed not to count until you get outside. In them, you see the letter of recommendation. It's got a few backhanded compliments, but for even a fraction of this pay rate, you can deal."
 
-table of happy endings
+table of happy endings [the]
 stuff-i-did	eval
 30	"'Not bad, kid! Not bad at all! But--not quite terrific.'"
 35	"'Say! You've got hustle and sticktoitiveness. I--I'll call you if I don't find anyone even better next time. You might make it into my inner circle pretty quickly with a bit of work.'"
@@ -2080,6 +2103,8 @@ to check-cur-done:
 					continue the action; [we found a non-clue]
 	say "There are no clues left in the rows you've chosen.";
 
+misp-found is a truth state that varies.
+
 after looking (this is the place ed's tasks rule) :
 	if your-tally is "suss" and player does not have book of secret and ignore-susp is false:
 		if suspicious-guy-help is false:
@@ -2121,12 +2146,15 @@ after looking (this is the place ed's tasks rule) :
 				else:
 					say "[foundit entry][if scenery-found-yet is false][paragraph break][first-sc].[else][line break]";
 					now scenery-found-yet is true;
+					if misp-found is false and player has book of top secret:
+						say "You pat yourself on the back for finding this and mentally stick your tongue out at the person who beat you in a spelling bee years ago.";
+						now misp-found is true;
 					if expected-depth > secs - eggsfound:
 						now expected-depth is secs - eggsfound;
 					if center-warn is false:
 						say "[italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
 						now center-warn is true;
-					else if found entry is not 2: [stay around the sneeds']
+					else if found entry is not 2 and center-on-scene is true: [stay around the sneeds']
 						say "[line break]You zap back to the almost-center[if posschars > number of characters in your-tally], cancelling the rest of your plans[end if].";
 						now ignore-remaining-dirs is true;
 						reset-game;
@@ -3280,7 +3308,7 @@ ignore-remaining-dirs is a truth state that varies.
 
 looks-by is a number that varies.
 
-table of lookbys
+table of lookbys [tol]
 looky
 "You plan ahead, yet don't plan at all at the same time, as you zigzag through Threediopolis"
 "You put your head down and power-walk, only looking up for 3-d traffic lights"
