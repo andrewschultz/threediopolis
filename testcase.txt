@@ -3,7 +3,26 @@
 #Testcase.txt
 #
 
-This is a text file of test cases that I can and should look at.
+This is a text file of test cases that I can and should look at. They don't have any issues, but if you can look at them, great.
 
---stress cases with toggling the table, especially the big list view in hard mode
---every single "almost" in the table
+--stress cases with toggling the table, especially the big list view in hard mode. This will probably be done as you go naturally through the game.
+--the table of nearlies has locations to go to. If I could test them before and after their respective rules respired, great.
+
+Test cases I have looked at but another look is great, as they are what has changed & may give you ideas for ways to break the game:
+
+--beta tester commands to make testing tricky parts (like game end) easier. (1)
+  --if you want to compare the start to the blorb on GitHub, that would be a nice help. I'm pretty sure both work, but all the same, it is worth a check.
+  --CT is a command that gives hints every time you go back to the center.
+  --HME is a command that gives you the current hint. It is available for beta testers.
+  --other commands include RNEAR (reset the "nearlies" table, which you'd need to go to the source code to see, so I may do that) and FINDEM (sees everything as found)
+--after solving everything, X 13. (or various combinations of numbers, or X 1, etc). In regular or advanced mode. (2)
+--back to "almost center" 1st time you flip switch (3)
+--X 36 or whichever--search for specific rows (6)
+--YES, Y, NO, N should avoid defaults. (7)
+--Try a command like, say, K ZZZ (8)
+--t4 and t 4 should do the same thing. Make sure t 8 and t8 give reasonable rejects. (9)
+--XX toggles twistiness. Make sure it is clued properly. (10)
+
+Bugs it's hard to test:
+--(4) will be tested naturally as you run through advanced mode.
+--(5) is a new puzzle.
