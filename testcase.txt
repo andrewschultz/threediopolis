@@ -1,0 +1,9 @@
+#THREEDIOPOLIS
+#
+#Testcase.txt
+#
+
+This is a text file of test cases that I can and should look at.
+
+--stress cases with toggling the table, especially the big list view in hard mode
+--every single "almost" in the table
