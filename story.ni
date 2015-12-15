@@ -3928,7 +3928,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "duses"	"dyse n kards"	"All sorts of street gambling occurs here. Casinos are required to have odds warnings labeled prominently on all machines, which hasn't hurt business, but it's more fun and lively out here."	0	4	misp
 "eden"	"before history"	"You think back to how humanity started, for some reason. This place was probably innocent, long ago."	0	3	alfhint
 "eeee"	"a scream"	"You hear a piercing scream! Well, it's not the first you've heard. And you didn't, like, hear any violence either. In city life, you learn to deal."	0	1	alfhint
-"eesus"	"blassfeemer"	"A man with slicked-back hair, in a purple shirt and pants, holding a purple bowling ball, cooly rails off threats of shooting you before glide-walking away. Odd. He wouldn't pass a background check for a squirt gun!"	0	3	alfhint
+"eesus"	"blassfeemer"	"A man with slicked-back hair, in a purple shirt and pants, holding a purple bowling ball, cooly rails off threats of cap-busting, whatever that is, before glide-walking away. Odd. That was completely frivolous yet profound in its own way!"	0	3	alfhint
 "endeed"	"genrul enkurijment/agremeent"	"You're waylaid by happy-idiotic conversation from various street preachers. At first, you listen to be polite, but you get sucked in, and you find yourself hearing, and saying, 'Indeed! Indeed!' You're not sure why that helped you feel more confident, but you remember studies proving this sort of thing works at a molecular level--provided the person doesn't expect it to. So you probably can't come back for seconds."	0	3	alfhint
 "ennuee"	"fake ty-urd fillosoferz"	"A bunch of poseurs in berets discuss the most exciting reason to feel bored. They ask you for one, and when you mumble, they ditch you as uninteresting."	0	3	alfhint
 "ensue"	"let stuff happen here"	"Time seems to pass and things seem to cause each other to happen here."	0	4	tough
@@ -3990,27 +3990,27 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 
 table of nearlies [ton]
 tally (text)	just-miss (text)	found-yet	descrip (text)	rule-to-reveal
-"unended"	--	false	"This was the area [one of]what's her name Nunn[or]Deneen what's her name[in random order] wrote about in that book Ewen was reading."	unfound-deneen rule
-"weeenes"	"weenees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
-"weneees"	"weenees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
-"seweeed"	"seeweed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
+"deesended"	"desended"	false	"[kids-desend]."
+"deesendens"	"desended"	false	"[kids-desend]."
+"deesseed"	--	false	"You pass by a flower place that caters to [flowery], but the store doesn't really count as scenery, [if player does not have book]and Ed doesn't need flowers, [end if]so you move along."
+"desendens"	"desended"	false	"[kids-desend]."
+"eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
+"newness"	--	false	"You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness."
+"newsense"	"nusense"	false	"You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above."
+"sedsneed"	"sneeds"	false	"Perhaps Sed Sneed comes here some time, but he's usually at his familial residence."	unfound-sneed rule
 "seeewed"	"seeweed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
 "senesense"	"senessense"	false	"You must be getting old--you feel like you've forgotten something, or you'd have wound up somewhere."
+"seweeed"	"seeweed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
 "sneee"	"sneese"	false	"You feel a tingle in your nose, one you just want to get rid of. Perhaps something to the south--nah, not right now, maybe retrace and try again."	unfound-sneeze rule
-"sedsneed"	"sneeds"	false	"Perhaps Sed Sneed comes here some time, but he's usually at his familial residence."	unfound-sneed rule
-"deesseed"	--	false	"You pass by a flower place that caters to [flowery], but the store doesn't really count as scenery, [if player does not have book]and Ed doesn't need flowers, [end if]so you move along."
-"newsense"	"nusense"	false	"You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above."
-"newness"	--	false	"You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness."
-"eesus"	--	false	"Someone in a purple bowling uniform discusses cap busting, whatever that may be, as he waves a purple bowling ball around. He looks like a creep, though, so you scurry away.[paragraph break]Wow, that was totally frivolous yet completely worth remembering at once, even if it was a bit obscure to be scenery."
-"desendens"	"desended"	false	"[kids-desend]."
-"deesendens"	"desended"	false	"[kids-desend]."
-"deesended"	"desended"	false	"[kids-desend]."
-"suuuue"	--	false	"[sooee]" 	soee rule
-"suuue"	--	false	"[sooee]" 	soee rule
-"suue"	--	false	"[sooee]" 	soee rule
 "suee"	--	false	"[sooee]" 	soee rule
+"suue"	--	false	"[sooee]" 	soee rule
+"suuue"	--	false	"[sooee]" 	soee rule
+"suuuue"	--	false	"[sooee]" 	soee rule
+"unended"	--	false	"This was the area [one of]what's her name Nunn[or]Deneen what's her name[in random order] wrote about in that book Ewen was reading."	unfound-deneen rule
 "unsewed"	"unsewn"	false	"You hear whispers of a nudist colony nearby, but not quite here."
-"eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
+"weeenes"	"weenees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
+"weneees"	"weenees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
+"wwedd"	--	false	"The What Would Ed Dunn Do bracelet fails to glow or do anything magical or even remotely technological."
 
 this is the has-book rule:
 	if player has book:
@@ -4331,7 +4331,63 @@ carry out suping:
 volume beta testing - not for release
 
 when play begins (this is the beta instructions rule) :
-	say "[italic type][bracket]NOTE: Beta testers who want to try Advanced Mode should type SEE NEW SEENS. Also, this line should not be in the final release.[close bracket][roman type][line break]";
+	say "[italic type][bracket]NOTE: Beta testers who want to try Advanced Mode should type SEE NEW SEENS. Also, this line should not be in the final release.[close bracket][roman type][line break]Other commands include CT to toggle forced cheat on return to the almost-center, or HME to hint you once with what that cheat would be.[line break]RNEAR resets the table of nearlies (see source code) and FINDEM 'finds' everything except the final places.";
+
+chapter findeming
+
+findeming is an action out of world.
+
+understand the command "findem" as something new.
+
+understand "findem" as findeming.
+
+carry out findeming:
+	repeat through table of scenery:
+		if tally entry is not "sneeds":
+			now found entry is 1;
+	repeat through table of findies:
+		if tally entry is not "eddunn":
+			now found entry is 1;
+	the rule succeeds;
+
+chapter rnearing
+
+rnearing is an action out of world.
+
+understand the command "rnear" as something new.
+
+understand "rnear" as rnearing.
+
+carry out rnearing:
+	repeat through table of nearlies:
+		now found-yet entry is false;
+	say "Table of Nearlies is reset.";
+	the rule succeeds;
+
+chapter cting
+
+cting is an action out of world.
+
+understand the command "ct" as something new.
+
+understand "ct" as cting.
+
+carry out cting:
+	now cheat-ticker is whether or not cheat-ticker is true;
+	say "Now cheat on return is [cheat-ticker].";
+	the rule succeeds;
+
+chapter hmeing
+
+hmeing is an action out of world.
+
+understand the command "hme" as something new.
+
+understand "hme" as hmeing.
+
+carry out hmeing:
+	consider the try-a-hint rule instead;
+	the rule succeeds;
 
 volume testing - not for release
 
@@ -4370,31 +4426,6 @@ understand "sta" as staing.
 
 carry out staing:
 	now list-in-status is true;
-	the rule succeeds;
-
-chapter hmeing
-
-hmeing is an action out of world.
-
-understand the command "hme" as something new.
-
-understand "hme" as hmeing.
-
-carry out hmeing:
-	consider the try-a-hint rule instead;
-	the rule succeeds;
-
-chapter cting
-
-cting is an action out of world.
-
-understand the command "ct" as something new.
-
-understand "ct" as cting.
-
-carry out cting:
-	now cheat-ticker is whether or not cheat-ticker is true;
-	say "Now cheat on return is [cheat-ticker].";
 	the rule succeeds;
 
 book tests
