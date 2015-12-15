@@ -3995,6 +3995,7 @@ tally (text)	just-miss (text)	found-yet	descrip (text)	rule-to-reveal
 "deesseed"	--	false	"You pass by a flower place that caters to [flowery], but the store doesn't really count as scenery, [if player does not have book]and Ed doesn't need flowers, [end if]so you move along."
 "desendens"	"desended"	false	"[kids-desend]."
 "eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
+"ende"	--	false	"You suddenly have an urge to read a children's book, the sort that goes on and on and you're just glad it does, and you're ready to read from the start again when it's over."
 "newness"	--	false	"You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness."
 "newsense"	"nusense"	false	"You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above."
 "sedsneed"	"sneeds"	false	"Perhaps Sed Sneed comes here some time, but he's usually at his familial residence."	unfound-sneed rule

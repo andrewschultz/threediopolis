@@ -5,6 +5,8 @@
 
 This is a text file of test cases that I can and should look at. They don't have any issues, but if you can look at them, great.
 
+The core stability should mostly be okay, but stuff like style tweaks is definitely in play. The main push for release 4 is the interface. I want to make sure the big header doesn't break for regular mode, and it looks ok in advanced mode.
+
 --stress cases with toggling the table, especially the big list view in hard mode. This will probably be done as you go naturally through the game.
 --the table of nearlies has locations to go to. If I could test them before and after their respective rules respired, great.
 
@@ -17,10 +19,10 @@ Test cases I have looked at but another look is great, as they are what has chan
   --other commands include RNEAR (reset the "nearlies" table, which you'd need to go to the source code to see, so I may do that) and FINDEM (sees everything as found)
 --after solving everything, X 13. (or various combinations of numbers, or X 1, etc). In regular or advanced mode. (2)
 --back to "almost center" 1st time you flip switch (3)
---X 36 or whichever--search for specific rows (6)
+--X 36 or whichever--search for specific rows in regular and advanced (6)
 --YES, Y, NO, N should avoid defaults. (7)
---Try a command like, say, K ZZZ (8)
---t4 and t 4 should do the same thing. Make sure t 8 and t8 give reasonable rejects. (9)
+--Try a command like, say, K ZZZ or anything that's supposed to be 1 word but you type in 2 (8)
+--t4 and t 4 should do the same thing to toggle the top of the screen. Make sure t 8 and t8 give reasonable rejects. (9)
 --XX toggles twistiness. Make sure it is clued properly. (10)
 
 Bugs it's hard to test:
