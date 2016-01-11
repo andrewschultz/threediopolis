@@ -1101,13 +1101,6 @@ to write-details:
 				say "[line break]";
 	say "(Oh, man! You are getting close.)";
 
-to say earliest-task:
-	repeat through table of findies:
-		if found entry is 0 and findtype entry is not chums:
-			say "You@[sector-num of your-tally]: [descrip entry]@[sector-num of tally entry]";
-			continue the action;
-	say "(Tasks all done)";
-
 rule for constructing the status line when task-list is byrow-header:
 	if list-in-status is true:
 		deepen the status line to 1 rows;
@@ -2480,9 +2473,6 @@ description of dunes is "Very sandy but off-limits to those without a reservatio
 the door to Ed Dunn's secret hideout is a quasi-entry.
 
 initial appearance of the door to Ed Dunn's secret hideout is "[one of]Hey, here's the door to Ed Dunn's secret hideout! Makes sense[or]Ed Dunn's secret hideout door is just where you remember it. You can enter it to report to your employer[stopping]."
-
-to say now-think:
-	now thinked is true;
 
 description of door to Ed Dunn's secret hideout is "It's surprisingly ordinary, and it doesn't even have Ed's name on it."
 
@@ -3866,14 +3856,6 @@ to decide what number is maxy of (qua - a quality):
 			increment A;
 	decide on A.
 
-to say plur of (qua - a quality):
-	let A be 0;
-	repeat through table of findies:
-		if findtype entry is qua and found entry is not 0:
-			increment A;
-	if A is not 1:
-		say "s";
-
 nohelpitems is a number that varies. helpitems is a number that varies.
 
 carry out requesting the score:
@@ -3887,23 +3869,12 @@ carry out requesting the score:
 	
 Procedural rule: ignore the print final score rule. 
 
-to say found-friend:
-	say "You found one of Ed's friends! [your-tally in title case] appreciates the old-fashioned personal invite as opposed to the cold technological way. You mark [your-tally in title case] down for your employer's party.[no line break]"
-
 book disambiguation
 
 Rule for clarifying the parser's choice of book of top secret things: do nothing.
 Rule for clarifying the parser's choice of task-list: do nothing.
 
 book stupid scenery
-
-to say due-me:
-	if pals + edtasks + force-ed-point is number of rows in table of findies:
-		say "something for completing Ed's tasks";
-		continue the action;
-	say "a[if score > 0]nother[end if] place of Ed Dunn's to find, now or soon";
-
-["deedee"	""	"You hear yelling over whether certain people are going to Ed Dunn's party and whether it's very easy or very hard for a messenger to find their house. You doubt you'll change anyone's mind, so you move on."	0]
 
 table of scenery [tos]
 tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic

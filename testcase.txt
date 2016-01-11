@@ -5,10 +5,12 @@
 
 This is a text file of test cases that I can and should look at. They don't have any issues, but if you can look at them, great.
 
-The core stability should mostly be okay, but stuff like style tweaks is definitely in play. The main push for release 4 is the interface. I want to make sure the big header doesn't break for regular mode, and it looks ok in advanced mode.
+The core stability should mostly be okay, but stuff like style tweaks is definitely in play. The main push for release 4 is the interface. I want to make sure the big header doesn't break for regular mode, and it looks ok in advanced mode. My feeling is, if something's wrong, it'll appear quickly and blow up pretty badly. The puzzles, while some may be bad, are not really something I can fix without a bolt of inspiration. I've shuffled them a bit since the last release, especially for scenery.
+
+Cheat as much or as little as you want to get through it, though there is a beta-testing command to "solve" everything.
 
 --stress cases with toggling the table, especially the big list view in hard mode. This will probably be done as you go naturally through the game.
---the table of nearlies has locations to go to. If I could test them before and after their respective rules respired, great.
+--the table of nearlies has locations to go to. If I could test them before and after their respective rules respired, great. Basically, they were ones I thought were unfair or obscure as puzzles but I just liked them.
 
 Test cases I have looked at but another look is great, as they are what has changed & may give you ideas for ways to break the game:
 
@@ -21,10 +23,10 @@ Test cases I have looked at but another look is great, as they are what has chan
 --back to "almost center" 1st time you flip switch (3)
 --X 36 or whichever--search for specific rows in regular and advanced (6)
 --YES, Y, NO, N should avoid defaults. (7)
---Try a command like, say, K ZZZ or anything that's supposed to be 1 word but you type in 2 (8)
+--Try a command like, say, K ZZZ or anything that's supposed to be 1 word but you type in 2. The C command should give a list of other commands that need just 1 word. (8)
 --t4 and t 4 should do the same thing to toggle the top of the screen. Make sure t 8 and t8 give reasonable rejects. (9)
 --XX toggles twistiness. Make sure it is clued properly. (10)
 
-Bugs it's hard to test:
+Bugs it's hard to test individually:
 --(4) will be tested naturally as you run through advanced mode.
 --(5) is a new puzzle.
