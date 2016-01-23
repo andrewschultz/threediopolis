@@ -2361,6 +2361,7 @@ understand "about" as abouting.
 
 carry out abouting:
 	say "This game wasn't intended to be huge on plot, but rather, I saw a way to do things, and I figured why not. I put the skeleton on the shelf after starting it in May 2012, toyed with it for a post-IFComp 2012 release, then got so lazy I saw I could submit it in time for IFComp 2013![paragraph break]Type CREDITS for testers and such.[paragraph break][if score < 2]A previous IFComp game that might spoil this game's mechanic[else]Brian Rapp's [italic type]Under, In Erebus[roman type][end if] also probably had considerable influence on this game, though it does have a lot more plot and cool locations.[paragraph break]I hope you enjoy this. I recognize some people won't, and that's cool, and I don't want to play the 'I know some philistines may hate it' card. However, if it helps someone who doesn't like it try their [italic type]own[roman type] thing, that'd be way cool.[paragraph break]Also, remember to track back to puzzles you couldn't solve after getting a few others. They may be easier. And don't feel you have to do things in any particular order!";
+	say "As of release 4, Threediopolis is relatively stable. I don't plan to make any huge changes, but if you want, you can report bugs/feature requests at [repo].";
 	the rule succeeds;
 	
 carry out creditsing:
@@ -2374,7 +2375,10 @@ a quasi-entry is a kind of thing.
 the nodoor is privately-named scenery. description of nodoor is "[bug-rep]"
 
 to say bug-rep:
-	say "BUG please let me know how this happened at blurglecruncheon@gmail.com.";
+	say "BUG please let me know how this happened at blurglecruncheon@gmail.com, or report an issue at [repo].";
+	
+to say repo:
+	say "http://github.com/andrewschultz/threediopolis"
 
 a quasi-entry is usually fixed in place.
  
