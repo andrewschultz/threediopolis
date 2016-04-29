@@ -73,7 +73,7 @@ check attacking:
 	if noun is a quasi-entry:
 		say "Force is neither necessary nor appreciated." instead;
 	say "Vandalism is an easy crime to detect and prosecute. Camera technology, etc." instead;
-	
+
 section debug extensions - not for release
 
 [include object response tests by Juhana Leinonen. [makes sure certain actions work as intended, checks default]
@@ -109,22 +109,22 @@ Include (-
 	while (true) {
 		! Save the start of the buffer, in case "oops" needs to restore it
 		for (i=0 : i<64 : i++) oops_workspace->i = a_buffer->i;
-	
+
 		! In case of an array entry corruption that shouldn't happen, but would be
 		! disastrous if it did:
 		#Ifdef TARGET_ZCODE;
 		a_buffer->0 = INPUT_BUFFER_LEN;
 		a_table->0 = 15;  ! Allow to split input into this many words
 		#Endif; ! TARGET_
-	
+
 		! Print the prompt, and read in the words and dictionary addresses
 		PrintPrompt();
 		DrawStatusLine();
 		KeyboardPrimitive(a_buffer, a_table);
-	
+
 		! Set nw to the number of words
 		#Ifdef TARGET_ZCODE; nw = a_table->1; #Ifnot; nw = a_table-->0; #Endif;
-	
+
 		! If the line was blank, get a fresh line
 		if (nw == 0) {
 			@push etype; etype = BLANKLINE_PE;
@@ -135,13 +135,13 @@ Include (-
 			@pull etype;
 			continue;
 		}
-	
+
 		! Unless the opening word was OOPS, return
 		! Conveniently, a_table-->1 is the first word on both the Z-machine and Glulx
-	
+
 		w = a_table-->1;
 		! Undo handling
-	
+
 		if ((w == UNDO1__WD or UNDO3__WD) && (nw==1)) {
 			Perform_Undo();
 			continue;
@@ -356,10 +356,16 @@ begin-rows is a number that varies. end-rows is a number that varies.
 
 salty is a truth state that varies.
 
+to say rhsl:
+	if score < maximum score:
+		say "[score]/[maximum score] task[if score is not 1]s[end if] done";
+	else:
+		say "All done, yay"
+
 when play begins (this is the let's get it started rule):
 	now my-table is table of findies;
 	now maximum score is number of rows in table of findies;
-	now right hand status line is "[score]/[maximum score] task[if score is not 1]s[end if] done";
+	now right hand status line is "[rhsl]";
 	now tt is table of findies;
 	repeat through table of findies:
 		unless there is a findtype entry:
@@ -406,7 +412,7 @@ when play begins (this is the let's get it started rule):
 	now end-rows is 3;
 	if a random chance of 1 in 2 succeeds:
 		now salty is true;
-	
+
 to choose-next-zag:
 	let A be (next-zag + 9) / 10;
 	now next-zag is A * 10;
@@ -980,7 +986,7 @@ Rule for printing a parser error when the latest parser error is the didn't unde
 		display the boxed quotation "
 		'I've always enjoyed going north. Of course,
 		south-west is a fine direction, too.'
-		
+
 		-- E. B. White, Stuart Little";
 
 to say reject:
@@ -1167,7 +1173,10 @@ to say scoreboard:
 	if player has book of top secret things:
 		say "[if eggsfound is secs]You found all the secrets![run paragraph on][else][eggsfound]/[secs] secrets found[end if]";
 	else:
-		say "[pals]/[maxpals] pals found, [edtasks]/[maxedtasks] tasks done";
+		if pals is maxpals and edtasks is maxedtasks:
+			say "All friends found, all tasks done!";
+		else:
+			say "[pals]/[maxpals] pals found, [edtasks]/[maxedtasks] tasks done";
 
 book silly defaults
 
@@ -1230,7 +1239,7 @@ to print-so-far:
 	repeat through table of findies:
 		if found entry is 1:
 			say "[one of][or], [stopping][tally entry]";
-	say ".";	
+	say ".";
 
 book items
 
@@ -1250,7 +1259,7 @@ check examining verso:
 	now verso-examine is true;
 	try examining task-list;
 	now verso-examine is false instead;
-	
+
 instead of doing something other than examining the verso:
 	say "There's really nothing else to do with the verso besides examining it."
 
@@ -1376,7 +1385,7 @@ check pushing the button:
 
 instead of switching on teleporter device:
 	try pushing the button instead;
-	
+
 instead of pushing teleporter device:
 	try pushing the button instead;
 
@@ -1472,10 +1481,10 @@ the block jumping rule is not listed in any rulebook.
 
 check waking up:
 	say "But you have not been sleeping on the job." instead;
-	
+
 check listening:
 	say "The sounds of Threediopolis are always changing. But you don't want them distracting you from your job." instead;
-	
+
 instead of eating:
 	say "Are you hungry for a meal, or a job that'll buy several of them? Get back to wandering.";
 
@@ -1663,7 +1672,7 @@ check waiting:
 
 instead of sleeping:
 	say "There are laws against that in any civilized city these days. Plus, that's an invitation to get robbed.";
-	
+
 book verbs
 
 chapter thinking
@@ -1692,13 +1701,13 @@ instead of saying yes:
 
 to rhet:
 	say "[italic type][bracket]NOTE: any rhetorical questions in this game can be ignored. Explicit yes/no questions will have a special prompt.[close bracket][roman type][line break]";
-	
+
 chapter noage
 
 instead of saying no:
 	say "You shake your head, but nothing appreciably changes. ";
 	rhet instead;
-	
+
 chapter going
 
 section directions
@@ -1720,7 +1729,7 @@ check going south:
 		say "[losted]";
 		reset-game instead;
 	decrement ns;
-		
+
 check going north:
 	now your-tally is "[your-tally]n";
 	increment ns;
@@ -1834,7 +1843,7 @@ outside-area is up of outside-area.
 
 instead of diaging:
 	say "You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.";
-	
+
 check opening front door:
 	say "That would be rude. Try knocking instead." instead;
 
@@ -2005,7 +2014,7 @@ sco	comm
 4	"You think back to the times Internet route planners gave you wrong or slow directions and feel slightly superior."
 6	"You hear Ed Dunn discussed in hushed tones--that he is not that smart but hires people much smarter to work for him. A smart voice and dumb voice agree there's a racket--but they'd work for him, all the same."
 8	"It's a good thing the moving walkways--the ones you take for granted--are helping you along, or you'd be more tired than you are."
-10	"You think back to the slider puzzles and even the peg solitaire game you never quite figured out. You bet they'll be easier to figure once you're done here. But Rubik's Cubes? Still, no way. Maybe you could work your way up, though." 
+10	"You think back to the slider puzzles and even the peg solitaire game you never quite figured out. You bet they'll be easier to figure once you're done here. But Rubik's Cubes? Still, no way. Maybe you could work your way up, though."
 12	"You remember walking into dead ends as a kid trying to take shortcuts to school. But you are avoiding them now."
 14	"You remember overhearing coworkers telling you you need to get out more and see the city. Man, if they only knew."
 16	"You reflect back to an unfortunate school incident where you solved a logic-box puzzle and people said that sort of thing would never be handy in real life."
@@ -2229,7 +2238,7 @@ to say if-e:
 	choose row with tally of "Dunes" in table of findies;
 	increase myi by found entry;
 	say "[if myi is 0]with two being really near and two being less near. All in the same place. Odd[else]and you picked off something harder already[end if]"
-	
+
 to say if-dsolve:
 	let myi be 0;
 	choose row with tally of "Dns" in table of findies;
@@ -2272,7 +2281,7 @@ carry out pping:
 		now center-on-scene is false;
 	say "Now you [if center-on-scene is false]won't[else]will[end if] zap to the center after seeing scenery[if center-on-scene is true]. Though if you've just done so, you'll still need to type P to go back to the center right now. Busy work hasn't been [italic type]completely[roman type] abolished yet[end if].";
 	the rule succeeds.
-	
+
 book xyzzying
 
 xyzzying is an action applying to nothing.
@@ -2298,7 +2307,7 @@ to say dds-dnd:
 	say "[if found entry is 1]the dental pain at 234 has an S and 2 D's[else]you found DDS at 234[end if], and ";
 	choose row with tally of "dnd" in table of scenery;
 	say "[if found entry is 1]the chaot. gam. soc. at 254 has an N and 2 D's[else]you found DND (D and D) at 254[end if]. The second is an example of the pronunciation munging you'll need to find the tougher scenery";
-	
+
 carry out hinting:
 	if player has book of top secret things:
 		say "[one of]The book of top secret things is totally alphabetized from the start (the rows are locations starting with D, E, N, S, U and W,) but you can and probably should also keep a chunk of it on top with R (1-9). HINT again to find about the shortest places to go for hints. They can clue farther-away places.[or]Twistiness is also a big help, if you understand what it is. You may wish to take time to figure twistiness from the clues you saw when helping Ed Dunn. If you can pick off a few other clues, it may help, too. Twistiness is not intended to be complex, so don't overthink it.[or]Try to focus on items with negative twistiness at first--even if you haven't figured what it is, yet! For instance, [dds-dnd]. These are a lot like the original game.[or]You can also see Ed's old friends for less regimented hints. HINT again for twistiness.[or]Twistiness is just the number of unique directions you need to go to find the location, though not the actual bends. So EEW and EWE would have the same twistiness. HINT again tells about spelling.[or]Some names are misspelled, here. You may need to pronounce them and slightly de-misspell, and they won't be as transparent as WEENEES and SEEWEED, but once you pick off the less difficult scenery, the more difficult ones must be in a certain alphabetical range, which will help you.[or]That's all the hints. HINT will cycle through again.[cycling]" instead;
@@ -2363,7 +2372,7 @@ carry out abouting:
 	say "This game wasn't intended to be huge on plot, but rather, I saw a way to do things, and I figured why not. I put the skeleton on the shelf after starting it in May 2012, toyed with it for a post-IFComp 2012 release, then got so lazy I saw I could submit it in time for IFComp 2013![paragraph break]Type CREDITS for testers and such.[paragraph break][if score < 2]A previous IFComp game that might spoil this game's mechanic[else]Brian Rapp's [italic type]Under, In Erebus[roman type][end if] also probably had considerable influence on this game, though it does have a lot more plot and cool locations.[paragraph break]I hope you enjoy this. I recognize some people won't, and that's cool, and I don't want to play the 'I know some philistines may hate it' card. However, if it helps someone who doesn't like it try their [italic type]own[roman type] thing, that'd be way cool.[paragraph break]Also, remember to track back to puzzles you couldn't solve after getting a few others. They may be easier. And don't feel you have to do things in any particular order!";
 	say "As of release 4, Threediopolis is relatively stable. I don't plan to make any huge changes, but if you want, you can report bugs/feature requests at [repo].";
 	the rule succeeds;
-	
+
 carry out creditsing:
 	say "Thanks to (alphabetized by first name) DJ Hastings, Geoff Moore, Jim Warrenfeltz, Kevin Jackson-Mead, Melvin Rangasamy (who also provided I6 coding help), and Wade Clarke, who also designed the cover art that gave me a few extra ideas.[paragraph break]Heartless Zombie provided hash code for A Roiling Original, which, simplified, facilitated the user input here.[paragraph break]Olivia Pourzia, Hugo Labrande, Stephen Watson and Toby Ott provided advice for inter-comp releases. Runnerchild's review pointed out inconsistent hints. The people at ClubFloyd (12/29/13) made some wonderful observations of all kinds to help with this game's polish, and Emily Boegheim and Paul Lee sent transcripts and encouragement mid-IFComp 2013. Gráinne Ryan, Jason Lautzenheiser and Sean M. Shore helped with release 3m as did Jenni Polodna and Jimmy Maher's xyzzyreviews.org essays.[paragraph break]Tangential thanks to PERL creators/maintainers and more importantly the people who created and maintained Inform.[paragraph break]By the way, the source code and a logical walkthrough should be readily available if you want to get all the points for both regular and extended mode. I hope nothing is too obscure or unfair.";
 	the rule succeeds;
@@ -2376,14 +2385,14 @@ the nodoor is privately-named scenery. description of nodoor is "[bug-rep]"
 
 to say bug-rep:
 	say "BUG please let me know how this happened at blurglecruncheon@gmail.com, or report an issue at [repo].";
-	
+
 to say repo:
 	say "http://github.com/andrewschultz/threediopolis"
 
 a quasi-entry is usually fixed in place.
- 
+
 a quasi-entry can be openable. a quasi-entry is usually not openable.
- 
+
 instead of taking a quasi-entry:
 	say "That'd be vandalism. Probably [if noun is front door]KNOCK[else if noun is openable]OPEN or ENTER it or go IN[otherwise]ENTER it or go IN[end if], instead.";
 
@@ -2495,12 +2504,12 @@ the door handle is part of the 15-foot revolving door.
 
 instead of doing something with the door handle:
 	say "It's the door itself you want to mess with.";
-	
+
 description of door handle is "BUG";
 
 instead of doing something with the intimidating 15-foot revolving door:
 	try processing instead;
-	
+
 the clothing store is a quasi-entry.
 
 the tiny yet inviting door is a quasi-entry.
@@ -2542,7 +2551,7 @@ seen-ed is a truth state that varies.
 
 next-zag is a number that varies.
 
-to give-a-point: [?? modify so that headers disappear if you got em all]
+to give-a-point:
 	now just-found is true;
 	let before-chars be my-chars;
 	if front door is in outside-area or front door was in outside-area:
@@ -2628,7 +2637,7 @@ to define-row-starts:
 	[repeat with Q running through rowstart:
 		choose row Q in table of findies;
 		say "[Q] [tally entry].";]
-	
+
 
 a library entrance is a quasi-entry.
 
@@ -2713,7 +2722,7 @@ to unalpha-it:
 		if found entry is 1 and unlist entry is false:
 			if in-header is true:
 				increase hpos by number of characters in tally entry;
-				if hpos >= listwidth: 
+				if hpos >= listwidth:
 					increment curlines;
 					if curlines is 17:
 						say "[line break]  ([later].)";
@@ -2726,7 +2735,7 @@ to unalpha-it:
 		else if unlist entry is false:
 			increase hpos by 4 + number of characters in descrip entry;
 			if in-header is true:
-				if hpos >= listwidth: 
+				if hpos >= listwidth:
 					increment curlines;
 					if curlines is 17:
 						say "[line break]  ([later].)";
@@ -2743,7 +2752,7 @@ to unalpha-it:
 	if in-header is true:
 		if thisheaderbreak + 1 < maxrrows:
 			now maxrrows is thisheaderbreak + 1;
-			rejig the status line to maxrrows rows; [?? need an alternate deepen status line]
+			rejig the status line to maxrrows rows;
 
 to rejig the status line to (depth - a number) rows:
 	(- VM_StatusLineHeight({depth}); -);
@@ -2758,14 +2767,14 @@ to decide whether (mynum - a number) is inline:
 	if mynum < begin-rows:
 		decide no;
 	decide yes;
-	
+
 to decide whether print-this-clue of (lr - a number):
 	unless lr is inline:
 		if in-header is true and player does not have top secret:
 			decide yes;
 		decide no;
 	decide yes;
-	
+
 to decide what number is opsize of (x - a number):
 	if x < 7 and x > 3, decide on 7 - x;
 	if x > 0 and x < 4, decide on x;
@@ -2942,7 +2951,7 @@ carry out ting:
 			say "Header list failed.";
 	else:
 		say "List toggled from status bar.";
-		now list-in-status is false;	
+		now list-in-status is false;
 	the rule succeeds;
 
 chapter tting
@@ -2979,7 +2988,7 @@ check taking inventory:
 		if quick-i is false:
 			now quick-i is true;
 			say "You [if front door is visible or sneeds is visible]almost [end if]take a quick step in. ";
-			say "[italic type][bracket]NOTE: there's no need to take inventory when you're by something you can enter, so I'm changing 'I' to 'IN.'[close bracket][roman type][line break]";	
+			say "[italic type][bracket]NOTE: there's no need to take inventory when you're by something you can enter, so I'm changing 'I' to 'IN.'[close bracket][roman type][line break]";
 		try entering a random visible quasi-entry instead;
 
 After printing the name of the book of top secret things while taking inventory:
@@ -3156,7 +3165,7 @@ every turn when adrift-on is true:
 		now adrift-on is false instead;
 	if charges of adrift-a-tron is 0:
 		now adrift-a-tron is off-stage;
-	
+
 chapter xxing
 
 twistx is a truth state that varies. twistx is usually false.
@@ -3256,7 +3265,7 @@ rule for newseensing:
 	else:
 		repeat through table of stumblies:
 			fake-find tally entry;
-	say "You now have a book of secret things, which is the default for X-ing. You note a few areas you've already seen as a result of your travels. You also remember your friends the Sneeds would let you crash at any time to wrap up your travels. They'll be nonjudgmental, no matter how much or little you've looked around. Oh, Ed gave you something to wear, too[if player has package], in exchange for the mysterious package[end if].";
+	say "You blink a bit. No, you're off the clock. That's not Ed Dunn's list you're holding. It's a book (well, more like a pamphlet, but don't tell Ed that) of secret places to see in Threediopolis! Of course, you're not told how to get there, or they wouldn't be secret. You've already seen a few of them, doing Ed's tasks.[paragraph break]You also remember your friends the Sneeds would let you crash at any time to wrap up your travels. They'll be nonjudgmental, no matter how much or little you've looked around. A small bracelet falls out as you flip through the pamphlet. You put it on.";
 	now package is off-stage;
 	now all visible quasi-entries are off-stage;
 	now oopsy-daisy is 7;
@@ -3360,8 +3369,6 @@ to dirparse (dirlump - indexed text):
 
 brief-warn is truth state that varies;
 
-[?? option to turn off diagonal warning, or give boolean to keep something before YES]
-
 ever-fast is a truth state that varies.
 fast-run is a truth state that varies.
 
@@ -3388,7 +3395,7 @@ to eval-dir (firstlet - text):
 		give-clue whatever;
 	now the command prompt is ">";
 	now alpha-look-mode is false;
-		
+
 cheatlooking is an action applying to one number.
 
 saw-see is a truth state that varies.
@@ -3701,7 +3708,7 @@ carry out ming:
 		say "[unless hasempty is true], though you've found everything in it[end if].";
 	else:
 		say "You glance at row [number understood], and it says [thisrow of number understood][line break]";
-	
+
 to say thisrow of (YZ - number):
 	let new-row be false;
 	let count be 0;
@@ -3870,8 +3877,8 @@ carry out requesting the score:
 	if my-eggs > 0 and pals + edtasks > 0:
 		say "[line break]You have also found [my-eggs] of [number of rows in table of scenery] unusual landmarks/incidents that give color to Threediopolis.";
 	the rule succeeds;
-	
-Procedural rule: ignore the print final score rule. 
+
+Procedural rule: ignore the print final score rule.
 
 book disambiguation
 
@@ -4028,7 +4035,7 @@ this is the unfound-deneen rule:
 	if found entry is 1:
 		the rule fails;
 	the rule succeeds;
-		
+
 to say seew:
 	if found corresponding to a tally of "weenees" in the table of findies is 0:
 		say "somewhere more reputable";
@@ -4162,7 +4169,7 @@ to say acro-thick:
 
 to say can-i-suss:
 	say "[if suspicious-guy-help is false][bold type]Can still SUSS[else]SUSS[end if][noital]"
-	
+
 my-table is a table-name that varies.
 
 book see-hints
@@ -4218,8 +4225,6 @@ to say see-hints:
 		say "You're given a scope to look through--you can follow someone as they make their way to one of your locations. You notice it has settings at [L], where 0 means you'll do nothing. What do you choose?[no line break]";
 		now look-mode is true;
 		now command prompt is "Choose one of [L]:";
-
-[?? en]
 
 to say ways-to-tap:
 	let a be indexed text;
@@ -4311,6 +4316,8 @@ when play begins (this is the beta instructions rule) :
 
 chapter findeming
 
+[* report everything as found except final location]
+
 findeming is an action out of world.
 
 understand the command "findem" as something new.
@@ -4328,6 +4335,8 @@ carry out findeming:
 
 chapter rnearing
 
+[* reset table of nearlies]
+
 rnearing is an action out of world.
 
 understand the command "rnear" as something new.
@@ -4342,6 +4351,8 @@ carry out rnearing:
 
 chapter cting
 
+[* toggles cheat-ticker]
+
 cting is an action out of world.
 
 understand the command "ct" as something new.
@@ -4354,6 +4365,8 @@ carry out cting:
 	the rule succeeds;
 
 chapter hmeing
+
+[* HME displays the immediate hint]
 
 hmeing is an action out of world.
 
@@ -4369,6 +4382,8 @@ volume testing - not for release
 
 chapter aling
 
+[* force task list to super-alpha]
+
 aling is an action out of world.
 
 understand the command "al" as something new.
@@ -4379,8 +4394,10 @@ carry out aling:
 	now task-list is super-alpha;
 	sort the table of findies in tally order;
 	the rule succeeds.
-	
+
 chapter lling
+
+[* display how you could tap the telescope if you were near it]
 
 lling is an action out of world.
 
@@ -4394,6 +4411,8 @@ carry out lling:
 
 chapter staing
 
+[* this toggles the list being in the status line]
+
 staing is an action out of world.
 
 understand the command "sta" as something new.
@@ -4405,6 +4424,8 @@ carry out staing:
 	the rule succeeds;
 
 book tests
+
+[* all kinds of tests here. By letter, with churn, without churn]
 
 [test resets with "eggs/pp/nsnsnsnsnsns/wwwwww/weeweee"
 
@@ -4540,5 +4561,3 @@ sub fisheryates
 }
 
 ]
-
-[?? what if SWEDEB]
