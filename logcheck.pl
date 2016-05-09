@@ -26,6 +26,7 @@ while ($a = <A>)
     $b = lc($a); chomp($b); $b =~ s/^\"//g; $b =~ s/\".*//g;
 	push(@curAry, $b);
 	$tab{$b} = $mappedTo;
+	if (($a =~ /\tchums\t/)) { $friends{$b} = 1; }
     $loc{$b} = myloc($b);
 	print "$b -> " . myloc($b) . " ($mappedTo)\n";
   }
@@ -35,10 +36,13 @@ close(A);
 
 open(A, "logic.txt");
 
+my $logicLine = 0;
+
 while ($a = <A>)
 {
+  $logicLine++;
   if ($a =~ /^====table of/) { $curTable = $a; chomp($curTable); $curTable =~ s/^=+//g; }
-  if ($a =~ /^[desnuw]:/i)
+  if ($a =~ /^([desnuw3-8]|friends):/i)
   {
     chomp($a);
 	$a =~ s/ *\([^\)]*\) *//g;
@@ -103,26 +107,29 @@ sub ln
 
 sub verify
 {
-  my $index = substr($_[0], 0, 1);
+  my $index = $_[0]; $index =~ s/:.*//g;
   my $printedYet = 0;
 
   my $splits = $_[0]; $splits =~ s/.*: *//g;
-  my @ents = split(/, */, $splits);
+  my @ents = split(/, */, $splits); for (@ents) { $_ =~ s/ //g; }
 
   my $count = 0;
 
   print "Verifying $_[0], with $index, for $curTable\n";
   for $q (sort keys %loc)
   {
+    #print "$q: $friends{$q}\n";
     if ($tab{$q} ne $curTable) { next; }
-    if ($q =~ /^$index/i)
+    if (($q =~ /^$index/i) || ((lc($index) eq "friends") && ($friends{lc($q)}) || (!$friends{lc($q)} && $index =~ /[0-9]/)))
     {
+	  if (($index =~ /[0-9]/) && (length($q) != $index)) { next; }
 	  #print "Looking at $q\n";
       if (@ents[$count] =~ /\?/) { print "$q/@ents[$count] is partially solved.\n"; next; }
       if (($q ne @ents[$count]) && ($loc{$q} ne @ents[$count]))
       {
           if (!$printedYet) { print "$_[0]:"; $printedYet = 1; }
-		  print " Goofed at @ents[$count] in logic vs $q/$loc{$q}.\n"; $blammo++; return;
+		  #print "Q $q ENT COUNT @ents[$count] LOC Q $loc{$q}\n";
+		  print " Goofed at line $logicLine, @ents[$count] in logic vs $q/$loc{$q}.\n"; $blammo++; return;
       }
 	  $success++;
       $count++;
