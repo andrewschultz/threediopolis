@@ -1,23 +1,35 @@
+##################################################
+# logcheck.pl
+# this simply does a logic check on the walkthroughs.
+#
+
 open(A, "c:/games/inform/threediopolis.inform/Source/story.ni") || open(A, "story.ni") || die ("No story.ni");
 
 $blammo = 0;
 
 while ($a = <A>)
 {
-  if ($a =~ /^table of scenery \[/)
+  if ($a =~ /^table of (findies|scenery) \[/)
   {
+    $mappedTo = $a; chomp($mappedTo); $mappedTo =~ s/ \[.*//g;
     $inTable = 1; next;
+  }
+  if (($inTable) && ($a !~ /[a-z]/i))
+  {
+    $valList{$tableName} = join(",", @curAry);
   }
 
   if ($inTable)
   {
     if ($a =~ /\(text\)/) { next; }
     if ($a !~ /[a-z]/) { $inTable = 0; next; }
-    $b = $a; chomp($b); $b =~ s/^\"//g; $b =~ s/\".*//g;
+    $b = lc($a); chomp($b); $b =~ s/^\"//g; $b =~ s/\".*//g;
+	push(@curAry, $b);
+	$tab{$b} = $mappedTo;
     $loc{$b} = myloc($b);
+	print "$b -> " . myloc($b) . " ($mappedTo)\n";
   }
 }
-
 
 close(A);
 
@@ -25,6 +37,7 @@ open(A, "logic.txt");
 
 while ($a = <A>)
 {
+  if ($a =~ /^====table of/) { $curTable = $a; chomp($curTable); $curTable =~ s/^=+//g; }
   if ($a =~ /^[desnuw]:/i)
   {
     chomp($a);
@@ -49,23 +62,43 @@ $cur = ""; for $q (sort keys %loc) { $r = substr($q, 0, 1); if ($r ne $cur) { $c
 
 sub myloc
 {
-$go{"s"} = -10;
-$go{"n"} = 10;
-$go{"e"} = 1;
-$go{"w"} = -1;
-$go{"u"} = 100;
-$go{"d"} = -100;
+my @c = split(//, lc($_[0]));
 
-my $temp = 444;
-
-@c = split(//, $_[0]);
+my $up = 0;
+my $east = 0;
+my $north = 0;
 
 for (@c)
 {
-  $temp += $go{$_};
+  if ($_ eq "u") { $up++; }
+  if ($_ eq "d") { $up--; }
+  if ($_ eq "e") { $east++; }
+  if ($_ eq "w") { $east--; }
+  if ($_ eq "n") { $north++; }
+  if ($_ eq "s") { $north--; }
+  if ($_ eq "h") { $north += 2; $east += 2; $up += 2; }
+  if ($_ eq "i") { $north -= 2; $east += 2; $up -= 2; }
+  if ($_ eq "j") { $north += 2; $east -= 2; $up -= 2; }
+  if ($_ eq "k") { $north -= 2; $east -= 2; $up += 2; }
 }
 
-return $temp;
+if ($_[0] =~ /[hijk]/)
+{
+  return ln($up) . ln($north) . ln($east);
+}
+
+$up += 4;
+$north += 4;
+$east += 4;
+
+return 100 * $up + 10 * $north + $east;
+
+}
+
+sub ln
+{
+  if ($_[0] >= 0) { return $_[0]; }
+  return chr(64 - $_[0]);
 }
 
 sub verify
@@ -78,10 +111,13 @@ sub verify
 
   my $count = 0;
 
+  print "Verifying $_[0], with $index, for $curTable\n";
   for $q (sort keys %loc)
   {
+    if ($tab{$q} ne $curTable) { next; }
     if ($q =~ /^$index/i)
     {
+	  #print "Looking at $q\n";
       if (@ents[$count] =~ /\?/) { print "$q/@ents[$count] is partially solved.\n"; next; }
       if (($q ne @ents[$count]) && ($loc{$q} ne @ents[$count]))
       {

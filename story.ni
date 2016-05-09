@@ -1,10 +1,5 @@
 "Threediopolis" by Andrew Schultz
 
-[Note : to compile this into something that will not cause a buffer overflow, Emily Short's Basic Screen Effects should change
-			VM_PrintToBuffer(printed_text, 64, str);
-to
-			VM_PrintToBuffer(printed_text, 70, str);]
-
 [Stuff to search for:
 
 (BR)major, for list manipulation and header stuff
@@ -24,7 +19,7 @@ the story headline is "A Futuristic Word-Play Gofering"
 
 the story description is "The big city is griddy and gritty. Can you navigate it?"
 
-the release number is 3.
+the release number is 4.
 
 release along with cover art.
 
@@ -36,7 +31,7 @@ Use dynamic memory allocation of at least 16384.
 
 book extensions
 
-include Basic Screen Effects by Emily Short.
+include Basic Screen Effects Modified by Emily Short. [I just increased the size of a buffer, replacing 64 with 70, for the friends header]
 
 include Conditional Undo by Jesse McGrew.
 
@@ -2078,7 +2073,7 @@ book looking
 
 check looking:
 	if the player's command matches the regular expression "^(l|look)\b":
-		say "[one of]Looking around won't be enough to get you lost the way you need to get lost. It seems it might even add one more variable, or layer of complexity, beyond just waiting.[paragraph break]You could say doing so in the middle of a journey is [italic type]useless[roman type].[or][run paragraph on][stopping]";
+		say "[one of]Looking around won't be enough to get you lost the way you need to get lost. It seems it might even add one more variable, or layer of complexity, beyond just waiting.[paragraph break]You could say doing so in the middle of a journey is [italic type]useless[roman type].[or]Yuou feel like you're in the middle of a journey that's endless[run paragraph on][stopping]";
 
 after choosing notable locale objects:
 	set the locale priority of sneed house to 0;
@@ -2877,6 +2872,27 @@ to say nearness of ( xxxx - indexed text ):
 		say "buggily near";
 	else:
 		say "[entry ch of farsies]";
+
+table of you-went
+wenty	recd
+"You barely went anywhere at all."	0
+"You barely went anywhere at all."	0
+"You had a really short journey, but why explore just to get lost?"	0
+"That was a nice short walk, enough to discover something to do, or not-do."	0
+"That was a bit of a workout, but it wasn't really long."	0
+"That journey felt sort of long."	0
+"You went quite a ways that time."	0
+"That last walk felt extra long."	0
+"You pushed yourself a bit extra to make that trip. You're not sure it ws worth it."	0
+"You feel as though you went the farthest you could on foot."	0
+
+to say far-gone of (myn - a number):
+	if myn > 10 or myn < 3:
+		continue the action;
+	choose row myn in table of you-went;
+	if recd entry < 3:
+		increment recd entry;
+		say "[wenty entry] "
 
 ok-now is a truth state that varies. ok-now is false.
 
@@ -4101,7 +4117,7 @@ diflev is a kind of value. the diflevs are deduc, alfhint, tough and misp.
 table of findies [tof]
 tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbefore	unlist	rand-score	findtype	diffic	twistiness	palhint
 "Dee"	"pal"	"You are surprised to see a [if dee-male is true]man[else]woman[end if] answer the door, but you're not sure why. 'Ed Dunn, eh? My [if dee-male is true]wife[else]husband[end if] will be glad to drop by. [if dee-male is true]Her[else]His[end if] name's Dee, too. Well, the abbreviation. We both laughed too hard at it when we first met.'"	front door	0	1	2	false	0	chums	deduc	--	"Dee and Dee are off for some surprising and unexpected stuff beyond their house."
-"Deedee"	"twice as fun pal"	"A slightly snooty looking woman answers the door. 'WHAT ARE YOU...oh! Ed Dunn?' she says, sounding a bit too happy. 'Sundude! Another party of Ed's!' She thanks you very much and gives you a tip which would be insulting if you asked for it."	front door	0	1	--	false	0	chums	alfhint	--	"You remember Deedee and Sundude arguing about their getaway home in--where was it? New Wesseewn?"
+"Deedee"	"twice as fun pal"	"A slightly snooty looking woman answers the door. 'WHAT ARE YOU...oh! Ed Dunn?' she says, sounding a bit too happy. 'Sundude! Another party of Ed's!' She thanks you very much and gives you a tip which would be insulting if you asked for it."	front door	0	1	--	false	0	chums	alfhint	--	"You remember Deedee and Sundude arguing about their getaway home in--where was it? New Wessewn?"
 "Des"	"English pal ponds make sad"	"'An Ed Dunn party, eh? His are worth the walk. But boy, I tell you, the guy who sold me this place cheated me. Said I'd be down the street from Ed's. Never said how far.'"	front door	--	--	--	false	0	chums	deduc	--	"Off to the future, my past or maybe a funeral."
 "Ewen"	"[if task-list is not super-alpha]near [end if]pal (Scottish-Canadian)"	"A man holding [italic type]Unended[roman type], the award-winning book by Deneen Nunn, answers the door. 'Sometimes I wonder if Ed Dunn only invites me to feel multicultural. Eh, well, free food, how can I say no?'"	front door	--	--	--	false	0	chums	tough	--	"You don't want to disturb Ewen reading what's-her-name. [one of]Deneen what's-it[or]Who's-it Nunn[in random order]."
 "Ned"	"pal"	"Ned compliments you on not getting lost getting here--there are other tempting and even dangerous places in the nearby area. He suspects and hopes that that's why he didn't get the last invite. Well, he hopes it was more temptation than danger."	front door	--	--	--	false	0	chums	deduc	--	"Ned is writing scripts. One is labeled [italic type]type words.txt | grep '^(n|s|e|w|u|d|oo|y|z|c)*$'[roman type]--it's unclear if he's just showing off, or what."

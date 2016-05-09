@@ -21,6 +21,11 @@ Yes, and yes if you want a hint.
 Look at his name and the clue above.
 He's listed in the list.
 E.D.D.U.N.N.
+?How far away is everything?
+Once you find a few locations, that may help you.
+However, you can also see what happens when you zap back to the center.
+The messages you get clue the distances on your task sheet.
+Spoiler: "extra near", "near", "kinda near", "kinda far", "far", "extra far", "extra extra far", "farthest."
 >GUI/command concerns
 ?Can I speed up the commands?
 Yes.
