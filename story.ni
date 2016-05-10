@@ -1002,7 +1002,7 @@ to say my-thing:
 		say "adrift-a-tron";
 
 carry out cing:
-	say "[bracket]All commands are case insensitive[close bracket][paragraph break]The six directions, abbreviated: N, S, E, W, U, D. K knocks. I/IN goes in (inventory doesn't change much so I trumps INVENTORY when you can enter.)[line break][if player has availableometer or player has adrift-a-tron]A=use your [my-thing][line break][end if]B=brief V=verbose C=this command[line break][if pals < 9 and player does not have book]F=friends left FF=friends in header [end if]I=inventory [if player does not have book]O=one line of by-length list OO=one line in header [end if][if task-list is super-alpha and player does not have book]M=move to line (1-7) MM new list[end if] X=all the list[line break]H=hint, HH=hint toggle[line break]P pushes the panic button to send you to sector 444. [if player has book of top secret things]PP makes this the default when finding scenery.[line break]R shows the nearest, first-in-alphabet unvisited place, R # (up to 9) shows the next 9. XX makes twistiness for solved items disappear.[run paragraph on][end if][line break]J=jump mode to toggle diagonal warning.[line break][if player does not have book]T toggles big long listing in the status bar. [end if]X (#) reads one line, X (24) reads (for example) lines 2-4.[line break]Z waits.[line break]Typing no command circles through some of the nearer places you still need to visit.[line break]";
+	say "[bracket]All commands are case insensitive[close bracket][paragraph break]The six directions, abbreviated: N, S, E, W, U, D. K knocks. I/IN goes in (inventory doesn't change much so I trumps INVENTORY when you can enter.)[line break][if player has availableometer or player has adrift-a-tron]A=use your [my-thing][line break][end if]B=brief V=verbose C=this command[line break][if pals < 9 and player does not have book]F=friends left FF=friends in header [end if]I=inventory [if player does not have book]O=one line of by-length list OO=one line in header [end if][if task-list is super-alpha and player does not have book]M=move to line (1-7) MM new list[end if]X=all the list[line break]H=hint, HH=hint toggle[line break]P pushes the panic button to send you to sector 444. [if player has book of top secret things]PP makes this the default when finding scenery.[line break]R shows the nearest, first-in-alphabet unvisited place, R # (up to 9) shows the next 9. XX makes twistiness for solved items disappear.[run paragraph on][end if][line break]J=jump mode to toggle diagonal warning.[line break][if player does not have book]T toggles big long listing in the status bar. [end if]X (#) reads one line, X (24) reads (for example) lines 2-4.[line break]Z waits.[line break]Typing no command circles through some of the nearer places you still need to visit.[line break]";
 	the rule succeeds;
 
 book list in status
@@ -1207,7 +1207,17 @@ Understand "b" as preferring abbreviated room descriptions.
 
 book restart-quit
 
-understand "q" as quitting the game.
+quickmoding is an action applying to nothing.
+
+understand the command "q" as something new.
+
+understand "q" as quickmoding.
+
+quick-mode is a truth state that varies.
+
+carry out quickmoding:
+	now quick-mode is whether or not quick-mode is false;
+	say "Quick mode is now [if quick-mode is true]on[else]off[end if].";
 
 check quitting the game:
 	if player has book:
@@ -1951,7 +1961,7 @@ carry out processing:
 				endgame-process instead;
 			if found entry is not 2 and found entry is not 3:
 				if ever-fast is false and what-drops entry is not door to ed:
-					if score > 2 or number of characters in tally entry > 3:
+					if edpals + edtasks > 2 or number of characters in tally entry > 3:
 						say "[italic type][bracket]NOTE: it looks like you've roughly figured your way around. If you haven't tried yet, you don't need to type periods or enter between moves to get places, so SSSS is the same as S.S.S.S.[close bracket][roman type][line break]";
 						now ever-fast is true;
 				give-a-point;
@@ -2071,9 +2081,12 @@ pct	eval
 
 book looking
 
-check looking:
+check looking (this is the if command says L rule) :
 	if the player's command matches the regular expression "^(l|look)\b":
-		say "[one of]Looking around won't be enough to get you lost the way you need to get lost. It seems it might even add one more variable, or layer of complexity, beyond just waiting.[paragraph break]You could say doing so in the middle of a journey is [italic type]useless[roman type].[or]Yuou feel like you're in the middle of a journey that's endless[run paragraph on][stopping]";
+		say "[one of]Looking around won't be enough to get you lost the way you need to get lost. It seems it might even add one more variable, or layer of complexity, beyond just waiting.[paragraph break]You could say doing so in the middle of a journey is [italic type]useless[roman type].[or]You feel like you're in the middle of a journey that's [italic type]endless[roman type]![stopping]";
+	if dirparsing is true and quick-mode is true:
+		say "[bold type]Speeding by sector [ud][ns][ew][roman type][line break]";
+		the rule succeeds;
 
 after choosing notable locale objects:
 	set the locale priority of sneed house to 0;
@@ -3379,9 +3392,12 @@ to dirparse (dirlump - indexed text):
 				try going down;
 			if character number charnum in dirlump is ".":
 				say "[italic type][bracket]NOTE: ignoring period.[close bracket][roman type][line break]";
+		if charnum is allchar - 1:
+			now dirparsing is false;
 	now ignore-remaining-dirs is false;
 	now dirparsing is false;
 	now posschars is 0;
+
 
 brief-warn is truth state that varies;
 
@@ -3887,7 +3903,7 @@ nohelpitems is a number that varies. helpitems is a number that varies.
 
 carry out requesting the score:
 	if player has book:
-		say "You've completed all of Ed's tasks, and now you're looking for scenery from the book. So far, you've got [eggsfound] of [number of rows in table of scenery] of them." instead;
+		say "You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at [eggsfound] of [number of rows in table of scenery]." instead;
 	say "Overview: you have completed [pals + edtasks] of Ed's [maxedtasks + maxpals] tasks, [nohelpitems] on your own and [helpitems] with his revised lists. You can look [if list-in-status is true]in the header, too[else]at your list (just type X) for what's left[end if]. More details are below.[paragraph break]--[county of chums] of Ed's [maxpals] friends found[line break]--[county of stuffly] of [maxy of stuffly] places that give Ed more stuff[line break]--[county of biz] of [maxy of biz] ways to help Ed's business[line break]--[county of relax] of [maxy of relax] tasks that will help Ed relax[line break]--[county of party] of [maxy of party] ways to help Ed with his upcoming party[line break]--[county of youish] of [maxy of youish] recommended things for your own amusement and enlightenment.";
 	let my-eggs be eggsfound;
 	if my-eggs > 0 and pals + edtasks > 0:

@@ -3,6 +3,29 @@
 # this simply does a logic check on the walkthroughs.
 #
 
+$permissible = 0;
+
+$try3d = 1; $try4d = 1;
+
+while ($count <= $#ARGV)
+{
+  $a = @ARGV[$count];
+  for ($a)
+  {
+    /3d/ && do { $try3d = 1; $try4d = 0; $count++; next; };
+    /4d/ && do { $try3d = 0; $try4d = 1; $count++; next; };
+    /^-?p/ && do { $permissible = @ARGV[$count+1]; $count+= 2; next; };
+    /opo/ && do { $try3d = 1; $try4d = 1; $count++; next; };
+	usage();
+  }
+}
+
+if ($try3d) { walk3d(); }
+if ($try4d) { walk4d(); }
+
+sub walk3d
+{
+$blammo = 0;
 open(A, "c:/games/inform/threediopolis.inform/Source/story.ni") || open(A, "story.ni") || die ("No story.ni");
 
 $blammo = 0;
@@ -57,12 +80,137 @@ else
 print "# of errors found in logic document headers: $blammo.\n";
 }
 
-print "TEST RESULTS:threediopolis-walkthrough,0,$blammo,$success,\n";
+print "TEST RESULTS:threediopolis-walkthrough,$permissible,$blammo,$success,\n";
 
 print "\nHow unsolved headers should look:";
 $cur = ""; for $q (sort keys %loc) { $r = substr($q, 0, 1); if ($r ne $cur) { $cur = $r; print "\n$cur: "; } print "$loc{$q}, "; }
 print "\n\nHow solved headers should look:";
 $cur = ""; for $q (sort keys %loc) { $r = substr($q, 0, 1); if ($r ne $cur) { $cur = $r; print "\n$cur: "; } print "$q, "; }
+}
+
+sub walk4d
+{
+$blammo = 0;
+
+open(A, "c:/games/inform/fourdiopolis.inform/source/fourdiopolis-logic.txt") || die ("No 4dop logic file.");
+
+while ($a = <A>)
+{
+  $logicLine++;
+  if ($a =~ /==end explained walkthrough/) { if ($thisRound) { print "$thisRound errors found in $curTab.\n"; } elsif ($lastTab) { print "No errors found in $curTab.\n"; } next; }
+  if ($a =~ /====[a-z]/) { setTable($a); next; }
+
+  if (($a =~ /,/) && ($a !~ /\./))
+  {
+    $inSummary = 1;
+    chomp($a);
+	$a =~ s/\([^\)]*\)//g;
+	$a =~ s/[ \*]//g;
+	if ($currentSummary) { $currentSummary = "$currentSummary,$a"; } else { $currentSummary = $a; }
+	next;
+  }
+  if ($inSummary)
+  {
+    #print "$currentSummary\n";
+    verify4($currentSummary);
+	$currentSummary = "";
+	$inSummary = 0;
+  }
+}
+
+close(A);
+
+print "TEST RESULTS:fourdiopolis-walkthrough,0,$blammo,$success,\n";
+
+if ($blammo == 0) { print "ALL HEADERS PROCESSED CORRECTLY!\n"; }
+else
+{
+print "# of errors found in logic document headers: $blammo.\n";
+}
+
+}
+
+############################################
+#4dop function setTable
+
+sub setTable
+{
+  my $tabname = $_[0]; $tabname =~ s/=//g; chomp($tabname);
+  my $foundTable = 0;
+  my $everFound = 0;
+  %loc = ();
+  open(B, "c:/games/inform/fourdiopolis.inform/source/story.ni");
+  @locs = ();
+  while ($b = <B>)
+  {
+    if ($b =~ /^table of $tabname.*\[/i)
+	{
+	  $everFound = 1;
+	  $foundTable = 1;
+	  $lastTab = $curTab;
+	  $curTab = $b; chomp($curTab); $curTab =~ s/ *\[.*//g;
+	  <B>;
+	  next;
+	}
+	if ($foundTable)
+	{
+	  if ($b !~ /[a-z]/) { $foundTable = 0; if ($thisRound) { print "$thisRound errors found in $lastTab.\n"; } elsif ($lastTab) { print "No errors found in $lastTab.\n"; next; } $thisRound = 0; }
+	  $abr = $b; chomp($abr); $abr =~ s/^\"//g; $abr =~ s/\".*//g;
+	  push (@locs, $abr);
+	}
+  }
+  if (!$everFound) { print ("$tabname was not found. Check your logic file and/or source.\n"); } else
+  {
+    #print "$tabname processed ok: @locs.\n";
+  }
+  close(B);
+}
+
+############################################################
+#4dop function verify4
+
+sub verify4
+{
+  my @cs = split(/,/, $currentSummary);
+
+  my $lineErrr = 0;
+  for (0..$#cs)
+  {
+    my $temp = lc(@cs[$_]);
+	my $q = myloc(@locs[$_]);
+	if (($temp eq @locs[$_]) || (lc($temp) eq lc($q))) { next; } else { print "Mismatch: $temp != $q and $temp != @locs[$_] at line $logicLine in $curTab.\n"; $blammo++; $thisRound++; $lineErr = 1; }
+  }
+  if (!$lineErr)
+  {
+    $success++; #print "$currentSummary ok\n";
+  }
+  my $index = substr($_[0], 0, 1);
+  my $printedYet = 0;
+
+  my $splits = $_[0]; $splits =~ s/.*: *//g;
+  my @ents = split(/, */, $splits);
+
+  my $count = 0;
+
+  for $q (sort keys %loc)
+  {
+    if ($q =~ /^$index/i)
+    {
+      if (@ents[$count] =~ /\?/) { print "$q/@ents[$count] is partially solved.\n"; next; }
+      if (($q ne @ents[$count]) && ($loc{$q} ne @ents[$count]))
+      {
+          if (!$printedYet) { print "$_[0]:"; $printedYet = 1; }
+		  print " Goofed at @ents[$count] in logic vs $q/$loc{$q}.\n"; $blammo++; return;
+      }
+      $count++;
+    }
+  }
+  #print " SUCCESSFUL!\n";
+}
+
+############################################################################
+#myloc, for both 4d and 3d
+#
 
 sub myloc
 {
@@ -136,4 +284,15 @@ sub verify
     }
   }
   #print " SUCCESSFUL!\n";
+}
+
+sub usage
+{
+print<<EOT;
+USAGE
+3d = run 3d
+4d = run 4d
+opo = run both (default)
+EOT
+exit;
 }
