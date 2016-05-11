@@ -79,7 +79,6 @@ section debug-start - not for release
 
 when play begins:
 	now debug-state is true;
-	say "There is a total of [maximum score] possible things to do. Guess you better get on it!"
 
 every turn (this is the debug-tracking rule):
 	[say "[thestring]";]
@@ -343,6 +342,9 @@ pals is a number that varies. pals is 0.
 maxedtasks is a number that varies. maxedtasks is 0.
 maxpals is a number that varies. maxpals is 0.
 
+to decide what number is taskdone:
+	decide on pals + edtasks;
+
 secs is a number that varies.
 
 quality is a kind of value. the qualities are chums, biz, party, relax, stuffly, or youish.
@@ -351,16 +353,9 @@ begin-rows is a number that varies. end-rows is a number that varies.
 
 salty is a truth state that varies.
 
-to say rhsl:
-	if score < maximum score:
-		say "[score]/[maximum score] task[if score is not 1]s[end if] done";
-	else:
-		say "All done, yay"
-
 when play begins (this is the let's get it started rule):
 	now my-table is table of findies;
 	now maximum score is number of rows in table of findies;
-	now right hand status line is "[rhsl]";
 	now tt is table of findies;
 	repeat through table of findies:
 		unless there is a findtype entry:
@@ -440,7 +435,7 @@ your-tally is indexed text that varies.
 ns is a number that varies. ew is a number that varies. ud is a number that varies.
 
 to endgame-process:
-	let donesies be pals + edtasks;
+	let donesies be taskdone;
 	choose row with tally of "Deedee" in table of findies;
 	say "[if found entry is 0]Ed seems quite upset you weren't able to find Deedee. He knows it was a ways away, but still--well, she will hear of the party[else]Ed nods to you and to Deedee[end if]. ";
 	if pals < (maxpals - 1) - found entry:
@@ -453,7 +448,7 @@ to endgame-process:
 		say "'These other friends of mine can keep a party exciting on their own.' ";
 	say "[paragraph break]";
 	repeat through table of sad endings:
-		if stuff-i-did entry >= pals + edtasks:
+		if stuff-i-did entry >= taskdone:
 			now oopsy-daisy is 2;
 			say "[eval entry][line break]";
 			end the story;
@@ -551,14 +546,14 @@ to reset-game:
 	let add-to be number of characters in your-tally;
 	if add-to >= 8:
 		if player does not have book of top secret things:
-			if pals + edtasks < 4:
+			if taskdone < 4:
 				increment mb-mb-not;
 				if mb-mb-not is 2:
 					say "Hmm. Maybe you didn't need to walk around so much, or so long. Ed Dunn was brief with you, but he didn't seem cruel. Shorter walks and using the teleport could be better.";
 					now mb-mb-not is 0;
 	if add-to > 7:
 		now add-to is 7;
-	if pals + edtasks >= 3 or player has book of top secret things:
+	if taskdone >= 3 or player has book of top secret things:
 		increase plus-ticker by add-to;
 	now your-tally is "";
 	now all visible quasi-entries are off-stage;
@@ -574,12 +569,12 @@ to reset-game:
 				say "[line break]";
 				say "[italic type][bracket]NOTE: you can toggle hints like this by typing hh.[close bracket][roman type][line break]";
 	now just-found is false;
-	if pals + edtasks is 19 + force-ed-point:
+	if taskdone is 19 + force-ed-point:
 		if ed-happy-test is false:
 			say "Hmm. You think Ed would be relatively happy enough with what you've done. He mentioned he didn't need perfection. You could probably go see him [if ed-happy-test is false]again [end if]any time, now.[line break]";
 			now ed-happy-test is true;
 			continue the action;
-	if pals + edtasks is 45 - force-ed-point:
+	if taskdone is 45 - force-ed-point:
 		say "Hmm. You've got 90% done. That should be enough for Ed. You hope. There may be some obscure tasks (err, 'stretch goals') in there. You could probably go see him [if ed-happy-test is false]again [end if]any time, now.[if force-ed-point is 1][paragraph break][end if]";
 
 this is the plural-almost rule:
@@ -721,7 +716,7 @@ this is the try-ed-hint rule:
 	let bool be false;
 	let found-this-time be 0;
 	unless cheat-ticker is true:
-		if pals + edtasks < 3:
+		if taskdone < 3:
 			increment zero-ticker;
 			if zero-ticker is 3:
 				say "[one of]You flash back to Ed Dunn's voice booming through your head: 'It's not just where you go but how you get there!' Maybe you can try hitting some of the nearer locations until something turns up[or]You remember nightmares, from when you were a kid, of going one way then back to somewhere totally different[cycling].";
@@ -733,7 +728,7 @@ this is the try-ed-hint rule:
 			now base-hint-count is 0;
 		else:
 			the rule fails;
-	if pals + edtasks < 7:
+	if taskdone < 7:
 		say "Frustrating. Maybe if you can pick off some of the nearer tasks in the same location, others will open up[one of][or]. Come to thik of it, you COULD brute force it. But that'd be a lot of walking[stopping].";
 		the rule succeeds;
 	if edtasks + pals + force-ed-point is number of rows in table of findies:
@@ -1176,7 +1171,7 @@ to say scoreboard:
 book silly defaults
 
 instead of singing:
-	say "[if player has book or pals + edtasks > 2]Dee dee dee, dee dee dee[else]You try, but you only hear two notes in your head[end if]."
+	say "[if player has book or taskdone > 2]Dee dee dee, dee dee dee[else]You try, but you only hear two notes in your head[end if]."
 
 instead of swearing obscenely or swearing mildly:
 	say "Dude! Eww."
@@ -1226,15 +1221,15 @@ check quitting the game:
 			say "Ok, shouldn't be too hard to walk there." instead;
 	else:
 		continue the action;
-	if pals + edtasks is 0:
+	if taskdone is 0:
 		say "Well, this stinks. You just couldn't figure out how to wander about to find anything for Ed Dunn. Maybe he will find someone else. Maybe you've been missing something.";
-	else if pals + edtasks > 5:
+	else if taskdone > 5:
 		say "Before quitting, would you like a list of everything you've found so far, in case you want to change difficulty level?";
 		if the player consents:
 			print-so-far;
 
 check restarting the game:
-	if pals + edtasks > 5:
+	if taskdone > 5:
 		if player does not have book:
 			say "Before restarting, would you like a list of everything you've found so far, in case you are restarting to change difficulty level?";
 			if the player consents:
@@ -1723,7 +1718,7 @@ to say losted:
 	say "You're lost. You have strayed beyond the city bounds. A border droid takes your ID and whisks you back to the center[if posschars > number of characters in your-tally], and you decide to cancel the rest of your walking plans[end if].";
 	if bounds-warn is false:
 		if player does not have book:
-			if pals + edtasks < 5:
+			if taskdone < 5:
 				say "You look at your list, and many of the locations are relatively close to the center. Maybe you don't need to venture near the edges that much.";
 				now bounds-warn is true;
 	now ignore-remaining-dirs is true;
@@ -1961,7 +1956,7 @@ carry out processing:
 				endgame-process instead;
 			if found entry is not 2 and found entry is not 3:
 				if ever-fast is false and what-drops entry is not door to ed:
-					if edpals + edtasks > 2 or number of characters in tally entry > 3:
+					if taskdone > 2 or number of characters in tally entry > 3:
 						say "[italic type][bracket]NOTE: it looks like you've roughly figured your way around. If you haven't tried yet, you don't need to type periods or enter between moves to get places, so SSSS is the same as S.S.S.S.[close bracket][roman type][line break]";
 						now ever-fast is true;
 				give-a-point;
@@ -2011,7 +2006,7 @@ shrink-notify is a truth state that varies.
 
 to check-for-blather:
 	repeat through table of score-comments:
-		if pals + edtasks is sco entry:
+		if taskdone is sco entry:
 			say "[comm entry][line break]";
 
 table of score-comments [tsc]
@@ -2214,7 +2209,7 @@ init-clues is a number that varies.
 after looking (this is the early hints rule) :
 	if init-clues < 2 and player has task-list:
 		if task-x is true:
-			if pals + edtasks < 3:
+			if taskdone < 3:
 				if number of characters in your-tally is 1:
 					repeat through table of initclues:
 						if hintyet entry is false:
@@ -2222,8 +2217,8 @@ after looking (this is the early hints rule) :
 								if character number 1 in your-tally is not "w":
 									increment init-clues;
 								say "[myclue entry][line break]";
-		else if number of characters in your-tally is 1 and pals + edtasks < 5:
-			say "You consider[one of][or], again,[stopping] you should maybe read the task list Ed gave you before starting any treks[if pals + edtasks > 0], though you've already done a bit[end if].";
+		else if number of characters in your-tally is 1 and taskdone < 5:
+			say "You consider[one of][or], again,[stopping] you should maybe read the task list Ed gave you before starting any treks[if taskdone > 0], though you've already done a bit[end if].";
 	continue the action;
 
 table of initclues
@@ -2607,7 +2602,7 @@ instead of entering a quasi-entry:
 		if seen-ed is false:
 			increment edtasks;
 			now seen-ed is true;
-		unless pals + edtasks + 1 < maxpals + maxedtasks:
+		unless taskdone + 1 < maxpals + maxedtasks:
 			say "You're confident you smoked this challenge. You blow past the guard at the front door, waving the task list to silence their protests!";
 			try processing instead;
 		if task-list is alpha:
@@ -3182,7 +3177,7 @@ check switching off adrift-a-tron:
 every turn when adrift-on is true:
 	let a-so-far be 0;
 	let mytab be table of findies;
-	if pals + edtasks + force-ed-point is number of rows in table of findies:
+	if taskdone + force-ed-point is number of rows in table of findies:
 		now mytab is table of scenery;
 	repeat through mytab:
 		if tally entry in lower case matches the regular expression "^[your-tally]":
@@ -3223,7 +3218,7 @@ understand "a" as aing.
 
 carry out aing:
 	let mytab be table of findies;
-	if pals + edtasks + force-ed-point is number of rows in table of findies:
+	if taskdone + force-ed-point is number of rows in table of findies:
 		now mytab is table of scenery;
 	let a-so-far be 0;
 	if player does not have availableometer and player does not have adrift-a-tron:
@@ -3748,7 +3743,7 @@ to say thisrow of (YZ - number):
 
 to say rowprint of (YY - text):
 	let count be 0;
-	if pals + edtasks > 14:
+	if taskdone > 14:
 		say "[YY]:";
 	repeat through table of findies:
 		if YY is "SE":
@@ -3904,9 +3899,9 @@ nohelpitems is a number that varies. helpitems is a number that varies.
 carry out requesting the score:
 	if player has book:
 		say "You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at [eggsfound] of [number of rows in table of scenery]." instead;
-	say "Overview: you have completed [pals + edtasks] of Ed's [maxedtasks + maxpals] tasks, [nohelpitems] on your own and [helpitems] with his revised lists. You can look [if list-in-status is true]in the header, too[else]at your list (just type X) for what's left[end if]. More details are below.[paragraph break]--[county of chums] of Ed's [maxpals] friends found[line break]--[county of stuffly] of [maxy of stuffly] places that give Ed more stuff[line break]--[county of biz] of [maxy of biz] ways to help Ed's business[line break]--[county of relax] of [maxy of relax] tasks that will help Ed relax[line break]--[county of party] of [maxy of party] ways to help Ed with his upcoming party[line break]--[county of youish] of [maxy of youish] recommended things for your own amusement and enlightenment.";
+	say "Overview: you have completed [taskdone] of Ed's [maxedtasks + maxpals] tasks, [nohelpitems] on your own and [helpitems] with his revised lists. You can look [if list-in-status is true]in the header, too[else]at your list (just type X) for what's left[end if]. More details are below.[paragraph break]--[county of chums] of Ed's [maxpals] friends found[line break]--[county of stuffly] of [maxy of stuffly] places that give Ed more stuff[line break]--[county of biz] of [maxy of biz] ways to help Ed's business[line break]--[county of relax] of [maxy of relax] tasks that will help Ed relax[line break]--[county of party] of [maxy of party] ways to help Ed with his upcoming party[line break]--[county of youish] of [maxy of youish] recommended things for your own amusement and enlightenment.";
 	let my-eggs be eggsfound;
-	if my-eggs > 0 and pals + edtasks > 0:
+	if my-eggs > 0 and taskdone > 0:
 		say "[line break]You have also found [my-eggs] of [number of rows in table of scenery] unusual landmarks/incidents that give color to Threediopolis.";
 	the rule succeeds;
 
