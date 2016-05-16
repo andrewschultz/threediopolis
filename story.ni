@@ -1681,7 +1681,7 @@ instead of thinking:
 	if thinked is false:
 		say "If you were able to do one thing, you're pretty sure you'd know how to get back to Ed Dunn's secret hideout. You just remember it's been hidden." instead;
 	if door to ed is visible:
-		say "You think about whether or not you should call it a day[if score is maximum score]. You've done everything, so probably, yeah[end if]." instead;
+		say "You think about whether or not you should call it a day[if taskdone + force-ed-point is number of rows in table of findies]. You've done everything, so probably, yeah[end if]." instead;
 	say "You take a moment to orient yourself, calculate a bit, and then walk back and forth til you arrive at outside Ed Dunn's secret hideout.";
 	now your-tally is "eddunn";
 	now ud is 3;
@@ -2117,9 +2117,9 @@ after looking (this is the place ed's tasks rule) :
 			if found entry is 0:
 				give-a-plus;
 			now found entry is 3;
-			if score is maximum score - 2 and suspicious-seen is false:
+			if taskdone is maximum score - 2 and suspicious-seen is false:
 				say "A suspicious guy walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
-			if score is maximum score - 1 and suspicious-seen is true:
+			if taskdone is maximum score - 1 and suspicious-seen is true:
 				say "A suspicious guy walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
 			say "[one of]A suspicious guy[or]That suspicious guy (again)[stopping] sidles up and says, 'Psst! Pal! Got a hint. Or even better. Contraband. What d'you say?'[paragraph break][recap]";
 			now bm-mode is true;
@@ -2372,7 +2372,7 @@ understand the command "about" as something new.
 understand "about" as abouting.
 
 carry out abouting:
-	say "This game wasn't intended to be huge on plot, but rather, I saw a way to do things, and I figured why not. I put the skeleton on the shelf after starting it in May 2012, toyed with it for a post-IFComp 2012 release, then got so lazy I saw I could submit it in time for IFComp 2013![paragraph break]Type CREDITS for testers and such.[paragraph break][if score < 2]A previous IFComp game that might spoil this game's mechanic[else]Brian Rapp's [italic type]Under, In Erebus[roman type][end if] also probably had considerable influence on this game, though it does have a lot more plot and cool locations.[paragraph break]I hope you enjoy this. I recognize some people won't, and that's cool, and I don't want to play the 'I know some philistines may hate it' card. However, if it helps someone who doesn't like it try their [italic type]own[roman type] thing, that'd be way cool.[paragraph break]Also, remember to track back to puzzles you couldn't solve after getting a few others. They may be easier. And don't feel you have to do things in any particular order!";
+	say "This game wasn't intended to be huge on plot, but rather, I saw a way to do things, and I figured why not. I put the skeleton on the shelf after starting it in May 2012, toyed with it for a post-IFComp 2012 release, then got so lazy I saw I could submit it in time for IFComp 2013![paragraph break]Type CREDITS for testers and such.[paragraph break][if taskdone < 2]A previous IFComp game that might spoil this game's mechanic[else]Brian Rapp's [italic type]Under, In Erebus[roman type][end if] also probably had considerable influence on this game, though it does have a lot more plot and cool locations.[paragraph break]I hope you enjoy this. I recognize some people won't, and that's cool, and I don't want to play the 'I know some philistines may hate it' card. However, if it helps someone who doesn't like it try their [italic type]own[roman type] thing, that'd be way cool.[paragraph break]Also, remember to track back to puzzles you couldn't solve after getting a few others. They may be easier. And don't feel you have to do things in any particular order!";
 	say "As of release 4, Threediopolis is relatively stable. I don't plan to make any huge changes, but if you want, you can report bugs/feature requests at [repo].";
 	the rule succeeds;
 
@@ -2676,9 +2676,9 @@ carry out examining the task-list:
 		unalpha-it;
 	else:
 		super-alpha-it;
-	if  task-list is not kinda-random and score < 4:
+	if  task-list is not kinda-random and taskdone < 4:
 		say "[one of][paragraph break]Hm, he said it was alphabetized, but you aren't sure yet what he was talking about.[or][line break][stopping]";
-	if score > 18 and ok-now is false:
+	if taskdone > 18 and ok-now is false:
 		say "You figure Ed Dunn would be pretty happy with how you've done so far. But maybe you can do better.";
 		now ok-now is true;
 	if list-in-status is false and toggle-suppress is false:
@@ -3072,7 +3072,7 @@ carry out blackmarketing:
 		now suspicious-guy-help is true;
 		now oopsy-daisy is 4;
 	else if number understood is 1:
-		if score < 10:
+		if taskdone < 10:
 			say "'Y'might want to wait a bit for just a hint. I can only give one. Sure?'";
 			unless the player consents:
 				say "'You know where to find me, champ.'";
