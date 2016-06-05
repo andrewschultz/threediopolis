@@ -77,7 +77,9 @@ include property checking by Emily Short. [make sure descriptions are implemente
 
 section debug-start - not for release
 
-when play begins:
+the first begin play rule is listed first in the when play begins rules.
+
+when play begins (this is the first begin play rule):
 	now debug-state is true;
 
 every turn (this is the debug-tracking rule):
@@ -92,6 +94,39 @@ book i6 cool stuff
 [thanks to climbingstars for the main code behind the yes/no example. I tweaked some trivial stuff. If you want to change the yes/no defaults, this is a good start. It even tells you if you are using no words or too many. Snaz-zee!]
 
 To set the/-- pronoun it to (O - an object): (- LanguagePronouns-->3 = {O}; -).
+
+chapter redraw status line only some of the time
+
+section status line redraw modifier
+
+Include (-
+[ DrawStatusLine width posb;
+	@push say__p; @push say__pc;
+	BeginActivity(CONSTRUCTING_STATUS_LINE_ACT);
+	VM_MoveCursorInStatusLine(1, 1);
+	if (statuswin_current) {
+		width = VM_ScreenWidth(); posb = width-15;
+		spaces width;
+		ClearParagraphing();
+		if (ForActivity(CONSTRUCTING_STATUS_LINE_ACT) == false) {
+			VM_MoveCursorInStatusLine(1, 2);
+			switch(metaclass(left_hand_status_line)) {
+				String: print (string) left_hand_status_line;
+				Routine: left_hand_status_line();
+			}
+			VM_MoveCursorInStatusLine(1, posb);
+			switch(metaclass(right_hand_status_line)) {
+				String: print (string) right_hand_status_line;
+				Routine: right_hand_status_line();
+			}
+		}
+		VM_MoveCursorInStatusLine(1, 1); VM_MainWindow();
+	}
+	ClearParagraphing();
+	EndActivity(CONSTRUCTING_STATUS_LINE_ACT);
+	@pull say__pc; @pull say__p;
+];
+-) before "Printing.i6t".
 
 chapter allow o
 
@@ -194,7 +229,7 @@ Array edSilent --> 4 "'Yeah, yeah. Doer not a talker. But I need a simple yes or
 
 -)
 
-tt is a table name that varies.
+tnm is a table name that varies.
 
 chapter transcripting stub
 
@@ -355,8 +390,7 @@ salty is a truth state that varies.
 
 when play begins (this is the let's get it started rule):
 	now my-table is table of findies;
-	now maximum score is number of rows in table of findies;
-	now tt is table of findies;
+	now tnm is table of findies;
 	repeat through table of findies:
 		unless there is a findtype entry:
 			now findtype entry is biz;
@@ -1007,12 +1041,16 @@ list-in-status is a truth state that varies.
 hpos is a number that varies.
 
 rule for constructing the status line when task-list is detail-header:
+	if need-to-redraw is false:
+		center "Threediopolis, Sector [ud][ns][ew]: [scoreboard]" at row 1;
+		the rule succeeds;
 	deepen the status line to expected-depth + 1 rows;
 	center "Threediopolis, Sector [ud][ns][ew]: [scoreboard]" at row 1;
 	if player has book of top secret things:
 		write-scen-details;
 	else:
 		write-details;
+	now need-to-redraw is false;
 
 to write-scen-details:
 	let Q2 be 0;
@@ -1141,23 +1179,26 @@ maxrrows is a number that varies. maxrrows is 18.
 
 thisheaderbreak is a number that varies. thisheaderbreak is 0.
 
+need-to-redraw is a truth state that varies.
+
 rule for constructing the status line when list-in-status is true (this is the major header wrangling rule):
+	if need-to-redraw is false:
+		center "[if player has book of top]SEENS SEEN/UNSEEN[else]ED DUNN'S NEEDS[end if] [bracket][scoreboard][close bracket]" at row 1;
+		the rule succeeds;
 	now in-header is true;
 	if task-list is super-alpha or player has book of top secret things:
 		deepen the status line to maxalphrows rows;
 	else:
 		deepen the status line to maxrrows rows;
 	center "[if player has book of top]SEENS SEEN/UNSEEN[else]ED DUNN'S NEEDS[end if] [bracket][scoreboard][close bracket]" at row 1;
+	now hpos is 0;
 	if task-list is super-alpha or player has book of top secret things:
-		now hpos is 0;
 		super-alpha-it;
-		now in-header is false;
-		the rule succeeds;
 	else:
-		now hpos is 0;
 		unalpha-it;
-		now in-header is false;
-		the rule succeeds;
+	now in-header is false;
+	now need-to-redraw is false;
+	the rule succeeds;
 
 to say scoreboard:
 	if player has book of top secret things:
@@ -1421,6 +1462,20 @@ when play begins (this is the employer-intro rule):
 	first-status;
 	say "Threediopolis was the first city to have different sidewalk levels, one above another, back in 2050. It's pretty normal now in 2100, but they didn't plan everything right back then, so Threediopolis is still a bit quirky.[paragraph break]You still get lost some days, like today--while remembering a traumatic episode from your youth (adults yelling at you for somehow getting lost on a simple errand) you run across a building you've never seen. You enter and are whisked to a penthouse office. A fellow wearing a fractal power-tie and a white button-down shirt with elbow patches jumps up.[paragraph break]'Ah! You answered my online ad! What? No? You didn't? Even better! You're a natural! Unpoisoned by GPS! Just what I need! It's not anyone can find here. I'm Ed Dunn. You are? ...'[wfak]";
 	say "[paragraph break]Before you can answer, Ed hands you a list of tasks, an equally mysterious package you're told not to open, and a pocket teleporter device, for getting back if you get even more lost than you need to.[paragraph break]'Getting here was the hard part, kid. Some places, like here, UncountableCo doesn't track. And if you don't get everything on this list done before you get back here, that's okay.'[paragraph break]Before you can ask what list, Ed makes a hush-hush gesture. 'It's organized by travel time, kid. Or it should be, once you find how to use it. Don't worry, just--don't lose it.'[paragraph break]He explains how some things just don't need to be traced electronically, and how there's lots of weird scenery to see if you're interested in that sort of thing, and since you got here without knowing, you couldn't get anywhere on the list WITH knowing.[paragraph break]'Knowing what...?'[paragraph break]'One other thing, kid. You might want to use that teleporter pretty quickly if you don't see anything to start. Say, no further than five blocks. Til you get your bearings.'[paragraph break]Ed stares at his computer, then snaps his fingers. 'Oh, hey, I should push this button. Alphabetize this whole list, sort of. Make things easier for the rookie. What do you say?' ";
+	see-about-hints;
+	say "'Got it. You look smart enough to [if task-list is kinda-random]take the extra challenge.[no line break][else]know the value of a little organization. Now they're in order, you don't NEED to do [']em in order, cuz if you know the ones you don't know are in order, that's a hint. Hey, stop on back if you need an extra hint, eh?[no line break][end if]'[paragraph break]Pep talk time. 'You got potential. You seem like someone who knows it's not just getting there, but HOW you get there.' You've heard that truism before...but does it mean anything? You have no time to ask. Security whisks you away as Ed booms 'And keep with it. Note what you found. Don't worry about the order, either!'[paragraph break]It's not a huge list. You even have addresses of where to go. It can't be too hard, can it?[wfak]";
+	now ns is 4;
+	now ew is 4;
+	now ud is 4;
+	now the player has the task-list;
+	now the player has the pocket teleporter device;
+	now the player has the mysterious package;
+
+to see-about-hints:
+	if debug-state is true:
+		say "Giving alphabetical hints.";
+		now task-list is alpha;
+		continue the action;
 	say "[italic type][bracket]NOTE: if you haven't played before, I strongly recommend you take the hints by saying YES.[close bracket][roman type][line break]";
 	let qq be Ed-Blab;
 	if qq is 1:
@@ -1431,15 +1486,6 @@ when play begins (this is the employer-intro rule):
 		say "[paragraph break]'You'll never know what you missed out on, kid. Not even answering a simple yes/no question.' Ed Dunn is a busy man, but he has time to chew you out. He complains how you just aren't the sort of flaky and whimsical he needs for the job until he finds someone else to order around. You are escorted out.";
 		end the story;
 		consider the shutdown rules;
-	say "'Got it. You look smart enough to [if task-list is kinda-random]take the extra challenge.[no line break][else]know the value of a little organization. Now they're in order, you don't NEED to do [']em in order, cuz if you know the ones you don't know are in order, that's a hint. Hey, stop on back if you need an extra hint, eh?[no line break][end if]'[paragraph break]Pep talk time. 'You got potential. You seem like someone who knows it's not just getting there, but HOW you get there.' You've heard that truism before...but does it mean anything? You have no time to ask. Security whisks you away as Ed booms 'And keep with it. Note what you found. Don't worry about the order, either!'[paragraph break]It's not a huge list. You even have addresses of where to go. It can't be too hard, can it?";
-	now ns is 4;
-	now ew is 4;
-	now ud is 4;
-	now the player has the task-list;
-	now the player has the pocket teleporter device;
-	now the player has the mysterious package;
-	pause the game;
-	now left hand status line is "[location of the player]"
 
 to re-randomize:
 	repeat through table of findies:
@@ -2117,10 +2163,10 @@ after looking (this is the place ed's tasks rule) :
 			if found entry is 0:
 				give-a-plus;
 			now found entry is 3;
-			if taskdone is maximum score - 2 and suspicious-seen is false:
+			if taskdone is maxedtasks + maxpals - 2 and suspicious-seen is false:
 				say "A suspicious guy walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
-			if taskdone is maximum score - 1 and suspicious-seen is true:
-				say "A suspicious guy walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
+			if taskdone is maxedtasks + maxpals - 1 and suspicious-seen is true:
+				say "That suspicious guy from before walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
 			say "[one of]A suspicious guy[or]That suspicious guy (again)[stopping] sidles up and says, 'Psst! Pal! Got a hint. Or even better. Contraband. What d'you say?'[paragraph break][recap]";
 			now bm-mode is true;
 		if suspicious-seen is false:
@@ -2141,6 +2187,8 @@ after looking (this is the place ed's tasks rule) :
 					move Sneed house to outside-area;
 			if found entry is 0:
 				now plus-ticker is 0;
+				if player has book:
+					now need-to-redraw is true;
 				if A is "sneeds":
 					now found entry is 2;
 				else:
@@ -2555,6 +2603,7 @@ seen-ed is a truth state that varies.
 next-zag is a number that varies.
 
 to give-a-point:
+	now need-to-redraw is true;
 	now just-found is true;
 	let before-chars be my-chars;
 	if front door is in outside-area or front door was in outside-area:
@@ -2937,14 +2986,9 @@ carry out xpreing:
 To decide what number is screenh:
 	(- VM_ScreenHeight() -);
 
-t-warn-slow is a truth state that varies.
-
 screen-nag is a truth state that varies;
 
 this is the screen-size-check rule:
-	if t-warn-slow is false:
-		now t-warn-slow is true;
-		say "[italic type][bracket]NOTE: there is currently a slowdown problem with web-based interpreters.[close bracket][roman type][line break]";
 	if screenh < 20:
 		say "The interpreter screen height of [screenh] is too small for Ed's big list. The minimum needed is 20, and 25+ is preferred.";
 		the rule fails;
@@ -2967,6 +3011,7 @@ carry out ting:
 	if list-in-status is false:
 		follow the screen-size-check rule;
 		if the rule succeeded:
+			now need-to-redraw is true;
 			now list-in-status is true;
 			now task-x is true;
 			now task-list is reg-header;
@@ -3267,7 +3312,7 @@ to decide whether still-there of (ww - text):
 
 rule for newseensing:
 	let any-scen-left be false;
-	now tt is table of scenery;
+	now tnm is table of scenery;
 	if player has book of top secret things:
 		say "You don't need this command, since you already have the book." instead;
 	now player has book of top secret things;
@@ -3534,6 +3579,7 @@ carry out ring:
 	say "Header now shows first [if expected-depth > 1][expected-depth] task list elements[else]task list element[end if].";
 	now task-list is detail-header;
 	now list-in-status is false;
+	now need-to-redraw is true;
 	the rule succeeds;
 
 chapter friending
@@ -4211,6 +4257,8 @@ alpha-look-mode is a truth state that varies.
 
 scen-look-mode is a truth state that varies.
 
+go-turbo is a truth state that varies.
+
 to say see-hints:
 	if num-hints-given > 2:
 		say "You are turned away. You've already used enough hints.";
@@ -4223,7 +4271,7 @@ to say see-hints:
 		if found entry is 0:
 			increment edtasks;
 			now found entry is 3;
-	repeat through tt:
+	repeat through tnm:
 		let A be the number of characters in "[tally entry]";
 		if A is not listed in L:
 			if found entry is 0:
@@ -4233,6 +4281,9 @@ to say see-hints:
 		if B is not listed in L2:
 			add B to L2;
 	sort L;
+	if superuser is true:
+		say "There would normally be a choice, here, but we are in turbo mode, probably to test. So I am rejecting it.";
+		continue the action;
 	if player has book:
 		say "You approach a telescope that can be tilted or extended. It's got tracking technology. How to move it?";
 		now scen-look-mode is true;
@@ -4333,6 +4384,7 @@ understand "sup" as suping.
 
 carry out suping:
 	now superuser is true;
+	say "You can now override margin settings as well as turbo pst SEE.";
 	say "[italic type][bracket]NOTE: this command should not be in the release version.[close bracket][roman type][line break]";
 	the rule succeeds;
 
@@ -4488,9 +4540,11 @@ test wslash with "j/b/d/e/e/k/d/e/e/d/e/e/i/d/e/s/k/e/w/e/n/k/n/e/d/k/s/u/e/k/s/
 
 test wnoslash with "j/b/dee/k/deedee/k/des/k/ewen/k/ned/k/sue/k/swen/k/uwe/k/wendee/k/wes/k/den/i/dew/i/dns/i/edu/i/end/k/nes/i/see/i/0/psew/i/sun/i/deus/i/duds/i/ewes/i/news/i/nuns/i/send/i/sewn/i/snus/i/suds/i/suse/i/suss/4/p/deeds/i/dudes/i/dunes/i/nudes/i/seeds/i/sewed/i/suede/i/unwed/i/weeds/i/senses/i/sweden/i/unseen/i/unused/i/wedded/i/wusses/i/newduds/i/seeweed/i/weenees/i/usedduds/i/eddunn/in"
 
-test eggslash with "j/b/d/d/s/i/p/d/e/d/e/n/d/i/p/d/e/d/s/u/n/e/i/p/d/e/d/u/d/u/d/u/i/p/d/e/d/u/s/e/i/p/d/e/e/s/e/n/s/e/e/i/p/d/e/n/e/e/n/n/u/n/n/i/p/d/e/n/s/e/i/p/d/e/n/u/d/e/i/p/d/e/s/d/e/n/e/e/i/p/d/e/s/e/e/s/e/d/i/p/d/e/s/e/n/d/e/d/i/p/d/e/w/e/e/s/e/i/p/d/n/d/i/p/d/u/d/e/i/p/d/u/e/i/p/d/u/e/s/i/p/d/u/n/d/e/e/i/p/d/u/n/s/e/i/p/d/u/s/e/s/i/p/e/d/e/n/i/p/e/e/e/i/p/e/e/e/e/e/i/p/e/e/s/u/s/i/p/e/n/n/u/e/e/i/p/e/n/s/u/e/i/p/e/s/s/e/n/i/p/e/s/s/e/s/i/p/e/u/w/e/i/p/e/w/w/i/p/n/e/e/d/e/d/i/p/n/e/e/d/s/i/p/n/e/n/e/i/p/n/e/s/s/i/p/n/e/w/i/p/n/e/w/d/u/d/e/i/p/n/e/w/n/e/s/s/i/p/n/e/w/w/e/s/s/e/w/n/i/p/n/u/s/e/n/s/e/i/p/s/e/d/i/p/s/e/d/s/n/e/e/d/i/p/s/e/d/u/s/e/i/p/s/e/e/d/e/e/i/p/s/e/e/n/i/p/s/e/e/s/u/n/s/i/p/s/e/e/u/s/i/p/s/e/n/i/p/s/e/n/e/s/s/e/n/s/e/i/p/s/e/n/s/e/n/i/p/s/e/s/e/d/e/i/p/s/e/u/s/s/i/p/s/e/w/n/s/e/w/i/p/s/n/e/e/s/e/i/p/s/n/e/s/i/p/s/u/d/d/e/n/i/p/s/u/e/d/i/p/s/u/n/d/e/w/i/p/s/u/n/s/i/p/s/u/n/u/n/u/i/p/s/u/s/s/u/d/i/p/s/w/e/d/e/s/i/p/s/w/e/e/n/e/e/i/p/s/w/u/n/e/i/p/u/n/d/e/d/i/p/u/n/d/e/e/s/i/p/u/n/d/u/e/i/p/u/n/n/e/e/d/e/d/i/p/u/n/s/e/e/d/e/d/i/p/u/n/s/e/w/n/i/p/u/n/s/u/n/n/e/d/i/p/u/s/e/d/i/p/w/e/d/n/e/s/d/i/p/w/e/e/d/i/p/w/e/e/e/e/e/e/i/p/w/e/e/w/e/e/i/p/w/e/n/d/i/p/w/u/d/d/e/n/i/p/w/u/w/u/i/p/w/w/e/d/i/p/w/w/w/i/p/"]
+test eggslash with "j/b/d/d/s/i/p/d/e/d/e/n/d/i/p/d/e/d/s/u/n/e/i/p/d/e/d/u/d/u/d/u/i/p/d/e/d/u/s/e/i/p/d/e/e/s/e/n/s/e/e/i/p/d/e/n/e/e/n/n/u/n/n/i/p/d/e/n/s/e/i/p/d/e/n/u/d/e/i/p/d/e/s/d/e/n/e/e/i/p/d/e/s/e/e/s/e/d/i/p/d/e/s/e/n/d/e/d/i/p/d/e/w/e/e/s/e/i/p/d/n/d/i/p/d/u/d/e/i/p/d/u/e/i/p/d/u/e/s/i/p/d/u/n/d/e/e/i/p/d/u/n/s/e/i/p/d/u/s/e/s/i/p/e/d/e/n/i/p/e/e/e/i/p/e/e/e/e/e/i/p/e/e/s/u/s/i/p/e/n/n/u/e/e/i/p/e/n/s/u/e/i/p/e/s/s/e/n/i/p/e/s/s/e/s/i/p/e/u/w/e/i/p/e/w/w/i/p/n/e/e/d/e/d/i/p/n/e/e/d/s/i/p/n/e/n/e/i/p/n/e/s/s/i/p/n/e/w/i/p/n/e/w/d/u/d/e/i/p/n/e/w/n/e/s/s/i/p/n/e/w/w/e/s/s/e/w/n/i/p/n/u/s/e/n/s/e/i/p/s/e/d/i/p/s/e/d/s/n/e/e/d/i/p/s/e/d/u/s/e/i/p/s/e/e/d/e/e/i/p/s/e/e/n/i/p/s/e/e/s/u/n/s/i/p/s/e/e/u/s/i/p/s/e/n/i/p/s/e/n/e/s/s/e/n/s/e/i/p/s/e/n/s/e/n/i/p/s/e/s/e/d/e/i/p/s/e/u/s/s/i/p/s/e/w/n/s/e/w/i/p/s/n/e/e/s/e/i/p/s/n/e/s/i/p/s/u/d/d/e/n/i/p/s/u/e/d/i/p/s/u/n/d/e/w/i/p/s/u/n/s/i/p/s/u/n/u/n/u/i/p/s/u/s/s/u/d/i/p/s/w/e/d/e/s/i/p/s/w/e/e/n/e/e/i/p/s/w/u/n/e/i/p/u/n/d/e/d/i/p/u/n/d/e/e/s/i/p/u/n/d/u/e/i/p/u/n/n/e/e/d/e/d/i/p/u/n/s/e/e/d/e/d/i/p/u/n/s/e/w/n/i/p/u/n/s/u/n/n/e/d/i/p/u/s/e/d/i/p/w/e/d/n/e/s/d/i/p/w/e/e/d/i/p/w/e/e/e/e/e/e/i/p/w/e/e/w/e/e/i/p/w/e/n/d/i/p/w/u/d/d/e/n/i/p/w/u/w/u/i/p/w/w/e/d/i/p/w/w/w/i/p/"
 
-test eggnoslash with "j/b/dds/i/p/dedend/i/p/dedsune/i/p/dedududu/i/p/deduse/i/p/deesensee/i/p/deneennunn/i/p/dense/i/p/denude/i/p/desdenee/i/p/deseesed/i/p/desended/i/p/deweese/i/p/dnd/i/p/dude/i/p/due/i/p/dues/i/p/dundee/i/p/dunse/i/p/duses/i/p/eden/i/p/eee/i/p/eeeee/i/p/eesus/i/p/ennuee/i/p/ensue/i/p/essen/i/p/esses/i/p/euwe/i/p/eww/i/p/needed/i/p/needs/i/p/nene/i/p/ness/i/p/new/i/p/newdude/i/p/newness/i/p/newwessewn/i/p/nusense/i/p/sed/i/p/sedsneed/i/p/seduse/i/p/seedee/i/p/seen/i/p/seesuns/i/p/seeus/i/p/sen/i/p/senessense/i/p/sensen/i/p/sesede/i/p/seuss/i/p/sewnsew/i/p/sneese/i/p/snes/i/p/sudden/i/p/sued/i/p/sundew/i/p/suns/i/p/sununu/i/p/sussud/i/p/swedes/i/p/sweenee/i/p/swune/i/p/unded/i/p/undees/i/p/undue/i/p/unneeded/i/p/unseeded/i/p/unsewn/i/p/unsunned/i/p/used/i/p/wednesd/i/p/weed/i/p/weeeeee/i/p/weewee/i/p/wend/i/p/wudden/i/p/wuwu/i/p/wwed/i/p/www/i/p/"
+test eggnoslash with "j/b/dds/i/p/dedend/i/p/dedsune/i/p/dedududu/i/p/deduse/i/p/deesensee/i/p/deneennunn/i/p/dense/i/p/denude/i/p/desdenee/i/p/deseesed/i/p/desended/i/p/deweese/i/p/dnd/i/p/dude/i/p/due/i/p/dues/i/p/dundee/i/p/dunse/i/p/duses/i/p/eden/i/p/eee/i/p/eeeee/i/p/eesus/i/p/ennuee/i/p/ensue/i/p/essen/i/p/esses/i/p/euwe/i/p/eww/i/p/needed/i/p/needs/i/p/nene/i/p/ness/i/p/new/i/p/newdude/i/p/newness/i/p/newwessewn/i/p/nusense/i/p/sed/i/p/sedsneed/i/p/seduse/i/p/seedee/i/p/seen/i/p/seesuns/i/p/seeus/i/p/sen/i/p/senessense/i/p/sensen/i/p/sesede/i/p/seuss/i/p/sewnsew/i/p/sneese/i/p/snes/i/p/sudden/i/p/sued/i/p/sundew/i/p/suns/i/p/sununu/i/p/sussud/i/p/swedes/i/p/sweenee/i/p/swune/i/p/unded/i/p/undees/i/p/undue/i/p/unneeded/i/p/unseeded/i/p/unsewn/i/p/unsunned/i/p/used/i/p/wednesd/i/p/weed/i/p/weeeeee/i/p/weewee/i/p/wend/i/p/wudden/i/p/wuwu/i/p/wwed/i/p/www/i/p/"]
+
+[these tests are now largely superseded by Zarf's regression tests.]
 
 [#Generated walkthrough
 
