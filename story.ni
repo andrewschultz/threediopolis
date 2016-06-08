@@ -3994,7 +3994,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "nene"	"Hawaiian geese/zoo"	"The local zoo gives priority to kids and families, but you still look in. Hawaiian animals are special. All but Oahu went underwater after global warming, and only now is the whole archipelago making a slow comeback. "	0	2	alfhint
 "ness"	"mystic animal, no lake"	"You suddenly worry a mythical water beast is around, though there's no lake for miles. But it's just the world's most believable dinosaur statue. Pfft. You move on."	0	3	alfhint
 "new"	"not old"	"A construction site you pass by--and promptly forget about--promises state of the art homes for sale soon."	0	3	tough
-"newdude"	"help recent resident"	"Someone looks confused, and you're surprised you're able to give good directions, just by thinking logically about where things must be. or not."	0	5	tough
+"newdude"	"help recent resident"	"Someone looks confused, and you're surprised you're able to give good directions, just by thinking logically about where things must be. Or not."	0	5	tough
 "newwessewn"	"Area you remembered scoring 36 points"	"You pass by a gated community full of mansions. Maybe one day you'll deserve to live there."	0	4	tough
 "nusense"	"fresh wiizdum frum yuneekly un-noying gy"	"Some fellow on a soapbox brings up obvious counters to conventional wisdom--it's not really *new* sense, though. After a while, he becomes...un-nu. A nuisance. You move on."	0	4	misp
 "sed"	"learn about string replacement"	"You stumble by a bunch of techies discussing awk and grep and discussing how it's all more fun and interesting than silly puzzle boxes with no purpose. Not that the guy who just passed would be good at either."	0	3	alfhint
@@ -4017,13 +4017,13 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "sued"	"legal trouble"	"Someone moans about his trouble with lawyers. You tune that whining out."	0	4	tough
 "sundew"	"plant not shiny or wet"	"You pass by a warning for a carnivorous plant."	0	6	tough
 "suns"	"get blinded"	"As you walk by, the sun manages to bounce off two buildings curved so that the sun hits your eyes--twice. You blink and can't recognize anything[if-snus]."	0	3	tough
-"sununu"	"political name"	"A political rally. 'Wu! Unneeded dud!' a man shouts as he advocates education in stilted sentences. Stuff like that might pass in New Hampshire, but not here."	0	3	alfhint
+"sununu"	"political name"	"A political rally. 'Wu! Unneeded dud!' a man shouts as he advocates education in stilted sentences. Stuff like that might pass in repressive pinko New Hampshire, but not here."	0	3	alfhint
 "sussud"	"phi colli fa clu"	"A song from the 80s--the 1980s--echoes through your head. You remember about three-quarters of it."	0	3	tough
 "swedes"	"little Scandinavia"	"You're in an ethnic residential district. [biz-dist]."	0	4	tough
 "sweenee"	"where the hot dog hut was"	"A big sign says Sweenee Weenee's has moved[swee-try]."	0	4	tough
 "swune"	"c sumwun handsum n faymus"	"Oh my god--it's--it's--EEEEE! Suddenly, you care little for spelling or logic or anything. You just saw...[paragraph break]...and you realize you'll only see someone THAT famous up-close WUNSE."	0	5	misp
 "unded"	"hontid howse: zombees, gools"	"You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults coaching kids to be pseudo-cute and overdo the youthfully earnest bit. It's down to a science these days, the buttons you can push. You move on and decide not to get fleeced."	0	4	misp
-"undees"	"boxee breefs"	"You didn't want to admit you needed a few new pairs, but you did. You go in for a nice geometric pattern. From your own pocket, of course. Not Ed Dunn's."	0	5	misp
+"undees"	"boxee breefs"	"You didn't want to admit you needed a few new pairs, but you did. You go in for a nice geometric pattern. Paying from your own pocket, of course. Not Ed Dunn's."	0	5	misp
 "undue"	"criticism to ignore"	"Someone walks by and gives you an insult you didn't deserve. It has a bit of truth, but that was probably by accident."	0	4	tough
 "unneeded"	"to feel emo"	"You suddenly feel as if nobody, not even Ed Dunn, cares about you."	0	4	alfhint
 "unseeded"	"underdogs in knockout tourney"	"You hear a pep rally for the local underdog team who's gone rather far in some tournament in some sport or other."	0	5	tough
@@ -4037,7 +4037,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "weewee"	"public nuisance"	"You just stepped in a puddle, though it hasn't rained much lately. Whoever, uh, made that puddle is really juvenile."	0	2	tough
 "wend"	"contorted traveling"	"Your most recent turning and twisting around seems like it should've led somewhere. But it did not. Yet."	0	4	alfhint
 "wenewenew"	"symmet. statue 2 insite, lurning, NOWLEDGE"	"You pass by a large statue that reminds you of times the penny--well, it's the dime these days, the penny being devalued--dropped. It felt good then and feels good now."	0	3	alfhint
-"wenus"	"LOVVELY plannetorryum"	"The knowledge and ideas passed along here is very colloquial but nonetheless useful. Some cranks are disappointed nobody's really started on space travel, and despite their political views, you leave thinking, if only you'd been taught this way in school, instead of all that memorization!"	0	5	misp
+"wenus"	"LOVVELY plannetorryum"	"The knowledge and ideas passed along here are very colloquial but nonetheless useful. Some cranks are disappointed nobody's really started on space travel, and despite their political views, you leave thinking, if only you'd been taught science this way in school, instead of all that memorization!"	0	5	misp
 "wewun"	"histery/viktery monyumint"	"You pass by a large monument commemorating some war or other that may not have ended as successfully as the government says it did. A victory over eggheadedness, grammar policing, general old-school stuffiness, and so forth. It's guarded by video cameras, and you hope they didn't catch you frowning as you walked past."	0	4	misp
 "wudden"	"hand karved krafts"	"Everything's overpriced in an outdoor market here, since cutting down trees is regulated now--but it needs to be. Still, you love browsing and seeing the texture metal and synthetics can't provide."	0	5	misp
 "wuwu"	"peppy radio station"	"Yes--it is--offices for a radio station, with all the old gear and stuff, before podcasts. How quaint!"	0	2	alfhint
@@ -4260,6 +4260,8 @@ scen-look-mode is a truth state that varies.
 go-turbo is a truth state that varies.
 
 to say see-hints:
+	if debug-state is true:
+		say "DEBUG found scope.";
 	if num-hints-given > 2:
 		say "You are turned away. You've already used enough hints.";
 		continue the action;

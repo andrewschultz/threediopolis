@@ -1,0 +1,143 @@
+prefix:3d
+
+## randomized text file for threediopolis
+** game: /home/andrew/prt/debug-threediopolis.z8
+** interpreter: /home/andrew/prt/glulxe -q
+
+3-r
+cmd:k
+Dee|You are surprised to see a\Well, the abbreviation. We both laughed too hard at it when we first met.
+Deedee|Sundude! Another party of Ed's!
+Des|An Ed Dunn party, eh? His are worth the walk.
+Ewen|Unended, the award-winning book by Deneen Nunn
+Ned|Ned compliments you on not getting lost getting here
+Sue|You messengers always find me early, don't you? Must be my personality.
+Swen|You look dizzy! You been walking around in circles?\lutefisk. He explains it's funnier once you know Ed Dunn.
+Uwe|Ah, Ed always appreciates my European viewpoint. Even if he and other guests forget if I'm from France or Germany.
+Wendee|Oh! You're with Ed Dunn? Let me see the list he gave you
+Wes|Nice of Ed to think of me even though I'm so far away. I hope it wasn't too far for you.
+cmd:in
+Den|You realize that Ed Dunn has done you a favor by allowing you to view this. You take extra careful notes on how the party is, what's being served, what a party should be, and the general atmosphere and how people are acting.
+Dew|A kid on a lonely park bench.
+Dns|Internet customer service was so much better a hundred years ago!
+Edu|While you're not sure what business Ed Dunn has here, the secretaries there recognize it immediately.
+End|Voluntary Population Control.
+Nes|Oh man! There's people playing, not just emulated NES games, but the real thing! With a power glove, too!
+See|DEBUG found scope.
+Sew|Most people just have to dispose of clothes and get new recyclable ones, but Ed Dunn can afford more expensive stuff.
+Sun|It's so rare to get natural sun. Usually the heat lamps are enough.
+Deus|What with the brutal unholy war over atheists' best reasons to disbelieve in God, religion has made a comeback.
+Duds|You walk into the store and realize you don't know what you should buy.
+Ewes|Sheep's milk? Well, you've heard of worse stuff at rich people's parties. You guess.
+News|There is a setup for an old-fashioned newscast. People still watch them, especially in the morning, mostly because the anchors are attractive and perky, and none of the reported news is too jarringly thoughtful.
+Nuns|You hand the nuns a folded sheet marked "Ed Dunn's Undue Deeds."
+Send|A combination DMV, post office and virtual jury duty fulfillment center.
+Sewn|clothes
+Snus|Of course, the smokable kind's been illegal a while, smoking outdoors being proved worse than smoking indoors being proved worse than smoking outdoors.
+Suds|You've never been a Coke or Pepsi person, particularly after they aligned themselves with opposing political parties.
+Suse|If only the people extolling Linux weren't so annoying, you'd have fallen in line with them sooner once you saw why.
+Suss|Well, I guess your employer knows that he can't expect utter perfection. But you can't imagine you get more than one thing.
+Deeds|People seem surprised to see you. You don't look like a property owner.
+Dudes|You reflect that, ironically, you didn't have to go west once to enter here.
+Dunes|It's not fully a natural beach, and you can't go in the water, but people shouldn't have to drive to a less wired area just to see the dunes.
+Nudes|Obviously there needs to be a crackdown on sicko-porn masquerading as art, but this has been certified by the Ministry of Art as relatively intellectual stuff.
+Seeds|Genetic engineering advances have made it so most people, even if they get seeds, can only grow plants for one year.
+Sewed|clothes
+Suede|Real leather's a bit scarce, even for rich people, but suede still costs about the same, adjusted for inflation.
+Unwed|You walk in. "Are you searching for that special someone...?" a clerk asks.
+Weeds|Vacant lots are making a comeback of sorts since the world reached its critical-peak population.
+EdDunn|You return, with a list of what you've done.
+Senses|You are evaluated on various senses, and surprisingly, you are graded high on a sixth sense.
+Sweden|Well, I guess Ed Dunn wants to have a few 24 hour days of sunlight.
+Unseen|Knowledge is power is money. You aren't allowed to see what Ed needs, but whatever it is, it's too important to keep online.
+Unused|Ed Dunn deserves this new stuff, you imagine. You get a free new spatula for visiting in-person.
+Wedded|Expensive wedding presents have been discouraged by the government ever since the population was deemed unsustainable.
+Wusses|People might not run here, but they sure run their mouths.
+NewDuds|You wouldn't wear any clothes like this year's fashions, with or without the wearble technology, but you're not paying. You put the clothes in the mysterious package.
+Seeweed|You stop by a new restaurant, whose proprietor, Mr. DeWeese (of course,) gives you a free sample of the envorinmentally replenishable kelp-based lollipops and after-dinner mint substitutes in addition to the more nutritional party fare.
+Weenees|Man, you have heard a lot of reasons why this place or that place is good for comfort food, but one thing you can always rely on: owners misspell, grub will excel.
+UsedDuds|Arriving in the used clothes store, you suddenly realize that there are probably used clothes in the mysterious package.
+
+3-s
+cmd:p
+dds|You feel a toothache. You think 
+dedend|You can just hear the misspelling in the people saying nuthing that way dood.
+dedsune|This feels like one of those seedy areas you were warned about, where a pack of bad-spelling thugs might jump out and kill you.
+dedududu|A song from the 80s--thankfully not the too-cheesy 2080s--echoes through your head. The chorus, anyway. A policeman stands too close to you, tracking every breath you take.
+deduse|Dudes see u, essess your list, call it trivial, and move on to more properly brain-bending things.
+deesensee|People who can't spell worth a dang weigh in on complex ethical questions with impressive oversimplification.
+deneennunn|Denuded. Don't ask what happens to Neenu Unwen.
+dense|You're in an unusually overpopulated area of Threediopolis. And yet, nothing seems worth visiting.
+denude|Some weirdo runs by and tries to pull your pants down. You swat him away. He won't try again!
+desdenee|Someone tells you you will finish your journey when you are good and ready, whether or not you've found everything you wanted to.
+deseesed|People sob here, in their own way, over loss. The sentiments are hackneyed and in bad grammar. But you feel guilty for nitpicks. You move on.
+desended|A man offers to figure your 'real' nationality and famous ancestors--none of these rigged DNA tests--for free.
+deweese|Here's where DeWeese Seeweed makes their food. It's lovely and salty and just like the actual sea except less stinky.
+dnd|You feel temporarily devoid of dexterity and wisdom as you step on a discarded 20-sided die.
+dude|There's an argument in the distance about whether someone crossed a foul line while bowling. Someone out of his element with no frame of reference shouts "Well, that's just your opinion, man!"
+dues|You overhear "Come on, it's less than a tithe--and we're more likely to exist than an Invisible Cloud Being."
+dundee|You hear vague Scottish accents around. People talk about how that's not a knife, THAT's a knife.
+dunse|You listen to some loud idiot who can't pronounce or spell anything for a bit.
+duses|All sorts of street gambling occurs here. Casinos are required to have odds warnings labeled prominently on all machines, which hasn't hurt business, but it's more fun and lively out here.
+eden|You think back to how humanity started, for some reason. This place was probably innocent, long ago.
+eeee|You hear a piercing scream! Well, it's not the first you've heard. And you didn't, like, hear any violence either. In city life, you learn to deal.
+eesus|A man with slicked-back hair, in a purple shirt and pants, holding a purple bowling ball, cooly rails off threats of cap-busting, whatever that is, before glide-walking away.
+endeed|You're waylaid by happy-idiotic conversation from various street preachers. At first, you listen to be polite, but you get sucked in, and you find yourself hearing, and saying
+ennuee|A bunch of poseurs in berets discuss the most exciting reason to feel bored. They ask you for one, and when you mumble, they ditch you as uninteresting.
+ensue|Time seems to pass and things seem to cause each other to happen here.
+essen|You smell sauerkraut and bratwurst, briefly. But that passes. No time for food, anyway.
+esses|You walk by a rare curving side street. Walking down it would be too dangerous if a car came the other way.
+euwe|People play chess here--pfft, the simple version solved as a draw in 2037, not even the Fischer 960 version dissected twenty years later--and yell in Dutch as you walk by.
+eww|You just stepped in something disgusting. You shuffle your shoe to scrape it off and move on.
+nene|The local zoo gives priority to kids and families, but you still look in. Hawaiian animals are special. All but Oahu went underwater after global warming
+ness|You suddenly worry a mythical water beast is around, though there's no lake for miles. But it's just the world's most believable dinosaur statue. Pfft. You move on.
+new|A construction site you pass by--and promptly forget about--promises state of the art homes for sale soon.
+newdude|Someone looks confused, and you're surprised you're able to give good directions, just by thinking logically about where things must be
+newwessewn|You pass by a gated community full of mansions. Maybe one day you'll deserve to live there.
+nusense|Some fellow on a soapbox brings up obvious counters to conventional wisdom--it's not really *new* sense, though. After a while, he becomes...un-nu. A nuisance. You move on.
+sed|You stumble by a bunch of techies discussing awk and grep and discussing how it's all more fun and interesting than silly puzzle boxes with no purpose. Not that the guy who just passed would be good at either.
+seduse|A louche woman in a DUENDE ENDUED tank top futzes with her Vita-Vape electronic-cigarette replacement (outside the sleazy club, by law) and says you look like you have been thinking too hard but fails to eduse any desire. She's no Neenu Weeden or Susee Nen.
+seedee|Outside a nightclub, people beatbox incessantly to blasted rhymes (and almost-rhymes and words that rhyme with themselves) so old they're cool again, or so old-cool again they're just way too old
+seen|You hear the whirr of a hidden security camera.
+seesuns|You find a free museum exhibit that lets you experience the whole year in four minutes. It's illuminating, like looking right into a binary star.
+seeus|You ignore people waving and yelling for attention for its own sake.
+sen|You are redirected around a political rally where people chant "We need Wu!" then "Wu needs us!"
+senessense|A retirement home that is trying to be hip with a few 'cool' misspellings there. You can't--you won't look--you just move on.
+sensen|Someone hands you a free packet of breath mints. you're not sure if this means you deserve fresh breath or you have really bad breath. it's nice and licorice-y.
+sensus|You find a building where you fill out personal details--nothing too detailed--but you are denied a free sticker for your troubles because you didn't produce ID readily enough.
+sesede|A bunch of idiots wearing colonial costumes complain they pay too much in taxes and want out of Threediopolis.
+seuss|A fuzzy something-or-other in a star-bellied t-shirt stops ranting about trees and how to butter bread to ask directions to somewhere called Solla Sollew.
+sewnsew|Your clothes suddenly feel like a schlumpf or a bum or something or other.
+sneeds|Sneeds
+sneese|You--whew--well, you were worried your sinuses were clogging up, but the air here did you a power of good.
+snes|An area much like the retro competition you saw earlier! It seems more colorful, but maybe it's lost a bit of soul. You catch a glimpse of a classic you always meant to play, then move on.
+sudden|A loud noise from nowhere surprises you.
+sued|Someone moans about his trouble with lawyers. You tune that whining out.
+sundew|You pass by a warning for a carnivorous plant.
+suns|As you walk by, the sun manages to bounce off two buildings curved so that the sun hits your eyes--twice. You blink and can't recognize anything
+sununu|A political rally. "Wu! Unneeded dud!" a man shouts as he advocates education in stilted sentences. Stuff like that might pass in repressive pinko New Hampshire, but not here.
+sussud|A song from the 80s--the 1980s--echoes through your head. You remember about three-quarters of it.
+swedes|You're in an ethnic residential district
+sweenee|A big sign says Sweenee Weenee's has moved
+swune|Oh my god--it's--it's--EEEEE! Suddenly, you care little for spelling or logic or anything. You just saw...
+unded|You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults
+undees|You didn't want to admit you needed a few new pairs, but you did. You go in for a nice geometric pattern. Paying from your own pocket, of course. Not Ed Dunn's.
+undue|Someone walks by and gives you an insult you didn't deserve. It has a bit of truth, but that was probably by accident.
+unneeded|You suddenly feel as if nobody, not even Ed Dunn, cares about you.
+unseeded|You hear a pep rally for the local underdog team who's gone rather far in some tournament in some sport or other.
+unsewn|A button falls off your outfit and rolls where you can't find it. Well, it's biodegradable enough.
+unsunned|You walk by some people with remarkably pale skin. Tanning parlors are TOTALLY safe these days, but some people just don't trust the government.
+used|You feel beaten-down and second-hand all of a sudden. Maybe even wondering if you'll always be a gofer to Ed Dunn types. But maybe you are halfway to somewhere Ed needs you to go.
+wednesd|You temporarily forget what day it is. Wait, it's on the tip of your tongue.
+weed|Based on the smell, maybe there are private gardens behind some walls here, maybe not. Some people just won't pay the exorbitant taxes for growing...that.
+weeeeee|You walk past a big amusement park. People are screaming. You'd probably have to give up your cool high-tech stuff if you stopped in, but you can imagine the feeling, and that's enough.
+weeuns|You get in touch with your inner child, including the one that was kinda jealous of what other people have.
+weewee|You just stepped in a puddle, though it hasn't rained much lately. Whoever, uh, made that puddle is really juvenile.
+wend|Your most recent turning and twisting around seems like it should've led somewhere. But it did not. Yet.
+wenewenew|You pass by a large statue that reminds you of times the penny--well, it's the dime these days, the penny being devalued--dropped. It felt good then and feels good now.
+wenus|The knowledge and ideas passed along here are very colloquial but nonetheless useful. Some cranks are disappointed nobody's really started on space travel, and despite their political views, you leave thinking, if only you'd been taught science this way in school, instead of all that memorization!
+wewun|You pass by a large monument commemorating some war or other that may not have ended as successfully as the government says it did.
+wudden|Everything's overpriced in an outdoor market here, since cutting down trees is regulated now--but it needs to be. Still, you love browsing and seeing the texture metal and synthetics can't provide.
+wuwu|Yes--it is--offices for a radio station, with all the old gear and stuff, before podcasts. How quaint!
+www|A really cool idea for a website pops into your head. Then you forget it.
+
