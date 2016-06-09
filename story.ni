@@ -2451,7 +2451,7 @@ the blurry doors that seem only half there are a plural-named quasi-entry.
 
 description of blurry doors that seem only half there is "The more you try to make out details, the less they seem there. However, they seem more likely to fade away then to solidify into a wall, though, so you might as well risk entering them."
 
-the front door is a quasi-entry. "Man! Someone's front door! With the secret detail Ed Dunn showed you that's obvious once you know it!"
+the front door is a quasi-entry. "[if player has book of secret]You can't help but sneak a glance at where one of Ed's friends lives.[else]Man! Someone's front door! With the secret detail Ed Dunn showed you that's obvious once you know it![end if]"
 
 description of front door is "It looks familiar, slightly different from all the identical ones."
 
@@ -2636,7 +2636,7 @@ instead of entering a quasi-entry:
 		try opening noun instead;
 	if noun is ominous door:
 		say "From the list, it looks like Ed wants you to punk them instead. Plus, you think you know what 'Voluntary Population Control' might mean. So, it'd be better to knock instead, wouldn't it?";
-		unless the player consents:
+		unless debug-state is false and the player consents:
 			say "You walk into the population control clinic. Inside is a Death Panel. No, silly, not the health care type. Those're even more secretive! (IF they exist, of course. There's still no proof.) You're briefly thanked for doing your small part to alleviate overpopulation and given forms to sign.[paragraph break]As you are strapped into the lethal comfy chair with all these needles, they discuss whether you were destined to be useless to society or too lazy to contribute any more, then evaluate your contributions relative to your beliefs and where you started in life. It's emotionally, if not physically, painful.[paragraph break]Oh, yes. they confiscate your package, since you probably stole it, and there's illegal stuff in it anyway. It's useful when establishing trumped-up charges against Ed Dunn to confiscate his vast possessions five years later.";
 			now oopsy-daisy is 3;
 			end the story instead;
@@ -4005,7 +4005,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "seeus"	"attention hogs"	"You ignore people waving and yelling for attention for its own sake."	0	3	alfhint
 "sen"	"Pol., not quite rep. or gov."	"You are redirected around a political rally where people chant 'We need Wu!' then 'Wu needs us!'"	0	3	alfhint
 "senessense"	"Ol['] fokes hom"	"A retirement home that is trying to be hip with a few 'cool' misspellings there. You can't--you won't look--you just move on. Not something to think about. What with the population retracting and not enough people staffing and science not able to stave off old age much longer than eighty years ago. Nevertheless, it motivates you to Do Stuff Now."	0	3	misp
-"sensen"	"Confections! Confections!"	"Someone hands you a free packet of breath mints. you're not sure if this means you deserve fresh breath or you have really bad breath. it's nice and licorice-y."	0	3	tough
+"sensen"	"Confections! Confections!"	"Someone hands you a free packet of breath mints. You're not sure if this means you deserve fresh breath or you have really bad breath. it's nice and licorice-y."	0	3	tough
 "sensus"	"Make yurself count"	"You find a building where you fill out personal details--nothing too detailed--but you are denied a free sticker for your troubles because you didn't produce ID readily enough. You did your civic duty, I guess."	0	4	tough
 "sesede"	"freedum diskushin kunfedrasee"	"A bunch of idiots wearing colonial costumes complain they pay too much in taxes and want out of Threediopolis. You've seen studies saying the reverse is true, but other studies show these people can't be argued with."	0	3	alfhint
 "seuss"	"oh, a thing you'll see"	"A fuzzy something-or-other in a star-bellied t-shirt stops ranting about trees and how to butter bread to ask directions to somewhere called Solla Sollew. Seeing your list, he remarks 'Oh, the places you'll go,' before running off."	0	3	alfhint
@@ -4014,7 +4014,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "sneese"	"Pepperee sinus freeing"	"You--whew--well, you were worried your sinuses were clogging up, but the air here did you a power of good."	0	3	misp
 "snes"	"retro comp. pt. 2"	"An area much like the retro competition you saw earlier! It seems more colorful, but maybe it's lost a bit of soul. You catch a glimpse of a classic you always meant to play, then move on."	0	3	tough
 "sudden"	"bang"	"A loud noise from nowhere surprises you."	0	5	tough
-"sued"	"legal trouble"	"Someone moans about his trouble with lawyers. You tune that whining out."	0	4	tough
+"sued"	"legal trouble"	"Someone moans about their trouble with lawyers. You tune that whining out."	0	4	tough
 "sundew"	"plant not shiny or wet"	"You pass by a warning for a carnivorous plant."	0	6	tough
 "suns"	"get blinded"	"As you walk by, the sun manages to bounce off two buildings curved so that the sun hits your eyes--twice. You blink and can't recognize anything[if-snus]."	0	3	tough
 "sununu"	"political name"	"A political rally. 'Wu! Unneeded dud!' a man shouts as he advocates education in stilted sentences. Stuff like that might pass in repressive pinko New Hampshire, but not here."	0	3	alfhint
@@ -4179,7 +4179,7 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Ewen"	"[if task-list is not super-alpha]near [end if]pal (Scottish-Canadian)"	"A man holding [italic type]Unended[roman type], the award-winning book by Deneen Nunn, answers the door. 'Sometimes I wonder if Ed Dunn only invites me to feel multicultural. Eh, well, free food, how can I say no?'"	front door	--	--	--	false	0	chums	tough	--	"You don't want to disturb Ewen reading what's-her-name. [one of]Deneen what's-it[or]Who's-it Nunn[in random order]."
 "Ned"	"pal"	"Ned compliments you on not getting lost getting here--there are other tempting and even dangerous places in the nearby area. He suspects and hopes that that's why he didn't get the last invite. Well, he hopes it was more temptation than danger."	front door	--	--	--	false	0	chums	deduc	--	"Ned is writing scripts. One is labeled [italic type]type words.txt | grep '^(n|s|e|w|u|d|oo|y|z|c)*$'[roman type]--it's unclear if he's just showing off, or what."
 "Sue"	"pal"	"'Ah, yes,' says the lady answering the door, 'You messengers always find me early, don't you? Must be my personality. Oh, and don't go up-east when you leave. There's hog-calling competitions all over. Or is that next weekend?'"	front door	--	--	--	false	0	chums	deduc	--	"Karaoke for me, me, me, d'oh."
-"Swen"	"[if task-list is not super-alpha]near [end if]pal"	"'You look dizzy! You been walking around in circles?' asks Ed's latest invitee. He mentions that old puzzle about someone going south, east and north to arrive where he started, and how there's more than one point, before making some desultory joke about remembering to forget the lutefisk. He explains it's funnier once you know Ed Dunn."	front door	--	--	--	false	0	chums	tough	--	"Swen is off for a cultural event."
+"Swen"	"[if task-list is not super-alpha]near [end if]pal"	"'You look dizzy! You been walking around in circles?' asks Ed's latest invitee. He mentions that old puzzle about someone going south, east and north to arrive where he started, and how there's more than one point, before making some desultory joke about remembering to forget the lutefisk. He looks woebegone as you fail to laugh, mentions not ALL his jokes are above average, and explains it's funnier once you know Ed Dunn."	front door	--	--	--	false	0	chums	tough	--	"Swen is off for a cultural event."
 "Uwe"	"Freund"	"'Ah, Ed always appreciates my European viewpoint. Even if he and other guests forget if I'm from France or Germany.'"	front door	--	--	--	false	0	chums	tough	--	"Uwe is studying chess. A former world champ who doesn't know how to pronounce his name."
 "Wendee"	"[if task-list is not super-alpha]far [end if]frieeend"	"'Oh! You're with Ed Dunn? Let me see the list he gave you,' says the woman answering. She nods approvingly. 'He said he only invited Nene because she was closer. I'm glad he meant it this time. I hope he has those awesome hot dogs this party!'"	front door	--	--	--	false	0	chums	alfhint
 "Wes"	"awesome pal"	"'Nice of Ed to think of me even though I'm so far away. I hope it wasn't too far for you.'"	front door	--	--	--	false	0	chums	alfhint
@@ -4262,6 +4262,7 @@ go-turbo is a truth state that varies.
 to say see-hints:
 	if debug-state is true:
 		say "DEBUG found scope.";
+		continue the action;
 	if num-hints-given > 2:
 		say "You are turned away. You've already used enough hints.";
 		continue the action;
