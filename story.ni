@@ -272,7 +272,6 @@ after reading a command:
 			now saw-see is true;
 			now command prompt is ">";
 			now alpha-look-mode is false;
-			consider the notify score changes rule;
 			reject the player's command;
 		unless locom matches the regular expression "^<densuw>":
 			say "That's not a direction you can move the scope in.";
@@ -1005,7 +1004,7 @@ boxed-showed is a truth state that varies.
 
 Rule for printing a parser error when the latest parser error is the didn't understand error:
 	say "[reject]";
-	if boxed-showed is false and list-in-status is true::
+	if boxed-showed is false and list-in-status is false:
 		now boxed-showed is true;
 		display the boxed quotation "
 		'I've always enjoyed going north. Of course,
@@ -2164,6 +2163,8 @@ after looking (this is the place ed's tasks rule) :
 				give-a-plus;
 			now found entry is 3;
 			if taskdone is maxedtasks + maxpals - 2 and suspicious-seen is false:
+				now suspicious-seen is true;
+				give-a-point;
 				say "A suspicious guy walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
 			if taskdone is maxedtasks + maxpals - 1 and suspicious-seen is true:
 				say "That suspicious guy from before walks up to you, says 'Psst!' and then, before you can respond, says, 'Never mind. I can't help you.' before running away." instead;
@@ -2174,7 +2175,6 @@ after looking (this is the place ed's tasks rule) :
 			give-a-point;
 		now plus-ticker is 0;
 		now hint-iter is 0;
-		consider the notify score changes rule;
 	let A be indexed text;
 	now A is your-tally;
 	repeat through table of preclues:
@@ -4210,7 +4210,7 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Seeds"	"garden startup materials"	"Genetic engineering advances have made it so most people, even if they get seeds, can only grow plants for one year. A power grab by agribusiness? Perhaps. But nobody much goes hungry, so nobody can complain. You pay for and take the valuable seed packets."	odd grassy door	--	--	--	--	--	relax	deduc
 "Sewed"	"handmade clothes with love in every stitch-2"	"[ed-sew]."	clothing store	--	--	--	--	--	stuffly	tough
 "Suede"	"softish leathery clothes"	"Real leather's a bit scarce, even for rich people, but suede still costs about the same, adjusted for inflation. Anyway, it's just like artificial flavors in food--you get used to it, with all the other advances."	clothing store	--	--	--	--	--	stuffly	tough
-"Unwed"	"Matchmaker for singles"	"You walk in. 'Are you searching for that special someone...?' a clerk asks.[paragraph break]You mumble 'Um...not for me, this, um, guy needs it.' You hand over the package with a list of names.[paragraph break]'Ah, quite so. Mr. Dunn offers our services as a surprise gift to people who have impressed him. I am not surprised you have not.' Whoa!"	secret entry	--	--	--	--	--	party	tough
+"Unwed"	"Matchmaker for singles"	"You walk in. 'Are you searching for that special someone...?' a clerk asks.[paragraph break]You mumble 'Um...not for me, this, um, guy needs it.' You hand over the package with a list of names.[paragraph break]'Ah, quite so. Mr. Dunn offers our services as a surprise gift to people who have impressed him enough. Perhaps you will, some distant day.' Whoa!"	secret entry	--	--	--	--	--	party	tough
 "Weeds"	"visit that vacant lot I loved as a kid"	"Vacant lots are making a comeback of sorts since the world reached its critical-peak population. Eventually they'll be phased out above the concerns of environmentalists, once people figure even more efficient methods of production and the population can go up again, but this one's still here. You take a few phone-pictures for Ed Dunn to remember, and you take time to remember your own vacant lot. You also spend time cleaning it up, to fulfill both your and Ed's monthly community service quotas."	vacant lot	--	--	--	--	--	relax	alfhint
 "EdDunn"	"[ed-blah]"	"You return, with a list of what you've done.[line break]"	door to Ed Dunn's secret hideout	--	--	1	--	--	youish	tough
 "Senses"	"Smell/taste test"	"You are evaluated on various senses, and surprisingly, you are graded high on a sixth sense. You don't know what it is, but you're afraid asking will forfeit your score. You're given a certificate of senseness, which goes in the mysterious package. This will please Ed...I think?"	secret entry	--	--	--	--	--	relax	tough
@@ -4260,6 +4260,11 @@ scen-look-mode is a truth state that varies.
 go-turbo is a truth state that varies.
 
 to say see-hints:
+	if player does not have book:
+		choose row with tally of "See" in table of findies;
+		if found entry is 0:
+			increment edtasks;
+			now found entry is 3;
 	if debug-state is true:
 		say "DEBUG found scope.";
 		continue the action;
@@ -4269,11 +4274,6 @@ to say see-hints:
 	now L is { 0 };
 	now L2 is { };
 	let C be text;
-	if player does not have book:
-		choose row with tally of "See" in table of findies;
-		if found entry is 0:
-			increment edtasks;
-			now found entry is 3;
 	repeat through tnm:
 		let A be the number of characters in "[tally entry]";
 		if A is not listed in L:
