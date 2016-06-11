@@ -1,0 +1,91 @@
+## reg-3d-misc.txt
+## various test cases for threediopolis random acts
+##
+##
+
+* 3d-out-of-bounds
+
+>eeeeeee
+cancel the rest
+hear a siren
+
+>ddddd
+low buzz
+
+>nnnnnn
+hear a siren
+
+>wwwww
+hear a siren
+
+>ssssss
+cancel the rest
+hear a siren
+
+>uuuuuuu
+high-pitched
+cancel the rest
+
+* 3d-misc-cmd
+
+>xyzzy
+
+Yes, indeed. the game map has 3 axes
+
+>j
+Jump mode is on
+
+>j
+Jump mode is off
+
+>c
+All commands are case insensitive
+
+>k
+Nothing familiar enough
+
+>f
+Pals:
+
+>p
+Pushing the button would be kind of pointless here. Well, technically, here and now.
+
+>n
+>p
+You have heard about teleporter overheat.
+
+>n
+>p
+very richest people
+2085
+
+>n
+>n
+>p
+Your trusty teleporter kicks you back to the not-quite-center of the city.
+
+>about
+then got so lazy I saw
+
+>credits
+Wade Clarke, who also designed
+
+>l
+You could say doing so in the middle of a journey
+
+>z
+You reflect briefly that Z is the end of the alphabet, and people who Z too much may run afoul of efficiency laws.
+
+>z
+You hear a buzzing of droids in the distance.
+
+>z
+You fall asleep on your journey. You are awakened by whirring and clacking. Droids pick you up and give you an infra-red marking that identifies you as a potential leech on society--and juice and cookies, this time, since your possessions label you as moderately wealthy. They remind you the marking will fade in a year.
+
+>l
+>z
+>z
+You hear a familiar buzzing of droids in the distance.
+
+>z
+droids are rougher with you this time

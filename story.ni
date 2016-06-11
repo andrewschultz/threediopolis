@@ -570,6 +570,8 @@ just-found is a truth state that varies.
 
 mb-mb-not is a number that varies.
 
+say-back is a truth state that varies.
+
 to reset-game:
 	now opposite-direction is southwest;
 	now ns is 4;
@@ -593,6 +595,7 @@ to reset-game:
 	now ignore-susp is false;
 	if door to ed is visible:
 		now door to ed is off-stage;
+	now say-back is true;
 	move player to outside-area;
 	if hint-block is false and just-found is false:
 		consider the try-a-hint rule;
@@ -1204,7 +1207,7 @@ to say scoreboard:
 		say "[if eggsfound is secs]You found all the secrets![run paragraph on][else][eggsfound]/[secs] secrets found[end if]";
 	else:
 		if pals is maxpals and edtasks is maxedtasks:
-			say "All friends found, all tasks done!";
+			say "All friends found, all tasks done![no line break]";
 		else:
 			say "[pals]/[maxpals] pals found, [edtasks]/[maxedtasks] tasks done";
 
@@ -1420,7 +1423,7 @@ check pushing the button:
 			else:
 				say "OK.";
 				the rule succeeds;
-	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2140. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
+	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2085. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
 	reset-game instead;
 
 instead of switching on teleporter device:
@@ -1509,7 +1512,12 @@ description of player is "You are dressed in clothes similar in style to one hun
 
 book outside area
 
-outside-area is a privately-named room. Printed name of outside-area is "Threediopolis, Sector [ud][ns][ew]"
+outside-area is a privately-named room. Printed name of outside-area is "Threediopolis, [back-at]Sector [ud][ns][ew]"
+
+to say back-at:
+	if say-back is true:
+		say "Back at ";
+		now say-back is false;
 
 after printing the locale description of outside-area when outside-area is unvisited:
 	say "You glance quickly at Ed Dunn's list: some things are in sector 444, but you can't see anything resembling them. ";
@@ -1705,6 +1713,7 @@ check waiting:
 		if already-slept is false:
 			say "You fall asleep on your journey. You are awakened by whirring and clacking. Droids pick you up and give you an infra-red marking that identifies you as a potential leech on society--and juice and cookies, this time, since your possessions label you as moderately wealthy. They remind you the marking will fade in a year.[line break]";
 			now waits-in-a-row is 0;
+			now already-slept is true;
 			reset-game instead;
 		say "The anti-vagrant/loiterer droids are rougher with you this time. You barely manage to chuck Ed Dunn's paper down a garbage vaporizer before you are locked in a poor house cell for a month. (Fourth wall time: on the bright side, this is about the only chance you get to UNDO.)";
 		now oopsy-daisy is 1;
@@ -1760,7 +1769,13 @@ section directions
 bounds-warn is a truth state that varies.
 
 to say losted:
-	say "You're lost. You have strayed beyond the city bounds. A border droid takes your ID and whisks you back to the center[if posschars > number of characters in your-tally], and you decide to cancel the rest of your walking plans[end if].";
+	if ud is -1:
+		say "You hear a low buzz. You've gone too far below. Only maintenance works are allowed below ground";
+	else if ud is 10:
+		say "You hear a high-pitched squealy tone. You've tried to go too far up, to the rich area--or, well, the private area people pay too much to live in, for status. A droid grabs your arm firmly and leads you to a transport vessel back to the center";
+	else:
+		say "You wander a bit too far and hear a siren. Threediopolis's suicide police don't joke around when someone gets too close to the edge! You never intended to, but...a brief psychological survey later, you're vetted as just being a bit flaky. It happens";
+	say "[if posschars > number of characters in your-tally]. You decide to cancel the rest of your walking plans[end if].";
 	if bounds-warn is false:
 		if player does not have book:
 			if taskdone < 5:
@@ -1819,10 +1834,10 @@ check going down:
 	if gone-up-or-down is false:
 		say "[up-down-cool].";
 	now your-tally is "[your-tally]d";
-	if ud is 0:
+	decrement ud;
+	if ud is -1:
 		say "[losted]";
 		reset-game instead;
-	decrement ud;
 
 section generics
 
@@ -4260,6 +4275,9 @@ scen-look-mode is a truth state that varies.
 go-turbo is a truth state that varies.
 
 to say see-hints:
+	if saw-see is false:
+		now need-to-redraw is true;
+	now saw-see is true;
 	if player does not have book:
 		choose row with tally of "See" in table of findies;
 		if found entry is 0:
@@ -4297,7 +4315,6 @@ to say see-hints:
 			continue the action;
 		say "You approach a scope that can be tilted in the six directions. It's got that tracking technology that will follow people around. How will you move it?[no line break]";
 		now alpha-look-mode is true;
-		now saw-see is true;
 		now command prompt is "[ways-to-tap]";
 	else:
 		if number of entries in L is 1:
