@@ -1860,6 +1860,7 @@ to tally-and-place:
 	repeat with Q running through things in outside-area:
 		if Q is not player:
 			now Q is off-stage;
+		say "As you walk by, you reflect you can always find the [Q] later, if you'd like.";
 	if player does not have book of top secret:
 		repeat through table of findies:
 			if A is tally entry in lower case:
@@ -2628,7 +2629,7 @@ to give-a-point:
 			continue the action;
 		repeat through table of palstuff:
 			if numpals entry is pals:
-				say "[line break][paltext entry]";
+				say "[line break][paltext entry][line break]";
 				if en-notify is false:
 					say "[line break]";
 		if pals is not a numpals listed in the table of palstuff:
@@ -4190,7 +4191,7 @@ table of findies [tof]
 tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbefore	unlist	rand-score	findtype	diffic	twistiness	palhint
 "Dee"	"pal"	"You are surprised to see a [if dee-male is true]man[else]woman[end if] answer the door, but you're not sure why. 'Ed Dunn, eh? My [if dee-male is true]wife[else]husband[end if] will be glad to drop by. [if dee-male is true]Her[else]His[end if] name's Dee, too. Well, the abbreviation. We both laughed too hard at it when we first met.'"	front door	0	1	2	false	0	chums	deduc	--	"Dee and Dee are off for some surprising and unexpected stuff beyond their house."
 "Deedee"	"twice as fun pal"	"A slightly snooty looking woman answers the door. 'WHAT ARE YOU...oh! Ed Dunn?' she says, sounding a bit too happy. 'Sundude! Another party of Ed's!' She thanks you very much and gives you a tip which would be insulting if you asked for it."	front door	0	1	--	false	0	chums	alfhint	--	"You remember Deedee and Sundude arguing about their getaway home in--where was it? New Wessewn?"
-"Des"	"English pal ponds make sad"	"'An Ed Dunn party, eh? His are worth the walk. But boy, I tell you, the guy who sold me this place cheated me. Said I'd be down the street from Ed's. Never said how far.'"	front door	--	--	--	false	0	chums	deduc	--	"Off to the future, my past or maybe a funeral."
+"Des"	"tinny-voiced pal you'll find"	"'An Ed Dunn party, eh? His are worth the walk. But boy, I tell you, the guy who sold me this place cheated me. Said I'd be down the street from Ed's. Never said how far.'"	front door	--	--	--	false	0	chums	deduc	--	"Off to the future, my past or maybe a funeral."
 "Ewen"	"[if task-list is not super-alpha]near [end if]pal (Scottish-Canadian)"	"A man holding [italic type]Unended[roman type], the award-winning book by Deneen Nunn, answers the door. 'Sometimes I wonder if Ed Dunn only invites me to feel multicultural. Eh, well, free food, how can I say no?'"	front door	--	--	--	false	0	chums	tough	--	"You don't want to disturb Ewen reading what's-her-name. [one of]Deneen what's-it[or]Who's-it Nunn[in random order]."
 "Ned"	"pal"	"Ned compliments you on not getting lost getting here--there are other tempting and even dangerous places in the nearby area. He suspects and hopes that that's why he didn't get the last invite. Well, he hopes it was more temptation than danger."	front door	--	--	--	false	0	chums	deduc	--	"Ned is writing scripts. One is labeled [italic type]type words.txt | grep '^(n|s|e|w|u|d|oo|y|z|c)*$'[roman type]--it's unclear if he's just showing off, or what."
 "Sue"	"pal"	"'Ah, yes,' says the lady answering the door, 'You messengers always find me early, don't you? Must be my personality. Oh, and don't go up-east when you leave. There's hog-calling competitions all over. Or is that next weekend?'"	front door	--	--	--	false	0	chums	deduc	--	"Karaoke for me, me, me, d'oh."
