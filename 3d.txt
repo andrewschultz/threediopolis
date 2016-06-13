@@ -125,3 +125,8 @@ Also, there are a lot of smart people, or smart people mannerisms, I try to lamp
 I hope this game doesn't try for too many sociopolitical implications (I dread Discussing Big Things in games) but generally hope that Threediopolis is a quasi-dystopia that allows you to laugh at the worst of society, Maybe it even helps you to tolerate it in real life, or to tolerate annoying stuffy pretentious people and bureaucracy like what you run across randomly in-game.
 I would also be flattered if you came back to the game a few months later, not able to remember everything, but able to find new ways to derive the solution. During programmer testing I had fun learning to reason instead of memorize, or feeling silly forgetting *that* clue I put in.
 Or, yeah, just have fun with the brain-twisters. And the smart-stupid jokes.
+?Can I visit all the sectors in Threediopolis?
+Not by just walking around.
+All the random announcements with sector numbers refer to ones you can't visit.
+If you type Z six times in a row, you wind up in an unvisitable sector.
+There are 129 such sectors. Each is equally probable. The south-west-down has only 4 (000 001 010 101) and the north-east-up has 35. The code was fun to write, and I'm proud of it. Search for "unreachable" in the source.

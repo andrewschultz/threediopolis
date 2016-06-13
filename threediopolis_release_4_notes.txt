@@ -5,3 +5,4 @@ Here are the main features:
 --Q lets you zoom through areas and avoid random text.
 --big headers now only refresh after you find something, so if you play the game in a web browser/slower interpreter, it will slow down less.
 --the game now detects how you run out of bounds for a more suitable error message.
+--there are now 100 silly random events, up from 72 in release 3.

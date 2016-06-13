@@ -3,6 +3,9 @@
 ##
 ##
 
+** game: /home/andrew/prt/debug-threediopolis.z8
+** interpreter: /home/andrew/prt/dfrotz -m
+
 * 3d-out-of-bounds
 
 >eeeeeee

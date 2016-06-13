@@ -387,7 +387,7 @@ begin-rows is a number that varies. end-rows is a number that varies.
 
 salty is a truth state that varies.
 
-when play begins (this is the let's get it started rule):
+when play begins (this is the table tweaking and checking and randomizing rule):
 	now my-table is table of findies;
 	now tnm is table of findies;
 	repeat through table of findies:
@@ -584,7 +584,7 @@ to reset-game:
 			if taskdone < 4:
 				increment mb-mb-not;
 				if mb-mb-not is 2:
-					say "Hmm. Maybe you didn't need to walk around so much, or so long. Ed Dunn was brief with you, but he didn't seem cruel. Shorter walks and using the teleport could be better.";
+					say "[line break]Hmm. Maybe you didn't need to walk around so much, or so long. Ed Dunn was brief with you, but he didn't seem cruel. Shorter walks and using the teleport could be better.";
 					now mb-mb-not is 0;
 	if add-to > 7:
 		now add-to is 7;
@@ -1588,9 +1588,13 @@ blurb
 "An ad hoc politician discusses the proposed 'stupid tax,' and if it should apply to people who don't use their smarts for social good like clever conversations, too."
 "An ambulance flashes by. Seconds later, you hear 'Learning pills!' 'Overdose? Or mixed with memory pills?' then a side argument whether those things work."
 "An argument between freelance grammar and pronunciation police includes constant interruptions."
+"An athletic type does a backflip going up a transport tube. Show-off! You...you've always kind of wanted to try, you admit."
 "'Attention citizens! Public transport to the New Wessewn sector has been discontinued until further notice.'"
+"'Attention Threediopolis gamblers! The casino at sector [unreachable] is now offering games with 101% returns on bets to frequent customers! Maximum wagers strictly enforced.'"
 "'Attention Threediopolis walkers! Would you like to afford a car to tune out announcements like these? The Department of Commerce can help...'"
+"'Free freeze-dried ice cream to anyone passing through sector [unreachable] today!'"
 "A cheery voice announces: 'Attention potential scofflaws! One-way sidewalks delegitimize jaywalking, except in extreme emergencies!'"
+"'Let's all appreciate the achievements of sector [unreachable], which has had a 30% drop in loitering and vagrancy over the past month!'"
 "A computer executive recalls how he hazed a new worker over dire threats of Y2K1 bugs. Hilarious stuff!"
 "'Dad, was Grampa more annoying than you when he said you kids don't know how easy you have it?'"
 "A Department of Revenue camera flashes--prima facie evidence a pedestrian finished crossing the street too late--and an audio-ad gives financial service advice for people with trouble paying tickets."
@@ -1636,6 +1640,7 @@ blurb
 "Someone laughs at an idiot who doesn't understand the one-page proof of Fermat's Last Theorem that was found way back in 2075."
 "Someone mentions lots and lots of sexualities are still really repressed out there, and if you don't think so, you need to shut up."
 "Someone mentions the unfairness of sneaky tax loopholes like that Ed Dunn might find."
+"Someone mutters, if you've never been to sector [unreachable], you've never LIVED, man."
 "Someone on their way to a sensory deprivation tank laughs at paper books when you can have online multimedia."
 "Someone playing a popular logic game on his NetFone whines it's just crunching numbers. Someone else playing the same game bemoans a quirky lateral-thinking solution."
 "Someone rails against a puzzle in a silly logic game that can be solved by cultural knowledge or brute force. Each solution is stupid! Plus, it's also all too meta."
@@ -1662,6 +1667,7 @@ blurb
 "Two particularly annoying foodies berate, equally, an Escherville style restaurant in Threediopolis and a Threediopolis style restaurant in Escherville."
 "Two people argue over whether 2100 is the 21st or 22nd century, but they do agree they're sick of politicians and salesmen talking of the new century and beyond, already."
 "Two people debate the science of stretching out before a long walk or lots of exercise, or the latest diet. Then they dismiss the stock market as pure luck."
+"Two runners discuss the yearly around-the-city-edge marathon and strategies for when to take the transport tubes up."
 "Two smart kids wonder why ANYONE would root for a sports team not owned by sabermetrically-inclined techsters."
 "Two ten year olds discuss the big sudoku quiz in tomorrow's math class and how losers who brute force it will fail."
 "Two women discuss how the creaky old Bechdel test isn't nearly adequate enough any more for gender fairness in games, especially if the games are kind of meta."
@@ -1674,10 +1680,63 @@ blurb
 "You pass two oldsters violently arguing WHY the good old days were better."
 "You quickly run past someone with a monotonous-looking 'SLEEP: THE TAX OF LIFE' pamphlet. Then someone with a new-age dream-control book."
 "You reflect on studies showing how much of your life advertising eats, and you wonder if that accounts for people complaining about or repeating particularly memorable ads, too."
+"You run across someone you're physically attracted to. And they're intelligent, too! After a bit of chat, they mention they live in sector [unreachable] and you should stop by when you get the chance."
 "You run away from an annoying unfair conversation about why smart people suck--straight into one about how dumb people suck."
 "You see a penny. No, it's a gag penny, since the date's after 2080."
 "You walk by opposing heated demonstrations of corporate versus charity shills, then of two antiviolence factions."
 "You're stuck behind someone babbling into their NetFone for a bit--moving ahead of them, you'd hear the conversation worse."
+
+to say unreachable:
+	let x be 0;
+	let y be 0;
+	let z be 0;
+	let poss-go be 1;
+	let W be a random number from 1 to 129; [this is really being nitpicky about the numbers, but the bottom right has 4 possibilities, the adjacent 3 have 10, the next have 20, and the final has 35, and so we want to weight the probability of hitting each so that each unreachable zone is equally likely. The zones are 1-4 5-14 15-24 25-44 44-4 55-74 75-94 95-129.]
+	if W > 44:
+		now z is 9;
+		increment poss-go;
+	if W > 74:
+		now y is 9;
+		increment poss-go;
+	else if W > 14 and W < 45:
+		now y is 9;
+		increment poss-go;
+	let W2 be (W - 5) / 10;
+	if W2 is 1 or W2 is 4 or W2 is 7 or W2 is 8:
+		do nothing;
+	else:
+		now x is 9;
+		increment poss-go;
+[	say "[z][y][x]'s corner (<[poss-go]): ";]
+	let Q1 be ((poss-go + 1) * (poss-go + 2) * (poss-go + 3)) / 6;
+	let Q be a random number from 1 to Q1;
+	let Q2 be lev of Q;
+	let R be (Q2 * (Q2 + 1) * (Q2 - 1)) / 6;
+	let R2 be Q - R;
+	if z is 0:
+		say "[poss-go + 1 - Q2]";
+	else:
+		say "[9 - (poss-go + 1 - Q2)]";
+	let R3 be 0;
+	repeat with tri running from 1 to 6:
+		now R3 is R3 + tri;
+		if R3 >= R2:
+			if Y is 0:
+				say "[Q2 - tri]";
+			else:
+				say "[9 - (Q2 - tri)]";
+			if X is 0:
+				say "[R3 - R2]";
+			else:
+				say "[9 - (R3 - R2)]";
+			break;
+
+to decide what number is lev of (Q - a number):
+	let R be 6 * Q;
+	repeat with X running from 1 to 10:
+		if X * X * X > 6 * Q:
+			decide on X - 1;
+	decide on 0;
 
 observies-flip is a truth state that varies.
 
@@ -1715,7 +1774,7 @@ check waiting:
 			now waits-in-a-row is 0;
 			now already-slept is true;
 			reset-game instead;
-		say "The anti-vagrant/loiterer droids are rougher with you this time. You barely manage to chuck Ed Dunn's paper down a garbage vaporizer before you are locked in a poor house cell for a month. (Fourth wall time: on the bright side, this is about the only chance you get to UNDO.)";
+		say "The anti-vagrant/loiterer droids are rougher with you this time. You barely manage to chuck Ed Dunn's paper down a garbage vaporizer before you are locked in a poor house cell on an obscure side-street in sector [unreachable] for a month. (Fourth wall time: on the bright side, this is about the only chance you get to UNDO.)";
 		now oopsy-daisy is 1;
 		end the story instead;
 	if waits-in-a-row is 2:
@@ -1858,9 +1917,9 @@ to tally-and-place:
 	let A be indexed text;
 	now A is your-tally;
 	repeat with Q running through things in outside-area:
-		if Q is not player:
+		if Q is not player and Q is not transport tubes:
 			now Q is off-stage;
-		say "As you walk by, you reflect you can always find the [Q] later, if you'd like.";
+			say "As you walk by, you reflect you can always find the [Q] later, if you'd like.";
 	if player does not have book of top secret:
 		repeat through table of findies:
 			if A is tally entry in lower case:
@@ -2679,6 +2738,7 @@ instead of entering a quasi-entry:
 				now task-list is super-alpha;
 				sort the table of findies in tally order;
 				define-row-starts;
+				now need-to-redraw is true;
 				reset-game instead;
 		say "You loaf around a bit, worried about facing Ed Dunn, but the guard at the door doesn't seem to want you to hang around. Go in?";
 		unless the player consents:
@@ -2916,7 +2976,7 @@ to super-alpha-it: [major list manipulation]
 							say "[lb]  ";
 						now hpos is number of characters in descrip entry + 9 + number of characters in "[nearness of tally entry]";
 					if in-header is true or localrow is inline:
-						say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][twistrate of twistiness entry])";
+						say "[descrip entry]@[sector-num of tally entry] ([nearness of tally entry][if you-can-twist][twistrate of twistiness entry][end if])";
 	if in-header is true:
 		if thisheaderbreak + 1 < maxalphrows:
 			now maxalphrows is thisheaderbreak + 1;
