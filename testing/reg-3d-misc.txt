@@ -35,21 +35,6 @@ cancel the rest
 
 Yes, indeed. the game map has 3 axes
 
->j
-Jump mode is on
-
->j
-Jump mode is off
-
->c
-All commands are case insensitive
-
->k
-Nothing familiar enough
-
->f
-Pals:
-
 >p
 Pushing the button would be kind of pointless here. Well, technically, here and now.
 
@@ -66,6 +51,9 @@ very richest people
 >n
 >p
 Your trusty teleporter kicks you back to the not-quite-center of the city.
+
+>x me
+enzymes. At a garbage plant
 
 >about
 then got so lazy I saw
@@ -92,3 +80,196 @@ You hear a familiar buzzing of droids in the distance.
 
 >z
 droids are rougher with you this time
+
+* 3d-one-letter
+
+>
+Still got a good list
+
+>a
+Being a messenger
+
+>b
+Being a messenger
+
+>g
+That would actually make getting around
+
+>c
+All commands are case insensitive
+
+>f
+Pals:
+
+>h
+You may notice
+
+>h
+Try for the least
+
+>h
+employer's name
+
+>h
+Or his clue
+
+>h
+more than one entry
+
+>h
+355 is the best one
+
+>h
+There are six ways
+
+>h
+Last clue before spoiler
+
+>h
+NSEWUD
+
+>h
+Which are one-letter directions.
+
+>h
+The way to get to them
+
+>h
+stumped on individual puzzles
+
+>h
+stumped on individual puzzles
+
+>dee
+>i
+really should knock
+
+>k
+
+>h
+Every few fruitless
+
+>hh
+Hints removed.
+
+>hh
+Hints restored.
+
+>j
+Jump mode is on
+
+>j
+Jump mode is off
+
+>k
+Nothing familiar enough
+
+>l
+journey is useless
+
+>l
+journey that's endless!
+
+>o
+You glance at the extra near line.
+
+>den
+>k
+No need to be so formal
+
+>i
+>dew
+>i
+>dns
+>i
+>edu
+>i
+>end
+>k
+>nes
+>i
+>see
+>i
+>sew
+>i
+>sun
+>i
+
+>o
+You click your tongue
+
+>q
+Quick mode is now on
+
+>q
+Quick mode is now off
+
+>r
+Header now shows first task list element.
+
+>r 13
+cutting down to 9 rows
+first 9 task list elements.
+
+>r 7
+first 7 task list elements.
+
+>y
+The y-axis is north or south.
+
+* 3d-seens
+
+> see new seens
+No, you're off the clock.
+!Back at
+!Threediopolis,
+
+> see new seens
+You don't need this command
+
+>i
+a WWEDD bracelet
+an invitation from the Sneeds
+
+>x wwedd
+What would Ed Dunn do?
+
+>remove bracelet
+Certainly not
+
+>drop all
+Littering is no good
+
+>x sneeds
+Sick of looking at Threediopolis
+
+>x
+DUDE-
+
+>xx
+>x
+
+DUDE,
+
+>x 2
+(temporarily reading just row 2)
+
+>x 12
+Below are rows 1 to 2
+
+>x 1 2
+Below are rows 1 to 2
+
+>x 8
+need to start at
+
+>x 1 8
+You can read rows 1-
+
+>x 0 6
+You can read rows 1-
+
+>n
+>see new seens
+>undo
+OK, this gets rid

@@ -328,6 +328,7 @@ after reading a command:
 			now spacedashwarn is true;
 		replace the regular expression "(<\d>+)<\p\s>+(<\d>+)" in locom with "\1\2";
 		change the text of the player's command to locom;
+		say "New command: [locom].";
 
 spacedashwarn is a truth state that varies.
 
@@ -590,13 +591,15 @@ to reset-game:
 		now add-to is 7;
 	if taskdone >= 3 or player has book of top secret things:
 		increase plus-ticker by add-to;
+	if number of characters in your-tally > 0:
+		now say-back is true;
 	now your-tally is "";
 	now all visible quasi-entries are off-stage;
 	now ignore-susp is false;
 	if door to ed is visible:
 		now door to ed is off-stage;
-	now say-back is true;
-	move player to outside-area;
+	if say-back is true:
+		move player to outside-area;
 	if hint-block is false and just-found is false:
 		consider the try-a-hint rule;
 		if the rule succeeded:
@@ -1016,7 +1019,7 @@ Rule for printing a parser error when the latest parser error is the didn't unde
 		-- E. B. White, Stuart Little";
 
 to say reject:
-	say "Being a messenger, you don't have much more to do than go in the six basic directions (transport tubes make going up and down easy.) Or enter places. Maybe knock. Nothing fancy. Type C to see everything you can do."
+	say "Being a messenger, you don't have much more to do than go in the six basic directions (transport tubes make going up and down easy.) Or enter places. Maybe knock. Nothing fancy. Type [bold type]C[roman type] to see everything you can do."
 
 chapter cing
 
@@ -1224,16 +1227,24 @@ book dropping
 instead of dropping:
 	if noun is task-list:
 		say "Drop the task list? But it has all the clues of what you need to do!";
-	else if noun is device:
+	else if noun is book of top secret things:
+		say "That'd be dangerous and wrong to leave lying around.";
+	else if noun is bracelet:
+		try taking off bracelet instead;
+	else if noun is pocket teleporter device:
 		say "No way! Those things are valuable.";
 	else if noun is mysterious package:
 		say "You'd be flaking out at your job, doing that. No way!";
+	else if noun is invitation from the Sneeds:
+		say "No way! They're really nice. And the invitation is, too.";
 	else if noun is the player:
 		say "Hmm, no.";
 	else if noun is carried or noun is held:
 		say "Littering is no good.";
 	else:
-		say "You probably can't take that, much less drop it."
+		say "You probably can't take that, much less drop it.";
+	if debug-state is true:
+		say "Results for [noun].";
 
 does the player mean dropping the task-list: it is very likely.
 
@@ -1357,6 +1368,8 @@ carry out x0ing:
 	if a is 0:
 		if b < 1 or a > listrows:
 			say "You can read rows 1-[listrows]." instead;
+		if b > listrows:
+			say "You need to start at [listrows] or lower." instead;
 		now ot1 is begin-rows;
 		now ot2 is end-rows;
 		now begin-rows is b;
@@ -1399,9 +1412,17 @@ to decide what number is listrows:
 		decide on 6;
 	decide on 7;
 
-chapter button
+chapter teleporter device
 
-description of the pocket teleporter device is "It's got a button you can push. You're reminded how, with so many buttons to push in Threediopolis, the letter 'p' is a verb meaning 'push the button.'";
+description of the pocket teleporter device is "It's got a button you can push. You're reminded how, with so many buttons to push in Threediopolis, the letter [bold type]P[roman type] is slang for 'push the button.'"; [NOTE: it must be referred to as the teleporter device, not the device, as a device is a sort of thing in inform]
+
+instead of switching on teleporter device:
+	try pushing the button instead;
+
+instead of pushing teleporter device:
+	try pushing the button instead;
+
+section button
 
 the button is part of the pocket teleporter device.
 
@@ -1426,12 +1447,6 @@ check pushing the button:
 	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2085. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
 	reset-game instead;
 
-instead of switching on teleporter device:
-	try pushing the button instead;
-
-instead of pushing teleporter device:
-	try pushing the button instead;
-
 chapter ping
 
 ping is an action applying to nothing.
@@ -1442,8 +1457,6 @@ understand "p" as ping.
 
 carry out ping:
 	try pushing the button instead;
-
-chapter teleporter device
 
 chapter mysterious package
 
@@ -2438,8 +2451,8 @@ carry out hinting:
 	if player has book of top secret things:
 		say "[one of]The book of top secret things is totally alphabetized from the start (the rows are locations starting with D, E, N, S, U and W,) but you can and probably should also keep a chunk of it on top with R (1-9). HINT again to find about the shortest places to go for hints. They can clue farther-away places.[or]Twistiness is also a big help, if you understand what it is. You may wish to take time to figure twistiness from the clues you saw when helping Ed Dunn. If you can pick off a few other clues, it may help, too. Twistiness is not intended to be complex, so don't overthink it.[or]Try to focus on items with negative twistiness at first--even if you haven't figured what it is, yet! For instance, [dds-dnd]. These are a lot like the original game.[or]You can also see Ed's old friends for less regimented hints. HINT again for twistiness.[or]Twistiness is just the number of unique directions you need to go to find the location, though not the actual bends. So EEW and EWE would have the same twistiness. HINT again tells about spelling.[or]Some names are misspelled, here. You may need to pronounce them and slightly de-misspell, and they won't be as transparent as WEENEES and SEEWEED, but once you pick off the less difficult scenery, the more difficult ones must be in a certain alphabetical range, which will help you.[or]That's all the hints. HINT will cycle through again.[cycling]" instead;
 	if edtasks + pals is 0:
-		say "[one of]You may notice that traveling to some areas that have a task shows nothing. Maybe it is how you get there that is important. [italic type][bracket]Note--there'll be a few more hints. But it'll be more fun if you figure it out. Hopefully.[close bracket][roman type][line break][or]Try for the least difficult tasks first. Remember, you always push the button to get back into the center.[or]You may want to consider your employer's name, Ed Dunn. It's a potential clue.[or]Or his clue that it's how you get there that matters, too.[or]You may want to focus on addresses with more than one entry--in particular, addresses the same distance away.[or]355 is the best one, with everyone so near.[or]There are six ways to get there in three moves.[or]Last clue before spoiler: your friends['] names are Dee, Des, Ewen, Ned, Sue, Swen, Wendee, Wes and Uwe. These names have something in common with Ed Dunn.[or]They all contain the letters NSEWUD and no others.[or]Which are one-letter directions.[or]The way to get to them is how you spell them.[or]If you're really stumped on individual puzzles, [3d-logic] provides the logic. The source code should be released post-comp.[stopping]" instead;
-	say "Every few fruitless explorations should give you a hint. You can toggle these progressive in-game hints with the HH command.[paragraph break]The logic file with this game or at [3d-logic] is probably better for that list should tell you the easiest, or shortest, remaining task, and also, two of the places have hints on the side[news-hint]." instead;
+		say "[one of]You may notice that traveling to some areas that have a task shows nothing. Maybe it is how you get there that is important. [italic type][bracket]Note--there'll be a few more hints. But it'll be more fun if you figure it out. Hopefully.[close bracket][roman type][line break][or]Try for the least difficult tasks first. Remember, you always push the button to get back into the center.[or]You may want to consider your employer's name, Ed Dunn. It's a potential clue.[or]Or his clue that it's how you get there that matters, too.[or]You may want to focus on addresses with more than one entry--in particular, addresses the same distance away.[or]355 is the best one, with everyone so near.[or]There are six ways to get there in three moves.[or]Last clue before spoiler: your friends['] names are Dee, Des, Ewen, Ned, Sue, Swen, Wendee, Wes and Uwe. These names have something in common with Ed Dunn.[or]They all contain the letters NSEWUD and no others.[or]Which are one-letter directions.[or]The way to get to them is how you spell them.[or]If you're really stumped on individual puzzles, the game package should contain a logic document and a straight walkthrough. You can also read the source. All this should also be at [repo].[stopping]" instead;
+	say "Every few fruitless explorations should give you a hint. You can toggle these progressive in-game hints with the HH command.[paragraph break]The logic file with this game or at [repo] is probably better for figuring what to do, though you can also enter an empty command.  list should tell you the easiest, or shortest, remaining task, and also, two of the places have hints on the side[news-hint]." instead;
 	the rule succeeds;
 
 to say 3d-logic:
@@ -2808,7 +2821,7 @@ carry out examining the task-list:
 		now ok-now is true;
 	if list-in-status is false and toggle-suppress is false:
 		say "[line break]";
-		say "[italic type][bracket]NOTE: You can put this in the header with t, though it is not recommended with Parchment, or you can toggle this warning with tt. You can also track just friends with f (ff puts this in the header), you can see the topmost line with o (oo puts it in the header) or push r (number) to put the first (#) clues in the header--rr or r displays just #1. X (#) or (##) shows one line or a series--you're currently seeing [begin-rows] to [end-rows].[close bracket][roman type][line break]";
+		say "[italic type][bracket]NOTE: You can put this in the header with t, or you can toggle this warning with tt. You can also track just friends with f (ff puts this in the header), you can see the topmost line with o (oo puts it in the header) or push r (number) to put the first (#) clues in the header--rr or r displays just #1. X (#) or (##) shows one line or a series--you're currently seeing [begin-rows] to [end-rows].[close bracket][roman type][line break]";
 	the rule succeeds;
 
 thestring is indexed text that varies.
