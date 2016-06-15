@@ -43,6 +43,7 @@ to debug-say (tt - text):
 
 section get rid of default verbs
 
+understand the command "kiss" as something new.
 understand the command "rub" as something new.
 understand the command "burn" as something new.
 understand the command "stand" as something new.
@@ -62,11 +63,11 @@ check attacking:
 		say "No, it's kind of cool in an ironic sort of way." instead;
 	if player carries the noun:
 		if noun is availableometer or noun is adrift-a-tron:
-			if charges of noun is 0:
+			if a-charges is 0:
 				say "You should recycle it later. Or get it recycled." instead;
 		say "No, it should be useful. Sorry if you're a bit frustrated!" instead;
 	if noun is a quasi-entry:
-		say "Force is neither necessary nor appreciated." instead;
+		say "Force is neither necessary nor appreciated. Just [if noun is front door]knock[else]go in[end if] instead." instead;
 	say "Vandalism is an easy crime to detect and prosecute. Camera technology, etc." instead;
 
 section debug extensions - not for release
@@ -82,10 +83,10 @@ the first begin play rule is listed first in the when play begins rules.
 when play begins (this is the first begin play rule):
 	now debug-state is true;
 
-every turn (this is the debug-tracking rule):
-	[say "[thestring]";]
+[every turn (this is the debug-tracking rule):
+	say "[thestring]";
 	do nothing.
-	[say "[your-tally].";]
+	say "[your-tally].";]
 
 Include (- Switches z; -) after "ICL Commands" in "Output.i6t".
 
@@ -315,11 +316,12 @@ after reading a command:
 				now my-table is table of scenery;
 				now list-in-status is false;
 				reset-game;
+				increment the turn count;
 				the rule succeeds;
 			dirparse locom;
 			the rule succeeds;
 	let w1 be word number 1 in locom;
-	if the w1 is "g" or w1 is "again":
+	if w1 is "g" or w1 is "again":
 		say "That would actually make getting around in Threediopolis more complex. Because you can't really move from there to here, again, or not that way[if edtasks + pals < 3]. You'll understand once you find a few things--it'd just allow all kinds of extra crazy [italic type]guesses[roman type][else]. Most of the fun stuff would begin with G, though EGGS and DUNG would be left, which is not so fun[end if]. Using one-word directions should be quick enough.";
 		reject the player's command;
 	if locom matches the regular expression "<\d>+<\p\s>+<\d>+":
@@ -348,23 +350,23 @@ rule for deciding whether to allow undo:
 	if oopsy-daisy > 0 and oopsy-daisy <= number of rows in table of undo-msgs:
 		choose row oopsy-daisy in table of undo-msgs;
 		say "[ok-all-right entry][line break]";
-		if can-undo entry is true:
-			allow undo;
-		else:
+		if oopsy-daisy is 5 or oopsy-daisy is 4: [hard-coded to save memory. You can't undo using the adrift-a-tron. There used to be a can-undo entry.]
 			deny undo;
+		else:
+			allow undo;
 	otherwise:
 		say "Undeeds won't get you back to where you were. In fact, that's sort of why Ed Dunn hired you[one of]. [italic type][bracket]Fourth wall note: you can undo if you get killed, or you make a truly drastic decision to change cheat devices, but otherwise, you can't. Just push the button on your device to reset your wanderings instead[roman type].[close bracket][roman type][line break][or].[stopping]";
 		deny undo;
 
 table of undo-msgs
-ok-all-right	can-undo
+ok-all-right
 "Okay, I'll pretend you didn't wait around too long." [zzz]
 "Okay, I'll pretend you didn't want to complete the game just yet." [win the game]
 "Okay, I'll let you back away from the egress." [END]
-"Okay, I'll let you undo the cheat and choose something else." [get availableometer/adrift-a-tron]
-"It's a pretty cool cheat-tool, but it's not THAT cool."	false	[backtracking for availableometer/adrift-a-tron]
+"No device is a make-or-break cheat." [get availableometer/adrift-a-tron]
+"It's a pretty cool cheat-tool, but it's not THAT cool."	[backtracking for availableometer/adrift-a-tron]
 "Okay, the Sneeds will be glad to wait for you. Even if they caught you lurking around (and they won't,) they'd chalk it up to shyness or whatever!" [Sneeds]
-"OK, this gets rid of the book of secrets til later." [undo getting book of secrets]
+"Okay, this gets rid of the book of secrets til later." [undo getting book of secrets]
 
 book when play begins
 
@@ -405,21 +407,18 @@ when play begins (this is the table tweaking and checking and randomizing rule):
 			now breakbefore entry is 0;
 		if there is no unlist entry:
 			now unlist entry is false;
-		if there is no descrip entry:
-			say "BUG [tally entry] needs descrip.";
+[		if there is no descrip entry:
+			say "BUG [tally entry] needs descrip.";]
 	repeat through table of scenery:
 		if there is no found entry:
 			now found entry is 0;
-		if there is no descrip entry:
-			say "BUG [tally entry] needs descrip.";
-	repeat through table of nearlies:
+[		if there is no descrip entry:
+			say "BUG [tally entry] needs descrip.";]
+[	repeat through table of nearlies:
 		if there is no found-yet entry:
-			now found-yet entry is false;
-		if there is no descrip entry:
-			say "BUG [tally entry] needs descrip.";
-	repeat through table of undo-msgs:
-		if there is no can-undo entry:
-			now can-undo entry is true;
+			now found-yet entry is false;]
+[		if there is no descrip entry:
+			say "BUG [tally entry] needs descrip.";]
 	if a random chance of 1 in 2 succeeds:
 		now dee-male is true;
 	assign-plurals;
@@ -442,10 +441,8 @@ to choose-next-zag:
 	now next-zag is A * 10;
 	increase next-zag by a random number from 2 to 10;
 
-to decide which number is letfound of (myt - text):
+to decide which number is letfound of (zzz - indexed text):
 	let temp be 0;
-	let zzz be indexed text;
-	now zzz is "[myt]";
 	if zzz matches the text "e", case insensitively:
 		increment temp;
 	if zzz matches the text "u", case insensitively:
@@ -487,8 +484,8 @@ to endgame-process:
 			say "[eval entry][line break]";
 			end the story;
 			continue the action;
-	say "'[if county of youish is maxy of youish]It's good to see you did all the fun stuff I put in there. I like fun[else]You could've done a little more fun stuff, no guilt[end if].'[paragraph break]Ed hands you some stuff: ";
-	say "[if 3 * county of stuffly >= 2 * maxy of stuffly]a Yankees world champs t-shirt from before their 90-year drought[else]an antique zip drive[end if], ";
+	say "'[if county of youish is maxy of youish]It's good to see you did all the fun stuff I put in there. I like fun[else]You could've done a little more fun stuff, no guilt[end if].'[paragraph break]Ed hands you some cool junk: ";
+	say "[if 3 * county of stuffly >= 2 * maxy of stuffly]a New York Yankees world champs t-shirt from before those lovable losers['] 90-year drought[else]an antique zip drive[end if], ";
 	say "[if 3 * county of party >= 2 * maxy of party]a big block of dehydrated beer[else]a canister of your least favorite flavor of powdered fruit punch[end if], ";
 	say "[if 3 * county of biz >= 2 * maxy of biz]a little extra for helping his business run smoothly[else]a Round Tuit to help you be a bit more business-minded[end if], and a ";
 	say "[if 3 * county of relax >= 2 * maxy of relax]CD--yes, a CD--of games Ed assures you are awesome, by some Andrew Schultz guy[else]download code for game 14 in a series that's been stale since #2[end if]. ";
@@ -534,10 +531,10 @@ nyuk
 "swearing?"
 "Entering the ominous door and ignoring the warning[door-warn]?"
 "Z 3 times in a row? Then trying it again?"
-"Standard commands like jump/sing (before and after solving a few puzzles)/wave? Oh, XYZZY, too."
+"SING (before/after solving a few puzzles) or XYZZY?"
 "Not answering YES or NO to Ed Dunn four times in a row? (He reacts differently to multi-, one- and zero- word responses.)"
 "Visiting Ed Dunn with no tasks done? 1, 4, 7, 10, then every 4 give different responses."
-"Just searching through the source code for the table of scenery (for to[if 1 is 1][end if]ss) and table of nearlies (source available on ifarchive.org) to learn all the 'funny' hidden places at once?"
+"Just searching through the source code (^table of (scenery|nearlies) regular expression) to learn all the 'funny' hidden places at once?"
 
 to decide what number is eggsfound:
 	let ef be 0;
@@ -590,7 +587,8 @@ to reset-game:
 	if add-to > 7:
 		now add-to is 7;
 	if taskdone >= 3 or player has book of top secret things:
-		increase plus-ticker by add-to;
+		if just-found is false:
+			increase plus-ticker by add-to;
 	if number of characters in your-tally > 0:
 		now say-back is true;
 	now your-tally is "";
@@ -605,16 +603,18 @@ to reset-game:
 		if the rule succeeded:
 			if hint-ever-block is false:
 				now hint-ever-block is true;
-				say "[line break]";
-				say "[italic type][bracket]NOTE: you can toggle hints like this by typing hh.[close bracket][roman type][line break]";
+				say "[line break][italic type][bracket]NOTE: you can toggle hints like this by typing hh.[close bracket][roman type][line break]";
 	now just-found is false;
 	if taskdone is 19 + force-ed-point:
 		if ed-happy-test is false:
-			say "Hmm. You think Ed would be relatively happy enough with what you've done. He mentioned he didn't need perfection. You could probably go see him [if ed-happy-test is false]again [end if]any time, now.[line break]";
+			say "Hmm. You think Ed would be relatively happy enough with what you've done. He mentioned he didn't need perfection. [go-see-ed].[line break]";
 			now ed-happy-test is true;
 			continue the action;
 	if taskdone is 45 - force-ed-point:
-		say "Hmm. You've got 90% done. That should be enough for Ed. You hope. There may be some obscure tasks (err, 'stretch goals') in there. You could probably go see him [if ed-happy-test is false]again [end if]any time, now.[if force-ed-point is 1][paragraph break][end if]";
+		say "Hmm. You've got 90% done. That should be enough for Ed. You hope. There may be some obscure tasks (err, 'stretch goals') in there. [go-see-ed].[if force-ed-point is 1][paragraph break][end if]";
+
+to say go-see-ed:
+	say "You could probably go see him [if ed-happy-test is false]again [end if]any time, now"
 
 this is the plural-almost rule:
 	let needplurals be 0; [I can make this a function, I know]
@@ -682,7 +682,7 @@ this is the try-scen-hint rule:
 		if found entry is 0 and twistiness entry < 3:
 			increment temp;
 	if temp > 0:
-		say "Feeling a bit stuck, you consider finding the least twisty place[if temp > 1]s[end if] remaining[if temp > 1], or close to it. You count [temp] total[end if].";
+		say "Feeling a bit stuck, you consider finding the least twisty place[if temp > 1]s[end if] remaining[if temp > 1], or close to it. You count [temp in words] total[end if].";
 		if temp is 1:
 			repeat through table of scenery:
 				if twistiness entry < 3 and found entry is 0:
@@ -695,10 +695,7 @@ this is the try-scen-hint rule:
 			increment temp;
 	if temp > 0:
 		if temp is 1 and found corresponding to a tally of "wenewenew" in table of scenery is 0:
-			now hint-long is 1 - hint-long;
-			if hint-long is 1:
-				say ", which looks long, but the clue [one of]may help[or]looks symmetrical, hmm[stopping].";
-				the rule succeeds;
+			say "[one of], which looks long, but the clue [one of]may help[or]looks symmetrical, hmm[stopping][or][stopping].";
 		else:
 			say "[if temp > 1]. This is one of [temp in words] such left[end if].";
 		the rule succeeds;
@@ -708,7 +705,7 @@ this is the try-scen-hint rule:
 		the rule succeeds;
 	let temp be found corresponding to a tally of "dunse" in table of scenery + found corresponding to a tally of "swune" in table of scenery;
 	if temp < 2:
-		say "Hm. There's [if temp is 0]those[else]that[end if] stupid misspelled very twisty one[if temp is 2]s[end if], near. But--you can work out what direction you don't have to go. That must be a help.";
+		say "Hm. There's [if temp is 0]those[else]that[end if] stupid misspelled very twisty one[if temp is 0]s[end if], near. But--you can work out what direction you don't have to go. That must be a help.";
 		the rule succeeds;
 	let temp be found corresponding to a tally of "seduse" in table of scenery;
 	if temp is 0:
@@ -718,9 +715,9 @@ this is the try-scen-hint rule:
 	if temp is 0:
 		say "You just sort of let it happen, and you think you see the ways to get to the kinda near place at 546. The order...it can't be TOO hard.";
 		the rule succeeds;
-	let temp be (4 * found corresponding to a tally of "sweenee" in table of scenery) + (2 * found corresponding to a tally of "sweenee" in table of scenery) + found corresponding to a tally of "sweenee" in table of scenery;
+	let temp be found corresponding to a tally of "sweenee" in table of scenery;
 	if temp is 0:
-		say "You recall the hot dog stand[if temp > 3] and the guy's name. He'd just moved[else if temp is 3] and its imitators but not its original location[else if temp is 0] and are sure it's had imitators and it also had to move[else] and guess there's probably one more imitator[end if].";
+		say "You recall the misspelled hot dog stand. It was somewhere else before, you're sure.";
 		the rule succeeds;
 	let temp be found corresponding to a tally of "sundew" in table of scenery;
 	if temp is 0:
@@ -749,15 +746,13 @@ this is the try-scen-hint rule:
 	say "Well, this kind of stinks. You're on a real cold streak. Maybe you can figure what to do by looking at your list. Maybe somewhere will make sense that didn't before you found a few other places. The list's getting pretty alphabetized.";
 	the rule fails;
 
-hint-long is a number that varies.
-
 this is the try-ed-hint rule:
 	let bool be false;
 	let found-this-time be 0;
 	unless cheat-ticker is true:
 		if taskdone < 3:
 			increment zero-ticker;
-			if zero-ticker is 3:
+			if zero-ticker > 2:
 				say "[one of]You flash back to Ed Dunn's voice booming through your head: 'It's not just where you go but how you get there!' Maybe you can try hitting some of the nearer locations until something turns up[or]You remember nightmares, from when you were a kid, of going one way then back to somewhere totally different[cycling].";
 				now zero-ticker is 0;
 				the rule succeeds;
@@ -775,7 +770,7 @@ this is the try-ed-hint rule:
 		the rule succeeds;
 	let acro be found corresponding to a tally of "Edu" in table of findies + found corresponding to a tally of "Dns" in table of findies + found corresponding to a tally of "Nes" in table of findies;
 	if acro < 3:
-		say "You pick up some static from the teleport device. Ed Dunn is babbling [if acro is 2]a[else]some[end if] three-letter acronym[unless acro is 2]s[end if] you feel half guilty for not understanding. Or not liking and not using. You know you've heard [if acro is 2]it[else]them[end if] before, though.";
+		say "[ed-stat] is babbling [if acro is 2]a[else]some[end if] three-letter acronym[unless acro is 2]s[end if] you feel half guilty for not understanding. Or not liking and not using. You know you've heard [if acro is 2]it[else]them[end if] before, though.";
 		the rule succeeds;
 	let sewing be found corresponding to a tally of "Sew" in table of findies + found corresponding to a tally of "Sewn" in table of findies + found corresponding to a tally of "Sewed" in table of findies;
 	if sewing < 3:
@@ -821,7 +816,7 @@ this is the try-ed-hint rule:
 			the rule succeeds;
 	let nunes be found corresponding to a tally of "Nudes" in table of findies + found corresponding to a tally of "Dunes" in table of findies + found corresponding to a tally of "Dudes" in table of findies;
 	if nunes < 3:
-		say "[one of]Static from the teleport device: Ed Dunn rants against his rival. Nunes, Nunes, Nunes[or]You wonder why Ed Dunn hated Nunes so much[stopping].";
+		say "[one of][ed-stat] ranting against his rival. Nunes, Nunes, Nunes[or]You wonder why Ed Dunn hated Nunes so much[stopping].";
 		the rule succeeds;
 	let uns be found corresponding to a tally of "Unused" in table of findies + found corresponding to a tally of "Unwed" in table of findies + found corresponding to a tally of "Unseen" in table of findies;
 	if uns < 3:
@@ -835,23 +830,26 @@ this is the try-ed-hint rule:
 		say "[if uns is 1]V[else if uns is 2]Both v[else]All v[end if]ery un-Ed.";
 		the rule succeeds;
 	if found corresponding to a tally of "Senses" in table of findies is 0:
-		say "You overhear some motivational-speak about how some people are more receptive to hearing, some to seeing, some to feeling.";
+		say "[ed-stat] motivational-speaking about how some people are more receptive to hearing, some to seeing, some to feeling.";
 		the rule succeeds;
 	if found corresponding to a tally of "Wedded" in table of findies is 0:
 		say "[one of]A very ecological limo tied with balloons and recyclable tin cans rattles by just as you pop back[or]You cringe, hoping that that limo won't reappear[stopping].";
 		the rule succeeds;
 	let dudsy be found corresponding to a tally of "UsedDuds" in table of findies + found corresponding to a tally of "NewDuds" in table of findies;
 	if dudsy < 2:
-		say "Interference from the teleport device has Ed talking about building on [if dudsy is 1]one more thing[else]a couple things[end if] you previously [dudsdid] to do something bigger.";
+		say "[ed-stat] jabbers about building on [if dudsy is 1]one more thing[else]a couple things[end if] you previously [dudsdid] to think bigger.";
 		the rule succeeds;
 	if found corresponding to a tally of "Seeweed" in table of findies is 0:
-		say "You overhear, over static from your transporter, Ed Dunn claiming [one of]Deedee likes the healthy stuff and the fried stuff. Gee[or]the green food he wants for his party is very un-, un-, hmm, no, that's not it. It's--organic, an extension of one concept, or a useful combination of two others[or]that DeWeese fellow is a culinary genius[cycling].";
+		say "[ed-stat] claiming [one of]Deedee likes the healthy stuff and the fried stuff. Gee[or]the green food he wants for his party is very un-, un-, hmm, no, that's not it. It's--organic, an extension of one concept, or a useful combination of two others[or]that DeWeese fellow is a culinary genius[cycling].";
 		the rule succeeds;
 	if found corresponding to a tally of "Weenees" in table of findies is 0:
-		say "You overhear Ed Dunn claiming a that hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.";
+		say "[ed-stat] claiming a that hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.";
 		the rule succeeds;
 	say "Well, this kind of stinks. You're on a real cold streak. Maybe you can figure what to do by looking at your list. Maybe somewhere will make sense that didn't before you found a few other places[random-hint].";
 	the rule fails;
+
+to say ed-stat:
+	say "[one of]Weird! Static from your transporter device. [or]You overhear, over static from your transporter, [stopping]Ed Dunn"
 
 to say dudsdid:
 	if found corresponding to a tally of "Duds" in table of findies is 0:
@@ -893,17 +891,7 @@ to dirsmack:
 before going (this is the don't waste my time with all those extra letters already now rule):
 	if word number 1 in the player's command in lower case is "go":
 		say "In these sped-up days, the word 'go' is superfluous. Unless you are in charge, like Ed Dunn.'" instead;
-	if the player's command matches the text "north", case insensitively:
-		dirsmack instead;
-	if the player's command matches the text "south", case insensitively:
-		dirsmack instead;
-	if the player's command matches the text "east", case insensitively:
-		dirsmack instead;
-	if the player's command matches the text "west", case insensitively:
-		dirsmack instead;
-	if the player's command matches the text "up", case insensitively:
-		dirsmack instead;
-	if the player's command matches the text "down", case insensitively:
+	if the player's command matches the regular expression "(north|south|east|west|up|down)", case insensitively:
 		dirsmack instead;
 
 chapter no noun needed
@@ -929,17 +917,18 @@ skip-index is a number that varies. skip-index is 1.
 
 to decide which number is ronum of (iitt - indexed text):
 	let locom be iitt in lower case;
-	if character number 1 in locom is "d", decide on 1;
-	if character number 1 in locom is "e", decide on 2;
-	if character number 1 in locom is "n", decide on 3;
+	let j be character number 1 in locom;
+	if j is "d", decide on 1;
+	if j is "e", decide on 2;
+	if j is "n", decide on 3;
 	if player has task-list and task-list is super-alpha:
-		if character number 1 in locom is "u", decide on 6;
-		if character number 1 in locom is "w", decide on 7;
+		if j is "u", decide on 6;
+		if j is "w", decide on 7;
 		if character number 2 in locom is "e", decide on 4;
 		decide on 5; [SE = 4, S* = 5]
-	if character number 1 in locom is "s", decide on 4;
-	if character number 1 in locom is "u", decide on 5;
-	if character number 1 in locom is "w", decide on 6;
+	if j is "s", decide on 4;
+	if j is "u", decide on 5;
+	if j is "w", decide on 6;
 	decide on 0;
 
 Rule for printing a parser error when the latest parser error is the I beg your pardon error:
@@ -961,7 +950,7 @@ Rule for printing a parser error when the latest parser error is the I beg your 
 	if scen-look-mode is true or look-mode is true:
 		say "The telescope is too distracting! It's so much higher-tech than your list, but you can leave by typing 0." instead;
 	if there is a visible quasi-entry:
-		if your-tally is not "see" and your-tally is not "eddunn" and your-tally is not "sneeds":
+		if your-tally is not "see" and your-tally is not "EdDunn" and your-tally is not "sneeds":
 			say "Something's right here! You can just [if front door is visible]knock[else]enter[end if]." instead;
 		say "There's something nearby, but you still pick something at random from your notes.";
 	increment skip-index;
@@ -1243,8 +1232,6 @@ instead of dropping:
 		say "Littering is no good.";
 	else:
 		say "You probably can't take that, much less drop it.";
-	if debug-state is true:
-		say "Results for [noun].";
 
 does the player mean dropping the task-list: it is very likely.
 
@@ -1554,11 +1541,6 @@ check listening:
 instead of eating:
 	say "Are you hungry for a meal, or a job that'll buy several of them? Get back to wandering.";
 
-the block kissing rule is not listed in any rulebook.
-
-instead of kissing:
-	say "You aren't looking for romance, here.";
-
 instead of climbing:
 	say "Why climb when there are transport tubes?"
 
@@ -1842,7 +1824,7 @@ bounds-warn is a truth state that varies.
 
 to say losted:
 	if ud is -1:
-		say "You hear a low buzz. You've gone too far below. Only maintenance works are allowed below ground";
+		say "You hear a low buzz. Only maintenance works are allowed below ground";
 	else if ud is 10:
 		say "You hear a high-pitched squealy tone. You've tried to go too far up, to the rich area--or, well, the private area people pay too much to live in, for status. A droid grabs your arm firmly and leads you to a transport vessel back to the center";
 	else:
@@ -2172,7 +2154,7 @@ section score-ranks
 
 table of sad endings [tse]
 stuff-i-did	eval
-1	"'Not up to it, eh? Geez, you found me, but some of these others woulda been easier to find. Well, I'll find else who else'll turn up.'"
+1	"'Not up to it, eh? Geez, you found me, but some of these others woulda been easier to find. Well, I'll find who else'll turn up.'"
 5	"'Bare minimum, eh? Well, here's a bare-minimum payment. Actually, pennies are kind of valuable, since we haven't made any new ones for a while.'"
 10	"'Hmph. Probably took more time coming here to quit than actually doing the tasks. Eh, well. Here, have an antique zip drive.'"
 15	"Ed Dunn hands you a bogus ID with high-level clearance. 'Don't worry, it's airtight. No way you can get busted. Look, if you are out of a job, this'll give you a little extra unemployment pay. Maybe even some disability pay. I mean, we have a lot of lazy people, but with computers being as important as they are these days, people who are able to game the system are more likely to be able to learn a computer job eventually. I don't know how you are with them, but I like you, kid, so I'm giving you this. It's got black market value, too.'"
@@ -2216,8 +2198,8 @@ check looking (this is the if command says L rule) :
 		say "[bold type]Speeding by sector [ud][ns][ew][roman type][line break]";
 		the rule succeeds;
 
-after choosing notable locale objects:
-	set the locale priority of sneed house to 0;
+[after choosing notable locale objects:
+	set the locale priority of sneed house to 0;]
 
 suspicious-guy-help is a truth state that varies.
 
@@ -2268,11 +2250,15 @@ after looking (this is the place ed's tasks rule) :
 	repeat through table of preclues:
 		if found entry is 0 and A is tally entry:
 			now found entry is 1;
+	let ignore-sneed be false;
 	repeat through table of scenery:
 		if A is tally entry:
 			if found entry is 2 or A is "sneeds":
 				if player has book:
-					move Sneed house to outside-area;
+					if Sneed house is in outside-area:
+						now ignore-sneed is true;
+					else:
+						move Sneed house to outside-area;
 			if found entry is 0:
 				now plus-ticker is 0;
 				if player has book:
@@ -2285,7 +2271,7 @@ after looking (this is the place ed's tasks rule) :
 				if player does not have book of top secret things:
 					say "[foundit entry][one of][paragraph break]But what you noticed doesn't seem practical, so you put it out of your mind as you continue pacing. Places you can't enter won't help you help Ed Dunn.[line break][or][line break][stopping]";
 				else:
-					say "[foundit entry][if scenery-found-yet is false][paragraph break][first-sc].[else][line break]";
+					say "[foundit entry][if scenery-found-yet is false][paragraph break][first-sc].[line break][else][line break][end if]";
 					now scenery-found-yet is true;
 					if misp-found is false and player has book of top secret:
 						say "You pat yourself on the back for finding this and mentally stick your tongue out at the person who beat you in a spelling bee years ago.";
@@ -2305,18 +2291,19 @@ after looking (this is the place ed's tasks rule) :
 				now plus-ticker is 0;
 				if found entry is -1:
 					now found entry is 2;
-				say "Oh man. It's the Sneeds['], again! Should you stop in?";
-				if the player consents:
-					let count be 0;
-					repeat through the table of scenery progress:
-						if eggsfound >= need-to-get entry:
-							increment count;
-					choose row count in the table of scenery progress;
-					say "[sneed-talk entry]";
-					end the story;
-					consider the shutdown rules instead;
-				else:
-					say "Okay. You drift on, walking away.";
+				if ignore-sneed is false:
+					say "Oh man. It's the Sneeds['], again! Should you stop in?";
+					if the player consents:
+						let count be 0;
+						repeat through the table of scenery progress:
+							if eggsfound >= need-to-get entry:
+								increment count;
+						choose row count in the table of scenery progress;
+						say "[sneed-talk entry]";
+						end the story;
+						consider the shutdown rules instead;
+					else:
+						say "You shuffle your feet nervously. Not yet, you guess, you think.";
 	repeat through table of nearlies:
 		if A is tally entry:
 			if there is a rule-to-reveal entry:
@@ -2443,9 +2430,9 @@ understand "h" and "hint" and "help" as hinting.
 
 to say dds-dnd:
 	choose row with tally of "dds" in table of scenery;
-	say "[if found entry is 1]the dental pain at 234 has an S and 2 D's[else]you found DDS at 234[end if], and ";
+	say "[if found entry is 0]the dental pain at 234 has an S and 2 D's[else]you found DDS at 234[end if], and ";
 	choose row with tally of "dnd" in table of scenery;
-	say "[if found entry is 1]the chaot. gam. soc. at 254 has an N and 2 D's[else]you found DND (D and D) at 254[end if]. The second is an example of the pronunciation munging you'll need to find the tougher scenery";
+	say "[if found entry is 0]the chaot. gam. soc. at 254 has an N and 2 D's[else]you found DND (D and D) at 254[end if]. The second is an example of the pronunciation munging you'll need to find the tougher scenery";
 
 carry out hinting:
 	if player has book of top secret things:
@@ -2454,9 +2441,6 @@ carry out hinting:
 		say "[one of]You may notice that traveling to some areas that have a task shows nothing. Maybe it is how you get there that is important. [italic type][bracket]Note--there'll be a few more hints. But it'll be more fun if you figure it out. Hopefully.[close bracket][roman type][line break][or]Try for the least difficult tasks first. Remember, you always push the button to get back into the center.[or]You may want to consider your employer's name, Ed Dunn. It's a potential clue.[or]Or his clue that it's how you get there that matters, too.[or]You may want to focus on addresses with more than one entry--in particular, addresses the same distance away.[or]355 is the best one, with everyone so near.[or]There are six ways to get there in three moves.[or]Last clue before spoiler: your friends['] names are Dee, Des, Ewen, Ned, Sue, Swen, Wendee, Wes and Uwe. These names have something in common with Ed Dunn.[or]They all contain the letters NSEWUD and no others.[or]Which are one-letter directions.[or]The way to get to them is how you spell them.[or]If you're really stumped on individual puzzles, the game package should contain a logic document and a straight walkthrough. You can also read the source. All this should also be at [repo].[stopping]" instead;
 	say "Every few fruitless explorations should give you a hint. You can toggle these progressive in-game hints with the HH command.[paragraph break]The logic file with this game or at [repo] is probably better for figuring what to do, though you can also enter an empty command.  list should tell you the easiest, or shortest, remaining task, and also, two of the places have hints on the side[news-hint]." instead;
 	the rule succeeds;
-
-to say 3d-logic:
-	say "http://www.ifarchive.org/if-archive/games/competition2013/zcode/threediopolis/logic.txt (or google threediopolis logic sheet if the archive is down)".
 
 to say news-hint:
 	choose row with a tally of "Suss" in table of findies;
@@ -2513,7 +2497,7 @@ carry out abouting:
 	the rule succeeds;
 
 carry out creditsing:
-	say "Thanks to (alphabetized by first name) DJ Hastings, Geoff Moore, Jim Warrenfeltz, Kevin Jackson-Mead, Melvin Rangasamy (who also provided I6 coding help), and Wade Clarke, who also designed the cover art that gave me a few extra ideas.[paragraph break]Heartless Zombie provided hash code for A Roiling Original, which, simplified, facilitated the user input here.[paragraph break]Olivia Pourzia, Hugo Labrande, Stephen Watson and Toby Ott provided advice for inter-comp releases. Runnerchild's review pointed out inconsistent hints. The people at ClubFloyd (12/29/13) made some wonderful observations of all kinds to help with this game's polish, and Emily Boegheim and Paul Lee sent transcripts and encouragement mid-IFComp 2013. Gráinne Ryan, Jason Lautzenheiser and Sean M. Shore helped with release 3m as did Jenni Polodna and Jimmy Maher's xyzzyreviews.org essays.[paragraph break]Tangential thanks to PERL creators/maintainers and more importantly the people who created and maintained Inform.[paragraph break]By the way, the source code and a logical walkthrough should be readily available if you want to get all the points for both regular and extended mode. I hope nothing is too obscure or unfair.";
+	say "Thanks to (alphabetized by first name) DJ Hastings, Geoff Moore, Jim Warrenfeltz, Kevin Jackson-Mead, Melvin Rangasamy (who also provided I6 coding help), and Wade Clarke, who also designed the cover art that gave me a few extra ideas.[paragraph break]Heartless Zombie provided hash code for A Roiling Original, which, simplified, facilitated the user input here.[paragraph break]Olivia Pourzia, Hugo Labrande, Stephen Watson and Toby Ott provided advice for inter-comp releases. Runnerchild's review pointed out inconsistent hints. The people at ClubFloyd (12/29/13) made some wonderful observations of all kinds to help with this game's polish, and Emily Boegheim and Paul Lee sent transcripts and encouragement mid-IFComp 2013. Gráinne Ryan, Jason Lautzenheiser and Sean M. Shore helped with release 3, as did Jenni Polodna and Jimmy Maher's xyzzyreviews.org essays.[paragraph break]Tangential thanks to PERL creators/maintainers and more importantly the people who created and maintained Inform.[paragraph break]By the way, the source code and a logical walkthrough should be readily available if you want to get all the points for both regular and extended mode. I hope nothing is too obscure or unfair.";
 	the rule succeeds;
 
 book quasi-entry list
@@ -2661,7 +2645,7 @@ understand "door" as big glass doors.
 
 description of big glass doors is "They help the business inside look important."
 
-the door to the Sneed house is a quasi-entry. description is "This door was made for knockin[']!"
+the door to the Sneed house is a quasi-entry. "The door to the Sneed house is here to enter, now or later.". description is "This door was made for knockin[']!"
 
 instead of going inside:
 	let Q be a random visible quasi-entry;
@@ -2716,7 +2700,7 @@ table of palstuff
 numpals	paltext
 1	"Well, Ed won't be alone now. Or, rather, he'll have one of his best pals to talk to."
 3	"You've found some pretty swank areas of Threediopolis you'd have missed otherwise. It looks like there are more."
-5	"Just over halfway there, well, with the friends. You are getting the hang of whom to find, where."
+5	"Bing! Exactly halfway there, well, with the friends. You are getting the hang of whom to find, where."
 7	"Man! None of Ed's pals have insulted you heinously yet. You already feel a bit more posh."
 
 instead of entering a quasi-entry:
@@ -3171,7 +3155,7 @@ carry out ening:
 book blackmarketing
 
 to say recap:
-	say "The options are:[line break]1. Hint[line break]2. Adrift-a-tron (tells when things are hopeless)[line break]3. Availableometer (tells what you can do)[line break]4. Twist-o-scope[line break]5. Leave, no teleport[line break]6. Leave and teleport back[paragraph break]";
+	say "Your options:[line break]1. Hint[line break]2. Adrift-a-tron (tells when things are hopeless)[line break]3. Availableometer (tells what you can do)[line break]4. Twist-o-scope[line break]5. Leave, no teleport[line break]6. Leave and teleport back[paragraph break]";
 
 bm-mode is a truth state that varies.
 
@@ -3183,8 +3167,9 @@ carry out blackmarketing:
 	if number understood > 6 or number understood < 0:
 		say "You need to type a number from 1 to 6, or 0 to recap." instead;
 	if number understood is 4:
-		say "You accept the twist-o-scope, which hooks up to your list and adds some new information to it. Then the guy mumbles something about proprietary copyrights, and he hides the scope and runs away.";
+		say "You accept the twist-o-scope, which hooks up to your list and adds some new information to it. Then the guy mumbles something about proprietary copyrights, snatches the scope back and runs away.";
 		now task-list is twisty;
+		now oopsy-daisy is 4;
 		now suspicious-guy-help is true;
 	if number understood is 6:
 		say "You zap back to the center before he can say anything. He looks slightly dismayed. But he probably has nowhere better to hang around, if you want to go back.";
@@ -3276,14 +3261,19 @@ to say twistrate of (nu - a number):
 	unless twistx is true:
 		say "[if nu < 4]-[end if][if nu < 3]-[end if][if nu < 2]-[end if][if nu > 3]+[end if][if nu > 4]+[end if][if nu > 5]+[end if]";
 
-the availableometer is a thing. the availableometer has a number called charges. charges of availableometer is 10. description is "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, BOY,) and indicates it has [charges of availableometer] charges left. [italic type][bracket]FOURTH WALL NOTE: the command A activates it.[close bracket][roman type]"
+a-charges is a number that varies. a-charges is 10.
+
+the availableometer is a thing. description is "[suss-exam]"
 
 understand "meter" as availableometer.
 
 After printing the name of the adrift-a-tron while taking inventory:
 	say " (METER)";
 
-the adrift-a-tron is a thing. the adrift-a-tron has a number called charges. charges of adrift-a-tron is 10. description is "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has [charges of adrift-a-tron] charges left. [italic type][bracket]FOURTH WALL NOTE: the command A is shorthand to activate it.[close bracket][roman type]"
+the adrift-a-tron is a thing. description is "[suss-exam]"
+
+to say suss-exam:
+	say "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has [a-charges] charges left. [italic type][bracket]FOURTH WALL NOTE: the command A is shorthand to activate it.[close bracket][roman type]"
 
 understand "tron" as adrift-a-tron.
 
@@ -3317,11 +3307,11 @@ every turn when adrift-on is true:
 		if tally entry in lower case matches the regular expression "^[your-tally]":
 			increment a-so-far;
 	if a-so-far is 0:
-		say "The adrift-a-tron shrieks as if to say you did something very wrong, then [if charges of adrift-a-tron is 0]goes FOOMP[else]notes it has [charges of adrift-a-tron] charges left. You turn it off[end if].";
+		say "The adrift-a-tron shrieks as if to say you did something very wrong, then [if a-charges is 0]goes FOOMP[else]notes it has [a-charges] charges left. You turn it off[end if].";
 		now oopsy-daisy is 5;
 		now drift-this-trip is true;
 		now adrift-on is false instead;
-	if charges of adrift-a-tron is 0:
+	if a-charges is 0:
 		now adrift-a-tron is off-stage;
 
 chapter xxing
@@ -3370,9 +3360,9 @@ carry out aing:
 	if a-so-far is 0:
 		say "The availableometer registers nothing. But at least you don't lose a charge." instead;
 	now oopsy-daisy is 5;
-	decrement charges of availableometer;
-	say "[if charges of availableometer is 0]Just before your availableometer makes a FOOMP, it shows[else]Your availableometer shows, next to '[charges of availableometer] charges left,'[end if] the number [a-so-far]. [if a-so-far is 1]Guess there's only one path[else]That's how many paths are[end if] ahead from here.";
-	if charges of availableometer is 0:
+	decrement a-charges;
+	say "[if a-charges is 0]Just before your availableometer makes a FOOMP, it shows[else]Your availableometer shows, next to '[a-charges] charges left,'[end if] the number [a-so-far]. [if a-so-far is 1]Guess there's only one path[else]That's how many paths are[end if] ahead from here.";
+	if a-charges is 0:
 		now availableometer is off-stage;
 	the rule succeeds;
 
@@ -3715,7 +3705,7 @@ carry out friending:
 		if friend-warn is false:
 			now friend-warn is true;
 			say "[line break]";
-			say "[italic type][bracket]NOTE: while friends are still left, you can focus on them in the status bar with ff.[close bracket][roman type]";
+			say "[italic type][bracket]NOTE: while friends are still left, you can focus on them in the status bar with ff.[close bracket][roman type][line break]";
 	the rule succeeds.
 
 chapter friendtoping
@@ -4086,7 +4076,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "newdude"	"help recent resident"	"Someone looks confused, and you're surprised you're able to give good directions, just by thinking logically about where things must be. Or not."	0	5	tough
 "newwessewn"	"Area you remembered scoring 36 points"	"You pass by a gated community full of mansions. Maybe one day you'll deserve to live there."	0	4	tough
 "nusense"	"fresh wiizdum frum yuneekly un-noying gy"	"Some fellow on a soapbox brings up obvious counters to conventional wisdom--it's not really *new* sense, though. After a while, he becomes...un-nu. A nuisance. You move on."	0	4	misp
-"sed"	"learn about string replacement"	"You stumble by a bunch of techies discussing awk and grep and discussing how it's all more fun and interesting than silly puzzle boxes with no purpose. Not that the guy who just passed would be good at either."	0	3	alfhint
+"sed"	"learn about string replacement"	"You stumble by a bunch of techies discussing awk and grep and discussing how code golf with either is all more fun and interesting than silly puzzle boxes with no purpose.."	0	3	alfhint
 "seduse"	"riskay nite klub 1"	"A louche woman in a DUENDE ENDUED tank top futzes with her Vita-Vape electronic-cigarette replacement (outside the sleazy club, by law) and says you look like you have been thinking too hard but fails to eduse any desire. She's no Neenu Weeden or Susee Nen. You quickly hustle away, more sure than ever that figuring things out beats more primal urges."	0	4	misp
 "seedee"	"tuff nite klub 2"	"Outside a nightclub, people beatbox incessantly to blasted rhymes (and almost-rhymes and words that rhyme with themselves) so old they're cool again, or so old-cool again they're just way too old, now. The portmanteaus 'Seediopolis' and 'Greediopolis' pop up every other verse. You were already going to run away when the next song, the groanworthy 'classic' 'Dees Nuds,' starts."	0	3	alfhint
 "seen"	"surveillance"	"You hear the whirr of a hidden security camera. Ooh! Here's where the Guinness 'Most Surveilled Suburb' is!"	0	3	alfhint
@@ -4114,7 +4104,7 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "unded"	"hontid howse: zombees, gools"	"You haven't been to one of these in a while. It's really cute by the entry, with kids trying to be scary, until you remember that it may just be adults coaching kids to be pseudo-cute and overdo the youthfully earnest bit. It's down to a science these days, the buttons you can push. You move on and decide not to get fleeced."	0	4	misp
 "undees"	"boxee breefs"	"You didn't want to admit you needed a few new pairs, but you did. You go in for a nice geometric pattern. Paying from your own pocket, of course. Not Ed Dunn's."	0	5	misp
 "undue"	"criticism to ignore"	"Someone walks by and gives you an insult you didn't deserve. It has a bit of truth, but that was probably by accident."	0	4	tough
-"unneeded"	"to feel emo"	"You suddenly feel as if nobody, not even Ed Dunn, cares about you."	0	4	alfhint
+"unneeded"	"to feel emo"	"You suddenly feel as if nobody, not even [if player has book of top secret]the Sneeds[else]Ed Dunn[end if], could care about you."	0	4	alfhint
 "unseeded"	"underdogs in knockout tourney"	"You hear a pep rally for the local underdog team who's gone rather far in some tournament in some sport or other."	0	5	tough
 "unsewn"	"threadbareness"	"A button falls off your outfit and rolls where you can't find it. Well, it's biodegradable enough."	0	5	tough
 "unsunned"	"dark gothy neighborhood"	"You walk by some people with remarkably pale skin. Tanning parlors are TOTALLY safe these days, but some people just don't trust the government."	0	5	tough
@@ -4133,29 +4123,41 @@ tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "www"	"internet presence"	"A really cool idea for a website pops into your head. Then you forget it."	0	1	alfhint
 
 table of nearlies [ton]
-tally (text)	just-miss (text)	found-yet	descrip (text)	rule-to-reveal
-"deesended"	"desended"	false	"[kids-desend]."
-"deesendens"	"desended"	false	"[kids-desend]."
-"deesseed"	--	false	"You pass by a flower place that caters to [flowery], but the store doesn't really count as scenery, [if player does not have book]and Ed doesn't need flowers, [end if]so you move along."
-"desendens"	"desended"	false	"[kids-desend]."
-"eddunn"	--	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
-"ende"	--	false	"You suddenly have an urge to read a children's book, the sort that goes on and on and you're just glad it does, and you're ready to read from the start again when it's over."
-"newness"	--	false	"You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness."
-"newsense"	"nusense"	false	"You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above."
-"sedsneed"	"sneeds"	false	"Perhaps Sed Sneed comes here some time, but he's usually at his familial residence."	unfound-sneed rule
-"seeewed"	"seeweed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
-"senesense"	"senessense"	false	"You must be getting old--you feel like you've forgotten something, or you'd have wound up somewhere."
-"seweeed"	"seeweed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
-"sneee"	"sneese"	false	"You feel a tingle in your nose, one you just want to get rid of. Perhaps something to the south--nah, not right now, maybe retrace and try again."	unfound-sneeze rule
-"suee"	--	false	"[sooee]" 	soee rule
-"suue"	--	false	"[sooee]" 	soee rule
-"suuue"	--	false	"[sooee]" 	soee rule
-"suuuue"	--	false	"[sooee]" 	soee rule
-"unended"	--	false	"This was the area [one of]what's her name Nunn[or]Deneen what's her name[in random order] wrote about in that book Ewen was reading."	unfound-deneen rule
-"unsewed"	"unsewn"	false	"You hear whispers of a nudist colony nearby, but not quite here."
-"weeenes"	"weenees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
-"weneees"	"weenees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
-"wwedd"	--	false	"The What Would Ed Dunn Do bracelet fails to glow or do anything magical or even remotely technological."
+tally (text)	found-yet	descrip (text)	rule-to-reveal
+"deesended"	false	"[kids-desend]."	unfound-desend rule
+"deesendens"	false	"[kids-desend]."	unfound-desend rule
+"deesseed"	false	"You pass by a flower place that caters to [flowery], but the store doesn't really count as scenery, [if player does not have book]and Ed doesn't need flowers, [end if]so you move along."
+"desendens"	false	"[kids-desend]."	unfound-desend rule
+"eddunn"	false	"You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead."	has-book rule
+"ende"	false	"You suddenly have an urge to read a children's book, the sort that goes on and on and you're just glad it does, and you're ready to read from the start again when it's over."
+"newness"	false	"You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness."
+"newsense"	false	"You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above."
+"sedsneed"	false	"Perhaps Sed Sneed comes here some time, but he's usually at his familial residence."	unfound-sneed rule
+"seeewed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
+"senesense"	false	"You must be getting old--you feel like you've forgotten something, or you'd have wound up somewhere."
+"seweeed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
+"sneee"	false	"You feel a tingle in your nose, one you just want to get rid of. Perhaps something to the south--nah, not right now, maybe retrace and try again."	unfound-sneeze rule
+"suee"	false	"[sooee]" 	soee rule
+"suue"	false	"[sooee]" 	soee rule
+"suuue"	false	"[sooee]" 	soee rule
+"suuuue"	false	"[sooee]" 	soee rule
+"unended"	false	"This was the area [one of]what's her name Nunn[or]Deneen what's her name[in random order] wrote about in that book Ewen was reading."	unfound-deneen rule
+"unsewed"	false	"You hear whispers of a nudist colony nearby, but not quite here."	unfound-unsewn rule
+"weeenes"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
+"weneees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
+"wwedd"	false	"The What Would Ed Dunn Do bracelet fails to glow or do anything magical or even remotely technological."
+
+this is the unfound-unsewn rule:
+	choose row with tally of "unsewn" in table of scenery;
+	if found entry is 1:
+		the rule fails;
+	the rule succeeds;
+
+this is the unfound-desend rule:
+	choose row with tally of "desended" in table of scenery;
+	if found entry is 1:
+		the rule fails;
+	the rule succeeds;
 
 this is the has-book rule:
 	if player has book:
@@ -4271,7 +4273,7 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Swen"	"[if task-list is not super-alpha]near [end if]pal"	"'You look dizzy! You been walking around in circles?' asks Ed's latest invitee. He mentions that old puzzle about someone going south, east and north to arrive where he started, and how there's more than one point, before making some desultory joke about remembering to forget the lutefisk. He looks woebegone as you fail to laugh, mentions not ALL his jokes are above average, and explains it's funnier once you know Ed Dunn."	front door	--	--	--	false	0	chums	tough	--	"Swen is off for a cultural event."
 "Uwe"	"Freund"	"'Ah, Ed always appreciates my European viewpoint. Even if he and other guests forget if I'm from France or Germany.'"	front door	--	--	--	false	0	chums	tough	--	"Uwe is studying chess. A former world champ who doesn't know how to pronounce his name."
 "Wendee"	"[if task-list is not super-alpha]far [end if]frieeend"	"'Oh! You're with Ed Dunn? Let me see the list he gave you,' says the woman answering. She nods approvingly. 'He said he only invited Nene because she was closer. I'm glad he meant it this time. I hope he has those awesome hot dogs this party!'"	front door	--	--	--	false	0	chums	alfhint
-"Wes"	"awesome pal"	"'Nice of Ed to think of me even though I'm so far away. I hope it wasn't too far for you.'"	front door	--	--	--	false	0	chums	alfhint
+"Wes"	"pal not crushed by a truck, wow"	"'Nice of Ed to think of me even though I'm so far away. I hope it wasn't too far for you.'"	front door	--	--	--	false	0	chums	alfhint
 "Den"	"Visit total party-cave"	"You realize that Ed Dunn has done you a favor by allowing you to view this. You take extra careful notes on how the party is, what's being served, what a party should be, and the general atmosphere and how people are acting. Alas, you can't partake of some amenities while on the job, but you can't complain."	a door shaped like a champagne bottle	--	--	1	false	--	party	deduc
 "Dew"	"Wet grass"	"A kid on a lonely park bench. 'So you're the one my uncle got to play with me today. You'll do, I guess.' It's actually rather fun, and the kid gets bored first."	gladed trail	--	--	--	--	--	relax	tough
 "Dns"	"Chat w/web srvr"	"You probably took less time to walk there than it would've taken to stay on hold if you called in. Or get an email response. Internet customer service was so much better a hundred years ago! You straighten out a few things about your employer's websites, both the ones people know he owns and the one they don't[acro-thick]."	big glass doors	--	--	--	--	--	biz	tough
@@ -4435,7 +4437,7 @@ showing mechanics is an activity.
 
 rule for showing mechanics:
 	let A be ((maxpals + maxedtasks) * 9) / 10;
-	say "The game gives pre-ordered messages for every other successful finds.[paragraph break]Ed gives you something special if you hit 90% rounded down, or [A]/[maxpals + maxedtasks].[paragraph break]The separate subtasks give a different response from Ed depending on whether you do 2/3 of them. They are lumped as follows: [paragraph break]";
+	say "The game gives pre-ordered messages for every other successful find.[paragraph break]Ed gives you something special if you hit 90% rounded down, or [A]/[maxpals + maxedtasks].[paragraph break]The separate subtasks give a different response from Ed depending on whether you do 2/3 of them. They are lumped as follows: [paragraph break]";
 	repeat with Q running through qualities:
 		say "--[Q]: ";
 		let needcomma be 0;
@@ -4468,7 +4470,7 @@ To fully resume the story:
 	resume the story;
 	now escape mode is true;
 
-chapter superuser - not for release
+[chapter superuser - not for release
 
 suping is an action out of world.
 
@@ -4478,9 +4480,9 @@ understand "sup" as suping.
 
 carry out suping:
 	now superuser is true;
-	say "You can now override margin settings as well as turbo pst SEE.";
+	say "You can now override margin settings as well as turbo-ing past SEE.";
 	say "[italic type][bracket]NOTE: this command should not be in the release version.[close bracket][roman type][line break]";
-	the rule succeeds;
+	the rule succeeds;]
 
 volume beta testing - not for release
 
@@ -4502,7 +4504,12 @@ carry out findeming:
 		if tally entry is not "sneeds":
 			now found entry is 1;
 	repeat through table of findies:
-		if tally entry is not "eddunn":
+		if tally entry is not "EdDunn":
+			if found entry is 0:
+				if findtype entry is chums:
+					increment pals;
+				else:
+					increment edtasks;
 			now found entry is 1;
 	the rule succeeds;
 
@@ -4548,10 +4555,28 @@ understand the command "hme" as something new.
 understand "hme" as hmeing.
 
 carry out hmeing:
+	now zero-ticker is 2;
+	now plus-ticker is 15;
 	consider the try-a-hint rule instead;
 	the rule succeeds;
 
 volume testing - not for release
+
+chapter procing
+
+understand the command "proc" as something new.
+
+understand "proc" as procxing.
+
+procxing is an action applying to nothing.
+
+carry out procxing:
+	move hideout to outside-area;
+	choose row with tally of "EdDunn" in table of findies;
+	if found entry is not 2:
+		now found entry is 2;
+		give-a-point;
+	endgame-process;
 
 chapter aling
 

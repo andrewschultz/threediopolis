@@ -29,10 +29,255 @@ hear a siren
 high-pitched
 cancel the rest
 
+* 3d-undone-cmd
+
+>kiss
+Being a messenger
+>burn
+Being a messenger
+>rub
+Being a messenger
+>stand
+Being a messenger
+>wave
+Being a messenger
+
+* 3d-misc-attack-and-jump
+
+>shit
+Dude! Eww.
+>blast
+Dude! Eww.
+
+>sing
+You try, but you only hear
+
+>dee
+>k
+>deedee
+>k
+>swen
+>k
+Dee dee dee
+
+>jump
+No reason to, with
+
+>walkthrough
+In lieu of
+
+>wait
+What a quaintly verbose way to wait!
+
+>attack package
+alarm or something
+
+>j
+That's a pretty crazy diagonal direction
+>den
+>attack door
+Just go in instead
+>p
+>ned
+>attack door
+Just knock instead
+
+>attack me
+puzzle
+
+>purloin bracelet
+>attack bracelet
+ironic
+
+>purloin availableometer
+>attack it
+recycle it later
+>purloin adrift-a-tron
+>attack it
+recycle it later
+>attack device
+No, it should be useful
+
+* 3d-header-toggle
+
+>oo
+Top line is now in header.
+>oo
+Regular header.
+
+* 3d-undo-check
+
+#undo-1
+>z
+>z
+>z
+>z
+>z
+>z
+>undo
+didn't wait around too long
+444
+
+#undo-2
+>findem
+>eddunn
+>in
+>undo
+complete the game just yet
+365
+
+#undo-3
+>j
+>end
+>in
+>undo
+back away from the egress
+>l
+355
+
+#undo-4
+>suss
+>3
+>undo
+No device is a make-or-break cheat
+>i
+availableometer
+
+#undo-5
+>suss
+>3
+>p
+>ne
+>a
+>undo
+It's a pretty cool cheat tool
+>i
+availableometer
+
+#undo-6
+>see new seens
+>sneeds
+>in
+>undo
+Okay, the Sneeds
+336
+
+#undo-7
+#can't undo because it's not a move to start the game
+>see new seens
+>undo
+secrets til later
+
+* 3d-weak-gifts
+
+>j
+
+>dee
+>k
+>deedee
+>k
+>des
+>k
+>ewen
+>k
+>ned
+>k
+>sue
+>k
+
+>dns
+>i
+>edu
+>i
+>news
+>i
+>send
+>i
+>suse
+>i
+
+>den
+>i
+>nes
+>i
+>ewes
+>i
+>snus
+>i
+>suds
+>i
+>nudes
+>i
+
+>dew
+>i
+>deus
+>i
+>nuns
+>i
+>dunes
+>i
+>seeds
+>i
+
+>sew
+>i
+>duds
+>i
+>sewn
+>i
+>dudes
+>i
+>sewed
+>i
+
+>see
+>i
+>sun
+>i
+>eddunn
+>proc
+a little more fun stuff, no guilt
+antique zip drive
+least favorite flavor
+Round Tuit
+download code for game 14
+
+* 3d-misc-drop
+
+>drop device
+No way! Those things
+>drop needs
+Drop the task list?
+>drop package
+You'd be flaking
+>drop me
+Hmm, no
+>purloin adrift-a-tron
+>drop it
+Littering is no good.
+>drop wwedd
+Certainly not
+>drop invitation
+They're really nice
+>drop secret
+That'd be dangerous and wrong
+
 * 3d-misc-cmd
 
->xyzzy
+>wake
+But you have not been sleeping on the job
 
+>listen
+The sounds of Threediopolis are always changing. But you don't want them distracting you from your job.
+
+>eat:
+Are you hungry for a meal, or a job that'll buy several of them? Get back to wandering
+
+>drink package
+hydration
+
+>xyzzy
 Yes, indeed. the game map has 3 axes
 
 >p
@@ -85,6 +330,19 @@ droids are rougher with you this time
 
 >
 Still got a good list
+
+>dew
+>
+Something's right here! You can just go in
+
+>n
+>p
+>dee
+>
+Something's right here! You can just knock
+
+>n
+>p
 
 >a
 Being a messenger
@@ -217,6 +475,15 @@ first 7 task list elements.
 >y
 The y-axis is north or south.
 
+* 3d-orig-book
+
+>x 8
+start at 7 or lower
+>x 12
+1 to 2
+>x 2
+row 2
+
 * 3d-seens
 
 > see new seens
@@ -273,3 +540,1007 @@ You can read rows 1-
 >see new seens
 >undo
 OK, this gets rid
+
+* 3d-just-pals
+
+>j
+>ned
+>k
+Well, Ed won't be alone now
+
+>dee
+>k
+that's another friend found
+
+>deedee
+>k
+pretty swank
+
+>ewen
+>k
+that's another friend found
+wrong or slow directions
+
+>des
+>k
+Just over halfway there, well,
+
+>sue
+>k
+that's another friend found
+hushed tones
+
+>wes
+>k
+insulted you heinously yet
+
+>uwe
+>k
+that's another friend found
+good thing the moving walkways
+
+>wendee
+>k
+that's another friend found
+
+>swen
+>k
+got all Ed's friends
+even the peg solitaire
+
+>den
+>i
+no need to take inventory
+
+>dew
+>i
+dead ends as a kid
+
+>dns
+>i
+
+>edu
+>i
+get out more and see the city
+
+>end
+>k
+
+>nes
+>i
+never be handy in real life
+
+>sew
+>i
+
+>see
+>i
+bicycle messenger
+
+>sun
+>i
+
+>suss
+>i
+Ed would be relatively happy enough
+
+>suss
+>i
+
+>suns
+>i
+in the zone, zigzagging
+
+>deus
+>i
+
+>duds
+>i
+of COURSE the
+
+>ewes
+>i
+
+>news
+>i
+Brand New York TImes
+
+>nuns
+>i
+
+>send
+>i
+I'm doing all the work and what am I paid
+
+>sewn
+>i
+
+>suse
+>i
+abstract problems you wanted
+
+>deeds
+>i
+
+>dudes
+>i
+order a taxicab around
+
+>dunes
+>i
+>nudes
+>i
+THAT in shape by just walking
+
+>seeds
+>i
+
+>sewed
+>i
+other areas you wanted to visit, like New Wessewn
+
+>sewn
+>i
+
+>unwed
+>i
+neat exotic sounding places
+
+>weeds
+>i
+
+>senses
+>i
+nice long walk helped
+
+>sweden
+>i
+
+>unseen
+>i
+I didn't want to go there, anyway
+
+>unused
+>i
+
+>wedded
+>i
+90% done. That should be enough
+tough classes in school gave you
+
+>wusses
+>i
+
+>newduds
+>i
+Man, you're totally in shape
+
+>seeweed
+>i
+
+>weenees
+>i
+perfection for your own sake
+
+>usedduds
+>i
+
+>www
+really cool idea
+>p
+what you're flailing around for
+
+>eddunn
+>i
+NEWNESS
+
+>m
+pre-ordered
+
+>mech
+pre-ordered
+
+>mechanics
+pre-ordered
+
+>amusing
+Have you tried:
+
+>see new seens
+>x 6
+www---
+
+* 3d-ed-hint-base
+
+>nsnsnsns
+>p
+full/empty
+
+>nsnsnsns
+>p
+so much, or so long
+
+>nsnsnsns
+>p
+It's not just where you go but how you get there!
+
+>nsnsnsns
+>p
+
+>nsnsnsns
+>p
+nightmares, from when you were a kid
+
+>nsnsnsn
+>p
+
+* 3d-ed-hint-var
+
+>j
+>ned
+>k
+>swen
+>k
+>des
+>k
+>dee
+>k
+>deedee
+>k
+>ewen
+>k
+>sue
+>k
+
+>nsnsnsn
+>p
+>nsnsnsn
+>p
+>nsnsnsn
+>p
+Ed Dunn is babbling some three-letter acronyms you
+
+>dns
+>i
+>hme
+Ed Dunn is babbling some three-letter acronyms you
+
+>edu
+>i
+>hme
+Ed Dunn is babbling a three-letter acronym you
+
+>nes
+>i
+>hme
+thread the needle somehow
+
+>sew
+>i
+>hme
+thread the needle again
+
+>sewn
+>i
+>hme
+thread the needle once more
+
+>sew
+>i
+>hme
+Needs, needs, needs
+
+>deeds
+>i
+>hme
+Needs, needs, needs
+
+>seeds
+>i
+>hme
+Needs, needs, needs
+
+>weeds
+>i
+>hme
+directions to take, here:
+cave@355
+Something@355
+telescope@436
+Windows 27@525
+free hint@514
+
+>suss
+>6
+>hme
+directions to take, here:
+!free hint@514
+
+>suse
+>i
+>hme
+directions to take, here:
+!Windows 27
+
+>see
+>i
+>hme
+!telescope@436
+
+>den
+>i
+>hme
+!cave@355
+
+>end
+>k
+>hme
+of that frieend far away
+may help narrow
+
+>uwe
+>k
+>hme
+of that frieend far away
+!may help narrow
+
+>wendee
+>k
+>hme
+Nunes, Nunes, Nunes
+
+>dunes
+>i
+>hme
+You wonder why Ed Dunn hated Nunes so much.
+
+>nudes
+>i
+>hme
+You wonder why Ed Dunn hated Nunes so much.
+
+>dudes
+>i
+>hme
+Static from the teleport device has Ed ranting. Being worn out. Being overexposed. Being married. All very un-Ed.
+
+>unused
+>i
+>hme
+Static from the teleport device has Ed ranting. Being overexposed. Being married. Very un-Ed.
+
+>unwed
+>i
+>hme
+Static from the teleport device has Ed ranting. Being overexposed. Both very un-Ed.
+
+>unwed
+>i
+>hme
+You overhear some motivational-speak about how some people are more receptive to hearing, some to seeing, some to feeling.
+
+>senses
+>i
+>hme
+A very ecological limo tied with balloons and recyclable tin cans rattles by just as you pop back.
+
+>hme
+You cringe, hoping that that limo won't reappear.
+
+>wedded
+>i
+>hme
+Interference from the teleport device has Ed talking about building on a couple things you previously could've done to do something bigger.
+
+>newduds
+>i
+>hme
+Interference from the teleport device has Ed talking about building on one more thing you previously could've done to do something bigger.
+
+>usedduds
+>i
+>hme
+You overhear, over static from your transporter, Ed Dunn claiming Deedee likes the healthy stuff and the fried stuff. Gee.
+
+>hme
+You overhear, over static from your transporter, Ed Dunn claiming the green food he wants for his party is very un-, un-, hmm, no, that's not it. It's--organic, an extension of one concept, or a useful combination of two others.
+
+>hme
+You overhear, over static from your transporter, Ed Dunn claiming that DeWeese fellow is a culinary genius.
+
+>seeweed
+>i
+>hme
+You overhear Ed Dunn claiming a that hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.
+
+>weenees
+>i
+>hme
+Well, this kind of stinks. You're on a real cold streak. Maybe you can figure what to do by looking at your list. Maybe somewhere will make sense that didn't before you found a few other places.
+
+* 3d-ed-hint-done
+
+>findem
+>hme
+You're not sure what you're flailing around for. Time to see Ed Dunn.
+
+* 3d-scen-hint
+
+>j
+
+>hme
+least twisty places remaining
+10 total.
+
+>www
+>p
+>hme
+9 total.
+
+>eeee
+>hme
+8 total.
+
+>dnd
+>hme
+7 total.
+
+>eww
+>p
+>hme
+6 total.
+
+>dds
+>p
+>hme
+5 total.
+
+>nene
+>p
+>hme
+4 total.
+
+>esses
+>p
+>hme
+3 total.
+
+>weewee
+>p
+>hme
+2 total.
+
+>weeeeee
+>p
+>hme
+the least twisty place remaining
+642, written up as peppy radio station
+
+>wuwu
+>p
+>hme
+if not the order: kuldissakk.
+
+>dedend
+>p
+>hme
+author of Unended
+
+>deneennunn
+>p
+>hme
+yearly fee
+
+>dues
+>p
+>hme
+before history
+
+>eden
+>p
+>hme
+blassfeemer
+
+>eesus
+>p
+>hme
+genrul
+
+>endeed
+>p
+>hme
+fake ty-urd
+
+>ennuee
+>p
+>hme
+mystic animal, no lake
+ten such left
+
+>ness
+>p
+>hme
+learn about string replacement
+
+>sed
+>p
+>hme
+tuff
+
+>seedee
+>p
+>hme
+surveillance
+
+>seen
+>p
+>hme
+attention hogs
+
+>seeus
+>p
+>hme
+freedum
+
+>sesede
+>p
+>hme
+oh, a thing you'll see
+
+>seuss
+>p
+>hme
+political name
+
+>sununu
+>p
+>hme
+to feel emo
+
+>unneeded
+>p
+>hme
+
+>wenewenew
+>p
+>hme
+less foggy
+overpopulated area
+
+>dense
+>p
+>hme
+those stupid misspelled very twisty ones,
+
+>dunse
+>p
+>hme
+that stupid misspelled very twisty one,
+
+>swune
+>p
+>hme
+kinda near place at 546
+
+>ensue
+>p
+>hme
+misspelled hot dog stand
+
+>sweenee
+>p
+>hme
+the plant. Six
+
+>sundew
+>p
+>hme
+BANG is kind of
+
+>sudden
+>p
+>hme
+symmetry of life
+
+>deseesed
+>p
+>hme
+whistle four notes
+
+>dedududu
+>p
+>hme
+suburb that sounded posh
+
+>newwessewn
+>p
+>hme
+senile, not knowing
+
+>senessense
+>p
+>hme
+
+* 3d-tubes
+
+>x tubes
+rude to stare
+
+>enter tubes
+Up or down?
+
+>attack tubes
+worth thinking much about
+
+* 3d-err
+
+>c z
+doesn't need more than one
+
+>eeee
+>x eeee
+Whatever you saw
+
+>e
+>x eeee
+Nothing like that is here. If you just saw something in the background, it was there for local flavor.
+
+>
+248
+>
+335
+>
+455
+>
+356
+>
+248
+
+>x list
+ED DUNN'S NEEDS
+
+>eddunn
+>n
+>p
+>think
+365
+
+>yes
+being a yes-man
+
+>no
+head, but nothing
+
+* 3d-bounds
+
+>u
+Boy, it's cool
+
+>u
+!Boy, it's cool
+
+>sssss
+suicide police don't joke
+
+>wwwww
+suicide police don't joke
+
+>eeeeee
+suicide police don't joke
+
+>nnnnnn
+suicide police don't joke
+
+>uuuuuu
+pay too much to live in
+
+>ddddd
+Only maintenance
+
+>nsewnsewnsew
+wandering for too long
+rest of your
+
+>ne
+You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+
+>nw
+You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+
+>se
+You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+
+>sw
+You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+
+>dee
+>open door
+That would be rude.
+
+* 3d-various-ends
+
+>j
+>proc
+Not up to it, eh?
+>undo
+
+>p
+>dee
+>k
+>proc
+Bare minimum
+
+>undo
+>deedee
+>k
+>des
+>k
+>ned
+>k
+>proc
+Bare minimum
+
+>uwe
+>k
+>proc
+more time coming here to quit
+
+>undo
+>ewen
+>k
+>wendee
+>k
+>sue
+>k
+>swen
+>k
+
+>proc
+more time coming here to quit
+>undo
+
+#11-15
+>wes
+bogus ID with
+
+>undo
+>sew
+>i
+>sewew
+>i
+>sewn
+>i
+>dew
+>i
+>proc
+bogus ID
+
+#16-20
+
+>undo
+>weeds
+>in
+>proc
+referral fee
+
+>deus
+>i
+>duds
+>i
+>ewes
+>i
+>news
+>i
+>proc
+referral fee
+
+#21-25
+>undo
+>unseen
+>i
+>proc
+Almost good enough
+
+>undo
+>nes
+>i
+>see
+>i
+>deeds
+>i
+>dudes
+>i
+>proc
+Almost good enough
+
+#26-30
+>undo
+>wusses
+>i
+>proc
+not quite terrific
+
+>sweden
+>i
+>unused
+>i
+>seeweed
+>i
+>weenees
+>i
+>proc
+not quite terrific
+
+#31-35
+>undo
+>suds
+>i
+>proc
+into my inner circle
+
+>undo
+>senses
+>i
+>wedded
+>i
+>newduds
+>i
+>usedduds
+>i
+>proc
+into my inner circle
+
+#36-40
+>undo
+>unwed
+>i
+>proc
+You'll make connections there
+
+>suede
+>i
+>dunes
+>i
+>suse
+>i
+>proc
+You'll make connections there
+
+>undo
+>nudes
+>i
+>proc
+almost deserve to come to my party
+
+>undo
+>seeds
+>i
+>nuns
+>i
+>suss
+>6
+>proc
+almost deserve to come to my party
+
+>undo
+>sun
+>i
+>proc
+the side streets of Threediopolis
+NEWNESS
+
+* 3d-sneed-first
+
+>see new seens
+>sneeds
+poke around elsewhere
+
+* 3d-hint-go
+
+>see new seens
+>h
+totally alphabetized
+>h
+Twistiness is also
+>h
+dental pain at 234 has
+at 254 has 
+>h
+You can also see Ed's old friends for less regimented hints. HINT again for twistiness.
+>h
+Twistiness is just the number of unique directions you need to go to find the location, though not the actual bends. So EEW and EWE would have the same twistiness. HINT again tells about spelling.
+>h
+Some names are misspelled, here.
+>h
+That's all the hints
+>h
+totally alphabetized
+
+* 3d-other-first
+
+>see new seens
+>www
+scenery with the book
+
+> 3d-pp
+
+>pp
+Being a messenger
+
+>see new seens
+>pp
+Now you will
+>pp
+Now you won't
+>pp
+Now you will
+
+>www
+website pops
+almost-center
+444
+
+>sneeds
+It's the Sneeds'!
+>l
+336
+
+* 3d-no-hints
+
+>hh
+Hints removed.
+>hh
+Hints restored.
+>hh
+Hints removed.
+
+>nsnsnsn
+>p
+!You flash back to Ed
+
+>nsnsnsn
+>p
+!You flash back to Ed
+
+>nsnsnsn
+>p
+!You flash back to Ed
+
+>nsnsnsn
+>p
+!You flash back to Ed
+
+# 3d-score-basic
+
+>score
+Overview: you have completed 0 of Ed's 50 tasks, 0 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
+--0 of Ed's 10 friends found
+--0 of 9 places that give Ed more stuff
+--0 of 8 ways to help Ed's business
+--0 of 8 tasks that will help Ed relax
+--0 of 10 ways to help Ed with his upcoming party
+--0 of 5 recommended things for your own amusement and enlightenment.
+
+>findem
+>score
+Overview: you have completed 49 of Ed's 50 tasks, 0 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
+
+--10 of Ed's 10 friends found
+--9 of 9 places that give Ed more stuff
+--8 of 8 ways to help Ed's business
+--8 of 8 tasks that will help Ed relax
+--10 of 10 ways to help Ed with his upcoming party
+--4 of 5 recommended things for your own amusement and enlightenment.
+
+# 3d-score-scen
+
+>score
+You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at 7 of 80.
+
+##### still could examine all doors
+##### table of you-went
+##### adrift-o-tron test?
+##### availableometer test?
+
+##### see about scope direction?
+##### 
