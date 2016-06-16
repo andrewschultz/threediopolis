@@ -9,154 +9,156 @@
 * 3d-nearly-nofind
 
 >see new seens
->pp
-
->deesended
-Kids wind up stringing
->pp
-
->deesendens
-Kids wind up stringing
->pp
-
->deesseed
-flower place that caters to
->pp
-
->desendens
-Kids here discuss
->pp
-
->eddunn
-You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead.
->pp
-
->ende
-You suddenly have an urge to read a children's book, the sort that goes on and on and you're just glad it does, and you're ready to read from the start again when it's over.
->pp
-
->newness
-You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness.
->pp
-
->newsense
-You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above.
->pp
 
 >sedsneed
 Perhaps Sed Sneed comes here some time, but he's usually at his familial residence.
->pp
+>p
+
+>deesended
+Kids wind up stringing
+>p
+
+>deesendens
+Kids wind up stringing
+>p
+
+>deesseed
+flower place that caters to
+>p
+
+>desendens
+Kids here discuss
+>p
+
+>eddunn
+You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead.
+>p
+
+>ende
+You suddenly have an urge to read a children's book, the sort that goes on and on and you're just glad it does, and you're ready to read from the start again when it's over.
+>p
+
+>newness
+You feel slightly refreshed, but you don't actually SEE anything. Plus, you remember how just going around Threediopolis will give Ed's tasks newness.
+>p
+
+>newsense
+You pass by someone who is promoting some up-to-date thinking, but he's not quite annoying or ludicrous enough to be memorable. Maybe there is someone close to just above.
+>p
 
 >seeewed
 You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of
->pp
+>p
 
 >senesense
 You must be getting old--you feel like you've forgotten something, or you'd have wound up somewhere.
->pp
+>p
 
 >seweeed
 You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of
->pp
+>p
 
 >sneee
 You feel a tingle in your nose, one you just want to get rid of. Perhaps something to the south--nah, not right now, maybe retrace and try again
->pp
+>p
 
 >suee
 flier for a hog
->pp
+>p
 
 >suue
 !flier for a hog
->pp
+>p
 
 >suuue
 !flier for a hog
->pp
+>p
 
 >suuuue
 !flier for a hog
->pp
+>p
 
 >unended
 wrote about in that book Ewen was reading
->pp
+>p
 
 >unsewed
 nudist colony
->pp
+>p
 
 >weeenes
 You pass by a disreputable hot dog hut, an obvious ripoff
->pp
+>p
 
 >weneees
 You pass by a disreputable hot dog hut, an obvious ripoff
->pp
+>p
 
 >wwedd
 The What Would Ed Dunn Do bracelet fails to glow or do anything magical or even remotely technological.
+>p
+
+* 3d-nearly-find
+
+>see new seens
 >pp
+>deneennunn
+>unended
+!wrote about in that book Ewen was reading
 
 * 3d-hog-1
 
+>see new seens
+
 >suuuue
 flier for a hog
->pp
+>p
 
 >suee
 !flier for a hog
->pp
+>p
 
 >suue
 !flier for a hog
->pp
+>p
 
 >suuue
 !flier for a hog
->pp
+>p
 
 * 3d-hog-2
 
 >suuue
 flier for a hog
->pp
+>p
 
 >suuuue
 !flier for a hog
->pp
+>p
 
 >suee
 !flier for a hog
->pp
+>p
 
 >suue
 !flier for a hog
->pp
+>p
 
 * 3d-hog-3
 
 >suue
 flier for a hog
->pp
+>p
 
 >suuue
 !flier for a hog
->pp
+>p
 
 >suuuue
 !flier for a hog
->pp
+>p
 
 >suee
 !flier for a hog
->pp
-
-* 3d-nearly-find
-
->see new seens
->deneennunn
->unended
-!wrote about in that book Ewen was reading
+>p
 

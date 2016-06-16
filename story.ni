@@ -63,11 +63,12 @@ check attacking:
 		say "No, it's kind of cool in an ironic sort of way." instead;
 	if player carries the noun:
 		if noun is availableometer or noun is adrift-a-tron:
-			if a-charges is 0:
-				say "You should recycle it later. Or get it recycled." instead;
+			say "[if a-charges is 10]Not while it still has charges[else]You could recycle it instead once you're done[end if]." instead;
 		say "No, it should be useful. Sorry if you're a bit frustrated!" instead;
 	if noun is a quasi-entry:
 		say "Force is neither necessary nor appreciated. Just [if noun is front door]knock[else]go in[end if] instead." instead;
+	if noun is the player:
+		say "Oh dear, I hope the puzzles haven't driven you THAT up the wall." instead;
 	say "Vandalism is an easy crime to detect and prosecute. Camera technology, etc." instead;
 
 section debug extensions - not for release
@@ -297,7 +298,7 @@ after reading a command:
 			let HH be hash of locom;
 			if HH is 108 or HH is 105 or HH is 103 or HH is 8:
 				say "[if HH is 108]That's a pretty crazy diagonal direction. You'd crash into something, even with a jetpack[else if HH is 8]It would be more efficient if you could walk through buildings, but they're private property[else]Upward-diagonal directions are possible, but even with a jetpack, you could get ticketed for them[end if]. Did you mean to run these directions in order?";
-				if the player consents:
+				if debug-state is true or the player consents:
 					say "[italic type][bracket]NOTE: you can [one of]always[or]still[stopping] remove this command check for good with J (for jump through diagonals--no argument.[close bracket][roman type][line break]";
 					dirparse reserve-command;
 				else:
@@ -324,13 +325,15 @@ after reading a command:
 	if w1 is "g" or w1 is "again":
 		say "That would actually make getting around in Threediopolis more complex. Because you can't really move from there to here, again, or not that way[if edtasks + pals < 3]. You'll understand once you find a few things--it'd just allow all kinds of extra crazy [italic type]guesses[roman type][else]. Most of the fun stuff would begin with G, though EGGS and DUNG would be left, which is not so fun[end if]. Using one-word directions should be quick enough.";
 		reject the player's command;
+	if locom matches the text "x 0":
+		say "The number zero is ambiguous here, so I'll reject it. It could mean everything below the second number, or only the second number. X 3 or X 13 should, for example, serve either purpose." instead;
+		reject the player's command;
 	if locom matches the regular expression "<\d>+<\p\s>+<\d>+":
 		if spacedashwarn is false:
 			say "[italic type][bracket]NOTE: instead of typing in two separate numbers, you can just lump them together, in the future.[close bracket][roman type][line break]";
 			now spacedashwarn is true;
 		replace the regular expression "(<\d>+)<\p\s>+(<\d>+)" in locom with "\1\2";
 		change the text of the player's command to locom;
-		say "New command: [locom].";
 
 spacedashwarn is a truth state that varies.
 
@@ -709,7 +712,7 @@ this is the try-scen-hint rule:
 		the rule succeeds;
 	let temp be found corresponding to a tally of "seduse" in table of scenery;
 	if temp is 0:
-		say "That red light district entry is alluring--no, not that way, just--you think you see which way you'd need to double back.";
+		say "That 'riskay' night club is alluring--no, not that way, just--you think you see which way you'd need to double back.";
 		the rule succeeds;
 	let temp be found corresponding to a tally of "ensue" in table of scenery;
 	if temp is 0:
@@ -837,13 +840,13 @@ this is the try-ed-hint rule:
 		the rule succeeds;
 	let dudsy be found corresponding to a tally of "UsedDuds" in table of findies + found corresponding to a tally of "NewDuds" in table of findies;
 	if dudsy < 2:
-		say "[ed-stat] jabbers about building on [if dudsy is 1]one more thing[else]a couple things[end if] you previously [dudsdid] to think bigger.";
+		say "[ed-stat] jabbering about building on [if dudsy is 1]one more thing[else]a couple things[end if] you previously [dudsdid] to think bigger.";
 		the rule succeeds;
 	if found corresponding to a tally of "Seeweed" in table of findies is 0:
 		say "[ed-stat] claiming [one of]Deedee likes the healthy stuff and the fried stuff. Gee[or]the green food he wants for his party is very un-, un-, hmm, no, that's not it. It's--organic, an extension of one concept, or a useful combination of two others[or]that DeWeese fellow is a culinary genius[cycling].";
 		the rule succeeds;
 	if found corresponding to a tally of "Weenees" in table of findies is 0:
-		say "[ed-stat] claiming a that hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.";
+		say "[ed-stat] claiming that one hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.";
 		the rule succeeds;
 	say "Well, this kind of stinks. You're on a real cold streak. Maybe you can figure what to do by looking at your list. Maybe somewhere will make sense that didn't before you found a few other places[random-hint].";
 	the rule fails;
@@ -951,7 +954,7 @@ Rule for printing a parser error when the latest parser error is the I beg your 
 		say "The telescope is too distracting! It's so much higher-tech than your list, but you can leave by typing 0." instead;
 	if there is a visible quasi-entry:
 		if your-tally is not "see" and your-tally is not "EdDunn" and your-tally is not "sneeds":
-			say "Something's right here! You can just [if front door is visible]knock[else]enter[end if]." instead;
+			say "Something's right here! You can just [if front door is visible]knock[else]go in[end if]." instead;
 		say "There's something nearby, but you still pick something at random from your notes.";
 	increment skip-index;
 	if skip-index > poss-skips:
@@ -1416,11 +1419,8 @@ the button is part of the pocket teleporter device.
 description of the button is "It looks as pushable as any other button, you'd guess."
 
 check pushing the button:
-	if ns is 4 and ew is 4 and ud is 4:
-		if your-tally is "":
-			say "Pushing the button would be kind of pointless here. Well, technically, here and now." instead;
-		say "You feel a bit disoriented. You're in the same place, and yet you're not. But you feel refreshed and ready for your next journey.";
-		reset-game instead;
+	if your-tally is "":
+		say "Pushing the button would be kind of pointless here. Well, technically, here and now." instead;
 	if number of characters in your-tally < 2:
 		say "You have heard about teleporter overheat. It's quite a way to go. Maybe you should walk around a bit[if number of characters in your-tally is 1] more[end if]." instead;
 	if there is a visible quasi-entry:
@@ -1431,7 +1431,10 @@ check pushing the button:
 			else:
 				say "OK.";
 				the rule succeeds;
-	say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2085. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
+	if ns is 4 and ew is 4 and ud is 4:
+		say "You feel a bit disoriented. You're in the same place, and yet you're not. But you feel refreshed and ready for your next journey.";
+	else:
+		say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2085. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
 	reset-game instead;
 
 chapter ping
@@ -1538,8 +1541,12 @@ check waking up:
 check listening:
 	say "The sounds of Threediopolis are always changing. But you don't want them distracting you from your job." instead;
 
+understand "eat" as eating.
+
+rule for supplying a missing noun when eating: now noun is teleporter device
+
 instead of eating:
-	say "Are you hungry for a meal, or a job that'll buy several of them? Get back to wandering.";
+	say "Amazingly, despite all the wandering you may do or may not do, you aren't getting hungry, and you're not going to.";
 
 instead of climbing:
 	say "Why climb when there are transport tubes?"
@@ -2293,7 +2300,7 @@ after looking (this is the place ed's tasks rule) :
 					now found entry is 2;
 				if ignore-sneed is false:
 					say "Oh man. It's the Sneeds['], again! Should you stop in?";
-					if the player consents:
+					if debug-state is false and the player consents:
 						let count be 0;
 						repeat through the table of scenery progress:
 							if eggsfound >= need-to-get entry:
@@ -2728,6 +2735,8 @@ instead of entering a quasi-entry:
 			try processing instead;
 		if task-list is alpha:
 			say "As you approach the door, a guard asks your business. You recall Ed Dunn's offer of help. Are you looking for help?";
+			if debug-state is true:
+				say ">";
 			if the player consents:
 				say "You explain your situation, and the guard takes your list, fiddles with it and hands it back! It's even better organized than before! There are list items, though one of them takes up two rows. You can't wait to give things another crack, so you push the device button.[paragraph break]";
 				say "[italic type][bracket]NOTE: you unlocked a new header/view. Type mm for a jazzy new header, or m (1-7) to see the respective row--plain m cycles through the rows.[close bracket][roman type][line break]";
@@ -3470,12 +3479,15 @@ looky
 
 to dirparse (dirlump - indexed text):
 	if number of characters in dirlump > 2 and number of characters in your-tally > 0:
-		say "You aren't starting from the center. Do you still wish to turbo ahead?";
-		if the player consents:
-			say "Ok.";
+		if debug-state is true:
+			say "WARNING not at center. Type DT to turn questioning on.";
 		else:
-			say "Just type p to go to the center and try again.";
-			continue the action;
+			say "You aren't starting from the center. Do you still wish to turbo ahead?";
+			if the player consents:
+				say "Ok.";
+			else:
+				say "Just type p to go to the center and try again.";
+				continue the action;
 	if number of characters in dirlump > 13:
 		say "That is way too long a trip to even think about.";
 		continue the action;
@@ -4024,7 +4036,7 @@ nohelpitems is a number that varies. helpitems is a number that varies.
 carry out requesting the score:
 	if player has book:
 		say "You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at [eggsfound] of [number of rows in table of scenery]." instead;
-	say "Overview: you have completed [taskdone] of Ed's [maxedtasks + maxpals] tasks, [nohelpitems] on your own and [helpitems] with his revised lists. You can look [if list-in-status is true]in the header, too[else]at your list (just type X) for what's left[end if]. More details are below.[paragraph break]--[county of chums] of Ed's [maxpals] friends found[line break]--[county of stuffly] of [maxy of stuffly] places that give Ed more stuff[line break]--[county of biz] of [maxy of biz] ways to help Ed's business[line break]--[county of relax] of [maxy of relax] tasks that will help Ed relax[line break]--[county of party] of [maxy of party] ways to help Ed with his upcoming party[line break]--[county of youish] of [maxy of youish] recommended things for your own amusement and enlightenment.";
+	say "Overview: you have completed [taskdone] of Ed's [maxedtasks + maxpals] tasks[if taskdone >= 20 and force-ed-point is 1], not including seeing him again[end if]: [nohelpitems] on your own and [helpitems] with his revised lists. You can look [if list-in-status is true]in the header, too[else]at your list (just type X) for what's left[end if]. More details are below.[paragraph break]--[county of chums] of Ed's [maxpals] friends found[line break]--[county of stuffly] of [maxy of stuffly] places that give Ed more stuff[line break]--[county of biz] of [maxy of biz] ways to help Ed's business[line break]--[county of relax] of [maxy of relax] tasks that will help Ed relax[line break]--[county of party] of [maxy of party] ways to help Ed with his upcoming party[line break]--[county of youish] of [maxy of youish] recommended things for your own amusement and enlightenment.";
 	let my-eggs be eggsfound;
 	if my-eggs > 0 and taskdone > 0:
 		say "[line break]You have also found [my-eggs] of [number of rows in table of scenery] unusual landmarks/incidents that give color to Threediopolis.";
@@ -4176,15 +4188,15 @@ this is the soee rule:
 	the rule succeeds;
 
 to say kids-desend:
-	say "[if ew is 7]Kids here discuss describing a parity problem to their great-grandparents (one doesn't have any, which makes him the odd kid out,) about how if you walk an even number of blocks from an even sector, you always wind up in another even sector[else]Kids wind up stringing out their e's a bit too long here, something I'm sure their great-grandparents wouldn't have the heart tell them they shouldn't[end if]."
+	say "[if ew is 7]Kids here discuss describing a parity problem to their great-grandparents (one doesn't have any, which makes him the odd kid out,) about how if you walk an even number of blocks from an even sector, you always wind up in another even sector[else]Kids wind up stringing out their e's a bit too long here, something I'm sure their great-grandparents wouldn't have the heart tell them they shouldn't[end if]"
 
 to say flowery:
 	choose row with tally of "deseesed" in table of scenery;
 	say "[if found entry is 1]that nearby funeral home you found[else]a nearby funeral home[end if]";
 
 this is the unfound-sneed rule:
-	choose row with tally of "sedsneed" in table of scenery;
-	if found entry is 1:
+	choose row with tally of "sneeds" in table of scenery;
+	if found entry is 2:
 		the rule fails;
 	the rule succeeds;
 
@@ -4253,7 +4265,7 @@ to calibrate-scenery-progress:
 		if there is no nailed-yet entry:
 			now nailed-yet entry is false;
 		if there is no need-to-get entry or need-to-get entry is not 1:
-			now need-to-get entry is ((count - 2) * (secs - found-in-game)) / (ro - 2);
+			now need-to-get entry is ((count - 2) * (secs - number of rows in table of stumblies)) / (ro - 2);
 			increase need-to-get entry by found-in-game;
 			if debug-state is true: [can't debug-say as indexed text threw me a curveball]
 				say "DEBUG: Row [count] has find-value of [need-to-get entry].";
@@ -4500,17 +4512,19 @@ understand the command "findem" as something new.
 understand "findem" as findeming.
 
 carry out findeming:
-	repeat through table of scenery:
-		if tally entry is not "sneeds":
-			now found entry is 1;
-	repeat through table of findies:
-		if tally entry is not "EdDunn":
-			if found entry is 0:
-				if findtype entry is chums:
-					increment pals;
-				else:
-					increment edtasks;
-			now found entry is 1;
+	if my-table is table of scenery:
+		repeat through table of scenery:
+			if tally entry is not "sneeds":
+				now found entry is 1;
+	else:
+		repeat through table of findies:
+			if tally entry is not "EdDunn":
+				if found entry is 0:
+					if findtype entry is chums:
+						increment pals;
+					else:
+						increment edtasks;
+				now found entry is 1;
 	the rule succeeds;
 
 chapter rnearing
@@ -4619,6 +4633,19 @@ understand "sta" as staing.
 
 carry out staing:
 	now list-in-status is true;
+	the rule succeeds;
+
+chapter dting
+
+dting is an action out of world.
+
+understand the command "dt" as something new.
+
+understand "dt" as dting.
+
+carry out dting:
+	now debug-state is whether or not debug-state is false;
+	say "Now debug-state is [debug-state].";
 	the rule succeeds;
 
 book tests

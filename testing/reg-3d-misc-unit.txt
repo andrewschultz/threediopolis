@@ -42,11 +42,24 @@ Being a messenger
 >wave
 Being a messenger
 
+>north
+In these efficient days, people find using more than one letter for a direction too flowery.
+>south
+In these efficient days, people find using more than one letter for a direction too flowery.
+>east
+In these efficient days, people find using more than one letter for a direction too flowery.
+>west
+In these efficient days, people find using more than one letter for a direction too flowery.
+>up
+In these efficient days, people find using more than one letter for a direction too flowery.
+>down
+In these efficient days, people find using more than one letter for a direction too flowery.
+
 * 3d-misc-attack-and-jump
 
 >shit
 Dude! Eww.
->blast
+>bother
 Dude! Eww.
 
 >sing
@@ -58,6 +71,7 @@ You try, but you only hear
 >k
 >swen
 >k
+>sing
 Dee dee dee
 
 >jump
@@ -72,18 +86,19 @@ What a quaintly verbose way to wait!
 >attack package
 alarm or something
 
->j
-That's a pretty crazy diagonal direction
 >den
+That's a pretty crazy diagonal direction
 >attack door
 Just go in instead
->p
+>k
+>j
+>i
 >ned
 >attack door
 Just knock instead
 
 >attack me
-puzzle
+Oh dear, I hope the puzzles haven't driven you THAT up the wall.
 
 >purloin bracelet
 >attack bracelet
@@ -91,10 +106,10 @@ ironic
 
 >purloin availableometer
 >attack it
-recycle it later
+Not while it still has charges
 >purloin adrift-a-tron
 >attack it
-recycle it later
+Not while it still has charges
 >attack device
 No, it should be useful
 
@@ -105,7 +120,7 @@ Top line is now in header.
 >oo
 Regular header.
 
-* 3d-undo-check
+* 3d-undo-1-2
 
 #undo-1
 >z
@@ -126,6 +141,8 @@ didn't wait around too long
 complete the game just yet
 365
 
+* 3d-undo-3-4
+
 #undo-3
 >j
 >end
@@ -136,12 +153,16 @@ back away from the egress
 355
 
 #undo-4
+>n
+>p
 >suss
 >3
 >undo
 No device is a make-or-break cheat
 >i
 availableometer
+
+* 3d-undo-5-7
 
 #undo-5
 >suss
@@ -150,7 +171,7 @@ availableometer
 >ne
 >a
 >undo
-It's a pretty cool cheat tool
+It's a pretty cool cheat-tool
 >i
 availableometer
 
@@ -256,6 +277,7 @@ Hmm, no
 >purloin adrift-a-tron
 >drop it
 Littering is no good.
+>see new seens
 >drop wwedd
 Certainly not
 >drop invitation
@@ -271,14 +293,14 @@ But you have not been sleeping on the job
 >listen
 The sounds of Threediopolis are always changing. But you don't want them distracting you from your job.
 
->eat:
-Are you hungry for a meal, or a job that'll buy several of them? Get back to wandering
+>eat
+Amazingly, despite all the wandering you may do or may not do, you aren't getting hungry, and you're not going to.
 
 >drink package
 hydration
 
 >xyzzy
-Yes, indeed. the game map has 3 axes
+Yes, indeed, the game map has 3 axes
 
 >p
 Pushing the button would be kind of pointless here. Well, technically, here and now.
@@ -329,7 +351,7 @@ droids are rougher with you this time
 * 3d-one-letter
 
 >
-Still got a good list
+Still got a good bit
 
 >dew
 >
@@ -348,7 +370,7 @@ Something's right here! You can just knock
 Being a messenger
 
 >b
-Being a messenger
+Threediopolis is now in its "superbrief" mode, which always gives short descriptions of locations (even if you haven't been there before).
 
 >g
 That would actually make getting around
@@ -400,7 +422,7 @@ stumped on individual puzzles
 
 >dee
 >i
-really should knock
+should really knock
 
 >k
 
@@ -472,6 +494,9 @@ first 9 task list elements.
 >r 7
 first 7 task list elements.
 
+>v
+Threediopolis is now in its "verbose" mode, which always gives long descriptions of locations (even if you've been there before).
+
 >y
 The y-axis is north or south.
 
@@ -489,7 +514,6 @@ row 2
 > see new seens
 No, you're off the clock.
 !Back at
-!Threediopolis,
 
 > see new seens
 You don't need this command
@@ -504,11 +528,8 @@ What would Ed Dunn do?
 >remove bracelet
 Certainly not
 
->drop all
-Littering is no good
-
 >x sneeds
-Sick of looking at Threediopolis
+sick of looking at Threediopolis
 
 >x
 DUDE-
@@ -531,17 +552,15 @@ Below are rows 1 to 2
 need to start at
 
 >x 1 8
-You can read rows 1-
+You need to specify a one- or two-digit number with digits between 1 and 6.
 
 >x 0 6
-You can read rows 1-
+The number zero is ambiguous
 
->n
->see new seens
->undo
-OK, this gets rid
+>x 06
+The number zero is ambiguous
 
-* 3d-just-pals
+* 3d-just-pals-then-rest
 
 >j
 >ned
@@ -563,7 +582,7 @@ wrong or slow directions
 
 >des
 >k
-Just over halfway there, well,
+Bing! Exactly halfway there, well,
 
 >sue
 >k
@@ -621,13 +640,13 @@ bicycle messenger
 >i
 
 >suss
->i
+>6
 Ed would be relatively happy enough
 
->suss
+>suds
 >i
 
->suns
+>snus
 >i
 in the zone, zigzagging
 
@@ -643,7 +662,7 @@ of COURSE the
 
 >news
 >i
-Brand New York TImes
+Brand New York Times
 
 >nuns
 >i
@@ -668,25 +687,26 @@ order a taxicab around
 
 >dunes
 >i
+
 >nudes
 >i
-THAT in shape by just walking
+THAT in shape just walking
 
->seeds
+>weeds
 >i
 
 >sewed
 >i
 other areas you wanted to visit, like New Wessewn
 
->sewn
+>seeds
 >i
 
 >unwed
 >i
 neat exotic sounding places
 
->weeds
+>suede
 >i
 
 >senses
@@ -728,6 +748,10 @@ perfection for your own sake
 >www
 really cool idea
 >p
+>nsewudu
+>p
+>nsewudu
+>p
 what you're flailing around for
 
 >eddunn
@@ -748,31 +772,55 @@ Have you tried:
 
 >see new seens
 >x 6
-www---
+WWW---
 
-* 3d-ed-hint-base
-
->nsnsnsns
->p
-full/empty
+* 3d-444-teleport
 
 >nsnsnsns
 >p
+You're in the same place, and yet you're not
+!so much, or so long
+
+>nsnsnsns
+>p
+You're in the same place, and yet you're not
 so much, or so long
 
 >nsnsnsns
 >p
+You're in the same place, and yet you're not
 It's not just where you go but how you get there!
 
 >nsnsnsns
 >p
+You're in the same place, and yet you're not
+so much, or so long
 
 >nsnsnsns
 >p
-nightmares, from when you were a kid
+You're in the same place, and yet you're not
+!so much, or so long
 
->nsnsnsn
+>nsnsnsns
 >p
+You're in the same place, and yet you're not
+You remember nightmares
+
+* 3d-ed-hint-base
+
+>nsnsnsnsn
+>p
+Teleporting technology, apparently only for the very richest people, kicks you back to the center of the city--well, it used to be, til it expanded north, east and up back in 2085. YOU still think of it that way.
+Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it.
+
+>nsnsnsnsn
+>p
+Your trusty teleporter kicks you back to the not-quite-center of the city.
+
+>nsnsnsnsn
+>p
+You flash back to Ed Dunn's voice booming through your head: "It's not just where you go but how you get there!" Maybe you can try hitting some of the nearer locations until something turns up.
+[NOTE: you can toggle hints like this by typing hh.]
 
 * 3d-ed-hint-var
 
@@ -825,7 +873,7 @@ thread the needle again
 >hme
 thread the needle once more
 
->sew
+>sewed
 >i
 >hme
 Needs, needs, needs
@@ -914,10 +962,10 @@ Static from the teleport device has Ed ranting. Being overexposed. Being married
 >hme
 Static from the teleport device has Ed ranting. Being overexposed. Both very un-Ed.
 
->unwed
+>unseen
 >i
 >hme
-You overhear some motivational-speak about how some people are more receptive to hearing, some to seeing, some to feeling.
+You overhear, over static from your transporter, Ed Dunn motivational-speaking about how some people are more receptive to hearing, some to seeing, some to feeling.
 
 >senses
 >i
@@ -930,28 +978,28 @@ You cringe, hoping that that limo won't reappear.
 >wedded
 >i
 >hme
-Interference from the teleport device has Ed talking about building on a couple things you previously could've done to do something bigger.
+Ed Dunn jabbering about building on a couple things you previously could've done to think bigger
 
 >newduds
 >i
 >hme
-Interference from the teleport device has Ed talking about building on one more thing you previously could've done to do something bigger.
+Ed Dunn jabbering about building on one more thing you previously could've done to think bigger
 
 >usedduds
 >i
 >hme
-You overhear, over static from your transporter, Ed Dunn claiming Deedee likes the healthy stuff and the fried stuff. Gee.
+Ed Dunn claiming Deedee likes the healthy stuff and the fried stuff. Gee.
 
 >hme
-You overhear, over static from your transporter, Ed Dunn claiming the green food he wants for his party is very un-, un-, hmm, no, that's not it. It's--organic, an extension of one concept, or a useful combination of two others.
+Ed Dunn claiming the green food he wants for his party is very un-, un-, hmm, no, that's not it. It's--organic, an extension of one concept, or a useful combination of two others.
 
 >hme
-You overhear, over static from your transporter, Ed Dunn claiming that DeWeese fellow is a culinary genius.
+Ed Dunn claiming that DeWeese fellow is a culinary genius.
 
 >seeweed
 >i
 >hme
-You overhear Ed Dunn claiming a that hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.
+Ed Dunn claiming that one hot dog hut owner is really on the level. His prices don't fluctuate up and down. Apparently the guy overuses apostrophe's as well as vowels.
 
 >weenees
 >i
@@ -964,51 +1012,60 @@ Well, this kind of stinks. You're on a real cold streak. Maybe you can figure wh
 >hme
 You're not sure what you're flailing around for. Time to see Ed Dunn.
 
+* 3d-scen-ed-task
+
+>unneeded
+nobody, not even Ed Dunn
+>p
+
 * 3d-scen-hint
 
 >j
+>see new seens
 
 >hme
 least twisty places remaining
-10 total.
+ten total.
 
 >www
 >p
 >hme
-9 total.
+nine total.
 
 >eeee
+>p
 >hme
-8 total.
+eight total.
 
 >dnd
+>p
 >hme
-7 total.
+seven total.
 
 >eww
 >p
 >hme
-6 total.
+six total.
 
 >dds
 >p
 >hme
-5 total.
+five total.
 
 >nene
 >p
 >hme
-4 total.
+four total.
 
 >esses
 >p
 >hme
-3 total.
+three total.
 
 >weewee
 >p
 >hme
-2 total.
+two total.
 
 >weeeeee
 >p
@@ -1120,6 +1177,11 @@ that stupid misspelled very twisty one,
 >swune
 >p
 >hme
+That "riskay" night club is alluring
+
+>seduse
+>p
+>hme
 kinda near place at 546
 
 >ensue
@@ -1130,7 +1192,7 @@ misspelled hot dog stand
 >sweenee
 >p
 >hme
-the plant. Six
+The plant. Six
 
 >sundew
 >p
@@ -1160,6 +1222,7 @@ senile, not knowing
 >senessense
 >p
 >hme
+Well, this kind of stinks
 
 * 3d-tubes
 
@@ -1179,7 +1242,7 @@ doesn't need more than one
 
 >eeee
 >x eeee
-Whatever you saw
+Whatever you just saw
 
 >e
 >x eeee
@@ -1192,13 +1255,14 @@ Nothing like that is here. If you just saw something in the background, it was t
 >
 455
 >
-356
+346
 >
 248
 
 >x list
 ED DUNN'S NEEDS
 
+>p
 >eddunn
 >n
 >p
@@ -1219,7 +1283,11 @@ Boy, it's cool
 >u
 !Boy, it's cool
 
->sssss
+>s
+>s
+>s
+>s
+>s
 suicide police don't joke
 
 >wwwww
@@ -1242,20 +1310,21 @@ wandering for too long
 rest of your
 
 >ne
-You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+It would be more efficient if you could walk through buildings, but they're private property
 
 >nw
-You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+It would be more efficient if you could walk through buildings, but they're private property
 
 >se
-You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+It would be more efficient if you could walk through buildings, but they're private property
 
 >sw
-You can't cut through buildings. Even with a teleporter device. Well, apparently you could cut through some lobbies years ago, but surveillance and keycard-doors have taken care of that.
+It would be more efficient if you could walk through buildings, but they're private property
 
+>p
 >dee
 >open door
-That would be rude.
+That front door is someone's home. You should really knock instead.
 
 * 3d-various-ends
 
@@ -1280,6 +1349,7 @@ Bare minimum
 >proc
 Bare minimum
 
+>undo
 >uwe
 >k
 >proc
@@ -1301,12 +1371,14 @@ more time coming here to quit
 
 #11-15
 >wes
+>k
+>proc
 bogus ID with
 
 >undo
 >sew
 >i
->sewew
+>sewed
 >i
 >sewn
 >i
@@ -1323,6 +1395,7 @@ bogus ID
 >proc
 referral fee
 
+>undo
 >deus
 >i
 >duds
@@ -1360,6 +1433,7 @@ Almost good enough
 >proc
 not quite terrific
 
+>undo
 >sweden
 >i
 >unused
@@ -1397,6 +1471,7 @@ into my inner circle
 >proc
 You'll make connections there
 
+>undo
 >suede
 >i
 >dunes
@@ -1460,9 +1535,9 @@ totally alphabetized
 
 >see new seens
 >www
-scenery with the book
+scenery found with the book handy!
 
-> 3d-pp
+* 3d-pp-validity
 
 >pp
 Being a messenger
@@ -1510,10 +1585,10 @@ Hints removed.
 >p
 !You flash back to Ed
 
-# 3d-score-basic
+* 3d-score-basic
 
 >score
-Overview: you have completed 0 of Ed's 50 tasks, 0 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
+Overview: you have completed 0 of Ed's 50 tasks: 0 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
 --0 of Ed's 10 friends found
 --0 of 9 places that give Ed more stuff
 --0 of 8 ways to help Ed's business
@@ -1523,7 +1598,7 @@ Overview: you have completed 0 of Ed's 50 tasks, 0 on your own and 0 with his re
 
 >findem
 >score
-Overview: you have completed 49 of Ed's 50 tasks, 0 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
+Overview: you have completed 49 of Ed's 50 tasks, not including seeing him again: 0 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
 
 --10 of Ed's 10 friends found
 --9 of 9 places that give Ed more stuff
@@ -1532,8 +1607,75 @@ Overview: you have completed 49 of Ed's 50 tasks, 0 on your own and 0 with his r
 --10 of 10 ways to help Ed with his upcoming party
 --4 of 5 recommended things for your own amusement and enlightenment.
 
-# 3d-score-scen
+* 3d-score-see-ed
 
+>j
+>ned
+>k
+>sue
+>k
+>wendee
+>k
+>uwe
+>k
+>wes
+>k
+>ewen
+>k
+>dee
+>k
+>deedee
+>k
+>swen
+>k
+>des
+>k
+>score
+Overview: you have completed 10 of Ed's 50 tasks: 10 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
+--10 of Ed's 10 friends found
+
+>den
+>i
+>dew
+>i
+>end
+>k
+>dns
+>i
+>edu
+>i
+>nes
+>i
+>sew
+>i
+>sun
+>i
+>see
+>i
+>score
+Overview: you have completed 19 of Ed's 50 tasks: 19 on your own and 0 with his revised lists. You can look at your list (just type X) for what's left. More details are below.
+--10 of Ed's 10 friends found
+
+>suds
+>i
+>score
+Overview: you have completed 20 of Ed's 50 tasks, not including seeing him again: 20 on your own and 0 with his revised lists.
+--10 of Ed's 10 friends found
+
+>eddunn
+>i
+>y
+>score
+Overview: you have completed 21 of Ed's 50 tasks: 21 on your own and 0 with his revised lists.
+
+>snus
+>i
+>score
+Overview: you have completed 22 of Ed's 50 tasks: 21 on your own and 1 with his revised lists.
+
+* 3d-score-scen
+
+>see new seens
 >score
 You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at 7 of 80.
 
