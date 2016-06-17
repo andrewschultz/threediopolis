@@ -578,6 +578,9 @@ to reset-game:
 	now ns is 4;
 	now ew is 4;
 	now ud is 4;
+	if adrift-on is true:
+		say "[line break]You decide to shut the adrift-a-tron off before trying another run.[paragraph break]";
+		now adrift-on is false;
 	now drift-this-trip is false;
 	let add-to be number of characters in your-tally;
 	if add-to >= 8:
@@ -1852,6 +1855,7 @@ check going south:
 		say "[losted]";
 		reset-game instead;
 	decrement ns;
+	
 
 check going north:
 	now your-tally is "[your-tally]n";
@@ -1928,7 +1932,7 @@ to tally-and-place:
 						if found entry is 1:
 							say "Hm, that place you found before--it's somewhere around here, but you're focused on what to find next.";
 							now note-found is true;
-					if found entry is not 1 and location of what-drops entry is not outside-area:
+					if found entry is not 1 and there is a what-drops entry and location of what-drops entry is not outside-area:
 						move what-drops entry to outside-area;
 						if what-drops entry is door to Ed Dunn's secret hideout:
 							now thinked is true;
@@ -2314,11 +2318,15 @@ after looking (this is the place ed's tasks rule) :
 					consider the rule-to-reveal entry;
 					if the rule succeeded:
 						say "[descrip entry][line break]";
-					the rule succeeds;
+					continue the action;
 				if found-yet entry is false:
 					now found-yet entry is true;
 					say "[descrip entry][line break]";
-					the rule succeeds;
+					continue the action;
+	continue the action;
+	
+after looking (this is the drift check on look rule):
+	check-drift;
 	continue the action;
 
 to say first-sc:
@@ -2509,8 +2517,6 @@ book quasi-entry list
 a quasi-entry is a kind of thing.
 
 understand "door" as a quasi-entry.
-
-the nodoor is privately-named scenery. description of nodoor is "[bug-rep]"
 
 to say bug-rep:
 	say "BUG please let me know how this happened at blurglecruncheon@gmail.com, or report an issue at [repo].";
@@ -3112,7 +3118,7 @@ carry out blackmarketing:
 	else if number understood is 1:
 		if taskdone < 10:
 			say "'Y'might want to wait a bit for just a hint. I can only give one. Sure?'";
-			unless the player consents:
+			unless debug-state is true or the player consents:
 				say "'You know where to find me, champ.'";
 				now bm-mode is false instead;
 		choose a random row in the table of findies;
@@ -3192,7 +3198,10 @@ After printing the name of the adrift-a-tron while taking inventory:
 the adrift-a-tron is a thing. description is "[suss-exam]"
 
 to say suss-exam:
-	say "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has [a-charges] charges left. [italic type][bracket]FOURTH WALL NOTE: the command A is shorthand to activate it.[close bracket][roman type]"
+	say "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has [ach], and if it finds nothing, no charge is used. [italic type][bracket]FOURTH WALL NOTE: the command A is shorthand to activate it.[close bracket][roman type]"
+
+to say ach:
+	say "[a-charges] charge[if a-charges > 1]s[end if] left"
 
 understand "tron" as adrift-a-tron.
 
@@ -3205,19 +3214,23 @@ drift-this-trip is a truth state that varies.
 
 check switching on adrift-a-tron:
 	if adrift-on is true:
-		say "It already is." instead;
+		say "The adrift-a-tron already is on." instead;
 	if drift-this-trip is true:
 		say "You already know you're lost." instead;
-	say "It's on now.";
-	now adrift-on is true instead;
+	say "The adrift-a-tron is on now.[paragraph break]";
+	now adrift-on is true;
+	check-drift;
+	the rule succeeds;
 
 check switching off adrift-a-tron:
 	if adrift-on is false:
-		say "It already is." instead;
-	say "It's off now.";
+		say "The adrift-a-tron already is off." instead;
+	say "The adrift-a-tron is off now.";
 	now adrift-on is false instead;
 
-every turn when adrift-on is true:
+to check-drift:
+	if adrift-on is false:
+		continue the action;
 	let a-so-far be 0;
 	let mytab be table of findies;
 	if taskdone + force-ed-point is number of rows in table of findies:
@@ -3226,11 +3239,15 @@ every turn when adrift-on is true:
 		if tally entry in lower case matches the regular expression "^[your-tally]":
 			increment a-so-far;
 	if a-so-far is 0:
-		say "The adrift-a-tron shrieks as if to say you did something very wrong, then [if a-charges is 0]goes FOOMP[else]notes it has [a-charges] charges left. You turn it off[end if].";
+		decrement a-charges;
+		say "The adrift-a-tron shrieks as if to say you did something wrong, then [if a-charges is 0]goes FOOMP[else]blinks it has [ach]. Harsh! You turn it off[end if].";
 		now oopsy-daisy is 5;
 		now drift-this-trip is true;
-		now adrift-on is false instead;
+		now adrift-on is false;
+	else:
+		say "Silence from the adrift-a-tron.";
 	if a-charges is 0:
+		say "[line break]You find a recycling receptacle to bury the adrift-a-tron. It was useful enough, you guess.";
 		now adrift-a-tron is off-stage;
 
 chapter xxing
@@ -3271,17 +3288,24 @@ carry out aing:
 			try switching off adrift-a-tron instead;
 		else:
 			try switching on adrift-a-tron instead;
+	if number of quasi-entries in outside-area > 0:
+		say "There's somewhere to visit here! Are you sure you wish to potentially waste a charge? [bracket]Note: your current find won't be included in the total.[close bracket]";
+		unless debug-state is true or the player consents:
+			say "Okay." instead;		
 	if number of characters in your-tally is 0:
 		say "Best to go somewhere first." instead;
 	repeat through table of findies:
 		if tally entry in lower case matches the regular expression "^[your-tally]":
-			increment a-so-far;
+			if found entry is 0:
+				if tally entry in lower case is not "[your-tally]":
+					increment a-so-far;
 	if a-so-far is 0:
 		say "The availableometer registers nothing. But at least you don't lose a charge." instead;
 	now oopsy-daisy is 5;
 	decrement a-charges;
-	say "[if a-charges is 0]Just before your availableometer makes a FOOMP, it shows[else]Your availableometer shows, next to '[a-charges] charges left,'[end if] the number [a-so-far]. [if a-so-far is 1]Guess there's only one path[else]That's how many paths are[end if] ahead from here.";
+	say "[if a-charges is 0]Just before your availableometer makes a FOOMP, it shows[else]Your availableometer shows, next to '[ach],'[end if] the number [a-so-far]. [if a-so-far is 1]Guess there's only one path[else]That's how many paths are[end if] ahead from here.";
 	if a-charges is 0:
+		say "[line break]You find a trash receptacle where you can recycle the availableometer.";
 		now availableometer is off-stage;
 	the rule succeeds;
 
@@ -4226,7 +4250,7 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Snus"	"Smokeless tobacco"	"Of course, the smokable kind's been illegal a while, smoking outdoors being proved worse than smoking indoors being proved worse than smoking outdoors. But this stuff is there, if people MUST. It's been genetically engineered to be okay to snort but very toxic to smoke--just in case people get ideas. The clerk nods as you say it's for someone else. He's heard that one before."	big glass doors	--	--	--	--	--	party	tough
 "Suds"	"Root Beer &/or Cream Soda"	"You've never been a Coke or Pepsi person, particularly after they aligned themselves with opposing political parties. Other soft drinks are taxed at a higher rate except for the bootleg stuff. Like what's here. Your employer apparently Knows People. Because he is such a good customer, you even get some illicit phosphate-filled laundry detergent."	restaurant door	--	--	--	--	--	party	tough
 "Suse"	"New Linux system--boo Windows 27"	"If only the people extolling Linux weren't so annoying, you'd have fallen in line with them sooner once you saw why. You suspect your employer felt the same. You pick up a lightweight custom computer for your employer."	shiny new store door	--	--	--	--	--	biz	deduc
-"Suss"	"[if suspicious-seen is true][can-i-suss][else]Get a free hint[end if]"	"Well, I guess your employer knows that he can't expect utter perfection. But you can't imagine you get more than one thing."	nodoor	--	--	0	--	--	youish	deduc
+"Suss"	"[if suspicious-seen is true][can-i-suss][else]Get a free hint[end if]"	"Well, I guess your employer knows that he can't expect utter perfection. But you can't imagine you get more than one thing."	--	--	--	0	--	--	youish	deduc
 "Deeds"	"pay property tax"	"People seem surprised to see you. You don't look like a property owner. But once they see your list, they realize who you are working for. You paying in person has saved him $500 (exorbitant, even with inflation) in electronic handling fees. He can afford it, but why support the racket?"	intimidating 15-foot revolving door	--	--	1	--	--	biz	deduc
 "Dudes"	"cowboy hat & boots"	"You reflect that, ironically, you didn't have to go west once to enter here. You buy a fold-up cowboy hat that fits nicely into your big mysterious package."	clothing store	--	--	--	--	--	stuffly	tough
 "Dunes"	"sandy beaches"	"It's not fully a natural beach, and you can't go in the water, but people shouldn't have to drive to a less wired area just to see the dunes. You are able to reserve the dunes for a weekend for Ed Dunn at a nice discount. The agents like that, because people who reserve on-line cancel more frequently."	dunes	--	--	--	--	--	relax	tough

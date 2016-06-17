@@ -1,0 +1,221 @@
+## reg-3d-cheats-unit.txt
+## various test cases for threediopolis cheats from the SUSS guy
+##
+##
+
+** game: /home/andrew/prt/debug-threediopolis.z8
+** interpreter: /home/andrew/prt/dfrotz -m
+
+* 3d-twisty
+
+>suss
+>5
+!444
+>s
+504
+>p
+
+>suss
+>6
+You zap back to the center before he can say anything. He looks slightly dismayed. But he probably has nowhere better to hang around, if you want to go back.
+444
+
+>suss
+>4
+You accept the twist-o-scope, which hooks up to your list and adds some new information to it. Then the guy mumbles something about proprietary copyrights, snatches the scope back and runs away.
+
+>x
+--friends: pal@346--, twice as fun pal@248--, tinny-voiced pal you'll find@335-, near pal (Scottish-Canadian)@455-, pal@355-, pal@535-, near pal@444+, Freund@544-, far frieeend@356+, pal not crushed by a truck, wow@434-
+
+* 3d-adrift
+
+>suss
+>2
+
+"Here's your adrift-a-tron. It'll tell you when you're hopelessly wandering." [NOTE: you can X IT right now, or X TRON.]
+
+>x it
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+
+>x tron
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+
+>a
+The adrift-a-tron is on now.
+
+Silence from the adrift-a-tron.
+
+>a
+The adrift-a-tron is off now.
+
+>a
+The adrift-a-tron is on now.
+
+Silence from the adrift-a-tron.
+
+>a
+The adrift-a-tron is off now.
+
+>switch it off
+The adrift-a-tron already is off.
+
+>a
+The adrift-a-tron is on now.
+
+>switch it on
+The adrift-a-tron already is on.
+
+Silence from the adrift-a-tron.
+
+>p
+You decide to shut the adrift-a-tron off before trying another run.
+
+>a
+The adrift-a-tron is on now.
+
+>n
+Silence from the adrift-a-tron.
+
+Silence from the adrift-a-tron.
+
+>n
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 9 charges left. Harsh! You turn it off.
+Threediopolis, Sector 464
+You note a three-way street sign: Avenue 46, Street 44, Updownway 64.
+
+>n
+!adrift-a-tron
+
+>p
+
+>a
+
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 8 charges left. Harsh! You turn it off.
+
+>p
+
+>a
+
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 7 charges left. Harsh! You turn it off.
+
+>a
+You already know you're lost.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 6 charges left. Harsh! You turn it off.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 5 charges left. Harsh! You turn it off.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 4 charges left. Harsh! You turn it off.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 3 charges left. Harsh! You turn it off.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 2 charges left. Harsh! You turn it off.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 1 charge left. Harsh! You turn it off.
+
+>p
+>a
+>nnn
+The adrift-a-tron shrieks as if to say you did something wrong, then goes FOOMP.
+You find a recycling receptacle to bury the adrift-a-tron. It was useful enough, you guess.
+
+* 3d-availableometer
+
+>suss
+>3
+
+>x it
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+
+>x meter
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+
+>a
+The availableometer registers nothing. But at least you don't lose a charge.
+
+>p
+>a
+Best to go somewhere first.
+
+>ned
+>a
+There's somewhere to visit here! Are you sure you wish to potentially waste a charge? [Note: your current find won't be included in the total.]
+>n
+>p
+
+>n
+>a
+Your availableometer shows, next to "9 charges left," the number 6. That's how many paths are ahead from here.
+>n
+>p
+
+>s
+>a
+Your availableometer shows, next to "8 charges left," the number 16. That's how many paths are ahead from here.
+>n
+>p
+
+>w
+>a
+Your availableometer shows, next to "7 charges left," the number 6. That's how many paths are ahead from here.
+>n
+>p
+
+>e
+>a
+Your availableometer shows, next to "6 charges left," the number 5. That's how many paths are ahead from here.
+>n
+>p
+
+>u
+>a
+Your availableometer shows, next to "5 charges left," the number 5. That's how many paths are ahead from here.
+>n
+>p
+
+>d
+>a
+Your availableometer shows, next to "4 charges left," the number 11. That's how many paths are ahead from here.
+>n
+>p
+
+>dd
+>a
+The availableometer registers nothing. But at least you don't lose a charge.
+>p
+
+>n
+>a
+Your availableometer shows, next to "3 charges left," the number 6. That's how many paths are ahead from here.
+>e
+>a
+Your availableometer shows, next to "2 charges left," the number 4. That's how many paths are ahead from here.
+>w
+>a
+Your availableometer shows, next to "1 charge left," the number 4. That's how many paths are ahead from here.
+>d
+>a
+Just before your availableometer makes a FOOMP, it shows the number 1. Guess there's only one path ahead from here.
+
+You find a trash receptacle where you can recycle the availableometer.
+

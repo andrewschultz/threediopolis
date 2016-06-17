@@ -1,4 +1,4 @@
-## reg-3d-misc.txt
+## reg-3d-misc-unit.txt
 ## various test cases for threediopolis random acts
 ##
 ##

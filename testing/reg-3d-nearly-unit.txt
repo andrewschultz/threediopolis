@@ -1,4 +1,4 @@
-## reg-3d-nearly.txt
+## reg-3d-nearly-unit.txt
 ## various test cases for threediopolis nearly acts
 ##
 ##
