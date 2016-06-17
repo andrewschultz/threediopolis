@@ -1560,6 +1560,168 @@ It's the Sneeds'!
 >l
 336
 
+* 3d-examine-all
+
+>j
+>ned
+Man! Someone's front door! With the secret detail Ed Dunn showed you that's obvious once you know it!
+>x door
+It looks familiar, slightly different from all the identical ones.
+>k
+
+>seeds
+odd grassy door
+>x door
+It's greenish-brown, and you're tempted to pick at it to see how naturesome it is, but you'd better not.
+>i
+
+>end
+ominous door
+>x door
+It says VOLUNTARY POPULATION CONTROL CLINIC.
+>k
+
+>deus
+stained-glass
+>x entryway
+It is impressive. It would make you believe in religion, if you hadn't convinced yourself long ago you'd probably pick the wrong one.
+>i
+
+>ewes
+hinged wooden gate
+>x gate
+It may be more for show and seems woefully out of place here.
+>i
+
+>den
+champagne bottle
+>x door
+It's a bit tacky, but it gets the point across. You will learn something about partying if you go through it.
+>i
+
+>suds
+restaurant door
+>x door
+Seen one, seen them all.
+>i
+
+>duds
+clothing store
+>x door
+You'll have to walk in to see what's so special. Nothing in the windows outside really captures you.
+>i
+
+>send
+loading dock
+>x door
+The loading dock is neither exciting nor forbidding. You can probably just ENTER it.
+>i
+
+>dew
+barely detectable gladed trail
+>x trail
+It's kept up well. But it's also narrow enough that if you weren't looking for it, you'd miss it.
+>i
+
+>deeds
+intimidating 15-foot revolving door
+>x door
+The height is just for effect. It doesn't look too heavy to enter.
+>i
+
+>sew
+tiny yet
+>x door
+It's meant to radiate charm and a simpler life. More practically, it stands out from the cookie-cutter doors around it, so you know you've found the right place.
+>i
+
+>wusses
+library entrance
+>x library
+It's barred, almost like a jail, which scares away the dumber people. That's a good thing, because dummies often tie up books that could be used by someone smarter.
+>i
+
+>weeds
+vacant lot
+>x lot
+It's for loafing around in, not loafing around around. So you may just want to enter it.
+>i
+
+>suse
+shiny new store door
+>x door
+Okay, it's not super shiny, but it feels and looks shiny, as something new should.
+>i
+
+>see new seens
+
+>eddunn
+You don't want or need to go back to Ed Dunn's right now. Maybe you could visit the Sneeds, instead.
+
+>x door
+Nothing like that is here.
+>p
+
+>dee
+You can't help but sneak a glance at where one of Ed's friends lives.
+>x door
+Dee and Dee are off for some surprising and unexpected stuff beyond their house.
+# don't return here--deedee is a bit farther
+
+>dee
+>x door
+You remember Deedee and Sundude arguing about their getaway home in--where was it? New Wessewn?
+>p
+
+>ewen
+>x door
+You don't want to disturb Ewen reading what's-her-name.
+>p
+
+>deneennunn
+>p
+>ewen
+>x door
+You don't want to disturb Ewen reading Deneen Nunn's books.
+>p
+
+>ned
+>x door
+Ned is writing scripts. One is labeled type words.txt | grep "^(n|s|e|w|u|d|oo|y|z|c)*$"--it's unclear if he's just showing off, or what.
+>p
+
+>sue
+>x door
+Karaoke for me, me, me, d'oh.
+>p
+
+>swen
+>x door
+Swen is off for a cultural event.
+>p
+
+>uwe
+>x door
+Uwe is studying chess. A former world champ who doesn't know how to pronounce his own name.
+>p
+
+>wendee
+>x door
+You don't see anything specific, but you remember Wendee passionately arguing that drawing out your e's might help in more ways than you think.
+>p
+
+>wes
+>x door
+Wes is off visiting various places, nearby ones first, then the least twisty routes.
+>p
+
+>sneeds
+It's the Sneeds'! You can enter if you've done all you want to. They'll be glad to see you no matter how much scenery you've found.
+>l
+The door to the Sneed house is here to enter, now or later.
+>x door
+This door was made for knockin'!
+
 * 3d-no-hints
 
 >hh
@@ -1679,7 +1841,6 @@ Overview: you have completed 22 of Ed's 50 tasks: 21 on your own and 1 with his 
 >score
 You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at 7 of 80.
 
-##### still could examine all doors
 ##### table of you-went
 ##### adrift-o-tron test?
 ##### availableometer test?

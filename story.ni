@@ -909,7 +909,7 @@ Rule for printing a parser error when the latest parser error is the can't see a
 		if your-tally is tally entry:
 			say "Whatever you just saw is gone now--thankfully, it wasn't critical, even though it was kind of interesting.";
 			the rule succeeds;
-	say "Nothing like that is here[one of]. If you just saw something in the background, it was there for local flavor[or][stopping][if player has book][one of]. Plus, your score goes up when you find scenery, now[or][stopping][end if].";
+	say "Nothing like that is here[if number of visible quasi-entries > 0], and you don't need to observe any landmarks in detail, just (k)nock or go (i)n[end if][one of]. If you just saw something in the background, it was there for local flavor[or][stopping][if player has book][one of]. Plus, your score goes up when you find scenery, now[or][stopping][end if].";
 	the rule succeeds;
 
 hint-index is a number that varies.
@@ -1424,7 +1424,9 @@ check pushing the button:
 	if number of characters in your-tally < 2:
 		say "You have heard about teleporter overheat. It's quite a way to go. Maybe you should walk around a bit[if number of characters in your-tally is 1] more[end if]." instead;
 	if there is a visible quasi-entry:
-		if sneed house is not visible:
+		if player has book of secret and front door is in outside-area:
+			do nothing;
+		else if sneed house is not visible:
 			say "Are you sure? You found a place to visit!";
 			if the player consents:
 				do nothing;
@@ -1881,10 +1883,6 @@ to say up-down-cool:
 check going up:
 	if gone-up-or-down is false:
 		say "[up-down-cool].";
-	if stairway to heaven is visible:
-		say "Did you mean to go up the stairway? Just checking.";
-		if the player consents:
-			try entering stairway instead;
 	now your-tally is "[your-tally]u";
 	increment ud;
 	if ud is 10:
@@ -1923,22 +1921,19 @@ to tally-and-place:
 			now Q is off-stage;
 			say "As you walk by, you reflect you can always find the [Q] later, if you'd like.";
 	if player does not have book of top secret:
-		repeat through table of findies:
-			if A is tally entry in lower case:
-				if note-found is false:
-					if found entry is 1:
-						say "Hm, that place you found before--it's somewhere around here, but you're focused on what to find next.";
-						now note-found is true;
-				if found entry is not 1 and location of what-drops entry is not outside-area:
-					move what-drops entry to outside-area;
-					if what-drops entry is door to Ed Dunn's secret hideout:
-						now thinked is true;
-					if the current action is waiting:
-						say "[line break]You see something you didn't before--[what-drops entry].";
-		repeat through table of findies:
-			if A is tally entry in lower case:
-				if found entry is not 1 and location of what-drops entry is not outside-area:
-					move what-drops entry to outside-area;
+		if number of characters in your-tally > 2:
+			repeat through table of findies:
+				if A is tally entry in lower case:
+					if note-found is false:
+						if found entry is 1:
+							say "Hm, that place you found before--it's somewhere around here, but you're focused on what to find next.";
+							now note-found is true;
+					if found entry is not 1 and location of what-drops entry is not outside-area:
+						move what-drops entry to outside-area;
+						if what-drops entry is door to Ed Dunn's secret hideout:
+							now thinked is true;
+						if the current action is waiting:
+							say "[line break]You see something you didn't before--[what-drops entry].";
 	else:
 		if your-tally is "see":
 			move secret entry to outside-area;
@@ -2258,70 +2253,72 @@ after looking (this is the place ed's tasks rule) :
 		if found entry is 0 and A is tally entry:
 			now found entry is 1;
 	let ignore-sneed be false;
-	repeat through table of scenery:
-		if A is tally entry:
-			if found entry is 2 or A is "sneeds":
-				if player has book:
-					if Sneed house is in outside-area:
-						now ignore-sneed is true;
+	let chrs be number of characters in your-tally;
+	if chrs > 2:
+		repeat through table of scenery:
+			if A is tally entry:
+				if found entry is 2 or A is "sneeds":
+					if player has book:
+						if Sneed house is in outside-area:
+							now ignore-sneed is true;
+						else:
+							move Sneed house to outside-area;
+				if found entry is 0:
+					now plus-ticker is 0;
+					if player has book:
+						now need-to-redraw is true;
+					if A is "sneeds":
+						now found entry is 2;
 					else:
-						move Sneed house to outside-area;
-			if found entry is 0:
-				now plus-ticker is 0;
-				if player has book:
-					now need-to-redraw is true;
-				if A is "sneeds":
-					now found entry is 2;
-				else:
-					now found entry is 1;
-				increase base-hint-count by 2;
-				if player does not have book of top secret things:
-					say "[foundit entry][one of][paragraph break]But what you noticed doesn't seem practical, so you put it out of your mind as you continue pacing. Places you can't enter won't help you help Ed Dunn.[line break][or][line break][stopping]";
-				else:
-					say "[foundit entry][if scenery-found-yet is false][paragraph break][first-sc].[line break][else][line break][end if]";
-					now scenery-found-yet is true;
-					if misp-found is false and player has book of top secret:
-						say "You pat yourself on the back for finding this and mentally stick your tongue out at the person who beat you in a spelling bee years ago.";
-						now misp-found is true;
-					if expected-depth > secs - eggsfound:
-						now expected-depth is secs - eggsfound;
-					if center-warn is false:
-						say "[italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
-						now center-warn is true;
-					else if found entry is not 2 and center-on-scene is true: [stay around the sneeds']
-						say "[line break]You zap back to the almost-center[if posschars > number of characters in your-tally], cancelling the rest of your plans[end if].";
-						now ignore-remaining-dirs is true;
-						reset-game;
-					check-cur-done;
-				continue the action;
-			if found entry is -1 or found entry is 2:
-				now plus-ticker is 0;
-				if found entry is -1:
-					now found entry is 2;
-				if ignore-sneed is false:
-					say "Oh man. It's the Sneeds['], again! Should you stop in?";
-					if debug-state is false and the player consents:
-						let count be 0;
-						repeat through the table of scenery progress:
-							if eggsfound >= need-to-get entry:
-								increment count;
-						choose row count in the table of scenery progress;
-						say "[sneed-talk entry]";
-						end the story;
-						consider the shutdown rules instead;
+						now found entry is 1;
+					increase base-hint-count by 2;
+					if player does not have book of top secret things:
+						say "[foundit entry][one of][paragraph break]But what you noticed doesn't seem practical, so you put it out of your mind as you continue pacing. Places you can't enter won't help you help Ed Dunn.[line break][or][line break][stopping]";
 					else:
-						say "You shuffle your feet nervously. Not yet, you guess, you think.";
-	repeat through table of nearlies:
-		if A is tally entry:
-			if there is a rule-to-reveal entry:
-				consider the rule-to-reveal entry;
-				if the rule succeeded:
+						say "[foundit entry][if scenery-found-yet is false][paragraph break][first-sc].[line break][else][line break][end if]";
+						now scenery-found-yet is true;
+						if misp-found is false and player has book of top secret:
+							say "You pat yourself on the back for finding this and mentally stick your tongue out at the person who beat you in a spelling bee years ago.";
+							now misp-found is true;
+						if expected-depth > secs - eggsfound:
+							now expected-depth is secs - eggsfound;
+						if center-warn is false:
+							say "[italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
+							now center-warn is true;
+						else if found entry is not 2 and center-on-scene is true: [stay around the sneeds']
+							say "[line break]You zap back to the almost-center[if posschars > number of characters in your-tally], cancelling the rest of your plans[end if].";
+							now ignore-remaining-dirs is true;
+							reset-game;
+						check-cur-done;
+					continue the action;
+				if found entry is -1 or found entry is 2:
+					now plus-ticker is 0;
+					if found entry is -1:
+						now found entry is 2;
+					if ignore-sneed is false:
+						say "Oh man. It's the Sneeds['], again! Should you stop in?";
+						if debug-state is false and the player consents:
+							let count be 0;
+							repeat through the table of scenery progress:
+								if eggsfound >= need-to-get entry:
+									increment count;
+							choose row count in the table of scenery progress;
+							say "[sneed-talk entry]";
+							end the story;
+							consider the shutdown rules instead;
+						else:
+							say "You shuffle your feet nervously. Not yet, you guess, you think.";
+		repeat through table of nearlies:
+			if A is tally entry:
+				if there is a rule-to-reveal entry:
+					consider the rule-to-reveal entry;
+					if the rule succeeded:
+						say "[descrip entry][line break]";
+					the rule succeeds;
+				if found-yet entry is false:
+					now found-yet entry is true;
 					say "[descrip entry][line break]";
-				the rule succeeds;
-			if found-yet entry is false:
-				now found-yet entry is true;
-				say "[descrip entry][line break]";
-				the rule succeeds;
+					the rule succeeds;
 	continue the action;
 
 to say first-sc:
@@ -2511,6 +2508,8 @@ book quasi-entry list
 
 a quasi-entry is a kind of thing.
 
+understand "door" as a quasi-entry.
+
 the nodoor is privately-named scenery. description of nodoor is "[bug-rep]"
 
 to say bug-rep:
@@ -2521,136 +2520,60 @@ to say repo:
 
 a quasi-entry is usually fixed in place.
 
-a quasi-entry can be openable. a quasi-entry is usually not openable.
-
 instead of taking a quasi-entry:
 	say "That'd be vandalism. Probably [if noun is front door]KNOCK[else if noun is openable]OPEN or ENTER it or go IN[otherwise]ENTER it or go IN[end if], instead.";
 
-the blurry doors that seem only half there are a plural-named quasi-entry.
+the blurry doors that seem only half there are a plural-named quasi-entry. description is "The more you try to make out details, the less they seem there. However, they seem more likely to fade away then to solidify into a wall, though, so you might as well risk entering them."
 
-description of blurry doors that seem only half there is "The more you try to make out details, the less they seem there. However, they seem more likely to fade away then to solidify into a wall, though, so you might as well risk entering them."
-
-the front door is a quasi-entry. "[if player has book of secret]You can't help but sneak a glance at where one of Ed's friends lives.[else]Man! Someone's front door! With the secret detail Ed Dunn showed you that's obvious once you know it![end if]"
-
-description of front door is "It looks familiar, slightly different from all the identical ones."
+the front door is a quasi-entry. description is "It looks familiar, slightly different from all the identical ones.". "[if player has book of secret]You can't help but sneak a glance at where one of Ed's friends lives.[else]Man! Someone's front door! With the secret detail Ed Dunn showed you that's obvious once you know it![end if]"
 
 check examining front door when player has book of secret things:
 	repeat through table of findies:
-		if your-tally is tally entry in lower case:
-			say "[if there is no palhint entry]Though the front door has no specific reason why, still, you probably shouldn't.[else][palhint entry][line break][end if]" instead;
+		if your-tally is tally entry in lower case and there is a palhint entry:
+			say "[palhint entry][line break]" instead;
 	say "Oops! Somehow, I didn't account for this friend. [bug]" instead;
 
-the odd grassy door is a quasi-entry.
+the odd grassy door is a quasi-entry. description is "It's greenish-brown, and you're tempted to pick at it to see how naturesome it is, but you'd better not."
 
-description of odd grassy door is "It's greenish-brown, and you're tempted to pick at it to see how naturesome it is, but you'd better not."
+the extremely ominous door is a quasi-entry. description is "It says VOLUNTARY POPULATION CONTROL CLINIC."
 
-the extremely ominous door is a quasi-entry.
+the stained-glass entryway is a quasi-entry. description of stained-glass entryway is "It is impressive. It would make you believe in religion, if you hadn't convinced yourself long ago you'd probably pick the wrong one.". understand "entry" and "glass" as entryway.
 
-description of ominous door is "It says VOLUNTARY POPULATION CONTROL CLINIC."
+the hinged wooden gate is a quasi-entry. description is "It may be more for show and seems woefully out of place here."
 
-the stained-glass entryway is a quasi-entry.
+the door shaped like a champagne bottle is a quasi-entry. description is "It's a bit tacky, but it gets the point across. You will learn something about partying if you go through it."
 
-understand "door" and "entry" and "glass" as entryway.
+the restaurant door is a quasi-entry. description is "Seen one, seen them all."
 
-description of stained-glass entryway is "It is impressive. It would make you believe in religion, if you hadn't convinced yourself long ago you'd probably pick the wrong one."
+the clothing store is a quasi-entry. description is "You'll have to walk in to see what's so special. Nothing in the windows outside really captures you.". understand "door" as clothing store.
 
-the hinged wooden gate is a quasi-entry.
+the loading dock is a quasi-entry. description is "The loading dock is neither exciting nor forbidding. You can probably just ENTER it."
 
-description of hinged wooden gate is "It may be more for show and seems woefully out of place here."
+the metal door is a privately-named quasi-entry. description is "It's not exactly forbidding, but it only invites people who want privacy."
 
-the door shaped like a champagne bottle is a quasi-entry.
+the barely detectable gladed trail is a quasi-entry. description is "It's kept up well. But it's also narrow enough that if you weren't looking for it, you'd miss it."
 
-description of champagne bottle is "It's a bit tacky, but it gets the point across. You will learn something about partying if you go through it."
+dunes are a quasi-entry. description is "Very sandy but off-limits to those without a reservation. You assume one is in your mysterious package."
 
-the restaurant door is a quasi-entry.
-
-description of restaurant door is "Seen one, seen them all."
-
-the cobblestone archway is a quasi-entry.
-
-description of cobblestone archway is "Fully designed for maximum old-world charm without looking decrepit."
-
-the stairway to heaven is a quasi-entry.
-
-the printed name of the stairway to heaven is "a stairway to heaven, or, more likely these days, the humanist daydreamer's equivalent"
-
-description of stairway to heaven is "It gets bright near the top--an illusion every grade-school kid knows, but it's still awe-inspiring in person."
-
-instead of climbing stairway to heaven:
-	try entering stairway instead;
-
-the clothing store is a quasi-entry.
-
-description of clothing store is "You'll have to walk in to see what's so special. Nothing in the windows outside really captures you."
-
-understand "door" as clothing store.
-
-the loading dock is a quasi-entry.
-
-description of loading dock is "The loading dock is neither exciting nor forbidding. You can probably just ENTER it."
-
-the md is a privately-named quasi-entry. understand "metal" and "door" and "metal door" as md. the printed name of md is "metal door with a one-way peephole".
-
-the peephole is part of the md. description of peephole is "It's for looking out, not looking in."
-
-instead of searching peephole:
-	say "Just walk in, geez. You're an employed ADULT.";
-
-description of md is "It's plain, and the builders planned it that way."
-
-the surprising new store is a quasi-entry. description of surprising new store is "You can tell it's clean and cheery and, looking inside, you see welcome signs."
-
-the welcome signs are part of the surprising new store. description of welcome signs is "They're inviting you to come in."
-
-instead of doing something other than examining the signs:
-	say "They're only for looking at."
-
-the barely detectable gladed trail is a quasi-entry.
-
-description of the barely detectable gladed trail is "It's kept up well. But it's also narrow enough that if you weren't looking for it, you'd miss it."
-
-dunes are a quasi-entry.
-
-description of dunes is "Very sandy but off-limits to those without a reservation. You assume one is in your mysterious package."
-
-the door to Ed Dunn's secret hideout is a quasi-entry.
+the door to Ed Dunn's secret hideout is a quasi-entry. description is "It's surprisingly ordinary, and it doesn't even have Ed's name on it."
 
 initial appearance of the door to Ed Dunn's secret hideout is "[one of]Hey, here's the door to Ed Dunn's secret hideout! Makes sense[or]Ed Dunn's secret hideout door is just where you remember it. You can enter it to report to your employer[stopping]."
-
-description of door to Ed Dunn's secret hideout is "It's surprisingly ordinary, and it doesn't even have Ed's name on it."
-
-opening a quasi-entry is pointscoring.
-
-entering a quasi-entry is pointscoring.
 
 [instead of examining a quasi-entry:
 	say "Stop staring and walk inside!"]
 
-the intimidating 15-foot revolving door is a quasi-entry.
-
-description of the intimidating 15-foot revolving door is "Fortunately, the door handle is a more reasonable three feet above."
-
-the door handle is part of the 15-foot revolving door.
-
-instead of doing something with the door handle:
-	say "It's the door itself you want to mess with.";
-
-description of door handle is "BUG";
+the intimidating 15-foot revolving door is a quasi-entry. description is "The height is just for effect. It doesn't look too heavy to enter."
 
 instead of doing something with the intimidating 15-foot revolving door:
+	if current action is examining:
+		continue the action;
 	try processing instead;
 
-the clothing store is a quasi-entry.
+the tiny yet inviting door is a quasi-entry. description is "It's meant to radiate charm and a simpler life. More practically, it stands out from the cookie-cutter doors around it, so you know you've found the right place."
 
-the tiny yet inviting door is a quasi-entry.
-
-description of the tiny yet inviting door is "It's meant to radiate charm and a simpler life. More practically, it stands out from the cookie-cutter doors around it, so you know you've found the right place."
-
-the big glass doors are a quasi-entry. the big glass doors are plural-named.
+the big glass doors are a plural-named quasi-entry. description is "They help the business inside look important."
 
 understand "door" as big glass doors.
-
-description of big glass doors is "They help the business inside look important."
 
 the door to the Sneed house is a quasi-entry. "The door to the Sneed house is here to enter, now or later.". description is "This door was made for knockin[']!"
 
@@ -2772,24 +2695,11 @@ to define-row-starts:
 		choose row Q in table of findies;
 		say "[Q] [tally entry].";]
 
+a library entrance is a quasi-entry. description is "It's barred, almost like a jail, which scares away the dumber people. That's a good thing, because dummies often tie up books that could be used by someone smarter."
 
-a library entrance is a quasi-entry.
+a vacant lot is a quasi-entry. description is "It's for loafing around in, not loafing around around. So you may just want to enter it."
 
-description of library entrance is "It's barred, almost like a jail, which scares away the dumber people. That's a good thing, because dummies often tie up books that could be used by someone smarter."
-
-instead of entering library:
-	try processing instead;
-
-a vacant lot is a quasi-entry.
-
-description of vacant lot is "It's for loafing around in, not loafing around around. So you may just want to enter it."
-
-instead of entering vacant lot:
-	try processing instead;
-
-the shiny new store door is a quasi-entry.
-
-description of the shiny new store door is "Okay, it's not super shiny, but it feels and looks shiny, as something new should."
+the shiny new store door is a quasi-entry. description is "Okay, it's not super shiny, but it feels and looks shiny, as something new should."
 
 the secret entry is a quasi-entry. description of secret entry is "A door that blends in nicely with the building facade. But not quite well enough, now you know what to look for."
 
@@ -4149,6 +4059,8 @@ tally (text)	found-yet	descrip (text)	rule-to-reveal
 "senesense"	false	"You must be getting old--you feel like you've forgotten something, or you'd have wound up somewhere."
 "seweeed"	false	"You pass by a health food restaurant trying to capitalize on the latest craze--an obvious ripoff of [seew]."
 "sneee"	false	"You feel a tingle in your nose, one you just want to get rid of. Perhaps something to the south--nah, not right now, maybe retrace and try again."	unfound-sneeze rule
+"susus"	false	"[sussud-clue]."	unfound-sussud rule
+"sussus"	false
 "suee"	false	"[sooee]" 	soee rule
 "suue"	false	"[sooee]" 	soee rule
 "suuue"	false	"[sooee]" 	soee rule
@@ -4158,6 +4070,15 @@ tally (text)	found-yet	descrip (text)	rule-to-reveal
 "weeenes"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
 "weneees"	false	"You pass by a disreputable hot dog hut, an obvious ripoff of [wees]."
 "wwedd"	false	"The What Would Ed Dunn Do bracelet fails to glow or do anything magical or even remotely technological."
+
+this is the unfound-sussud rule:
+	choose row with tally of "sussud" in table of scenery;
+	if found entry is 1:
+		the rule fails;
+	the rule succeeds;
+
+to say sussud-clue:
+	say "You recall a song where you don't know the name, but you think you like it just the same"
 
 this is the unfound-unsewn rule:
 	choose row with tally of "unsewn" in table of scenery;
@@ -4279,13 +4200,13 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Dee"	"pal"	"You are surprised to see a [if dee-male is true]man[else]woman[end if] answer the door, but you're not sure why. 'Ed Dunn, eh? My [if dee-male is true]wife[else]husband[end if] will be glad to drop by. [if dee-male is true]Her[else]His[end if] name's Dee, too. Well, the abbreviation. We both laughed too hard at it when we first met.'"	front door	0	1	2	false	0	chums	deduc	--	"Dee and Dee are off for some surprising and unexpected stuff beyond their house."
 "Deedee"	"twice as fun pal"	"A slightly snooty looking woman answers the door. 'WHAT ARE YOU...oh! Ed Dunn?' she says, sounding a bit too happy. 'Sundude! Another party of Ed's!' She thanks you very much and gives you a tip which would be insulting if you asked for it."	front door	0	1	--	false	0	chums	alfhint	--	"You remember Deedee and Sundude arguing about their getaway home in--where was it? New Wessewn?"
 "Des"	"tinny-voiced pal you'll find"	"'An Ed Dunn party, eh? His are worth the walk. But boy, I tell you, the guy who sold me this place cheated me. Said I'd be down the street from Ed's. Never said how far.'"	front door	--	--	--	false	0	chums	deduc	--	"Off to the future, my past or maybe a funeral."
-"Ewen"	"[if task-list is not super-alpha]near [end if]pal (Scottish-Canadian)"	"A man holding [italic type]Unended[roman type], the award-winning book by Deneen Nunn, answers the door. 'Sometimes I wonder if Ed Dunn only invites me to feel multicultural. Eh, well, free food, how can I say no?'"	front door	--	--	--	false	0	chums	tough	--	"You don't want to disturb Ewen reading what's-her-name. [one of]Deneen what's-it[or]Who's-it Nunn[in random order]."
+"Ewen"	"[if task-list is not super-alpha]near [end if]pal (Scottish-Canadian)"	"A man holding [italic type]Unended[roman type], the award-winning book by Deneen Nunn, answers the door. 'Sometimes I wonder if Ed Dunn only invites me to feel multicultural. Eh, well, free food, how can I say no?'"	front door	--	--	--	false	0	chums	tough	--	"You don't want to disturb Ewen reading [who-is-deneen]."
 "Ned"	"pal"	"Ned compliments you on not getting lost getting here--there are other tempting and even dangerous places in the nearby area. He suspects and hopes that that's why he didn't get the last invite. Well, he hopes it was more temptation than danger."	front door	--	--	--	false	0	chums	deduc	--	"Ned is writing scripts. One is labeled [italic type]type words.txt | grep '^(n|s|e|w|u|d|oo|y|z|c)*$'[roman type]--it's unclear if he's just showing off, or what."
 "Sue"	"pal"	"'Ah, yes,' says the lady answering the door, 'You messengers always find me early, don't you? Must be my personality. Oh, and don't go up-east when you leave. There's hog-calling competitions all over. Or is that next weekend?'"	front door	--	--	--	false	0	chums	deduc	--	"Karaoke for me, me, me, d'oh."
 "Swen"	"[if task-list is not super-alpha]near [end if]pal"	"'You look dizzy! You been walking around in circles?' asks Ed's latest invitee. He mentions that old puzzle about someone going south, east and north to arrive where he started, and how there's more than one point, before making some desultory joke about remembering to forget the lutefisk. He looks woebegone as you fail to laugh, mentions not ALL his jokes are above average, and explains it's funnier once you know Ed Dunn."	front door	--	--	--	false	0	chums	tough	--	"Swen is off for a cultural event."
-"Uwe"	"Freund"	"'Ah, Ed always appreciates my European viewpoint. Even if he and other guests forget if I'm from France or Germany.'"	front door	--	--	--	false	0	chums	tough	--	"Uwe is studying chess. A former world champ who doesn't know how to pronounce his name."
-"Wendee"	"[if task-list is not super-alpha]far [end if]frieeend"	"'Oh! You're with Ed Dunn? Let me see the list he gave you,' says the woman answering. She nods approvingly. 'He said he only invited Nene because she was closer. I'm glad he meant it this time. I hope he has those awesome hot dogs this party!'"	front door	--	--	--	false	0	chums	alfhint
-"Wes"	"pal not crushed by a truck, wow"	"'Nice of Ed to think of me even though I'm so far away. I hope it wasn't too far for you.'"	front door	--	--	--	false	0	chums	alfhint
+"Uwe"	"Freund"	"'Ah, Ed always appreciates my European viewpoint. Even if he and other guests forget if I'm from France or Germany.'"	front door	--	--	--	false	0	chums	tough	--	"Uwe is studying chess. A former world champ who doesn't know how to pronounce his own name."
+"Wendee"	"[if task-list is not super-alpha]far [end if]frieeend"	"'Oh! You're with Ed Dunn? Let me see the list he gave you,' says the woman answering. She nods approvingly. 'He said he only invited Nene because she was closer. I'm glad he meant it this time. I hope he has those awesome hot dogs this party!'"	front door	--	--	--	false	0	chums	alfhint	--	"You don't see anything specific, but you remember Wendee passionately arguing that drawing out your e's might help in more ways than you think."
+"Wes"	"pal not crushed by a truck, wow"	"'Nice of Ed to think of me even though I'm so far away. I hope it wasn't too far for you.'"	front door	--	--	--	false	0	chums	alfhint	--	"Wes is off visiting various places, nearby ones first, then the least twisty routes."
 "Den"	"Visit total party-cave"	"You realize that Ed Dunn has done you a favor by allowing you to view this. You take extra careful notes on how the party is, what's being served, what a party should be, and the general atmosphere and how people are acting. Alas, you can't partake of some amenities while on the job, but you can't complain."	a door shaped like a champagne bottle	--	--	1	false	--	party	deduc
 "Dew"	"Wet grass"	"A kid on a lonely park bench. 'So you're the one my uncle got to play with me today. You'll do, I guess.' It's actually rather fun, and the kid gets bored first."	gladed trail	--	--	--	--	--	relax	tough
 "Dns"	"Chat w/web srvr"	"You probably took less time to walk there than it would've taken to stay on hold if you called in. Or get an email response. Internet customer service was so much better a hundred years ago! You straighten out a few things about your employer's websites, both the ones people know he owns and the one they don't[acro-thick]."	big glass doors	--	--	--	--	--	biz	tough
@@ -4309,7 +4230,7 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Deeds"	"pay property tax"	"People seem surprised to see you. You don't look like a property owner. But once they see your list, they realize who you are working for. You paying in person has saved him $500 (exorbitant, even with inflation) in electronic handling fees. He can afford it, but why support the racket?"	intimidating 15-foot revolving door	--	--	1	--	--	biz	deduc
 "Dudes"	"cowboy hat & boots"	"You reflect that, ironically, you didn't have to go west once to enter here. You buy a fold-up cowboy hat that fits nicely into your big mysterious package."	clothing store	--	--	--	--	--	stuffly	tough
 "Dunes"	"sandy beaches"	"It's not fully a natural beach, and you can't go in the water, but people shouldn't have to drive to a less wired area just to see the dunes. You are able to reserve the dunes for a weekend for Ed Dunn at a nice discount. The agents like that, because people who reserve on-line cancel more frequently."	dunes	--	--	--	--	--	relax	tough
-"Nudes"	"ART not porn"	"Obviously there needs to be a crackdown on sicko-porn masquerading as art, but this has been certified by the Ministry of Art as relatively intellectual stuff. It will provoke dynamic conversation at Ed Dunn's party, too, for sure. You pick out a sculpture from the No-Photograph Zone for later delivery to your benefactor."	md	--	--	--	--	--	party	tough
+"Nudes"	"ART not porn"	"Obviously there needs to be a crackdown on sicko-porn masquerading as art, but this has been certified by the Ministry of Art as relatively intellectual stuff. It will provoke dynamic conversation at Ed Dunn's party, too, for sure. You pick out a sculpture from the No-Photograph Zone for later delivery to your benefactor."	metal door	--	--	--	--	--	party	tough
 "Seeds"	"garden startup materials"	"Genetic engineering advances have made it so most people, even if they get seeds, can only grow plants for one year. A power grab by agribusiness? Perhaps. But nobody much goes hungry, so nobody can complain. You pay for and take the valuable seed packets."	odd grassy door	--	--	--	--	--	relax	deduc
 "Sewed"	"handmade clothes with love in every stitch-2"	"[ed-sew]."	clothing store	--	--	--	--	--	stuffly	tough
 "Suede"	"softish leathery clothes"	"Real leather's a bit scarce, even for rich people, but suede still costs about the same, adjusted for inflation. Anyway, it's just like artificial flavors in food--you get used to it, with all the other advances."	clothing store	--	--	--	--	--	stuffly	tough
@@ -4326,6 +4247,13 @@ tally (text)	descrip (text)	foundit (text)	what-drops	found	searchedfor	breakbef
 "Seeweed"	"[saltren]ee greens"	"You stop by a new restaurant, whose proprietor, Mr. DeWeese (of course,) gives you a free sample of the envorinmentally replenishable kelp-based lollipops and after-dinner mint substitutes in addition to the more nutritional party fare. It'll...it'll hit the spot when you're hungrier."	restaurant door	--	--	--	--	--	party	tough
 "Weenees"	"improperly voweeled hut of hot dog's"	"Man, you have heard a lot of reasons why this place or that place is good for comfort food, but one thing you can always rely on: owners misspell, grub will excel. The [']S on the sign triggers another rule: apostrophe botch, the sauce is top notch. The proprietor, Mr. Sweenee (of course,) gives you few free samples for such a bulk order--and because you look like you've come a ways--and man, you eat them so fast, you already wish you'd got more."	restaurant door	--	--	--	--	--	party	tough
 "UsedDuds"	"2nd-hand clothing boutique"	"Arriving in the used clothes store, you suddenly realize that there are probably used clothes in the mysterious package. You take them out and give them to the clerk, who credits your employer's account. They're a little garish, but the concealed wearble technology is still worth something."	clothing store	--	--	1	--	--	stuffly	tough
+
+to say who-is-deneen:
+	choose row with tally of "deneennunn" in table of scenery;
+	if found entry is 1:
+		say "Deneen Nunn's books";
+	else:
+		say "what's-her-name. [one of]Deneen what's-it[or]Who's-it Nunn[in random order]"
 
 to say ed-sew:
 	say "[one of]Nobody really cares about fashion any more, but there are still clothes to wear to show you don't. Ed Dunn needs a lot of them[or]Ed Dunn apparently needs an extra shipment of clothes-to-show-he-doesn't-care-about-clothes. Well, YOU'RE not paying for them[stopping]"
