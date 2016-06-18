@@ -231,8 +231,6 @@ Array edSilent --> 4 "'Yeah, yeah. Doer not a talker. But I need a simple yes or
 
 -)
 
-tnm is a table name that varies.
-
 chapter transcripting stub
 
 Include (-
@@ -315,6 +313,7 @@ after reading a command:
 				if number of characters in your-tally >= 1:
 					say "[italic type][bracket]NOTE: I kicked you back to the start[if number of visible quasi-entries > 0] and also removed the place you could've entered. They're all gone now[end if].[close bracket][roman type][line break]";
 				now my-table is table of scenery;
+				now fast-run is true;
 				now list-in-status is false;
 				reset-game;
 				increment the turn count;
@@ -395,7 +394,6 @@ salty is a truth state that varies.
 
 when play begins (this is the table tweaking and checking and randomizing rule):
 	now my-table is table of findies;
-	now tnm is table of findies;
 	repeat through table of findies:
 		unless there is a findtype entry:
 			now findtype entry is biz;
@@ -468,6 +466,9 @@ your-tally is indexed text that varies.
 
 ns is a number that varies. ew is a number that varies. ud is a number that varies.
 
+to say qp:
+	say "[if player does not have book of top secret things]DEEDS: ENDED?[no line break][else if eggsfound < 80]SEEN, SUSSED, END...[no line break][else]DUDE! SENSE-ENDUED![no line break][end if]";
+
 to endgame-process:
 	let donesies be taskdone;
 	choose row with tally of "Deedee" in table of findies;
@@ -485,7 +486,7 @@ to endgame-process:
 		if stuff-i-did entry >= taskdone:
 			now oopsy-daisy is 2;
 			say "[eval entry][line break]";
-			end the story;
+			end the story saying "[qp]";
 			continue the action;
 	say "'[if county of youish is maxy of youish]It's good to see you did all the fun stuff I put in there. I like fun[else]You could've done a little more fun stuff, no guilt[end if].'[paragraph break]Ed hands you some cool junk: ";
 	say "[if 3 * county of stuffly >= 2 * maxy of stuffly]a New York Yankees world champs t-shirt from before those lovable losers['] 90-year drought[else]an antique zip drive[end if], ";
@@ -590,12 +591,13 @@ to reset-game:
 				if mb-mb-not is 2:
 					say "[line break]Hmm. Maybe you didn't need to walk around so much, or so long. Ed Dunn was brief with you, but he didn't seem cruel. Shorter walks and using the teleport could be better.";
 					now mb-mb-not is 0;
+	note-far-gone add-to;
 	if add-to > 7:
 		now add-to is 7;
 	if taskdone >= 3 or player has book of top secret things:
 		if just-found is false:
 			increase plus-ticker by add-to;
-	if number of characters in your-tally > 0:
+	if add-to > 0:
 		now say-back is true;
 	now your-tally is "";
 	now all visible quasi-entries are off-stage;
@@ -1031,7 +1033,20 @@ to say my-thing:
 		say "adrift-a-tron";
 
 carry out cing:
-	say "[bracket]All commands are case insensitive[close bracket][paragraph break]The six directions, abbreviated: N, S, E, W, U, D. K knocks. I/IN goes in (inventory doesn't change much so I trumps INVENTORY when you can enter.)[line break][if player has availableometer or player has adrift-a-tron]A=use your [my-thing][line break][end if]B=brief V=verbose C=this command[line break][if pals < 9 and player does not have book]F=friends left FF=friends in header [end if]I=inventory [if player does not have book]O=one line of by-length list OO=one line in header [end if][if task-list is super-alpha and player does not have book]M=move to line (1-7) MM new list[end if]X=all the list[line break]H=hint, HH=hint toggle[line break]P pushes the panic button to send you to sector 444. [if player has book of top secret things]PP makes this the default when finding scenery.[line break]R shows the nearest, first-in-alphabet unvisited place, R # (up to 9) shows the next 9. XX makes twistiness for solved items disappear.[run paragraph on][end if][line break]J=jump mode to toggle diagonal warning.[line break][if player does not have book]T toggles big long listing in the status bar. [end if]X (#) reads one line, X (24) reads (for example) lines 2-4.[line break]Z waits.[line break]Typing no command circles through some of the nearer places you still need to visit.[line break]";
+	say "[bracket]All commands are case insensitive[close bracket][paragraph break]The six directions, abbreviated: N, S, E, W, U, D. K knocks. I/IN goes in (inventory doesn't change much so I trumps INVENTORY when you can enter.)[line break]";
+	if player has availableometer or player has adrift-a-tron:
+		say "A=use your [my-thing][line break]";
+	say "B=brief V=verbose C=this command I=inventory X examines list unless an entry is present[line break]";
+	if player does not have book and pals < 9:
+		say "F=friends left FF=friends in header ";
+	say "[if player does not have book]O=one line of by-length list OO=one line in header [end if][if task-list is super-alpha and player does not have book]M=move to line (1-7) MM new list [end if]";
+	say "H=hint, HH=toggle hints the game gives when you're stuck[line break]";
+	say "P pushes the panic button to send you to sector 444. [if player has book of top secret things]PP makes this the default when finding scenery, though if you just found it, you'll still need to push P.[end if]";
+	say "R shows the nearest, first-in-alphabet unvisited place, R # (up to 9) shows the next 9[if player has book of top secret things]. XX makes twistiness for solved items disappear[end if].";
+	if player does not have book of top secret:
+		say "J=jump mode to toggle diagonal warning.";
+	say "T toggles big long listing in the status bar. X (#) reads one line, X (24) reads (for example) lines 2-4.[line break]Z waits.";
+	say "[line break]Typing no command circles through some of the nearer places you still need to visit.";
 	the rule succeeds;
 
 book list in status
@@ -1407,7 +1422,7 @@ to decide what number is listrows:
 
 chapter teleporter device
 
-description of the pocket teleporter device is "It's got a button you can push. You're reminded how, with so many buttons to push in Threediopolis, the letter [bold type]P[roman type] is slang for 'push the button.'"; [NOTE: it must be referred to as the teleporter device, not the device, as a device is a sort of thing in inform]
+description of the pocket teleporter device is "It's got a button you can push. You're reminded how, with so many buttons to push in Threediopolis, the letter [bold type]P[roman type] is slang for 'push the button.' Why? What else could it be?[one of][paragraph break]Ed Dunn must really be rich. Your gadget doesn't have or need a full/empty gauge on it.[or][stopping]"; [NOTE: it must be referred to as the teleporter device, not the device, as a device is a sort of thing in inform]
 
 instead of switching on teleporter device:
 	try pushing the button instead;
@@ -1439,7 +1454,7 @@ check pushing the button:
 	if ns is 4 and ew is 4 and ud is 4:
 		say "You feel a bit disoriented. You're in the same place, and yet you're not. But you feel refreshed and ready for your next journey.";
 	else:
-		say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2085. [italic type]YOU[roman type] still think of it that way.[paragraph break]Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it[or][stopping].";
+		say "[one of]Teleporting technology, apparently only for the very richest people,[or]Your trusty teleporter[stopping] kicks you back to the [one of][or]not-quite-[stopping]center of the city[one of]--well, it used to be, til it expanded north, east and up back in 2085. [italic type]YOU[roman type] still think of it that way[or][stopping].";
 	reset-game instead;
 
 chapter ping
@@ -1995,18 +2010,22 @@ carry out knocking:
 			try examining front door instead;
 		try processing instead;
 	if sneed is visible:
-		now oopsy-daisy is 6;
-		let sneedrows be 0;
-		repeat through table of scenery progress:
-			if eggsfound >= need-to-get entry:
-				increment sneedrows;
-		choose row sneedrows in table of scenery progress;
-		say "[sneed-talk entry]";
-		end the story finally instead;
+		calc-sneed-end instead;
 	otherwise if there is a visible quasi-entry:
 		say "No need to be so formal. Walk on in.";
 	otherwise:
 		say "Nothing familiar enough to knock at.";
+
+to calc-sneed-end:
+	now oopsy-daisy is 6;
+	repeat through table of scenery progress:
+		if eggsfound <= need-to-get entry:
+			say "[sneed-talk entry]";
+			end the story finally saying "[qp]";
+			consider the shutdown rules;
+			continue the action;
+	say "Oops. BUG.";
+	end the story saying "You did impossibly well!";
 
 knock1ing is an action applying to one thing.
 
@@ -2214,6 +2233,8 @@ suspicious-seen is a truth state that varies.
 scenery-found-yet is a truth state that varies.
 
 to check-cur-done:
+	if player has book of top secret things:
+		continue the action;
 	let cur-alf-row be 0;
 	let a be "a";
 	let b be indexed text;
@@ -2227,7 +2248,7 @@ to check-cur-done:
 			if cur-alf-row is inline:
 				if found entry is 0:
 					continue the action; [we found a non-clue]
-	say "There are no clues left in the rows you've chosen.";
+	say "There are no clues left in [if begin-rows is end-rows]row [begin-rows][else]rows [begin-rows] through [end-rows][end if], which is what you currently see with X.";
 
 misp-found is a truth state that varies.
 
@@ -2281,11 +2302,10 @@ after looking (this is the place ed's tasks rule) :
 					else:
 						say "[foundit entry][if scenery-found-yet is false][paragraph break][first-sc].[line break][else][line break][end if]";
 						now scenery-found-yet is true;
-						if misp-found is false and player has book of top secret:
-							say "You pat yourself on the back for finding this and mentally stick your tongue out at the person who beat you in a spelling bee years ago.";
+						if misp-found is false and player has book of top secret and diffic entry is misp:
+							say "[line break]You pat yourself on the back for finding this and mentally stick your tongue out at the person who beat you in a spelling bee years ago.";
 							now misp-found is true;
-						if expected-depth > secs - eggsfound:
-							now expected-depth is secs - eggsfound;
+						find-scen-talk;
 						if center-warn is false:
 							say "[italic type][bracket]NOTE: you can hit PP to zap back to the center automatically after finding scenery.[close bracket][roman type][line break]";
 							now center-warn is true;
@@ -2302,14 +2322,8 @@ after looking (this is the place ed's tasks rule) :
 					if ignore-sneed is false:
 						say "Oh man. It's the Sneeds['], again! Should you stop in?";
 						if debug-state is false and the player consents:
-							let count be 0;
-							repeat through the table of scenery progress:
-								if eggsfound >= need-to-get entry:
-									increment count;
-							choose row count in the table of scenery progress;
-							say "[sneed-talk entry]";
-							end the story;
-							consider the shutdown rules instead;
+							calc-sneed-end;
+							continue the action;
 						else:
 							say "You shuffle your feet nervously. Not yet, you guess, you think.";
 		repeat through table of nearlies:
@@ -2324,6 +2338,16 @@ after looking (this is the place ed's tasks rule) :
 					say "[descrip entry][line break]";
 					continue the action;
 	continue the action;
+
+to find-scen-talk:
+	let not-sneed be eggsfound;
+	choose row with tally of "sneeds" in table of scenery;
+	if found entry > 0:
+		decrement not-sneed;
+	repeat through table of scenery progress:
+		if not-sneed >= need-to-get entry and nailed-yet entry is false:
+			say "[line break][findy-talk entry][line break]";
+			now nailed-yet entry is true;
 	
 after looking (this is the drift check on look rule):
 	check-drift;
@@ -2417,7 +2441,7 @@ carry out pping:
 		now center-warn is true;
 	else:
 		now center-on-scene is false;
-	say "Now you [if center-on-scene is false]won't[else]will[end if] zap to the center after seeing scenery[if center-on-scene is true]. Though if you've just done so, you'll still need to type P to go back to the center right now. Busy work hasn't been [italic type]completely[roman type] abolished yet[end if].";
+	say "Now you [if center-on-scene is false]won't[else]will[end if] zap to the center after seeing all subsequent scenery.";
 	the rule succeeds.
 
 book xyzzying
@@ -2647,7 +2671,7 @@ instead of entering a quasi-entry:
 		unless debug-state is false and the player consents:
 			say "You walk into the population control clinic. Inside is a Death Panel. No, silly, not the health care type. Those're even more secretive! (IF they exist, of course. There's still no proof.) You're briefly thanked for doing your small part to alleviate overpopulation and given forms to sign.[paragraph break]As you are strapped into the lethal comfy chair with all these needles, they discuss whether you were destined to be useless to society or too lazy to contribute any more, then evaluate your contributions relative to your beliefs and where you started in life. It's emotionally, if not physically, painful.[paragraph break]Oh, yes. they confiscate your package, since you probably stole it, and there's illegal stuff in it anyway. It's useful when establishing trumped-up charges against Ed Dunn to confiscate his vast possessions five years later.";
 			now oopsy-daisy is 3;
-			end the story instead;
+			end the story saying "Dun dun DUUUN!" instead;
 	if quick-i is false:
 		say "[italic type][bracket]NOTE: you can type i instead of enter/in in the future. It trumps the default command for I, taking inventory, which has limited use in this game.[close bracket][roman type][line break]";
 		now quick-i is true;
@@ -2938,16 +2962,21 @@ wenty	recd
 "That journey felt sort of long."	0
 "You went quite a ways that time."	0
 "That last walk felt extra long."	0
-"You pushed yourself a bit extra to make that trip. You're not sure it ws worth it."	0
+"You pushed yourself a bit extra to make that trip. You're not sure it was worth it."	0
 "You feel as though you went the farthest you could on foot."	0
 
-to say far-gone of (myn - a number):
+to note-far-gone (myn - a number):
 	if myn > 10 or myn < 3:
 		continue the action;
+	if player has book of top secret:
+		continue the action;
+	if taskdone > 5:
+		continue the action;
+	say "[myn].";
 	choose row myn in table of you-went;
 	if recd entry < 3:
 		increment recd entry;
-		say "[wenty entry] "
+		say "[line break][wenty entry][line break]"
 
 ok-now is a truth state that varies. ok-now is false.
 
@@ -3198,7 +3227,7 @@ After printing the name of the adrift-a-tron while taking inventory:
 the adrift-a-tron is a thing. description is "[suss-exam]"
 
 to say suss-exam:
-	say "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has [ach], and if it finds nothing, no charge is used. [italic type][bracket]FOURTH WALL NOTE: the command A is shorthand to activate it.[close bracket][roman type]"
+	say "It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has [ach], [if player has adrift-a-tron]a charge being used when you get lost. Also you can turn it off whenever, with no penalty[else]and if it finds nothing, no charge is used[end if]. [italic type][bracket]FOURTH WALL NOTE: the command A is shorthand to activate it.[close bracket][roman type]"
 
 to say ach:
 	say "[a-charges] charge[if a-charges > 1]s[end if] left"
@@ -3334,7 +3363,7 @@ to decide whether still-there of (ww - text):
 
 rule for newseensing:
 	let any-scen-left be false;
-	now tnm is table of scenery;
+	now my-table is table of scenery;
 	if player has book of top secret things:
 		say "You don't need this command, since you already have the book." instead;
 	now player has book of top secret things;
@@ -3475,17 +3504,14 @@ to eval-dir (firstlet - text):
 	let foundany be false;
 	let whatever be indexed text;
 	let foundsofar be 0;
-	let mytab be table of findies;
-	if player has book:
-		now mytab is table of scenery;
-	repeat through mytab:
+	repeat through my-table:
 		if character number 1 in tally entry in upper case is firstlet and found entry is 0:
 			increment foundsofar;
 			if a random chance of 1 in foundsofar succeeds: [silly code but 1/1 chance we choose 1st, 1/2 we choose 2nd, 1/3 we choose 3rd, and choices overwritten]
 				now whatever is "[tally entry]";
 			now foundany is true;
 	if foundany is false:
-		say "The scope doesn't budge that way. Maybe that's a good thing--you don't need it to.";
+		say "The scope doesn't budge that way. Maybe that's a good thing--you don't need it to.[line break]";
 		continue the action;
 	else:
 		[say "Found [foundsofar], [foundany], [whatever].";]
@@ -3515,7 +3541,6 @@ carry out cheatlooking:
 		say "Even if something were there, it'd be too far to walk without getting tired." instead;
 	if the number understood is not listed in L:
 		say "Bad news: that isn't available as an option. Good news: it's because you've gotten everything like that." instead;
-	now look-mode is false;
 	now the command prompt is ">";
 	let LN be a list of numbers;
 	repeat through table of findies:
@@ -3531,10 +3556,13 @@ carry out cheatlooking:
 	now temp is entry 1 of LN;
 	choose row temp in table of findies;
 	give-clue tally entry;
+	now look-mode is false;
 
 to give-clue (walkclued - indexed text):
 	increment num-hints-given;
-	say "[line break]You see a graphical depiction of someone walking [dir-go of walkclued], but then your vision loses focus.[paragraph break]You're informed you have [3 - num-hints-given] hint[if num-hints-given is not 2]s[end if] left. Then you push the teleporter device button to get back to where it'll be easier to follow that person.";
+	if look-mode is true:
+		say "[line break]";
+	say "You see a graphical depiction of someone walking [dir-go of walkclued], but then your vision loses focus.[paragraph break]You're informed you have [3 - num-hints-given] hint[if num-hints-given is not 2]s[end if] left. Then you push the teleporter device button to get back to where it'll be easier to follow that person.";
 	reset-game;
 
 to say dir-go of (t - indexed text):
@@ -3924,6 +3952,8 @@ understand the command "j/jump" as something new.
 understand "j" and "jump" as fasting.
 
 carry out fasting:
+	if player has book of top secret:
+		say "Jump mode is fixed on by default in scenery mode." instead;
 	now ever-fast is true;
 	if fast-run is false:
 		say "Jump mode is on, e.g. NWU or NW diagonals are no longer questioned.";
@@ -3988,8 +4018,8 @@ book stupid scenery
 table of scenery [tos]
 tally (text)	descrip (text)	foundit (text)	found	twistiness	diffic
 "dds"	"toothy"	"You feel a toothache. You think[if player has book]. And just like that, someone offers to send you a free voucher for an ergonomic toothbrush. Dental replacements are cheap in 2100, but prevention is still cheaper[end if]. "	0	2	alfhint
-"dedend"	"kuldissakk"	"You can just hear the misspelling in the people saying nuthing that way dood."	0	3	alfhint
-"dedsune"	"deth neer"	"This feels like one of those seedy areas you were warned about, where a pack of bad-spelling thugs might jump out and kill you."	0	5	tough
+"dedend"	"kuldissakk"	"You can just hear the misspelling in the people saying nuthing that way dood."	0	3	alfhint [this is not a misp, because the letters must be what they are]
+"dedsune"	"deth neer"	"This feels like one of those seedy areas you were warned about, where a pack of bad-spelling thugs might jump out and kill you."	0	5	misp
 "dedududu"	"police zigzag here"	"A song from the 80s--thankfully not the too-cheesy 2080s--echoes through your head. The chorus, anyway. A policeman stands too close to you, tracking every breath you take."	0	3	tough
 "deduse"	"git cloos then figger"	"Dudes see u, essess your list, call it trivial, and move on to more properly brain-bending things. You realize you've encountered a special task force encouraged to ignore spelling so they can focus on deeper things. (Ironically, they're often great grammar cops.)"	0	4	misp
 "deesensee"	"Morrul Peepul"	"People who can't spell worth a dang weigh in on complex ethical questions with impressive oversimplification. It's good practice to refute them scientifically in your head, but bad policy to actually debate."	0	4	misp
@@ -4183,37 +4213,26 @@ to say swee-try:
 	say "[if found entry is 0]. Probably far away and near at the same time[else]. The new place seems nicer[end if]"
 
 table of scenery progress [top]
-sneed-talk	findy-talk	need-to-get	nailed-yet
-"You really couldn't find any scenery."	"You mark down your first bit of crazy Threediopolis scenery since you got your notebook. Yay!"	1	false
-"You didn't feel like seeing much scenery, but you saw enough. Maybe talking it over with the Sneeds will leave you recharged. It does. The talk about how, after all, you don't want to get burned out. You're not sure if they actually mean it, or if they're just being nice, but either way, it feels okay. At home, later, you blow through a crossword--you've never solved one this late in the week."	"You suddenly realize you know more about the REAL Threediopolis than idiots who babble about all the cool restaurants they've been to."
-"The Threediopolis scenery is tougher to find than the chores--that makes a certain amount of sense. Business gets all the visible locations, because money talks. You have to search to find artsiness and culture. You've done enough walking for a good long while, and you think you know enough to look forward to maybe seeing more scenery after your next chores from Ed Dunn. It's meant to be taken in slowly. Why go in for it all at once?"	"Your head is spinning less over local neighborhoods people rattled on about when you were younger. Of COURSE that is THERE, and so forth."
-"Hm, yeah, you have a good balance of stuff you've done and stuff to look forward to. The Sneeds agree. People feel like they have to do everything these days, since computers do. You've sort of forgotten a lot of the ways you got to Ed's business partners or whatever. That'll keep it fun."	"Ed's tasks have helped you find so much quirky neat stuff on your own, and hey, he said you could take whatever time you needed. You feel more accomplished than finding a national landmark or trendy club."
-"You feel a bit above average for your job, even though there aren't many people to compare yourself to, and they're mostly the ones you're talking to right now. There are plenty less obscure areas of Threediopolis you've never seen, which are simpler than what you just found right now. Maybe you'll visit them. It'll be nice to know where things are."	"Someone tells you you're headed for a bad end, wandering around like that, probably not using your full government-judged aptitudes to do a job you're paid to. Your disinterested smile convinces them further they're is right."
-"You find yourself discussing diminishing returns to scale and discussing not letting small things getting you down and planning for later. You compare notes with the Sneeds, who also missed a few things to see. You're unsure whether Ed Dunn's big thinking has rubbed off on you, but either way, you are relieved he--and the notebook--aren't like those teachers who claim you need to get everything right."	"Some idiot tells you you look like you need to get out more. If he only knew."
-"Turns out the Sneeds missed a few clues too. You missed just enough to be able to snicker about crazy people who managed to visit ALL these places and yet see how they figured it out."	"You're sure you've forgotten the places where Ed asked you to go, which will help you have fun finding them again later."
-"The Sneeds note the place or two they missed. They're really impressed. You sit around and talk of that new proposed mega-city, Fourdiopolis. It's got hexidecimal addresses. And teleport chambers. But they can only displace you a constant amount--from and to? Ana and kata? The government hasn't decided on the right terms. But you spend several fun evenings speculating where its secrets could be."	"That's it! You're pretty sure you've found everything."
+need-to-get	nailed-yet	sneed-talk	findy-talk [this is what you get if you have X points and gain another]
+7	false	"You really couldn't find any scenery. But hey, you found some friends, and that's more important."	"You mark down your first bit of crazy Threediopolis scenery since you got your notebook. Yay!"
+20	false	"You didn't feel like seeing much scenery, but you saw enough. Maybe talking it over with the Sneeds will leave you recharged. It does. The talk about how, after all, you don't want to get burned out. You're not sure if they actually mean it, or if they're just being nice, but either way, it feels okay. At home, later, you blow through a crossword--you've never solved one this late in the week."	"You suddenly realize you know more about the REAL Threediopolis than idiots who babble about all the cool restaurants they've been to."
+32	false	"The Threediopolis scenery is tougher to find than the chores--that makes a certain amount of sense. Business gets all the visible locations, because money talks. You have to search to find artsiness and culture. You've done enough walking for a good long while, and you think you know enough to look forward to maybe seeing more scenery after your next chores from Ed Dunn. It's meant to be taken in slowly. Why go in for it all at once?"	"Your head is spinning less over local neighborhoods people rattled on about when you were younger. Of COURSE that is THERE, and so forth."
+44	false	"Hm, yeah, you have a good balance of stuff you've done and stuff to look forward to. The Sneeds agree. People feel like they have to do everything these days, since computers do. You've sort of forgotten a lot of the ways you got to Ed's business partners or whatever. That'll keep it fun."	"Ed's tasks have helped you find so much quirky neat stuff on your own, and hey, he said you could take whatever time you needed. You feel more accomplished than finding a national landmark or trendy club."
+56	false	"You feel a bit above average for your job, even though there aren't many people to compare yourself to, and they're mostly the ones you're talking to right now. There are plenty less obscure areas of Threediopolis you've never seen, which are simpler than what you just found right now. Maybe you'll visit them. It'll be nice to know where things are."	"Someone tells you you're headed for a bad end, wandering around like that, probably not using your full government-judged aptitudes to do a job you're paid to. Your disinterested smile convinces them further they're is right."
+68	false	"You find yourself discussing diminishing returns to scale and discussing not letting small things getting you down and planning for later. You compare notes with the Sneeds, who also missed a few things to see. You're unsure whether Ed Dunn's big thinking has rubbed off on you, but either way, you are relieved he--and the notebook--aren't like those teachers who claim you need to get everything right."	"Some idiot tells you you look like you need to get out more. If he only knew."
+79	false	"Turns out the Sneeds missed a few clues too. You missed just enough to be able to snicker about crazy people who managed to visit ALL these places and yet see how they figured it out."	"You're sure you've forgotten the places where Ed asked you to go, which will help you have fun finding them again later."
+100	false	"The Sneeds note the place or two they missed. They're really impressed. You sit around and talk of that new proposed mega-city, Fourdiopolis. It's got hexidecimal addresses. And teleport chambers. But they can only displace you a constant amount--from and to? Ana and kata? The government hasn't decided on the right terms. But you spend several fun evenings speculating where its secrets could be."	"That's it! You're pretty sure you've found everything."
 
 to calibrate-scenery-progress:
 	let count be 0;
-	let found-in-game be number of rows in table of stumblies;
-	if eggsfound > 8:
-		now found-in-game is eggsfound;
-	if eggsfound + number of rows in table of scenery progress > secs:
-		repeat through table of scenery progress:
-			if eggsfound + number of rows in table of scenery progress > secs + count:
-				increment count;
-				now nailed-yet entry is true;
-		say "[italic type][bracket]NOTE: you've already found so much scenery, you'll miss [count] of the silly 'you found this' wisecracks. You can SEE NEW SEENS at the start to read them all. Or just read the source code.[close bracket][roman type][line break]";
-	let ro be number of rows in table of scenery progress;
+	choose row 2 in table of scenery progress;
+	if eggsfound > need-to-get entry:
+		say "[italic type][bracket]NOTE: you found so much scenery, you'll miss an ending and some minor notes, unless you SEE NEW SEENS to restart.[close bracket][paragraph break]";
 	repeat through table of scenery progress:
-		increment count;
-		if there is no nailed-yet entry:
+		if eggsfound > need-to-get entry:
+			now nailed-yet entry is true;
+		else:
 			now nailed-yet entry is false;
-		if there is no need-to-get entry or need-to-get entry is not 1:
-			now need-to-get entry is ((count - 2) * (secs - number of rows in table of stumblies)) / (ro - 2);
-			increase need-to-get entry by found-in-game;
-			if debug-state is true: [can't debug-say as indexed text threw me a curveball]
-				say "DEBUG: Row [count] has find-value of [need-to-get entry].";
 
 book finding table
 
@@ -4314,6 +4333,25 @@ scen-look-mode is a truth state that varies.
 
 go-turbo is a truth state that varies.
 
+to sort-see-list:
+	now L is { 0 };
+	now L2 is { };
+	let C be text;
+	repeat through my-table:
+		if found entry is not 0:
+			next;
+		if there is a what-drops entry:
+			if what-drops entry is front door or what-drops entry is door to ed:
+				say "Skipping [tally entry].";
+				next;
+		let A be the number of characters in "[tally entry]";
+		if A is not listed in L:
+			add A to L;
+		let B be character number 1 in "[tally entry]" in upper case;
+		if B is not listed in L2:
+			add B to L2;
+	sort L;
+
 to say see-hints:
 	if saw-see is false:
 		now need-to-redraw is true;
@@ -4329,19 +4367,7 @@ to say see-hints:
 	if num-hints-given > 2:
 		say "You are turned away. You've already used enough hints.";
 		continue the action;
-	now L is { 0 };
-	now L2 is { };
-	let C be text;
-	repeat through tnm:
-		let A be the number of characters in "[tally entry]";
-		if A is not listed in L:
-			if found entry is 0:
-				if there is no what-drops entry or what-drops entry is not front door:
-					add A to L;
-		let B be character number 1 in "[tally entry]" in upper case;
-		if B is not listed in L2:
-			add B to L2;
-	sort L;
+	sort-see-list;
 	if superuser is true:
 		say "There would normally be a choice, here, but we are in turbo mode, probably to test. So I am rejecting it.";
 		continue the action;
@@ -4394,6 +4420,7 @@ rule for seeing unseen:
 	now ud is 4;
 	now ew is 4;
 	now ns is 4;
+	now fast-run is true;
 	calibrate-scenery-progress;
 	now your-tally is "";
 
@@ -4530,6 +4557,8 @@ volume testing - not for release
 
 chapter procing
 
+[* this quick-processes the endgame]
+
 understand the command "proc" as something new.
 
 understand "proc" as procxing.
@@ -4589,6 +4618,8 @@ carry out staing:
 
 chapter dting
 
+[* this toggles the debug state ]
+
 dting is an action out of world.
 
 understand the command "dt" as something new.
@@ -4598,6 +4629,35 @@ understand "dt" as dting.
 carry out dting:
 	now debug-state is whether or not debug-state is false;
 	say "Now debug-state is [debug-state].";
+	the rule succeeds;
+
+chapter scing
+
+[* this looks through all the see-cheats ]
+
+scing is an action out of world.
+
+understand the command "sc" as something new.
+
+understand "sc" as scing.
+
+carry out scing:
+	say "North: ";
+	eval-dir "N";
+	say "South: ";
+	eval-dir "S";
+	say "East: ";
+	eval-dir "E";
+	say "West: ";
+	eval-dir "W";
+	say "Up: ";
+	eval-dir "U";
+	say "Down: ";
+	eval-dir "D";
+	sort-see-list;
+	repeat with mn running from 3 to 8:
+		say "[mn]: [run paragraph on]";
+		try cheatlooking mn;
 	the rule succeeds;
 
 book tests

@@ -4,6 +4,7 @@
 #
 
 $permissible = 0;
+$success = 0;
 
 $try3d = 1; $try4d = 1;
 
@@ -14,6 +15,7 @@ while ($count <= $#ARGV)
   {
     /3d/ && do { $try3d = 1; $try4d = 0; $count++; next; };
     /4d/ && do { $try3d = 0; $try4d = 1; $count++; next; };
+    /^-?a/ && do { $showAll = 1; $count++; next; };
     /^-?p/ && do { $permissible = @ARGV[$count+1]; $count+= 2; next; };
     /opo/ && do { $try3d = 1; $try4d = 1; $count++; next; };
 	usage();
@@ -82,10 +84,17 @@ print "# of errors found in logic document headers: $blammo.\n";
 
 print "TEST RESULTS:threediopolis-walkthrough,$permissible,$blammo,$success,\n";
 
+if ($showAll)
+{
 print "\nHow unsolved headers should look:";
 $cur = ""; for $q (sort keys %loc) { $r = substr($q, 0, 1); if ($r ne $cur) { $cur = $r; print "\n$cur: "; } print "$loc{$q}, "; }
 print "\n\nHow solved headers should look:";
 $cur = ""; for $q (sort keys %loc) { $r = substr($q, 0, 1); if ($r ne $cur) { $cur = $r; print "\n$cur: "; } print "$q, "; }
+
+print "\n";
+}
+
+print "\n======finished 3d check\n\n";
 }
 
 sub walk4d
@@ -93,6 +102,8 @@ sub walk4d
 $blammo = 0;
 
 open(A, "c:/games/inform/fourdiopolis.inform/source/fourdiopolis-logic.txt") || die ("No 4dop logic file.");
+
+$logicLine = 0;
 
 while ($a = <A>)
 {
@@ -106,7 +117,8 @@ while ($a = <A>)
     chomp($a);
 	$a =~ s/\([^\)]*\)//g;
 	$a =~ s/[ \*]//g;
-	if ($currentSummary) { $currentSummary = "$currentSummary,$a"; } else { $currentSummary = $a; }
+	if ($currentSummary) { $currentSummary = "$currentSummary,$a"; } else { $currentSummary = $a; $lastTableStart = $logicLine}
+	@check = split(/,/, $a); if ($#check != 4) { print "WARNING need 5 elements per line line $logicLine: $a\n"; $blammo++; }
 	next;
   }
   if ($inSummary)
@@ -143,7 +155,7 @@ sub setTable
   @locs = ();
   while ($b = <B>)
   {
-    if ($b =~ /^table of $tabname.*\[/i)
+    if (($b =~ /^table of $tabname.*\[/i) && ($b !~ /\t\"/))
 	{
 	  $everFound = 1;
 	  $foundTable = 1;
@@ -176,9 +188,12 @@ sub verify4
   my $lineErrr = 0;
   for (0..$#cs)
   {
+    use integer;
+    $curLine = $lastTableStart + $_ / 5;
+	no integer;
     my $temp = lc(@cs[$_]);
 	my $q = myloc(@locs[$_]);
-	if (($temp eq @locs[$_]) || (lc($temp) eq lc($q))) { next; } else { print "Mismatch: $temp != $q and $temp != @locs[$_] at line $logicLine in $curTab.\n"; $blammo++; $thisRound++; $lineErr = 1; }
+	if (($temp eq @locs[$_]) || (lc($temp) eq lc($q))) { next; } else { print "Mismatch: $temp != $q and $temp != @locs[$_] at line $curLine in $curTab.\n"; $blammo++; $thisRound++; $lineErr = 1; last; }
   }
   if (!$lineErr)
   {

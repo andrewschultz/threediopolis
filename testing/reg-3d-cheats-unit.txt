@@ -35,10 +35,10 @@ You accept the twist-o-scope, which hooks up to your list and adds some new info
 "Here's your adrift-a-tron. It'll tell you when you're hopelessly wandering." [NOTE: you can X IT right now, or X TRON.]
 
 >x it
-It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left, a charge being used when you get lost. Also you can turn it off whenever, with no penalty. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
 
 >x tron
-It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left, a charge being used when you get lost. Also you can turn it off whenever, with no penalty. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
 
 >a
 The adrift-a-tron is on now.
@@ -65,7 +65,7 @@ The adrift-a-tron is on now.
 >switch it on
 The adrift-a-tron already is on.
 
-Silence from the adrift-a-tron.
+!Silence from the adrift-a-tron.
 
 >p
 You decide to shut the adrift-a-tron off before trying another run.
@@ -81,7 +81,6 @@ Silence from the adrift-a-tron.
 >n
 The adrift-a-tron shrieks as if to say you did something wrong, then blinks it has 9 charges left. Harsh! You turn it off.
 Threediopolis, Sector 464
-You note a three-way street sign: Avenue 46, Street 44, Updownway 64.
 
 >n
 !adrift-a-tron
@@ -145,10 +144,10 @@ You find a recycling receptacle to bury the adrift-a-tron. It was useful enough,
 >3
 
 >x it
-It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left, and if it finds nothing, no charge is used. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
 
 >x meter
-It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
+It is lightweight, totally inexplicable to someone from 20 years ago much less 87 (technology, boy,) and indicates it has 10 charges left, and if it finds nothing, no charge is used. [FOURTH WALL NOTE: the command A is shorthand to activate it.]
 
 >a
 The availableometer registers nothing. But at least you don't lose a charge.
@@ -212,10 +211,75 @@ Your availableometer shows, next to "3 charges left," the number 6. That's how m
 Your availableometer shows, next to "2 charges left," the number 4. That's how many paths are ahead from here.
 >w
 >a
-Your availableometer shows, next to "1 charge left," the number 4. That's how many paths are ahead from here.
+Your availableometer shows, next to "1 charge left," the number 2. That's how many paths are ahead from here.
 >d
 >a
 Just before your availableometer makes a FOOMP, it shows the number 1. Guess there's only one path ahead from here.
 
 You find a trash receptacle where you can recycle the availableometer.
 
+* 3d-seeing
+
+#this is slightly artificial as we do not have a way to test with the current architecture.
+
+>sc
+North: You see a graphical depiction of someone walking north
+South: You see a graphical depiction of someone walking south
+East: You see a graphical depiction of someone walking east
+West: You see a graphical depiction of someone walking west
+Up: You see a graphical depiction of someone walking up
+Down: You see a graphical depiction of someone walking down
+/3: You see a graphical depiction of someone walking .*,.*, then finally.
+/4: You see a graphical depiction of someone walking .*,.*,.*, then finally.
+/5: You see a graphical depiction of someone walking .*,.*,.*,.*, then finally.
+/6: You see a graphical depiction of someone walking .*,.*,.*,.*,.*, then finally.
+/7: You see a graphical depiction of someone walking .*,.*,.*,.*,.*,.*, then finally.
+8: You see a graphical depiction of someone walking up, south, east, down, down, up, down, then finally south, but then your vision loses focus.
+
+>j
+>dee
+>k
+>den
+>i
+>ned
+>k
+>des
+>k
+>sue
+>k
+>uwe
+>k
+
+>dew
+>i
+>dns
+>i
+>end
+>k
+>edu
+>i
+>nes
+>i
+>sew
+>i
+>sun
+>i
+
+>see
+>i
+>sc
+3: Bad news: that isn't available as an option. Good news: it's because you've gotten everything like that.
+
+>unseen
+>i
+>usedduds
+>i
+>sc
+8: Bad news: that isn't available as an option. Good news: it's because you've gotten everything like that.
+
+>unused
+>i
+>unwed
+>i
+>sc
+Up: The scope doesn't budge that way. Maybe that's a good thing--you don't need it to.

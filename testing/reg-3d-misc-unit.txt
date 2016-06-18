@@ -6,28 +6,274 @@
 ** game: /home/andrew/prt/debug-threediopolis.z8
 ** interpreter: /home/andrew/prt/dfrotz -m
 
+* 3d-you-went
+
+>nnn
+>p
+You had a really short journey, but why explore just to get lost?
+
+>nnn
+>p
+You had a really short journey, but why explore just to get lost?
+
+>nnn
+>p
+You had a really short journey, but why explore just to get lost?
+
+>nnn
+>p
+!You had a really short journey, but why explore just to get lost?
+
+>nnnn
+>p
+That was a nice short walk, enough to discover something to do, or not-do.
+
+>nnnnn
+>p
+That was a bit of a workout, but it wasn't really long.
+
+>nnnnne
+>p
+That journey felt sort of long.
+
+>nnnnnee
+>p
+You went quite a ways that time.
+
+>nnnnneee
+>p
+That last walk felt extra long.
+
+>nnnnneeee
+>p
+You pushed yourself a bit extra to make that trip. You're not sure it was worth it.
+
+>nnnnneeeee
+>p
+You feel as though you went the farthest you could on foot.
+
+>ned
+>k
+>des
+>k
+>dee
+>k
+>dew
+>i
+>edu
+>i
+>nnnn
+>p
+That was a nice short walk, enough to discover something to do, or not-do.
+
+>nes
+>i
+>nnnn
+>p
+!That was a nice short walk, enough to discover something to do, or not-do.
+
+* 3d-scen-end-ranks
+
+>see new seens
+>pp
+Now you will zap to the center after seeing all subsequent scenery.
+
+>pp
+Now you won't zap to the center after seeing all subsequent scenery
+
+>pp
+Now you will zap to the center after seeing all subsequent scenery.
+
+>j
+Jump mode is fixed on by default in scenery mode.
+
+>dds
+>dedend
+>dedsune
+>dedududu
+>deduse
+>deesensee
+>deneennunn
+>dense
+>denude
+>desdenee
+>deseesed
+>desended
+>sneeds
+>in
+You didn't feel like seeing much scenery, but you saw enough.
+
+#20
+>undo
+>p
+>deweese
+You suddenly realize you know more about the REAL Threediopolis than idiots who babble about all the cool restaurants they've been to.
+>sneeds
+>in
+The Threediopolis scenery is tougher to find than the chores--that makes a certain amount of sense.
+
+>undo
+>p
+>dnd
+>wuwu
+>dues
+>dundee
+>dunse
+>duses
+>eden
+>eeee
+>eesus
+>endeed
+>ennuee
+>sneeds
+>in
+The Threediopolis scenery is tougher to find than the chores--that makes a certain amount of sense.
+
+#32
+>undo
+>p
+>ensue
+Your head is spinning less over local neighborhoods people rattled on about when you were younger. Of COURSE that is THERE, and so forth.
+>sneeds
+>in
+Hm, yeah, you have a good balance of stuff you've done and stuff to look forward to. The Sneeds agree.
+
+>undo
+>p
+>www
+>essen
+>esses
+>euwe
+>eww
+>nene
+>ness
+>newdude
+>newwessewn
+>nusense
+>sed
+>sneeds
+>in
+Hm, yeah, you have a good balance of stuff you've done and stuff to look forward to. The Sneeds agree.
+
+#44
+>undo
+>p
+>seduse
+Ed's tasks have helped you find so much quirky neat stuff on your own, and hey, he said you could take whatever time you needed.
+>sneeds
+>in
+You feel a bit above average for your job, even though there aren't many people to compare yourself to, and they're mostly the ones you're talking to right now.
+
+>undo
+>p
+>seedee
+>seen
+>seesuns
+>seeus
+>wudden
+>senessense
+>sensen
+>sensus
+>sesede
+>seuss
+>sewnsew
+>sneeds
+>in
+You feel a bit above average for your job, even though there aren't many people to compare yourself to, and they're mostly the ones you're talking to right now.
+
+#56
+>undo
+>p
+>sneese
+Someone tells you you're headed for a bad end, wandering around like that, probably not using your full government-judged aptitudes to do a job you're paid to.
+>sneeds
+>in
+You find yourself discussing diminishing returns to scale and discussing not letting small things getting you down and planning for later.
+
+>undo
+>p
+>snes
+>sudden
+>wewun
+>sundew
+>suns
+>sununu
+>sussud
+>swedes
+>sweenee
+>swune
+>unded
+>sneeds
+>in
+You find yourself discussing diminishing returns to scale and discussing not letting small things getting you down and planning for later.
+
+#68
+>undo
+>p
+>undees
+>sneeds
+>in
+Turns out the Sneeds missed a few clues too.
+
+>undo
+>p
+>undue
+>unneeded
+>unseeded
+>unsewn
+>unsunned
+>wednesd
+>weeeeee
+>weeuns
+>weewee
+>wenewenew
+>sneeds
+>in
+Turns out the Sneeds missed a few clues too.
+
+#80
+>undo
+>p
+>wenus
+You're sure you've forgotten the places where Ed asked you to go, which will help you have fun finding them again later.
+>sneeds
+>in
+The Sneeds note the place or two they missed. They're really impressed. You sit around and talk of that new proposed mega-city, Fourdiopolis.
+
 * 3d-out-of-bounds
 
 >eeeeeee
 cancel the rest
 hear a siren
 
+>u
+Boy, it's cool
+
+>u
+!Boy, it's cool
+
+>uuuuuuu
+high-pitched
+cancel the rest
+
 >ddddd
 low buzz
+!cancel the rest
 
 >nnnnnn
 hear a siren
+!cancel the rest
 
->wwwww
+>w
+>w
+>w
+>w
+>w
 hear a siren
 
 >ssssss
 cancel the rest
 hear a siren
-
->uuuuuuu
-high-pitched
-cancel the rest
 
 * 3d-undone-cmd
 
@@ -321,6 +567,14 @@ Your trusty teleporter kicks you back to the not-quite-center of the city.
 
 >x me
 enzymes. At a garbage plant
+
+>x device
+button you can push
+gauge
+
+>x device
+button you can push
+!gauge
 
 >about
 then got so lazy I saw
@@ -811,7 +1065,6 @@ You remember nightmares
 >nsnsnsnsn
 >p
 Teleporting technology, apparently only for the very richest people, kicks you back to the center of the city--well, it used to be, til it expanded north, east and up back in 2085. YOU still think of it that way.
-Your employer must really be loaded, especially since your gadget doesn't have or need a full/empty gauge on it.
 
 >nsnsnsnsn
 >p
@@ -1275,39 +1528,21 @@ being a yes-man
 >no
 head, but nothing
 
-* 3d-bounds
+* 3d-toolong
 
->u
-Boy, it's cool
+>n
+>nsewnsewnsewnsew
+That is way too long a trip to even think about.
 
->u
-!Boy, it's cool
-
->s
->s
->s
->s
->s
-suicide police don't joke
-
->wwwww
-suicide police don't joke
-
->eeeeee
-suicide police don't joke
-
->nnnnnn
-suicide police don't joke
-
->uuuuuu
-pay too much to live in
-
->ddddd
-Only maintenance
+>nsewnsewnsewnsew
+That is way too long a trip to even think about.
 
 >nsewnsewnsew
 wandering for too long
 rest of your
+
+
+* 3d-diagonal
 
 >ne
 It would be more efficient if you could walk through buildings, but they're private property
@@ -1320,6 +1555,20 @@ It would be more efficient if you could walk through buildings, but they're priv
 
 >sw
 It would be more efficient if you could walk through buildings, but they're private property
+
+>j
+
+>ne
+!It would be more efficient if you could walk through buildings, but they're private property
+
+>nw
+!It would be more efficient if you could walk through buildings, but they're private property
+
+>se
+!It would be more efficient if you could walk through buildings, but they're private property
+
+>sw
+!It would be more efficient if you could walk through buildings, but they're private property
 
 >p
 >dee
@@ -1841,9 +2090,35 @@ Overview: you have completed 22 of Ed's 50 tasks: 21 on your own and 1 with his 
 >score
 You've completed all of Ed's tasks, and now you're looking for scenery from the book of top secret things. So far, you're at 7 of 80.
 
-##### table of you-went
-##### adrift-o-tron test?
-##### availableometer test?
+* 3d-command-listing
 
-##### see about scope direction?
-##### 
+>c
+[All commands are case insensitive]
+
+The six directions, abbreviated: N, S, E, W, U, D. K knocks. I/IN goes in (inventory doesn't change much so I trumps INVENTORY when you can enter.)
+B=brief V=verbose C=this command I=inventory X examines list unless an entry is present
+F=friends left FF=friends in header O=one line of by-length list OO=one line in header
+H=hint, HH=toggle hints the game gives when you're stuck
+P pushes the panic button to send you to sector 444. R shows the nearest, first-in-alphabet unvisited place, R # (up to 9) shows the next 9.
+J=jump mode to toggle diagonal warning.
+T toggles big long listing in the status bar. X (#) reads one line, X (24) reads (for example) lines 2-4.
+Z waits.
+
+Typing no command circles through some of the nearer places you still need to visit.
+
+>see new seens
+>c
+[All commands are case insensitive]
+
+The six directions, abbreviated: N, S, E, W, U, D. K knocks. I/IN goes in (inventory doesn't change much so I trumps INVENTORY when you can enter.)
+B=brief V=verbose C=this command I=inventory X examines list unless an entry is present
+H=hint, HH=toggle hints the game gives when you're stuck
+P pushes the panic button to send you to sector 444. PP makes this the default when finding scenery, though if you just found it, you'll still need to push P.
+R shows the nearest, first-in-alphabet unvisited place, R # (up to 9) shows the next 9. XX makes twistiness for solved items disappear.
+T toggles big long listing in the status bar. X (#) reads one line, X (24) reads (for example) lines 2-4.
+Z waits.
+
+Typing no command circles through some of the nearer places you still need to visit.
+
+##### table of you-went
+
