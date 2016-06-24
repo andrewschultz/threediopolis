@@ -6,3 +6,4 @@ Here are the main features:
 --big headers now only refresh after you find something, so if you play the game in a web browser/slower interpreter, it will slow down less.
 --the game now detects how you run out of bounds for a more suitable error message.
 --there are now 100 silly random events, up from 72 in release 3.
+--small speedups in traversing (game doesn't search for scenery when there can't be any and also cuts off searching in the table of scenery when no further entries could be seen)

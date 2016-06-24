@@ -1870,7 +1870,7 @@ check going south:
 		say "[losted]";
 		reset-game instead;
 	decrement ns;
-	
+
 
 check going north:
 	now your-tally is "[your-tally]n";
@@ -2348,7 +2348,7 @@ to find-scen-talk:
 		if not-sneed >= need-to-get entry and nailed-yet entry is false:
 			say "[line break][findy-talk entry][line break]";
 			now nailed-yet entry is true;
-	
+
 after looking (this is the drift check on look rule):
 	check-drift;
 	continue the action;
@@ -3320,7 +3320,7 @@ carry out aing:
 	if number of quasi-entries in outside-area > 0:
 		say "There's somewhere to visit here! Are you sure you wish to potentially waste a charge? [bracket]Note: your current find won't be included in the total.[close bracket]";
 		unless debug-state is true or the player consents:
-			say "Okay." instead;		
+			say "Okay." instead;
 	if number of characters in your-tally is 0:
 		say "Best to go somewhere first." instead;
 	repeat through table of findies:
