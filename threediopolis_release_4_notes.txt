@@ -1,5 +1,7 @@
 Threediopolis release 4 has a few nice fixes. I was able to use Zarf's script to do stability testing, which was a big help, and it also turned up small bugs and inconsistencies in the narrative, which I was able to fix.
 
+The official release date is August 14, 2016.
+
 Here are the main features:
 --header for scenery mode (this was intended to be the only one, but stuff kept popping up)
 --Q lets you zoom through areas and avoid random text.
